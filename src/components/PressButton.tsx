@@ -13,6 +13,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           style={styles.button}
           mode="contained"
           buttonColor={colors.buttonSecondary}
+          textColor={props.textColor}
           onPress={props.onPress}>
           {props.text}
         </Button>
@@ -23,6 +24,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           style={styles.button}
           mode="contained-tonal"
           buttonColor={colors.buttonPrimary}
+          textColor={props.textColor}
           onPress={props.onPress}>
           {props.text}{' '}
         </Button>
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     marginVertical: 5,
-    width: '50%',
+    width: '80%',
     justifyContent: 'center',
   },
 });
