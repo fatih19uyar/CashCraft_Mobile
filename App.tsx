@@ -7,36 +7,12 @@ import {loginSuccess} from './src/redux/slice/authReducer';
 import AppStack from './src/navigations/AppStack';
 import AuthStack from './src/navigations/AuthStack';
 
-const Stack = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const userIsLoggedIn: boolean = useSelector<RootState, boolean>(
-    state => state.authReducer.isAuthenticated,
-  );
-  useEffect(() => {
-    const checkUserLoggedIn = async () => {
-      if (!userIsLoggedIn) {
-        const loggedInUser = await AsyncStorage.getItem('user');
-        if (loggedInUser) {
-          const user = JSON.parse(loggedInUser);
-          dispatch(loginSuccess(user));
-        }
-      }
-    };
-
-    checkUserLoggedIn();
-  }, [dispatch, userIsLoggedIn]);
-
-  return (
-    <NavigationContainer>
-      {userIsLoggedIn ? <AppStack /> : <AuthStack />}
-    </NavigationContainer>
-  );
-};
-
 const App = () => {
   return (
     <Provider store={store}>
-      <AppStack />
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
     </Provider>
   );
 };
