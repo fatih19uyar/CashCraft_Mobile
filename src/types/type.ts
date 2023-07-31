@@ -18,6 +18,25 @@ export interface PressButtonProps {
   mode: string;
   text: string;
 }
+export interface TextViewProps {
+  textColor: string;
+  textSize: number;
+  textStyle: FontWeight;
+  textMargin: number | {top?: number; bottom?: number};
+  text: string;
+}
+export type FontWeight =
+  | 'normal'
+  | 'bold'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
 
 export interface InputProps extends WrappedFieldProps {
   label: string;

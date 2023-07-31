@@ -11,47 +11,47 @@ import PressButton from '../components/PressButton';
 import colors from '../utils/colors';
 import Background from '../components/Background';
 import TextView from '../components/TextView';
-import BackButton from '../components/BackButton';
 interface IProps extends ConnectedProps<typeof connector> {
-  onLogin: (values: any) => void;
+  onRegister: (values: any) => void;
 }
 
 const validate = (values: any) => {
   const errors: any = {};
-  if (!values.email_login) {
-    errors.email_login = 'Email is required';
-  } else if (!isValidEmail(values.email_login)) {
-    errors.email_login = 'Invalid email format';
+  if (!values.email_register) {
+    errors.email_register = 'Email is required';
+  } else if (!isValidEmail(values.email_register)) {
+    errors.email_register = 'Invalid email format';
   }
   return errors;
 };
 
-const isValidEmail = (email_login: string) => {
+const isValidEmail = (email_register: string) => {
   // Email format validation logic here
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_login);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_register);
 };
 
-const LoginScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
+const RegisterScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
   handleSubmit,
-  onLogin,
+
+  onRegister,
 }) => (
   <Background>
     <TextView
       textColor={'black'}
       textSize={40}
-      text={'Giriş Yapın'}
+      text={'Hesap Oluşturun'}
       textStyle={'500'}
       textMargin={{top: 0, bottom: 200}}
     />
     <Field
       color={colors.inputTextBackground}
-      name="email_login"
+      name="email_register"
       component={Input}
       label="Email"
       secret={false}
     />
     <PressButton
-      onPress={handleSubmit(onLogin)}
+      onPress={handleSubmit(onRegister)}
       textColor=""
       text="Devam Et"
       mode="Button2"
@@ -59,9 +59,9 @@ const LoginScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
   </Background>
 );
 
-const selector = formValueSelector('loginScreen');
+const selector = formValueSelector('registerScreen');
 const mapStateToProps = (state: any) => {
-  const email = selector(state, 'email_login');
+  const email = selector(state, 'email_register');
   return {
     email,
   };
@@ -69,9 +69,9 @@ const mapStateToProps = (state: any) => {
 const connector = connect(mapStateToProps);
 export default connector(
   reduxForm<{}, IProps>({
-    form: 'loginScreen',
+    form: 'registerScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     validate,
-  })(LoginScreenForm),
+  })(RegisterScreenForm),
 );

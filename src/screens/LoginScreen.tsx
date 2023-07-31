@@ -1,19 +1,21 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import LoginScreenForm from '../screenForms/LoginScreenForm';
+import BackButton from '../components/BackButton';
 
-type Props = {};
-
-const LoginScreen = (props: Props) => {
-  const onSubnmit = () => {};
+type LoginScreenProps = {navigation: any};
+const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
+  const onLogin = (values: any) => {
+    console.log(values);
+  };
+  const goBack = () => {
+    props.navigation.goBack();
+  };
   return (
-    <View>
-      <LoginScreenForm
-        onRegister={onSubnmit}
-        onForgotPassword={onSubnmit}
-        onSubmit={onSubnmit}
-      />
-    </View>
+    <>
+      <BackButton goBack={goBack} />
+      <LoginScreenForm onLogin={onLogin} />
+    </>
   );
 };
 

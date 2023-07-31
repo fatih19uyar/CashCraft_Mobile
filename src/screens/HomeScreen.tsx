@@ -1,13 +1,14 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import HomeScreenForm from '../screenForms/HomeScreenForm';
 
-type Props = {};
+type HomeScreenProps = {navigation: any};
 
-const HomeScreen = (props: Props) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <HomeScreenForm
+      onSign={() => navigation.navigate('LoginScreen')}
+      onRegister={() => navigation.navigate('RegisterScreen')}
+    />
   );
 };
 
