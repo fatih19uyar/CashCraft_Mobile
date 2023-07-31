@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {TextInput, HelperText} from 'react-native-paper';
 import {InputProps} from '../types/type';
+import colors from '../utils/colors';
 
 const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -24,13 +25,16 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
   return (
     <>
       <TextInput
-        style={styles.input}
+        style={[styles.input, {backgroundColor: colors.white}]}
         label={label}
         secureTextEntry={secret && !passwordVisible}
         right={secret && renderIcon()}
         value={input.value}
         onChangeText={input.onChange}
         error={showError}
+        textColor={colors.text}
+        activeUnderlineColor={colors.text}
+        outlineColor={colors.inputTextOutline}
       />
       {showError && (
         <HelperText style={{color: 'white'}} type="error">
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
   input: {
     width: '70%',
     margin: 10,
-    marginBottom: 2,
+    marginBottom: 50,
   },
 });
 
