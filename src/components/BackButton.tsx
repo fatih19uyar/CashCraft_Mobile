@@ -14,7 +14,7 @@ export default function BackButton({goBack}: BackButtonProps) {
       <TouchableOpacity onPress={goBack}>
         <Image
           style={styles.image}
-          source={require('../assets/arrow_back.gif')}
+          source={require('../assets/arrow_back.png')}
         />
       </TouchableOpacity>
     </View>
@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   image: {
-    width: 30,
-    height: 30,
+    marginTop: 40,
+    marginLeft: 10,
+    width: 20,
+    height: 20,
   },
 });
