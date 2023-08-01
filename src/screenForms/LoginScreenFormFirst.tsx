@@ -31,17 +31,16 @@ const isValidEmail = (email_login: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_login);
 };
 
-const LoginScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
-  handleSubmit,
-  onLogin,
-}) => (
+const LoginScreenFormFirst: React.FC<
+  IProps & InjectedFormProps<{}, IProps>
+> = ({handleSubmit, onLogin}) => (
   <Background>
     <TextView
       textColor={'black'}
       textSize={40}
       text={'Giriş Yapın'}
       textStyle={'500'}
-      textMargin={{top: 0, bottom: 200}}
+      textMargin={{top: 0, bottom: 100}}
     />
     <Field
       color={colors.inputTextBackground}
@@ -73,5 +72,5 @@ export default connector(
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     validate,
-  })(LoginScreenForm),
+  })(LoginScreenFormFirst),
 );

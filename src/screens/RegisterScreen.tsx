@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import LoginScreenForm from '../screenForms/LoginScreenForm';
+import LoginScreenForm from '../screenForms/LoginScreenFormFirst';
 import BackButton from '../components/BackButton';
 import RegisterScreenForm from '../screenForms/RegisterScreenForm';
 

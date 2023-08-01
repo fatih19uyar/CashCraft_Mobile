@@ -4,12 +4,12 @@ import Background from '../components/Background';
 import PressButton from '../components/PressButton';
 import TextView from '../components/TextView';
 
-type HomeScreenFormProps = {
+type WelcomeScreenFormProps = {
   onSign: () => void;
   onRegister: () => void;
 };
 
-const HomeScreenForm = (props: HomeScreenFormProps) => {
+const WelcomeScreenForm = (props: WelcomeScreenFormProps) => {
   return (
     <Background>
       <Image
@@ -21,7 +21,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
         textSize={18}
         text={'Cüzdan ile tüm kartların tek bir yerde.'}
         textStyle={'500'}
-        textMargin={{top: 20, bottom: 250}}
+        textMargin={{top: 20, bottom: 100}}
       />
       <PressButton
         textColor={'black'}
@@ -30,7 +30,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
         onPress={props.onSign}
       />
       <PressButton
-        textColor={'black'}
+        textColor={'white'}
         mode={'Button2'}
         text={'Hesap Oluştur'}
         onPress={props.onRegister}
@@ -39,4 +39,4 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
   );
 };
 
-export default HomeScreenForm;
+export default WelcomeScreenForm;
