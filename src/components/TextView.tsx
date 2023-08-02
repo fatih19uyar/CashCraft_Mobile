@@ -37,7 +37,7 @@ export default function TextView(props: TextViewProps) {
 
 const styles = StyleSheet.create({
   text: {
-    lineHeight: 40,
+    lineHeight: 50,
     textAlign: 'center',
     marginBottom: 12,
     marginTop: 10,
