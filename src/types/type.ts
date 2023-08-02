@@ -4,14 +4,6 @@ export interface User {
   email: string;
 }
 
-export interface AuthState {
-  user: User | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-  token: string | null; // kullanıcı oturum açtığında alınan token'ı tutacak
-}
-
 export interface PressButtonProps {
   textColor: string;
   onPress?: () => void;
@@ -41,4 +33,10 @@ export type FontWeight =
 export interface InputProps extends WrappedFieldProps {
   label: string;
   secret?: boolean;
+}
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  error: string | null;
 }

@@ -1,13 +1,14 @@
+// authSlice.ts
+
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AuthState, User} from '../../types/type';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthState} from '../../types/type';
 
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
   loading: false,
   error: null,
-  token: null, // başlangıçta token boş
 };
 
 const authSlice = createSlice({
@@ -16,24 +17,22 @@ const authSlice = createSlice({
   reducers: {
     loginSuccess: (
       state,
-      action: PayloadAction<{user: User; token: string}>, // Eklendi: token action.payload içerisine ekleniyor
+      action: PayloadAction<{id: string; email: string}>,
     ) => {
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.isAuthenticated = true;
       state.loading = false;
       state.error = null;
-      state.token = action.payload.token; // Eklendi: token state içerisine ekleniyor
-      AsyncStorage.setItem('user', JSON.stringify(action.payload.user));
-      AsyncStorage.setItem('token', action.payload.token); // Eklendi: token AsyncStorage'e kaydediliyor
+      // Kullanıcı bilgilerini AsyncStorage'e kaydetme
+      AsyncStorage.setItem('user', JSON.stringify(action.payload));
     },
     logOut: state => {
       state.user = null;
       state.isAuthenticated = false;
       state.loading = false;
       state.error = null;
-      state.token = null; // Eklendi: token siliniyor
+      // Kullanıcı bilgilerini AsyncStorage'e silme
       AsyncStorage.removeItem('user');
-      AsyncStorage.removeItem('token'); // Eklendi: token AsyncStorage'den siliniyor
     },
   },
 });
