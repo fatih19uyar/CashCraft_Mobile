@@ -32,6 +32,7 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
         value={input.value}
         onChangeText={input.onChange}
         error={showError}
+        autoCapitalize="none"
         textColor={colors.text}
         activeUnderlineColor={colors.text}
         outlineColor={colors.inputTextOutline}
