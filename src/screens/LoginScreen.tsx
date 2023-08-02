@@ -1,14 +1,12 @@
-import {View, Text} from 'react-native';
 import React, {useState} from 'react';
 import BackButton from '../components/BackButton';
-import LoginScreenFormFirst from '../screenForms/LoginScreenFormFirst';
-import LoginScreenFormSecond from '../screenForms/LoginScreenFormSecond';
-import LoginScreenFormThird from '../screenForms/LoginScreenFormThird';
-import PressButton from '../components/PressButton';
 import {Snackbar} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/stores';
 import {loginSuccess} from '../redux/slice/authReducer';
+import {reset} from 'redux-form';
+import LoginScreenFormFirst from '../screenForms/Login/LoginScreenFormFirst';
+import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 
 type LoginScreenProps = {navigation: any};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
@@ -19,10 +17,10 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
 
   const onLogin = (values: any) => {
     console.log(values);
-    props.navigation.navigate('HomeScreen');
   };
 
   const goBack = () => {
+    dispatch(reset('loginScreen'));
     props.navigation.goBack();
   };
 
@@ -40,8 +38,12 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const onForgotPassword = () => {
     setSnackbarMessage('Haha şifreni mi unuttun :D');
     setSnackbarVisible(true);
+    props.navigation.navigate('ForgotPasswordScreen');
   };
-  const onReportProblem = () => {};
+  const onReportProblem = () => {
+    setSnackbarMessage('Bildirdin tamam');
+    setSnackbarVisible(true);
+  };
 
   // Burada, currentForm değişkenine göre hangi formun render edileceğini belirliyoruz
   const renderForm = () => {
@@ -60,8 +62,6 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
             onForgotPassword={onForgotPassword}
           />
         );
-      case 3:
-        return <LoginScreenFormThird onLogin={onLogin} />;
       default:
         return (
           <LoginScreenFormFirst

@@ -6,19 +6,19 @@ import {
   reduxForm,
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
-import PressButton from '../components/PressButton';
-import Background from '../components/Background';
-import TextView from '../components/TextView';
-import PasswordInput from '../components/PasswordInput';
+import PressButton from '../../components/PressButton';
+import Background from '../../components/Background';
+import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native';
+import PasswordInput from '../../components/PasswordInput';
 interface IProps extends ConnectedProps<typeof connector> {
   onLogin: (values: any) => void;
   onForgotPassword: () => void;
 }
 const PasswordInputField = ({input}: any) => {
-  return <PasswordInput length={5} onChangePassword={input.onChange} />;
+  return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
-const LoginScreenFormFirst: React.FC<
+const LoginScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onLogin, onForgotPassword}) => (
   <>
@@ -71,5 +71,5 @@ export default connector(
     form: 'loginScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })(LoginScreenFormFirst),
+  })(LoginScreenFormSecond),
 );

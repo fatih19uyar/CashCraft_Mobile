@@ -6,11 +6,12 @@ import {
   reduxForm,
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
-import Input from '../components/Input';
-import PressButton from '../components/PressButton';
-import colors from '../utils/colors';
-import Background from '../components/Background';
-import TextView from '../components/TextView';
+import Input from '../../components/Input';
+import PressButton from '../../components/PressButton';
+import colors from '../../utils/colors';
+import Background from '../../components/Background';
+import TextView from '../../components/TextView';
+import BackButton from '../../components/BackButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 interface IProps extends ConnectedProps<typeof connector> {
   onLogin: (values: any) => void;
@@ -62,7 +63,7 @@ const LoginScreenFormFirst: React.FC<
       <PressButton
         onPress={onReportProblem}
         textColor="black"
-        text="Şifremi Unuttum"
+        text="Sorun Bildir"
         mode="TextButton"
       />
     </SafeAreaView>
