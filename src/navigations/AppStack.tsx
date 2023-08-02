@@ -11,7 +11,7 @@ const AppStack = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="ChatListScreen" component={HomeScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
