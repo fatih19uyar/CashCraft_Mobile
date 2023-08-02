@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
         outlineColor={colors.inputTextOutline}
       />
       {showError && (
-        <HelperText style={{color: 'white'}} type="error">
+        <HelperText style={{color: 'red'}} type="error">
           {meta.error}
         </HelperText>
       )}
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   input: {
     width: '70%',
     margin: 10,
-    marginBottom: 50,
   },
 });
 

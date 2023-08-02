@@ -32,7 +32,9 @@ const PressButton: React.FC<PressButtonProps> = props => {
     case 'TextButton':
       return (
         <TouchableOpacity onPress={props.onPress}>
-          <Text style={{color: props.textColor}}>{props.text}</Text>
+          <Text style={[styles.textButton, {color: props.textColor}]}>
+            {props.text}
+          </Text>
         </TouchableOpacity>
       );
     default:
@@ -46,6 +48,10 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     width: '80%',
     justifyContent: 'center',
+  },
+  textButton: {
+    alignSelf: 'flex-end', // Yazıyı bileşenin içinde altta hizala
+    marginVertical: 20, // Üst ve altta 20 birimlik boşluk bırak
   },
 });
 
