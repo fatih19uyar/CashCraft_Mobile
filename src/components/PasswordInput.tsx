@@ -1,12 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 
-const PasswordInput = ({length}: {length: number}) => {
-  const [password, setPassword] = useState('');
+type PasswordInputProps = {
+  length: number;
+  onChangePassword: (password: string) => void;
+};
 
-  const handleChange = (value: string) => {
-    if (value.length <= length) {
-      setPassword(value);
+const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
+  const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
+  const [passwords, setPasswords] = useState<string[]>(Array(length).fill(''));
+
+  const handleChange = (value: string, index: number) => {
+    if (value.length <= 1) {
+      const newPasswords = [...passwords];
+      newPasswords[index] = value;
+      setPasswords(newPasswords);
+
+      // Otomatik olarak bir sonraki kutucuğa geçme
+      if (
+        index < length - 1 &&
+        value.length === 1 &&
+        inputRefs.current[index + 1]
+      ) {
+        inputRefs.current[index + 1]?.focus();
+      }
+
+      // Girilen verileri geri döndür
+      const password = newPasswords.join('');
+      onChangePassword(password);
     }
   };
 
@@ -16,9 +37,10 @@ const PasswordInput = ({length}: {length: number}) => {
       passwordBoxes.push(
         <View key={i} style={styles.passwordBox}>
           <TextInput
+            ref={ref => (inputRefs.current[i] = ref)}
             style={styles.passwordInput}
-            value={password[i] || ''}
-            onChangeText={handleChange}
+            value={passwords[i]}
+            onChangeText={value => handleChange(value, i)}
             keyboardType="number-pad"
             maxLength={1}
             secureTextEntry
@@ -37,13 +59,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginVertical: 20,
   },
   passwordBox: {
-    width: 40,
-    height: 40,
-    borderWidth: 1,
-    borderColor: 'gray',
+    width: 50,
+    height: 50,
+    borderWidth: 2,
+    borderColor: 'black',
     borderRadius: 5,
+    margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
