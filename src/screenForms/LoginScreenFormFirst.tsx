@@ -11,9 +11,10 @@ import PressButton from '../components/PressButton';
 import colors from '../utils/colors';
 import Background from '../components/Background';
 import TextView from '../components/TextView';
-import BackButton from '../components/BackButton';
+import {SafeAreaView} from 'react-native-safe-area-context';
 interface IProps extends ConnectedProps<typeof connector> {
   onLogin: (values: any) => void;
+  onReportProblem: () => void;
 }
 
 const validate = (values: any) => {
@@ -33,29 +34,39 @@ const isValidEmail = (email_login: string) => {
 
 const LoginScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onLogin}) => (
-  <Background>
-    <TextView
-      textColor={'black'}
-      textSize={40}
-      text={'Giriş Yapın'}
-      textStyle={'500'}
-      textMargin={{top: 0, bottom: 100}}
-    />
-    <Field
-      color={colors.inputTextBackground}
-      name="email_login"
-      component={Input}
-      label="Email"
-      secret={false}
-    />
-    <PressButton
-      onPress={handleSubmit(onLogin)}
-      textColor=""
-      text="Devam Et"
-      mode="Button2"
-    />
-  </Background>
+> = ({handleSubmit, onLogin, onReportProblem}) => (
+  <>
+    <Background>
+      <TextView
+        textColor={'black'}
+        textSize={40}
+        text={'Giriş Yapın'}
+        textStyle={'500'}
+        textMargin={{top: 0, bottom: 100}}
+      />
+      <Field
+        color={colors.inputTextBackground}
+        name="email_login"
+        component={Input}
+        label="Email"
+        secret={false}
+      />
+      <PressButton
+        onPress={handleSubmit(onLogin)}
+        textColor=""
+        text="Devam Et"
+        mode="Button2"
+      />
+    </Background>
+    <SafeAreaView style={{alignItems: 'center'}}>
+      <PressButton
+        onPress={onReportProblem}
+        textColor="black"
+        text="Şifremi Unuttum"
+        mode="TextButton"
+      />
+    </SafeAreaView>
+  </>
 );
 
 const selector = formValueSelector('loginScreen');
