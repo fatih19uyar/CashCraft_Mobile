@@ -4,10 +4,7 @@ import Background from '../components/Background';
 import PressButton from '../components/PressButton';
 import TextView from '../components/TextView';
 
-type HomeScreenFormProps = {
-  onSign: () => void;
-  onRegister: () => void;
-};
+type HomeScreenFormProps = {};
 
 const HomeScreenForm = (props: HomeScreenFormProps) => {
   return (
