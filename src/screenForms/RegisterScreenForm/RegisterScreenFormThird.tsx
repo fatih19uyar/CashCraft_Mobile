@@ -9,18 +9,18 @@ import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import PasswordInput from '../../components/PasswordInput';
 import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import Checkbox from '../../components/CheckBox';
+import PhoneInput from 'react-native-phone-number-input';
+import renderPhoneInput from '../../components/PhoneNumberInput';
+
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
 }
-const PasswordInputField = ({input}: any) => {
-  return <PasswordInput length={6} onChangePassword={input.onChange} />;
-};
+
 const RegisterScreenFormThird: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goNext, onReportProblem}) => {
@@ -45,22 +45,22 @@ const RegisterScreenFormThird: React.FC<
         />
         <Field
           color={colors.inputTextBackground}
-          name="user_name"
+          name="userName"
           component={Input}
           label="Ad"
           secret={false}
         />
         <Field
           color={colors.inputTextBackground}
-          name="user_surname"
+          name="userSurname"
           component={Input}
           label="Soyad"
           secret={false}
         />
         <Field
           color={colors.inputTextBackground}
-          name="user_tel"
-          component={Input}
+          name="phoneNumber"
+          component={renderPhoneInput} // Use PhoneNumberInput here
           label="Cep Telefonu Numarası"
           secret={false}
         />
@@ -87,9 +87,13 @@ const RegisterScreenFormThird: React.FC<
 
 const selector = formValueSelector('RegisterScreen');
 const mapStateToProps = (state: any) => {
-  const verificationCode = selector(state, 'verificationCode');
+  const userName = selector(state, 'userName');
+  const phoneNumber = selector(state, 'phoneNumber');
+  const userSurname = selector(state, 'userSurname');
   return {
-    verificationCode,
+    userName,
+    userSurname,
+    phoneNumber,
   };
 };
 const connector = connect(mapStateToProps);
