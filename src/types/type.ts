@@ -3,6 +3,24 @@ export interface User {
   id: string;
   email: string;
 }
+export interface LoginUser {
+  password: string;
+  verificationCode: string;
+  email: string;
+}
+export interface NewUser {
+  email: string;
+  emailVerificationCode: number;
+  userName: string;
+  userSurName: string;
+  userPhoneNumber: string;
+  userPassword: number;
+}
+export interface Login {
+  email_login: string;
+  password: string;
+  verificationCode: string;
+}
 
 export interface PressButtonProps {
   textColor: string;
