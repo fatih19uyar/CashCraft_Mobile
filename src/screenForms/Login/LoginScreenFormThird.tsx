@@ -9,40 +9,54 @@ import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Image} from 'react-native';
 import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
-  goToNextForm: (values: any) => void;
-  onForgotPassword: () => void;
+  onResendCode: () => void;
+  onLogin: (values: any) => void;
 }
 const PasswordInputField = ({input}: any) => {
   return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
-const LoginScreenFormSecond: React.FC<
+const LoginScreenFormThird: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goToNextForm, onForgotPassword}) => (
+> = ({handleSubmit, onResendCode, onLogin}) => (
   <>
     <MyView>
       <TextView
         textColor={'black'}
         textSize={39}
-        text={'Giriş Yapmak İçin Lütfen Cüzdan Şifrenizi Giriniz.'}
+        text={'Telefonunuza Gelen Giriş Şifresini Girin'}
         textStyle={'500'}
-        textMargin={{top: 20, bottom: 50}}
+        textMargin={{top: 100, bottom: 20}}
       />
-      <Field name="password" component={PasswordInputField} />
+      <TextView
+        textColor={'black'}
+        textSize={18}
+        text={
+          'Lütfen 5XXXXXXXXXX numarasına gönderilen 6 hanelik güvenlik kodunu giriniz.'
+        }
+        textStyle={'normal'}
+        textMargin={{top: 0, bottom: 0}}
+      />
+      <Field name="verificationCode" component={PasswordInputField} />
+      <Image
+        source={require('../../assets/mail-send.png')}
+        style={{width: 100, height: 100, margin: 10}}
+      />
       <PressButton
-        onPress={handleSubmit(goToNextForm)}
+        onPress={handleSubmit(onLogin)}
         textColor=""
-        text="Devam Et"
+        text="Giriş Yap"
         mode="Button2"
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
       <PressButton
-        onPress={onForgotPassword}
+        onPress={onResendCode}
         textColor="black"
-        text="Şifremi Unuttum"
+        text="Tekrar Gönder"
         mode="TextButton"
       />
     </SafeAreaView>
@@ -51,9 +65,9 @@ const LoginScreenFormSecond: React.FC<
 
 const selector = formValueSelector('loginScreen');
 const mapStateToProps = (state: any) => {
-  const password = selector(state, 'password');
+  const verificationCode = selector(state, 'verificationCode');
   return {
-    password,
+    verificationCode,
   };
 };
 const connector = connect(mapStateToProps);
@@ -62,5 +76,5 @@ export default connector(
     form: 'loginScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })(LoginScreenFormSecond),
+  })(LoginScreenFormThird),
 );

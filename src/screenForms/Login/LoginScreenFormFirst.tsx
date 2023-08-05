@@ -13,17 +13,19 @@ import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import BackButton from '../../components/BackButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {View} from 'react-native';
+import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
-  onLogin: (values: any) => void;
+  goToNextForm: (values: any) => void;
   onReportProblem: () => void;
 }
 
 const validate = (values: any) => {
   const errors: any = {};
   if (!values.email_login) {
-    errors.email_login = 'Email is required';
+    errors.email_login = 'Lütfen e-posta giriniz.';
   } else if (!isValidEmail(values.email_login)) {
-    errors.email_login = 'Invalid email format';
+    errors.email_login = 'Geçersiz e-posta formatı';
   }
   return errors;
 };
@@ -35,9 +37,9 @@ const isValidEmail = (email_login: string) => {
 
 const LoginScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onLogin, onReportProblem}) => (
+> = ({handleSubmit, goToNextForm, onReportProblem}) => (
   <>
-    <Background>
+    <MyView>
       <TextView
         textColor={'black'}
         textSize={40}
@@ -47,18 +49,18 @@ const LoginScreenFormFirst: React.FC<
       />
       <Field
         color={colors.inputTextBackground}
-        name="email_login"
+        name="email"
         component={Input}
-        label="Email"
+        label="E-posta Adresi"
         secret={false}
       />
       <PressButton
-        onPress={handleSubmit(onLogin)}
+        onPress={handleSubmit(goToNextForm)}
         textColor=""
         text="Devam Et"
         mode="Button2"
       />
-    </Background>
+    </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
       <PressButton
         onPress={onReportProblem}
@@ -72,7 +74,7 @@ const LoginScreenFormFirst: React.FC<
 
 const selector = formValueSelector('loginScreen');
 const mapStateToProps = (state: any) => {
-  const email = selector(state, 'email_login');
+  const email = selector(state, 'email');
   return {
     email,
   };
