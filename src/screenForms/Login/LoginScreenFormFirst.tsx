@@ -22,17 +22,17 @@ interface IProps extends ConnectedProps<typeof connector> {
 
 const validate = (values: any) => {
   const errors: any = {};
-  if (!values.email_login) {
-    errors.email_login = 'Lütfen e-posta giriniz.';
-  } else if (!isValidEmail(values.email_login)) {
-    errors.email_login = 'Geçersiz e-posta formatı';
+  if (!values.email) {
+    errors.email = 'Lütfen e-posta giriniz.';
+  } else if (!isValidEmail(values.email)) {
+    errors.email = 'Geçersiz e-posta formatı';
   }
   return errors;
 };
 
-const isValidEmail = (email_login: string) => {
+const isValidEmail = (email: string) => {
   // Email format validation logic here
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_login);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
 const LoginScreenFormFirst: React.FC<
