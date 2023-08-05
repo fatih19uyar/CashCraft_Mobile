@@ -1,40 +1,44 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, Dimensions} from 'react-native';
 import {Button} from 'react-native-paper';
 import {PressButtonProps} from '../types/type';
 import colors from '../utils/colors';
 
 const PressButton: React.FC<PressButtonProps> = props => {
-  switch (props.mode) {
+  const {mode, textColor, onPress, text} = props;
+
+  const getButtonWidth = () => {
+    const {width} = Dimensions.get('window');
+    return width * 0.8; // Ekranın yatay çözünürlüğünün %80'ini hesapla
+  };
+
+  switch (mode) {
     case 'Button1':
       return (
         <Button
-          style={styles.button}
+          style={[styles.button, {width: getButtonWidth()}]}
           mode="contained"
           buttonColor={colors.buttonSecondary}
-          textColor={props.textColor}
-          onPress={props.onPress}>
-          {props.text}
+          textColor={textColor}
+          onPress={onPress}>
+          {text}
         </Button>
       );
     case 'Button2':
       return (
         <Button
-          style={styles.button}
+          style={[styles.button, {width: getButtonWidth()}]}
           mode="contained-tonal"
           buttonColor={colors.buttonPrimary}
-          textColor={props.textColor}
-          onPress={props.onPress}>
-          {props.text}{' '}
+          textColor={textColor}
+          onPress={onPress}>
+          {text}
         </Button>
       );
     case 'TextButton':
       return (
-        <TouchableOpacity onPress={props.onPress}>
-          <Text style={[styles.textButton, {color: props.textColor}]}>
-            {props.text}
-          </Text>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={[styles.textButton, {color: textColor}]}>{text}</Text>
         </TouchableOpacity>
       );
     default:
@@ -46,7 +50,6 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     marginVertical: 5,
-    width: '80%',
     justifyContent: 'center',
   },
   textButton: {

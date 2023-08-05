@@ -27,6 +27,7 @@ export default function TextView(props: TextViewProps) {
   };
   const textStyleObject = {
     fontSize: textSize,
+    lineHeight: textSize + 5,
     color: textColor,
     fontWeight: textStyle,
     ...getMarginStyles(),
@@ -37,9 +38,9 @@ export default function TextView(props: TextViewProps) {
 
 const styles = StyleSheet.create({
   text: {
-    lineHeight: 50,
     textAlign: 'center',
     marginBottom: 12,
     marginTop: 10,
+    marginHorizontal: 40,
   },
 });

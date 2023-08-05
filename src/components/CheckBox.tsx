@@ -1,18 +1,32 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
+import CheckBox from '@react-native-community/checkbox';
+import colors from '../utils/colors';
 
-interface CheckboxProps {
-  checked: boolean;
+interface CheckboxWithLabelProps {
+  input: {
+    value: boolean;
+    onChange: (value: boolean) => void;
+  };
   label: string;
-  onChange: () => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({checked, label, onChange}) => {
+const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
+  input: {value, onChange},
+  label,
+}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onChange}>
-      <View style={[styles.checkbox, checked ? styles.checked : null]} />
+    <View style={styles.container}>
+      <CheckBox
+        style={styles.checkbox}
+        value={value}
+        onCheckColor={colors.buttonPrimary}
+        onTintColor={colors.buttonPrimary}
+        onValueChange={newValue => onChange(newValue)}
+      />
       <Text style={styles.label}>{label}</Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -23,20 +37,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 30,
   },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: '#000',
-    marginRight: 10,
-  },
-  checked: {
-    backgroundColor: '#000',
-  },
   label: {
     fontSize: 14,
+    marginLeft: 10,
+  },
+  checkbox: {
+    margin: 5,
   },
 });
 
-export default Checkbox;
+export default CheckboxWithLabel;
