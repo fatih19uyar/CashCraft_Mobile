@@ -12,13 +12,14 @@ import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 interface IProps extends ConnectedProps<typeof connector> {
   onGoNewPass: (values: any) => void;
+  email: string;
 }
 const PasswordInputField = ({input}: any) => {
   return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
 const ForgotPasswordScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onGoNewPass}) => (
+> = ({handleSubmit, onGoNewPass, email}) => (
   <>
     <Background>
       <TextView
@@ -31,9 +32,7 @@ const ForgotPasswordScreenFormFirst: React.FC<
       <TextView
         textColor={'black'}
         textSize={16}
-        text={
-          'Lütfen ezgi.beytas@idvlabs.com adresine gönderilen 6 hanelik güvenlik kodunu giriniz.'
-        }
+        text={`Lütfen ${email} adresine gönderilen 6 hanelik güvenlik kodunu giriniz.`}
         textStyle={'normal'}
         textMargin={{top: 0, bottom: 50}}
       />

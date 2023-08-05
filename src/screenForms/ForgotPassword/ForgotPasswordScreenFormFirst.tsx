@@ -11,24 +11,23 @@ import PressButton from '../../components/PressButton';
 import colors from '../../utils/colors';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
-import {SafeAreaView} from 'react-native-safe-area-context';
 interface IProps extends ConnectedProps<typeof connector> {
   onForgotPass: (values: any) => void;
 }
 
 const validate = (values: any) => {
   const errors: any = {};
-  if (!values.email_login) {
-    errors.email_login = 'Email is required';
-  } else if (!isValidEmail(values.email_login)) {
-    errors.email_login = 'Invalid email format';
+  if (!values.email_forgot) {
+    errors.email_forgot = 'Email is required';
+  } else if (!isValidEmail(values.email_forgot)) {
+    errors.email_forgot = 'Invalid email format';
   }
   return errors;
 };
 
-const isValidEmail = (email_login: string) => {
+const isValidEmail = (email_forgot: string) => {
   // Email format validation logic here
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_login);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_forgot);
 };
 
 const ForgotPasswordScreenFormFirst: React.FC<
