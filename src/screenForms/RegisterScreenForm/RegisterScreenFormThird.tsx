@@ -9,12 +9,11 @@ import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
-import PasswordInput from '../../components/PasswordInput';
 import colors from '../../utils/colors';
 import Input from '../../components/Input';
-import Checkbox from '../../components/CheckBox';
-import PhoneInput from 'react-native-phone-number-input';
-import renderPhoneInput from '../../components/PhoneNumberInput';
+import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
+import {Checkbox} from 'react-native-paper';
+import CheckboxWithLabel from '../../components/CheckBox';
 
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
@@ -41,7 +40,7 @@ const RegisterScreenFormThird: React.FC<
           textSize={43}
           text={'Kişisel Bilgileri Giriniz'}
           textStyle={'500'}
-          textMargin={{top: 0, bottom: 100}}
+          textMargin={{top: 0, bottom: 20}}
         />
         <Field
           color={colors.inputTextBackground}
@@ -60,19 +59,19 @@ const RegisterScreenFormThird: React.FC<
         <Field
           color={colors.inputTextBackground}
           name="phoneNumber"
-          component={renderPhoneInput} // Use PhoneNumberInput here
+          component={PhoneNumberInputWrapper}
           label="Cep Telefonu Numarası"
           secret={false}
         />
-        <Checkbox
-          checked={isChecked}
+        <Field
+          name="userAgreement"
+          component={CheckboxWithLabel}
           label="Kullanıcı Sözleşmesi’ni ve Gizlilik Politikası’nı kabul ediyorum."
-          onChange={handleCheckboxChange}
         />
-        <Checkbox
-          checked={isChecked2}
+        <Field
+          name="campAgreement"
+          component={CheckboxWithLabel}
           label="Kampanyalardan ve gelişmelerden haberdar olmak istiyorum."
-          onChange={handleCheckboxChange2}
         />
         <PressButton
           onPress={handleSubmit(goNext)}
@@ -90,10 +89,14 @@ const mapStateToProps = (state: any) => {
   const userName = selector(state, 'userName');
   const phoneNumber = selector(state, 'phoneNumber');
   const userSurname = selector(state, 'userSurname');
+  const userAgreement = selector(state, 'userAgreement');
+  const campAgreement = selector(state, 'campAgreement');
   return {
     userName,
     userSurname,
     phoneNumber,
+    userAgreement,
+    campAgreement,
   };
 };
 const connector = connect(mapStateToProps);

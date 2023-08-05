@@ -11,6 +11,7 @@ import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import PasswordInput from '../../components/PasswordInput';
+import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -22,7 +23,7 @@ const RegisterScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goNext, onReportProblem}) => (
   <>
-    <Background>
+    <MyView>
       <TextView
         textColor={'black'}
         textSize={43}
@@ -46,7 +47,7 @@ const RegisterScreenFormSecond: React.FC<
         text="Devam Et"
         mode="Button2"
       />
-    </Background>
+    </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
       <PressButton
         onPress={onReportProblem}

@@ -7,6 +7,13 @@ import RegisterScreenFormFirst from '../screenForms/RegisterScreenForm/RegisterS
 import {Snackbar} from 'react-native-paper';
 import RegisterScreenFormSecond from '../screenForms/RegisterScreenForm/RegisterScreenFormSecond';
 import RegisterScreenFormThird from '../screenForms/RegisterScreenForm/RegisterScreenFormThird';
+import {AppDispatch} from '../redux/stores';
+import {useDispatch} from 'react-redux';
+import {reset} from 'redux-form';
+import CreatePasswordScreenFirst from '../screenForms/CreatePassword/CreatePasswordScreenFirst';
+import CreatePasswordScreenSecond from '../screenForms/CreatePassword/CreatePasswordScreenSecond';
+import Background from '../components/Background';
+import {NewUser} from '../types/type';
 
 type RegisterScreenProps = {navigation: any};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
@@ -15,15 +22,73 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   const [currentForm, setCurrentForm] = useState(1);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
-  const onRegister = (values: any) => {
-    console.log(values);
-  };
+  const dispatch: AppDispatch = useDispatch();
+  const [newUser, setNewUser] = useState<NewUser>({
+    email: '',
+    emailVerificationCode: 0,
+    userName: '',
+    userSurName: '',
+    userPhoneNumber: '',
+    userPassword: 0,
+  });
   const goBack = () => {
+    dispatch(reset('RegisterScreen'));
     props.navigation.goBack();
   };
-  const goNext = (values: any) => {
+  const goScreen = (values: any) => {
+    const {createPassword, reCreatePassword} = values;
+    if (createPassword === reCreatePassword) {
+      setNewUser(prevUser => ({
+        ...prevUser,
+        userPassword: createPassword,
+      }));
+      setSnackbarMessage('Kayıt Başarılı');
+      setSnackbarVisible(true);
+      setTimeout(() => {
+        dispatch(reset('RegisterScreen'));
+        props.navigation.navigate('WelcomeScreen');
+      }, 1000);
+    } else {
+      setSnackbarMessage('Şifreler Uyuşmuyor');
+      setSnackbarVisible(true);
+    }
     console.log(values);
+  };
+  const goNext = (values: any) => {
+    let {
+      campAgreement,
+      userAgreement,
+      email_create,
+      verificationCode,
+      userSurname,
+      userName,
+      phoneNumber,
+    } = values;
+    if (verificationCode) {
+      console.log('Email Check Code', verificationCode);
+    }
+    if (campAgreement && userAgreement) {
+      setNewUser(prevUser => ({
+        ...prevUser,
+        email: email_create,
+        emailVerificationCode: verificationCode,
+        userName: userName,
+        userSurName: userSurname,
+        userPhoneNumber: phoneNumber,
+      }));
+      setCurrentForm(currentForm + 1);
+    } else if (
+      userAgreement !== undefined &&
+      !userAgreement &&
+      userName !== undefined
+    ) {
+      setSnackbarMessage('Lütfen Kullanıcı Sözleşmesini Kabul Edin');
+      setSnackbarVisible(true);
+      console.log(values);
+      return;
+    }
     setCurrentForm(currentForm + 1);
+    console.log(values);
   };
   const onReportProblem = () => {
     setSnackbarMessage('Bildirdin tamam');
@@ -52,6 +117,10 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
             goNext={goNext}
           />
         );
+      case 4:
+        return <CreatePasswordScreenFirst goToNextForm={goScreen} />;
+      case 5:
+        return <CreatePasswordScreenSecond goScreen={goScreen} />;
       default:
         return (
           <RegisterScreenFormFirst
@@ -65,7 +134,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   return (
     <>
       <BackButton goBack={goBack} />
-      {renderForm()}
+      <Background>{renderForm()}</Background>
       <Snackbar
         visible={snackbarVisible}
         onDismiss={() => setSnackbarVisible(false)}

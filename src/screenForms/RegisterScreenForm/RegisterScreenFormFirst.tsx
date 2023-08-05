@@ -12,6 +12,8 @@ import colors from '../../utils/colors';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {View} from 'react-native';
+import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -19,24 +21,24 @@ interface IProps extends ConnectedProps<typeof connector> {
 
 const validate = (values: any) => {
   const errors: any = {};
-  if (!values.email_login) {
-    errors.email_login = 'Email is required';
-  } else if (!isValidEmail(values.email_login)) {
-    errors.email_login = 'Invalid email format';
+  if (!values.email_create) {
+    errors.email_create = 'Lütfen e-posta giriniz.';
+  } else if (!isValidEmail(values.email_create)) {
+    errors.email_create = 'Geçersiz e-posta formatı';
   }
   return errors;
 };
 
-const isValidEmail = (email_login: string) => {
+const isValidEmail = (email_create: string) => {
   // Email format validation logic here
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_login);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email_create);
 };
 
 const RegisterScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goNext, onReportProblem}) => (
   <>
-    <Background>
+    <MyView>
       <TextView
         textColor={'black'}
         textSize={40}
@@ -48,7 +50,7 @@ const RegisterScreenFormFirst: React.FC<
         color={colors.inputTextBackground}
         name="email_create"
         component={Input}
-        label="Email"
+        label="E-posta Adresi"
         secret={false}
       />
       <PressButton
@@ -57,8 +59,8 @@ const RegisterScreenFormFirst: React.FC<
         text="Devam Et"
         mode="Button2"
       />
-    </Background>
-    <SafeAreaView style={{alignItems: 'center'}}>
+    </MyView>
+    <SafeAreaView style={{justifyContent: 'space-between'}}>
       <PressButton
         onPress={onReportProblem}
         textColor="black"
