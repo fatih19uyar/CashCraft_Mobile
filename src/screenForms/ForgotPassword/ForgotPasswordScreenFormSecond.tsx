@@ -21,7 +21,7 @@ const ForgotPasswordScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onGoNewPass, email}) => (
   <>
-    <Background>
+    <Background imageSet={2}>
       <TextView
         textColor={'black'}
         textSize={40}
