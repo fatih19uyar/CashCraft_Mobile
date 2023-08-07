@@ -134,7 +134,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   return (
     <>
       <BackButton goBack={goBack} />
-      <Background>{renderForm()}</Background>
+      <Background imageSet={2}>{renderForm()}</Background>
       <Snackbar
         visible={snackbarVisible}
         onDismiss={() => setSnackbarVisible(false)}

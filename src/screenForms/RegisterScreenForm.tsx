@@ -35,7 +35,7 @@ const RegisterScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
 
   onRegister,
 }) => (
-  <Background>
+  <Background imageSet={1}>
     <TextView
       textColor={'black'}
       textSize={40}

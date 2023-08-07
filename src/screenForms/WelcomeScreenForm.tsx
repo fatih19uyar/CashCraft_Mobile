@@ -11,7 +11,7 @@ type WelcomeScreenFormProps = {
 
 const WelcomeScreenForm = (props: WelcomeScreenFormProps) => {
   return (
-    <Background>
+    <Background imageSet={1}>
       <Image
         source={require('../assets/idvlabs-logo.png')}
         style={{width: 200, height: 52, marginBottom: 20}}
