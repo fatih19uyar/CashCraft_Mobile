@@ -1,36 +1,37 @@
 import React from 'react';
-import {TouchableOpacity, Image, StyleSheet, View} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
+import styled from 'styled-components/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type BackButtonProps = {
   goBack: any;
 };
 
-export default function BackButton({goBack}: BackButtonProps) {
+const BackButton: React.FC<BackButtonProps> = ({goBack}) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, {paddingTop: insets.top}]}>
-      <TouchableOpacity onPress={goBack}>
-        <Image
-          style={styles.image}
-          source={require('../assets/back_icon.png')}
-        />
-      </TouchableOpacity>
-    </View>
+    <Container style={{paddingTop: insets.top}}>
+      <Button onPress={goBack}>
+        <ButtonImage source={require('../assets/back_icon.png')} />
+      </Button>
+    </Container>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 15,
-    zIndex: 1,
-  },
-  image: {
-    marginTop: 40,
-    marginLeft: 10,
-    width: 30,
-    height: 30,
-  },
-});
+const Container = styled.View`
+  position: absolute;
+  left: 15px;
+  z-index: 1;
+`;
+
+const Button = styled(TouchableOpacity)``;
+
+const ButtonImage = styled(Image)`
+  margin-top: 40px;
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+`;
+
+export default BackButton;

@@ -1,12 +1,13 @@
-import React, {useState, useRef} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, TextInput } from 'react-native';
+import styled from 'styled-components/native';
 
 type PasswordInputProps = {
   length: number;
   onChangePassword: (password: string) => void;
 };
 
-const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
+const PasswordInput = ({ length, onChangePassword }: PasswordInputProps) => {
   const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
   const [passwords, setPasswords] = useState<string[]>(Array(length).fill(''));
 
@@ -17,11 +18,7 @@ const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
       setPasswords(newPasswords);
 
       // Otomatik olarak bir sonraki kutucuğa geçme
-      if (
-        index < length - 1 &&
-        value.length === 1 &&
-        inputRefs.current[index + 1]
-      ) {
+      if (index < length - 1 && value.length === 1 && inputRefs.current[index + 1]) {
         inputRefs.current[index + 1]?.focus();
       }
 
@@ -35,49 +32,46 @@ const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
     const passwordBoxes = [];
     for (let i = 0; i < length; i++) {
       passwordBoxes.push(
-        <View key={i} style={styles.passwordBox}>
-          <TextInput
+        <PasswordBox key={i}>
+          <PasswordInputBox
             ref={ref => (inputRefs.current[i] = ref)}
-            style={styles.passwordInput}
             value={passwords[i]}
-            onChangeText={value => handleChange(value, i)}
-            keyboardType="number-pad"
-            maxLength={1}
             secureTextEntry
+            onChangeText={value => handleChange(value, i)}
           />
-        </View>,
+        </PasswordBox>,
       );
     }
     return passwordBoxes;
   };
 
-  return <View style={styles.container}>{renderPasswordBoxes()}</View>;
+  return <Container>{renderPasswordBoxes()}</Container>;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  passwordBox: {
-    width: 50,
-    height: 50,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 5,
-    margin: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  passwordInput: {
-    width: '100%',
-    height: '100%',
-    fontSize: 20,
-    margin: 10,
-    textAlign: 'center',
-  },
-});
+const Container = styled(View)`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-vertical: 20px;
+`;
+
+const PasswordBox = styled(View)`
+  width: 50px;
+  height: 50px;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 5px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PasswordInputBox = styled(TextInput)`
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  margin: 10px;
+  text-align: center;
+`;
 
 export default PasswordInput;

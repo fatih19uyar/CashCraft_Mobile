@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Dimensions} from 'react-native';
-import {TextInput, HelperText} from 'react-native-paper';
-import {InputProps} from '../types/type';
+import React, { useState } from 'react';
+import { SafeAreaView, Dimensions } from 'react-native';
+import { TextInput, HelperText } from 'react-native-paper';
+import { InputProps } from '../types/type';
 import colors from '../utils/colors';
+import styled, { css } from 'styled-components/native'; // styled-components'ı dahil edin
 
-const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
+const Input: React.FC<InputProps> = ({ secret, label, input, meta }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const getWidth = () => {
-    const {width} = Dimensions.get('window');
-    return width * 0.8; // Ekranın yatay çözünürlüğünün %80'ini hesapla
+    const { width } = Dimensions.get('window');
+    return width * 0.8;
   };
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -27,9 +29,8 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
   const showError = meta.touched && meta.error;
 
   return (
-    <SafeAreaView style={[styles.container, {width: getWidth()}]}>
-      <TextInput
-        style={[styles.input, {backgroundColor: colors.white}]}
+    <Container width={getWidth()}>
+      <StyledTextInput
         label={label}
         secureTextEntry={secret && !passwordVisible}
         right={secret && renderIcon()}
@@ -42,22 +43,24 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
         outlineColor={colors.inputTextOutline}
       />
       {showError && (
-        <HelperText style={{color: 'red'}} type="error">
+        <HelperText style={{ color: 'red' }} type="error">
           {meta.error}
         </HelperText>
       )}
-    </SafeAreaView>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'center',
-  },
-  input: {
-    width: '100%',
-    margin: 10,
-  },
-});
+// Styled Components
+const Container = styled(SafeAreaView)<{ width: number }>`
+  align-self: center;
+  width: ${(props) => props.width}px;
+`;
+
+const StyledTextInput = styled(TextInput)`
+  width: 100%;
+  margin: 10px;
+  background-color: ${colors.white};
+`;
 
 export default Input;

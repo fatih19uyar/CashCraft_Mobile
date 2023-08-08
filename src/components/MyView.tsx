@@ -1,16 +1,14 @@
-import {StyleSheet, View} from 'react-native';
 import React from 'react';
+import styled from 'styled-components/native';
 
 const MyView = (props: any) => {
-  return <View style={styles.container}>{props.children}</View>;
+  return <Container>{props.children}</Container>;
 };
 
-export default MyView;
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+export default MyView;

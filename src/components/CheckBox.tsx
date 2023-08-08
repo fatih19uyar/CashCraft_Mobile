@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Text} from 'react-native-paper';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import CheckBox from '@react-native-community/checkbox';
+import styled from 'styled-components/native';
 import colors from '../utils/colors';
 
 interface CheckboxWithLabelProps {
@@ -13,37 +14,32 @@ interface CheckboxWithLabelProps {
 }
 
 const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
-  input: {value, onChange},
+  input: { value, onChange },
   label,
 }) => {
   return (
-    <View style={styles.container}>
+    <Container>
       <CheckBox
-        style={styles.checkbox}
         value={value}
+        onValueChange={(newValue:any) => onChange(newValue)}
         onCheckColor={colors.buttonPrimary}
         onTintColor={colors.buttonPrimary}
-        onValueChange={newValue => onChange(newValue)}
       />
-      <Text style={styles.label}>{label}</Text>
-    </View>
+      <LabelText>{label}</LabelText>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-    marginHorizontal: 30,
-  },
-  label: {
-    fontSize: 14,
-    marginLeft: 10,
-  },
-  checkbox: {
-    margin: 5,
-  },
-});
+const Container = styled(View)`
+  flex-direction: row;
+  align-items: center;
+  margin-vertical: 10px;
+  margin-horizontal: 30px;
+`;
+
+const LabelText = styled(Text)`
+  font-size: 14px;
+  margin-left: 10px;
+`;
 
 export default CheckboxWithLabel;

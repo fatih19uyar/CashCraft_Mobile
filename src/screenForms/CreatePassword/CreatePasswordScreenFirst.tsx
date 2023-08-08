@@ -20,7 +20,7 @@ const CreatePasswordScreenFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goToNextForm}) => (
   <>
-    <Background>
+    <Background imageSet={2}>
       <TextView
         textColor={'black'}
         textSize={39}

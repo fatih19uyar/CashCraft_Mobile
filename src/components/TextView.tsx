@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
+import styled from 'styled-components/native';
 import {TextViewProps} from '../types/type';
 
-export default function TextView(props: TextViewProps) {
+const TextView: React.FC<TextViewProps> = props => {
   const {textColor, textSize, textStyle, text, textMargin} = props;
+
   const getMarginStyles = () => {
     if (textMargin) {
       if (typeof textMargin === 'object') {
@@ -25,22 +27,22 @@ export default function TextView(props: TextViewProps) {
       };
     }
   };
+
   const textStyleObject = {
     fontSize: textSize,
     lineHeight: textSize + 5,
-    color: textColor,
     fontWeight: textStyle,
     ...getMarginStyles(),
   };
 
-  return <Text style={[styles.text, textStyleObject]}>{text}</Text>;
-}
+  return <StyledText style={textStyleObject}>{text}</StyledText>;
+};
 
-const styles = StyleSheet.create({
-  text: {
-    textAlign: 'center',
-    marginBottom: 12,
-    marginTop: 10,
-    marginHorizontal: 40,
-  },
-});
+const StyledText = styled(Text)`
+  text-align: center;
+  margin-bottom: 12px;
+  margin-top: 10px;
+  margin-horizontal: 40px;
+`;
+
+export default TextView;

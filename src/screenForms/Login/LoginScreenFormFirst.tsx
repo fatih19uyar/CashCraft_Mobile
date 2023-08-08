@@ -56,7 +56,7 @@ const LoginScreenFormFirst: React.FC<
       />
       <PressButton
         onPress={handleSubmit(goToNextForm)}
-        textColor=""
+        textColor="black"
         text="Devam Et"
         mode="Button2"
       />

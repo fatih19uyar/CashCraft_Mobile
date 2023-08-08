@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {DataTable, Text} from 'react-native-paper';
 import colors from '../utils/colors';
 import {items} from '../values/values';
+import {styled} from 'styled-components/native';
 
 const TransactionList = () => {
   return (
@@ -20,13 +21,13 @@ const TransactionList = () => {
           <DataTable.Row key={item.key} style={{borderBottomColor: '#FFF'}}>
             <DataTable.Cell>
               <View>
-                <Text style={styles.nameText}>{item.name}</Text>
-                <Text style={styles.dateText}>{item.date}</Text>
+                <NameText>{item.name}</NameText>
+                <DateText>{item.date}</DateText>
               </View>
             </DataTable.Cell>
             <DataTable.Cell numeric>
               <View>
-                <Text style={styles.amount}>{item.amount} TL</Text>
+                <AmountText>{item.amount} TL</AmountText>
               </View>
             </DataTable.Cell>
           </DataTable.Row>
@@ -41,20 +42,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.text,
   },
-  nameText: {
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: colors.text,
-  },
-  dateText: {
-    fontSize: 12,
-    color: colors.gray,
-  },
-  amount: {
-    color: colors.transactionListAmount,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
 });
+const NameText = styled.Text`
+  font-size: 13px;
+  font-weight: bold;
+  color: ${colors.text};
+`;
+
+const DateText = styled.Text`
+  font-size: 12px;
+  color: ${colors.gray};
+`;
+
+const AmountText = styled.Text`
+  color: ${colors.transactionListAmount};
+  font-size: 14px;
+  font-weight: bold;
+`;
 
 export default TransactionList;

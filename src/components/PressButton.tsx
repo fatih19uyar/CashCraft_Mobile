@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, Dimensions} from 'react-native';
+import {TouchableOpacity, Text, Dimensions} from 'react-native';
 import {Button} from 'react-native-paper';
 import {PressButtonProps} from '../types/type';
 import colors from '../utils/colors';
+import styled from 'styled-components/native';
 
 const PressButton: React.FC<PressButtonProps> = props => {
   const {mode, textColor, onPress, text} = props;
@@ -15,30 +16,28 @@ const PressButton: React.FC<PressButtonProps> = props => {
   switch (mode) {
     case 'Button1':
       return (
-        <Button
-          style={[styles.button, {width: getButtonWidth()}]}
+        <ContainedButton
           mode="contained"
           buttonColor={colors.buttonSecondary}
           textColor={textColor}
           onPress={onPress}>
           {text}
-        </Button>
+        </ContainedButton>
       );
     case 'Button2':
       return (
-        <Button
-          style={[styles.button, {width: getButtonWidth()}]}
+        <ContainedButton
           mode="contained-tonal"
           buttonColor={colors.buttonPrimary}
           textColor={textColor}
           onPress={onPress}>
           {text}
-        </Button>
+        </ContainedButton>
       );
     case 'TextButton':
       return (
         <TouchableOpacity onPress={onPress}>
-          <Text style={[styles.textButton, {color: textColor}]}>{text}</Text>
+          <TextButton color={textColor}>{text}</TextButton>
         </TouchableOpacity>
       );
     default:
@@ -46,16 +45,17 @@ const PressButton: React.FC<PressButtonProps> = props => {
   }
 };
 
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-    marginVertical: 5,
-    justifyContent: 'center',
-  },
-  textButton: {
-    alignSelf: 'flex-end', // Yazıyı bileşenin içinde altta hizala
-    marginVertical: 20, // Üst ve altta 20 birimlik boşluk bırak
-  },
-});
+const ContainedButton = styled(Button)`
+  width: 80%;
+  margin-top: 10px;
+  margin-vertical: 5px;
+  justify-content: center;
+`;
+
+const TextButton = styled(Text)<{color: string}>`
+  align-self: flex-end;
+  margin-vertical: 20px;
+  color: ${(props: any) => props.color};
+`;
 
 export default PressButton;

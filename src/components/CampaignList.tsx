@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Dimensions, Image} from 'react-native';
-import {Card, Text} from 'react-native-paper';
+import { View, Image, Dimensions } from 'react-native';
+import { Card } from 'react-native-paper';
+import styled from 'styled-components/native';
 import colors from '../utils/colors';
 import TextView from './TextView';
 
@@ -13,85 +14,86 @@ interface Campaign {
 interface CampaignListProps {
   campaigns: Campaign[];
 }
+
 const height = 200;
+
 const getWidth = () => {
-  const {width} = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   return width; // Ekranın yatay çözünürlüğünün %90'ini hesapla
 };
 
-const CampaignList: React.FC<CampaignListProps> = ({campaigns}) => {
+const CampaignList: React.FC<CampaignListProps> = ({ campaigns }) => {
   return (
-    <View style={styles.cardContainer}>
+    <CardContainer>
       {campaigns.map((campaign, index) => (
-        <Card key={index} style={styles.container}>
-          <View style={styles.viewContainer}>
-            <Card.Content style={styles.content}>
-              <TextView
+        <StyledCard key={index}>
+          <ViewContainer>
+            <CardContent>
+              <StyledTextView
                 textColor={'black'}
                 textSize={getWidth() > 380 ? 10 : 22}
                 text={`${campaign.campName}`}
                 textStyle={'bold'}
-                textMargin={{top: 0, bottom: 0}}
+                textMargin={{ top: 0, bottom: 0 }}
               />
-              <Image
+              <StyledImage
                 source={require('../assets/campaign.png')}
-                style={styles.image}
+                resizeMode="contain"
               />
-              <TextView
+              <StyledTextView
                 textColor={'black'}
                 textSize={12}
                 text={`${campaign.campDetails}`}
                 textStyle={'500'}
-                textMargin={{top: 5, bottom: 0}}
+                textMargin={{ top: 5, bottom: 0 }}
               />
-            </Card.Content>
-          </View>
-        </Card>
+            </CardContent>
+          </ViewContainer>
+        </StyledCard>
       ))}
-    </View>
+    </CardContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: height,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 10,
-    borderColor: colors.buttonPrimary,
-    marginHorizontal: 5,
-  },
-  content: {
-    height: '100%',
-  },
-  cardContainer: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  viewContainer: {
-    height: height - 50,
-    marginVertical: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 40,
-    height: 40,
-    marginLeft: 10,
-  },
-  separator: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.buttonPrimary,
-    width: '100%',
-    alignSelf: 'center',
-    marginVertical: 10,
-  },
-});
+const StyledCard = styled(Card)`
+  width: 100%;
+  height: ${height}px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 10px;
+  border-color: ${colors.buttonPrimary};
+  margin-horizontal: 5px;
+`;
+
+const CardContent = styled(Card.Content)`
+  height: 100%;
+`;
+
+const StyledImage = styled(Image)`
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+`;
+
+const StyledTextView = styled(TextView)`
+  font-size: ${({ theme }) => theme.textSize}px;
+`;
+
+const ViewContainer = styled(View)`
+  height: ${height - 50}px;
+  margin-vertical: 5px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CardContainer = styled(View)`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+`;
 
 export default CampaignList;

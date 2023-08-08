@@ -1,38 +1,36 @@
-import {StyleSheet, View, ImageBackground, Image} from 'react-native';
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
+import styled from 'styled-components/native';
 
-const Background = (props: any) => {
+interface BackgroundProps {
+  imageSet: number;
+  children: ReactNode;
+}
+
+const Background: FC<BackgroundProps> = ({ imageSet, children }) => {
   return (
-    <View style={styles.container}>
-      {props.imageSet === 1 ? (
-        <Image
-          source={require('../assets/background_1.png')}
-          style={styles.backgroundImage}
-        />
+    <Container>
+      {imageSet === 1 ? (
+        <BackgroundImage source={require('../assets/background_1.png')} />
       ) : (
-        <Image
-          source={require('../assets/background_2.png')}
-          style={styles.backgroundImage}
-        />
+        <BackgroundImage source={require('../assets/background_2.png')} />
       )}
 
-      {props.children}
-    </View>
+      {children}
+    </Container>
   );
 };
 
-export default Background;
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backgroundImage: {
-    resizeMode: 'cover',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-  },
-});
+const BackgroundImage = styled.Image`
+  resize-mode: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
+export default Background;
