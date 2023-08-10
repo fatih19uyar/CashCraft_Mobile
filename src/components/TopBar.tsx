@@ -32,7 +32,8 @@ const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: ${getWidth()}px;
+  width: 90%;
+  margin-top: 15%;
 `;
 
 const LogoContainer = styled.View`
