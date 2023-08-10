@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, {FC, ReactNode} from 'react';
 import styled from 'styled-components/native';
 
 interface BackgroundProps {
@@ -6,7 +6,7 @@ interface BackgroundProps {
   children: ReactNode;
 }
 
-const Background: FC<BackgroundProps> = ({ imageSet, children }) => {
+const Background: FC<BackgroundProps> = ({imageSet, children}) => {
   return (
     <Container>
       {imageSet === 1 ? (

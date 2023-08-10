@@ -18,7 +18,7 @@ const TransactionList = () => {
         </DataTable.Header>
 
         {items.map(item => (
-          <DataTable.Row key={item.key} style={{borderBottomColor: '#FFF'}}>
+          <DataTable.Row key={item.key} style={{borderColor: colors.gray}}>
             <DataTable.Cell>
               <View>
                 <NameText>{item.name}</NameText>

@@ -4,6 +4,7 @@ import {Button} from 'react-native-paper';
 import {PressButtonProps} from '../types/type';
 import colors from '../utils/colors';
 import styled from 'styled-components/native';
+import themes from '../utils/themes';
 
 const PressButton: React.FC<PressButtonProps> = props => {
   const {mode, textColor, onPress, text} = props;
@@ -20,6 +21,10 @@ const PressButton: React.FC<PressButtonProps> = props => {
           mode="contained"
           buttonColor={colors.buttonSecondary}
           textColor={textColor}
+          style={{
+            borderColor: themes.light.colors.buttonBorderColor,
+            borderWidth: 1,
+          }}
           onPress={onPress}>
           {text}
         </ContainedButton>
@@ -30,6 +35,38 @@ const PressButton: React.FC<PressButtonProps> = props => {
           mode="contained-tonal"
           buttonColor={colors.buttonPrimary}
           textColor={textColor}
+          style={{
+            borderColor: themes.light.colors.buttonBorderColor,
+            borderWidth: 1,
+          }}
+          onPress={onPress}>
+          {text}
+        </ContainedButton>
+      );
+    case 'Button3':
+      return (
+        <ContainedButton
+          mode="contained-tonal"
+          buttonColor={themes.light.colors.buttonThird}
+          textColor={textColor}
+          style={{
+            borderColor: themes.light.colors.buttonBorderColor,
+            borderWidth: 1,
+          }}
+          onPress={onPress}>
+          {text}
+        </ContainedButton>
+      );
+    case 'Button4':
+      return (
+        <ContainedButton
+          mode="contained-tonal"
+          buttonColor={themes.light.colors.buttonFourth}
+          textColor={textColor}
+          style={{
+            borderColor: themes.light.colors.buttonBorderColor,
+            borderWidth: 1,
+          }}
           onPress={onPress}>
           {text}
         </ContainedButton>
@@ -40,6 +77,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           <TextButton color={textColor}>{text}</TextButton>
         </TouchableOpacity>
       );
+
     default:
       return null;
   }
