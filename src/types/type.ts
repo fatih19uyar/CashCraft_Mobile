@@ -58,3 +58,8 @@ export interface AuthState {
   loading: boolean;
   error: string | null;
 }
+export interface Campaign {
+  campName: string;
+  campImg: string;
+  campDetails: string;
+}
