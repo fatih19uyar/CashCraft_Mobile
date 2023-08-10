@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
-import {Modal, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Modal, TouchableWithoutFeedback} from 'react-native';
 import PressButton from './PressButton';
 import TextView from './TextView';
 import themes from '../utils/themes';
@@ -43,8 +43,12 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
   };
 
   const handleLogout = () => {
-    onPressButton('çıkış yap');
-    setLogOut(false); // Log out işlemi tamamlandığında state'i sıfırla
+    setLogOut(true);
+  };
+
+  const handleCancelLogout = () => {
+    setLogOut(false);
+    onCloseModal();
   };
 
   return (
@@ -52,7 +56,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
       animationType="slide"
       transparent={true}
       visible={onVisible}
-      onRequestClose={onCloseModal}>
+      onRequestClose={handleCancelLogout}>
       <TouchableWithoutFeedback onPress={isLogOut ? () => {} : onCloseModal}>
         <ModalContainer>
           <ModalView>
@@ -73,13 +77,13 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   textMargin={{top: 0, bottom: 10}}
                 />
                 <PressButton
-                  onPress={handleLogout}
+                  onPress={handleCancelLogout}
                   textColor="black"
                   text="İptal Et"
                   mode="Button2"
                 />
                 <PressButton
-                  onPress={onCloseModal}
+                  onPress={() => handlePressButton('logout')}
                   textColor="white"
                   text="Çıkış Yap"
                   mode="Button4"
@@ -88,7 +92,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
             ) : (
               <>
                 <PressButton
-                  onPress={() => handlePressButton('profilim')}
+                  onPress={() => handlePressButton('ProfileScreen')}
                   textColor="black"
                   text="Profilim"
                   mode="Button3"
@@ -118,9 +122,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   mode="Button3"
                 />
                 <PressButton
-                  onPress={() => {
-                    setLogOut(true);
-                  }}
+                  onPress={handleLogout} // Çıkış Yap butonuna basılınca çıkış yapma moduna geç
                   textColor="black"
                   text="Çıkış Yap"
                   mode="Button3"
