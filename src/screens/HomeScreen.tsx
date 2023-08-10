@@ -3,7 +3,7 @@ import HomeScreenForm from '../screenForms/HomeScreenForm';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {logOut} from '../redux/slice/authReducer';
-import ButtonModal from '../components/ProfileMenu';
+import ProfileMenu from '../components/ProfileMenu';
 
 type Props = {navigation: any};
 
@@ -13,16 +13,23 @@ const HomeScreen = (props: Props) => {
   const toggleMenu = () => {
     setMenuVisible(!isMenuVisible);
   };
-  const onLogOut = () => {
-    dispatch(logOut());
+  const onPressButton = (screenName: string) => {
+    switch (screenName) {
+      case 'logout': {
+        dispatch(logOut());
+      }
+      default: {
+        props.navigation.navigate(screenName);
+      }
+    }
   };
   return (
     <>
       <HomeScreenForm onProfile={toggleMenu} />
-      <ButtonModal
+      <ProfileMenu
         onVisible={isMenuVisible}
         onCloseModal={toggleMenu}
-        onPressButton={() => {}}
+        onPressButton={onPressButton}
       />
     </>
   );

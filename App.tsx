@@ -4,10 +4,10 @@ import {AppDispatch, RootState, store} from './src/redux/stores';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {loginSuccess} from './src/redux/slice/authReducer';
-import AppStack from './src/navigations/AppStack';
 import AuthStack from './src/navigations/AuthStack';
 import {ThemeProvider} from 'styled-components';
 import themes from './src/utils/themes';
+import TopBottomStack from './src/navigations/TabBottomStack';
 
 const Stack = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -31,7 +31,13 @@ const Stack = () => {
 
   return (
     <NavigationContainer>
-      {userIsLoggedIn ? <AppStack /> : <AuthStack />}
+      {userIsLoggedIn ? (
+        <>
+          <TopBottomStack />
+        </>
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 };
