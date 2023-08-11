@@ -2,6 +2,7 @@ const themes = {
   light: {
     colors: {
       text: 'black',
+      text1: 'white',
       textColor2: '#717171',
       buttonPrimary: '#44B978',
       buttonSecondary: '#A6E7C3',
@@ -9,6 +10,7 @@ const themes = {
       buttonFourth: '#B94444',
       borderTopColor: '#9DCFBA',
       background: 'white',
+      buttonBackground: '#F5F5F5',
       buttonBorderColor: '#717171',
     },
     fontSize: {

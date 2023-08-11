@@ -17,6 +17,7 @@ const HomeScreen = (props: Props) => {
     switch (screenName) {
       case 'logout': {
         dispatch(logOut());
+        break;
       }
       default: {
         props.navigation.navigate(screenName);

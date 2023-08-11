@@ -64,7 +64,6 @@ export interface Campaign {
   campDetails: string;
 }
 export interface TobBarItem {
-  type: number;
   bigText: string;
   smallText: string;
 }

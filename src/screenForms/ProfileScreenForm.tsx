@@ -1,18 +1,16 @@
-import {SafeAreaView, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
-import Background from '../components/Background';
-import TopBar from '../components/TopBar';
 import styled from 'styled-components/native';
-import {Text} from 'react-native-paper';
 import TextView from '../components/TextView';
 import PressButton from '../components/PressButton';
+import ImageButton from '../components/ImageButton';
+import themes from '../utils/themes';
 
 type Props = {};
 
 const ProfileScreenForm = (props: Props) => {
   return (
-    <Background imageSet={1}>
-      <TopBar onProfileLogoPress={() => {}} />
+    <>
       <Container>
         <ProfileLogo source={require('../assets/user.png')} />
         <TextContainer>
@@ -40,39 +38,49 @@ const ProfileScreenForm = (props: Props) => {
         </TextContainer>
       </Container>
       <ButtonContainer>
-        <PressButton
-          onPress={() => {}}
-          textColor="black"
+        <ImageButton
           text="Kullanıcı Bilgilerini Düzenle"
-          mode="Button3"
-        />
-        <PressButton
+          backColor={themes.light.colors.buttonBackground}
+          leftImageSource={require('../assets/user-edit.png')}
+          rightImageSource={require('../assets/arrow_right.png')}
           onPress={() => {}}
-          textColor="black"
+          textColor={themes.light.colors.text}
+        />
+        <ImageButton
           text="Cüzdan Şifresi Değiştir"
-          mode="Button3"
-        />
-        <PressButton
+          backColor={themes.light.colors.buttonBackground}
+          leftImageSource={require('../assets/password-validation.png')}
+          rightImageSource={require('../assets/arrow_right.png')}
           onPress={() => {}}
-          textColor="black"
-          text="Sözleşmeler ve Yasal Zorunluluklar"
-          mode="Button3"
+          textColor={themes.light.colors.text}
         />
-        <PressButton
+        <ImageButton
+          text="Sözleşmeler ve Yasal "
+          backColor={themes.light.colors.buttonBackground}
+          leftImageSource={require('../assets/contract.png')}
+          rightImageSource={require('../assets/arrow_right.png')}
           onPress={() => {}}
-          textColor="black"
+          textColor={themes.light.colors.text}
+        />
+        <ImageButton
           text="Destek / SSS"
-          mode="Button3"
+          backColor={themes.light.colors.buttonBackground}
+          leftImageSource={require('../assets/support.png')}
+          rightImageSource={require('../assets/arrow_right.png')}
+          onPress={() => {}}
+          textColor={themes.light.colors.text}
         />
         <View style={{marginTop: 15}} />
-        <PressButton
-          onPress={() => {}}
-          textColor="white"
+        <ImageButton
           text="Cüzdan Hesabımı Sil"
-          mode="Button4"
+          backColor={themes.light.colors.buttonFourth}
+          leftImageSource={require('../assets/delete_wallet.png')}
+          rightImageSource={null}
+          onPress={() => {}}
+          textColor={themes.light.colors.text1}
         />
       </ButtonContainer>
-    </Background>
+    </>
   );
 };
 
