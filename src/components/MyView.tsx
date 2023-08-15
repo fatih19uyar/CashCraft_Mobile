@@ -9,6 +9,7 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  width: 90%;
 `;
 
 export default MyView;

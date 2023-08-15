@@ -7,12 +7,7 @@ import styled from 'styled-components/native';
 import themes from '../utils/themes';
 
 const PressButton: React.FC<PressButtonProps> = props => {
-  const {mode, textColor, onPress, text} = props;
-
-  const getButtonWidth = () => {
-    const {width} = Dimensions.get('window');
-    return width * 0.8; // Ekranın yatay çözünürlüğünün %80'ini hesapla
-  };
+  const {mode, textColor, onPress, text, borderStatus} = props;
 
   switch (mode) {
     case 'Button1':
@@ -23,7 +18,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           textColor={textColor}
           style={{
             borderColor: themes.light.colors.buttonBorderColor,
-            borderWidth: 1,
+            borderWidth: borderStatus ? 1 : 0,
           }}
           onPress={onPress}>
           {text}
@@ -37,7 +32,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           textColor={textColor}
           style={{
             borderColor: themes.light.colors.buttonBorderColor,
-            borderWidth: 1,
+            borderWidth: borderStatus ? 1 : 0,
           }}
           onPress={onPress}>
           {text}
@@ -51,7 +46,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           textColor={textColor}
           style={{
             borderColor: themes.light.colors.buttonBorderColor,
-            borderWidth: 1,
+            borderWidth: borderStatus ? 1 : 0,
           }}
           onPress={onPress}>
           {text}
@@ -65,7 +60,7 @@ const PressButton: React.FC<PressButtonProps> = props => {
           textColor={textColor}
           style={{
             borderColor: themes.light.colors.buttonBorderColor,
-            borderWidth: 1,
+            borderWidth: borderStatus ? 1 : 0,
           }}
           onPress={onPress}>
           {text}

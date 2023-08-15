@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Dimensions } from 'react-native';
-import { TextInput, HelperText } from 'react-native-paper';
-import { InputProps } from '../types/type';
+import React, {useState} from 'react';
+import {SafeAreaView, Dimensions} from 'react-native';
+import {TextInput, HelperText} from 'react-native-paper';
+import {InputProps} from '../types/type';
 import colors from '../utils/colors';
-import styled, { css } from 'styled-components/native'; // styled-components'ı dahil edin
+import styled, {css} from 'styled-components/native'; // styled-components'ı dahil edin
 
-const Input: React.FC<InputProps> = ({ secret, label, input, meta }) => {
+const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const getWidth = () => {
-    const { width } = Dimensions.get('window');
+    const {width} = Dimensions.get('window');
     return width * 0.8;
   };
 
@@ -43,7 +43,7 @@ const Input: React.FC<InputProps> = ({ secret, label, input, meta }) => {
         outlineColor={colors.inputTextOutline}
       />
       {showError && (
-        <HelperText style={{ color: 'red' }} type="error">
+        <HelperText style={{color: 'red'}} type="error">
           {meta.error}
         </HelperText>
       )}
@@ -52,14 +52,14 @@ const Input: React.FC<InputProps> = ({ secret, label, input, meta }) => {
 };
 
 // Styled Components
-const Container = styled(SafeAreaView)<{ width: number }>`
+const Container = styled(SafeAreaView)<{width: number}>`
   align-self: center;
-  width: ${(props) => props.width}px;
+  width: ${props => props.width}px;
 `;
 
 const StyledTextInput = styled(TextInput)`
   width: 100%;
-  margin: 10px;
+  margin: 5px 0px 5px 0px;
   background-color: ${colors.white};
 `;
 

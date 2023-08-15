@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import {TouchableOpacity, Dimensions, Image} from 'react-native';
 import {TobBarItem} from '../types/type';
 import colors from '../utils/colors';
+import themes from '../utils/themes';
 
 interface TopBarProps {
   onGoBack: () => void;

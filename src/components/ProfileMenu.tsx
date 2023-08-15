@@ -81,12 +81,14 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   textColor="black"
                   text="İptal Et"
                   mode="Button2"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('logout')}
                   textColor="white"
                   text="Çıkış Yap"
                   mode="Button4"
+                  borderStatus={true}
                 />
               </>
             ) : (
@@ -96,42 +98,49 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   textColor="black"
                   text="Profilim"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('para yatır')}
                   textColor="black"
                   text="Para Yatır"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('işlem geçmişi')}
                   textColor="black"
                   text="İşlem Geçmişi"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('rezervasyonlarım')}
                   textColor="black"
                   text="Rezervasyonlarım"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('kampanyalar')}
                   textColor="black"
                   text="Kampanyalar"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={handleLogout} // Çıkış Yap butonuna basılınca çıkış yapma moduna geç
                   textColor="black"
                   text="Çıkış Yap"
                   mode="Button3"
+                  borderStatus={true}
                 />
                 <PressButton
                   onPress={onCloseModal}
                   textColor="black"
                   text="Kapat"
                   mode="Button2"
+                  borderStatus={true}
                 />
               </>
             )}

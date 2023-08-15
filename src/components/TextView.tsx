@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 import styled from 'styled-components/native';
 import {TextViewProps} from '../types/type';
@@ -42,7 +41,6 @@ const StyledText = styled(Text)`
   text-align: center;
   margin-bottom: 12px;
   margin-top: 10px;
-  margin-horizontal: 40px;
 `;
 
 export default TextView;
