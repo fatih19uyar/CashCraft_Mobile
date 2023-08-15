@@ -36,6 +36,7 @@ const LoginScreenFormSecond: React.FC<
         textColor=""
         text="Devam Et"
         mode="Button2"
+        borderStatus={true}
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
@@ -44,6 +45,7 @@ const LoginScreenFormSecond: React.FC<
         textColor="black"
         text="Şifremi Unuttum"
         mode="TextButton"
+        borderStatus={true}
       />
     </SafeAreaView>
   </>

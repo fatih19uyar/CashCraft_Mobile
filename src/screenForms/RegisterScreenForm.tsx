@@ -55,6 +55,7 @@ const RegisterScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
       textColor=""
       text="Devam Et"
       mode="Button2"
+      borderStatus={true}
     />
   </Background>
 );

@@ -7,12 +7,10 @@ import {
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
-import {Checkbox} from 'react-native-paper';
 import CheckboxWithLabel from '../../components/CheckBox';
 
 interface IProps extends ConnectedProps<typeof connector> {
@@ -22,64 +20,54 @@ interface IProps extends ConnectedProps<typeof connector> {
 
 const RegisterScreenFormThird: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goNext, onReportProblem}) => {
-  const [isChecked, setIsChecked] = React.useState(false);
-  const [isChecked2, setIsChecked2] = React.useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-  const handleCheckboxChange2 = () => {
-    setIsChecked2(!isChecked2);
-  };
+> = ({handleSubmit, goNext}) => {
   return (
     <>
-      <Background>
-        <TextView
-          textColor={'black'}
-          textSize={43}
-          text={'Kişisel Bilgileri Giriniz'}
-          textStyle={'500'}
-          textMargin={{top: 0, bottom: 20}}
-        />
-        <Field
-          color={colors.inputTextBackground}
-          name="userName"
-          component={Input}
-          label="Ad"
-          secret={false}
-        />
-        <Field
-          color={colors.inputTextBackground}
-          name="userSurname"
-          component={Input}
-          label="Soyad"
-          secret={false}
-        />
-        <Field
-          color={colors.inputTextBackground}
-          name="phoneNumber"
-          component={PhoneNumberInputWrapper}
-          label="Cep Telefonu Numarası"
-          secret={false}
-        />
-        <Field
-          name="userAgreement"
-          component={CheckboxWithLabel}
-          label="Kullanıcı Sözleşmesi’ni ve Gizlilik Politikası’nı kabul ediyorum."
-        />
-        <Field
-          name="campAgreement"
-          component={CheckboxWithLabel}
-          label="Kampanyalardan ve gelişmelerden haberdar olmak istiyorum."
-        />
-        <PressButton
-          onPress={handleSubmit(goNext)}
-          textColor=""
-          text="Devam Et"
-          mode="Button2"
-        />
-      </Background>
+      <TextView
+        textColor={'black'}
+        textSize={43}
+        text={'Kişisel Bilgileri Giriniz'}
+        textStyle={'500'}
+        textMargin={{top: 0, bottom: 20}}
+      />
+      <Field
+        color={colors.inputTextBackground}
+        name="userName"
+        component={Input}
+        label="Ad"
+        secret={false}
+      />
+      <Field
+        color={colors.inputTextBackground}
+        name="userSurname"
+        component={Input}
+        label="Soyad"
+        secret={false}
+      />
+      <Field
+        color={colors.inputTextBackground}
+        name="phoneNumber"
+        component={PhoneNumberInputWrapper}
+        label="Cep Telefonu Numarası"
+        secret={false}
+      />
+      <Field
+        name="userAgreement"
+        component={CheckboxWithLabel}
+        label="Kullanıcı Sözleşmesi’ni ve Gizlilik Politikası’nı kabul ediyorum."
+      />
+      <Field
+        name="campAgreement"
+        component={CheckboxWithLabel}
+        label="Kampanyalardan ve gelişmelerden haberdar olmak istiyorum."
+      />
+      <PressButton
+        onPress={handleSubmit(goNext)}
+        textColor=""
+        text="Devam Et"
+        mode="Button2"
+        borderStatus={true}
+      />
     </>
   );
 };

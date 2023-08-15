@@ -28,12 +28,14 @@ const WelcomeScreenForm = (props: WelcomeScreenFormProps) => {
         mode={'Button1'}
         text={'Giriş Yap'}
         onPress={props.onSign}
+        borderStatus={true}
       />
       <PressButton
         textColor={'white'}
         mode={'Button2'}
         text={'Hesap Oluştur'}
         onPress={props.onRegister}
+        borderStatus={true}
       />
     </Background>
   );

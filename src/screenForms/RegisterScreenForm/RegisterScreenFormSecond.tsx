@@ -46,6 +46,7 @@ const RegisterScreenFormSecond: React.FC<
         textColor=""
         text="Devam Et"
         mode="Button2"
+        borderStatus={true}
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
@@ -54,6 +55,7 @@ const RegisterScreenFormSecond: React.FC<
         textColor="black"
         text="Sorun Bildir"
         mode="TextButton"
+        borderStatus={true}
       />
     </SafeAreaView>
   </>

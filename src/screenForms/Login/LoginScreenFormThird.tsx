@@ -50,6 +50,7 @@ const LoginScreenFormThird: React.FC<
         textColor=""
         text="Giriş Yap"
         mode="Button2"
+        borderStatus={true}
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
@@ -58,6 +59,7 @@ const LoginScreenFormThird: React.FC<
         textColor="black"
         text="Tekrar Gönder"
         mode="TextButton"
+        borderStatus={true}
       />
     </SafeAreaView>
   </>
