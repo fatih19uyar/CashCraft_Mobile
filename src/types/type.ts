@@ -27,6 +27,7 @@ export interface PressButtonProps {
   onPress?: () => void;
   mode: string;
   text: string;
+  borderStatus: boolean;
 }
 export interface TextViewProps {
   textColor: string;
@@ -47,6 +48,8 @@ export type FontWeight =
   | '700'
   | '800'
   | '900';
+
+export type PopupMode = 'confirmation' | 'success' | 'default';
 
 export interface InputProps extends WrappedFieldProps {
   label: string;

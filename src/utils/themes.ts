@@ -1,7 +1,7 @@
 const themes = {
   light: {
     colors: {
-      text: 'black',
+      text: '#000000',
       text1: 'white',
       textColor2: '#717171',
       buttonPrimary: '#44B978',
@@ -12,6 +12,12 @@ const themes = {
       background: 'white',
       buttonBackground: '#F5F5F5',
       buttonBorderColor: '#717171',
+    },
+    topBarPage: {
+      colors: {
+        bigText: '#000000',
+        smallText: '#44B978',
+      },
     },
     fontSize: {
       small: 12,
