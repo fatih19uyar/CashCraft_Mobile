@@ -1,18 +1,17 @@
 import {View} from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
-import TextView from '../components/TextView';
-import PressButton from '../components/PressButton';
-import ImageButton from '../components/ImageButton';
-import themes from '../utils/themes';
+import TextView from '../../components/TextView';
+import ImageButton from '../../components/ImageButton';
+import themes from '../../utils/themes';
 
-type Props = {};
+type Props = {onPress: (values: any) => void};
 
 const ProfileScreenForm = (props: Props) => {
   return (
     <>
       <Container>
-        <ProfileLogo source={require('../assets/user.png')} />
+        <ProfileLogo source={require('../../assets/user.png')} />
         <TextContainer>
           <TextView
             textColor={'black'}
@@ -41,32 +40,32 @@ const ProfileScreenForm = (props: Props) => {
         <ImageButton
           text="Kullanıcı Bilgilerini Düzenle"
           backColor={themes.light.colors.buttonBackground}
-          leftImageSource={require('../assets/user-edit.png')}
-          rightImageSource={require('../assets/arrow_right.png')}
-          onPress={() => {}}
+          leftImageSource={require('../../assets/user-edit.png')}
+          rightImageSource={require('../../assets/arrow_right.png')}
+          onPress={() => props.onPress('EditUser')}
           textColor={themes.light.colors.text}
         />
         <ImageButton
           text="Cüzdan Şifresi Değiştir"
           backColor={themes.light.colors.buttonBackground}
-          leftImageSource={require('../assets/password-validation.png')}
-          rightImageSource={require('../assets/arrow_right.png')}
+          leftImageSource={require('../../assets/password-validation.png')}
+          rightImageSource={require('../../assets/arrow_right.png')}
           onPress={() => {}}
           textColor={themes.light.colors.text}
         />
         <ImageButton
           text="Sözleşmeler ve Yasal "
           backColor={themes.light.colors.buttonBackground}
-          leftImageSource={require('../assets/contract.png')}
-          rightImageSource={require('../assets/arrow_right.png')}
+          leftImageSource={require('../../assets/contract.png')}
+          rightImageSource={require('../../assets/arrow_right.png')}
           onPress={() => {}}
           textColor={themes.light.colors.text}
         />
         <ImageButton
           text="Destek / SSS"
           backColor={themes.light.colors.buttonBackground}
-          leftImageSource={require('../assets/support.png')}
-          rightImageSource={require('../assets/arrow_right.png')}
+          leftImageSource={require('../../assets/support.png')}
+          rightImageSource={require('../../assets/arrow_right.png')}
           onPress={() => {}}
           textColor={themes.light.colors.text}
         />
@@ -74,7 +73,7 @@ const ProfileScreenForm = (props: Props) => {
         <ImageButton
           text="Cüzdan Hesabımı Sil"
           backColor={themes.light.colors.buttonFourth}
-          leftImageSource={require('../assets/delete_wallet.png')}
+          leftImageSource={require('../../assets/delete_wallet.png')}
           rightImageSource={null}
           onPress={() => {}}
           textColor={themes.light.colors.text1}
@@ -98,6 +97,7 @@ const Container = styled.View`
 const TextContainer = styled.View`
   align-items: left;
   justify-content: center;
+  margin-left: 5%;
 `;
 const ButtonContainer = styled.View`
   width: 90%;

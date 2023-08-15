@@ -31,13 +31,7 @@ const Stack = () => {
 
   return (
     <NavigationContainer>
-      {userIsLoggedIn ? (
-        <>
-          <TopBottomStack />
-        </>
-      ) : (
-        <AuthStack />
-      )}
+      {userIsLoggedIn ? <TopBottomStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
