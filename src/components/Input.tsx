@@ -3,7 +3,8 @@ import {SafeAreaView, Dimensions} from 'react-native';
 import {TextInput, HelperText} from 'react-native-paper';
 import {InputProps} from '../types/type';
 import colors from '../utils/colors';
-import styled, {css} from 'styled-components/native'; // styled-components'ı dahil edin
+import styled, {css} from 'styled-components/native';
+import themes from '../utils/themes';
 
 const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -60,7 +61,7 @@ const Container = styled(SafeAreaView)<{width: number}>`
 const StyledTextInput = styled(TextInput)`
   width: 100%;
   margin: 5px 0px 5px 0px;
-  background-color: ${colors.white};
+  background-color: ${themes.light.textInput.background};
 `;
 
 export default Input;

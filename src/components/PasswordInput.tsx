@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { View, TextInput } from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, TextInput} from 'react-native';
 import styled from 'styled-components/native';
+import themes from '../utils/themes';
 
 type PasswordInputProps = {
   length: number;
   onChangePassword: (password: string) => void;
 };
 
-const PasswordInput = ({ length, onChangePassword }: PasswordInputProps) => {
+const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
   const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
   const [passwords, setPasswords] = useState<string[]>(Array(length).fill(''));
 
@@ -18,7 +19,11 @@ const PasswordInput = ({ length, onChangePassword }: PasswordInputProps) => {
       setPasswords(newPasswords);
 
       // Otomatik olarak bir sonraki kutucuğa geçme
-      if (index < length - 1 && value.length === 1 && inputRefs.current[index + 1]) {
+      if (
+        index < length - 1 &&
+        value.length === 1 &&
+        inputRefs.current[index + 1]
+      ) {
         inputRefs.current[index + 1]?.focus();
       }
 
@@ -64,6 +69,7 @@ const PasswordBox = styled(View)`
   margin: 5px;
   justify-content: center;
   align-items: center;
+  background-color: ${themes.light.passwordInput.background};
 `;
 
 const PasswordInputBox = styled(TextInput)`

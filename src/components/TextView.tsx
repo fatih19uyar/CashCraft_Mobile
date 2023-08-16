@@ -41,6 +41,7 @@ const StyledText = styled(Text)`
   text-align: center;
   margin-bottom: 12px;
   margin-top: 10px;
+  padding: 5px;
 `;
 
 export default TextView;
