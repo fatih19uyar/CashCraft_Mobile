@@ -7,13 +7,17 @@ import ConfirmationPopup from '../components/ConfirmationPopup'; // Confirmation
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {reset} from 'redux-form';
-import {Snackbar} from 'react-native-paper';
 import {PopupMode} from '../types/type';
+import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
+import {Snackbar} from 'react-native-paper';
 
 type Props = {navigation: any};
 
 const ProfileScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState('');
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
   const [isConfirmationPopupVisible, setConfirmationPopupVisible] =
     useState(false);
   const dispatch: AppDispatch = useDispatch();
@@ -32,6 +36,22 @@ const ProfileScreen = (props: Props) => {
     console.log('editUser', values);
     setPopupMode('confirmation');
     setConfirmationPopupVisible(true);
+  };
+  const changePassword = (values: string) => {
+    console.log('ChangePassword', values);
+    const {newPass, oldPass, reNewPass}: any = values;
+    if (newPass == reNewPass) {
+      setPopupMode('success');
+      setConfirmationPopupVisible(true);
+      setTimeout(() => {
+        dispatch(reset('ChangePasswordScreen'));
+        setConfirmationPopupVisible(false);
+        setCurrentForm('');
+      }, 2000);
+    } else {
+      setSnackbarMessage('Yeni şifreler birbiriyle uyuşmuyor.');
+      setSnackbarVisible(true);
+    }
   };
 
   const handleConfirmationCode = (confirmationCode: string) => {
@@ -54,6 +74,8 @@ const ProfileScreen = (props: Props) => {
     switch (currentForm) {
       case 'EditUser':
         return <EditUserInfoScreenForm onPress={editUser} />;
+      case 'ChangePassword':
+        return <ChangePasswordScreenForm onPress={changePassword} />;
       default:
         return <BaseProfileScreenForm onPress={onPress} />;
     }
@@ -78,6 +100,12 @@ const ProfileScreen = (props: Props) => {
         onResent={() => console.log('Gönderdik')}
         mode={popupMode}
       />
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() => setSnackbarVisible(false)}
+        duration={3000}>
+        {snackbarMessage}
+      </Snackbar>
     </>
   );
 };
