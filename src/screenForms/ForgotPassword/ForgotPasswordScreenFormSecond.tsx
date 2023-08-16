@@ -7,9 +7,10 @@ import {
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
+import {SafeAreaView} from 'react-native';
+import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
   onGoNewPass: (values: any) => void;
   email: string;
@@ -21,13 +22,13 @@ const ForgotPasswordScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onGoNewPass, email}) => (
   <>
-    <Background imageSet={2}>
+    <MyView>
       <TextView
         textColor={'black'}
-        textSize={40}
+        textSize={45}
         text={'Şifre Yenileme Onayı'}
         textStyle={'500'}
-        textMargin={{top: 0, bottom: 100}}
+        textMargin={{top: 0, bottom: 50}}
       />
       <TextView
         textColor={'black'}
@@ -42,8 +43,18 @@ const ForgotPasswordScreenFormFirst: React.FC<
         textColor="white"
         text="Devam Et"
         mode="Button2"
+        borderStatus={false}
       />
-    </Background>
+    </MyView>
+    <SafeAreaView style={{alignItems: 'center'}}>
+      <PressButton
+        onPress={() => {}}
+        textColor="black"
+        text="Sorun Bildir"
+        mode="TextButton"
+        borderStatus={true}
+      />
+    </SafeAreaView>
   </>
 );
 

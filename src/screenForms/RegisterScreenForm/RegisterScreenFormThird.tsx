@@ -66,7 +66,7 @@ const RegisterScreenFormThird: React.FC<
         textColor=""
         text="Devam Et"
         mode="Button2"
-        borderStatus={true}
+        borderStatus={false}
       />
     </>
   );

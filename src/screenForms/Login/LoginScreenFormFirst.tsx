@@ -9,11 +9,8 @@ import {ConnectedProps, connect} from 'react-redux';
 import Input from '../../components/Input';
 import PressButton from '../../components/PressButton';
 import colors from '../../utils/colors';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
-import BackButton from '../../components/BackButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View} from 'react-native';
 import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
@@ -59,7 +56,7 @@ const LoginScreenFormFirst: React.FC<
         textColor="black"
         text="Devam Et"
         mode="Button2"
-        borderStatus={true}
+        borderStatus={false}
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>

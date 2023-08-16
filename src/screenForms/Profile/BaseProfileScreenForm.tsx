@@ -50,7 +50,7 @@ const ProfileScreenForm = (props: Props) => {
           backColor={themes.light.colors.buttonBackground}
           leftImageSource={require('../../assets/password-validation.png')}
           rightImageSource={require('../../assets/arrow_right.png')}
-          onPress={() => {}}
+          onPress={() => props.onPress('ChangePassword')}
           textColor={themes.light.colors.text}
         />
         <ImageButton

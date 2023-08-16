@@ -34,28 +34,27 @@ const ForgotPasswordScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onForgotPass}) => (
   <>
-    <Background imageSet={2}>
-      <TextView
-        textColor={'black'}
-        textSize={40}
-        text={'Şifremi Unuttum'}
-        textStyle={'500'}
-        textMargin={{top: 0, bottom: 100}}
-      />
-      <Field
-        color={colors.inputTextBackground}
-        name="email_forgot"
-        component={Input}
-        label="E-posta Adresi"
-        secret={false}
-      />
-      <PressButton
-        onPress={handleSubmit(onForgotPass)}
-        textColor="white"
-        text="Şifre Yenileme Kodu Gönder"
-        mode="Button2"
-      />
-    </Background>
+    <TextView
+      textColor={'black'}
+      textSize={40}
+      text={'Şifremi Unuttum'}
+      textStyle={'500'}
+      textMargin={{top: 0, bottom: 100}}
+    />
+    <Field
+      color={colors.inputTextBackground}
+      name="email_forgot"
+      component={Input}
+      label="E-posta Adresi"
+      secret={false}
+    />
+    <PressButton
+      onPress={handleSubmit(onForgotPass)}
+      textColor="white"
+      text="Şifre Yenileme Kodu Gönder"
+      mode="Button2"
+      borderStatus={false}
+    />
   </>
 );
 

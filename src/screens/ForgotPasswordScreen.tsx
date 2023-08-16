@@ -7,6 +7,7 @@ import CreatePasswordScreenSecond from '../screenForms/CreatePassword/CreatePass
 import {reset} from 'redux-form';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
+import Background from '../components/Background';
 
 type Props = {navigation: any; route: any};
 
@@ -50,7 +51,7 @@ const ForgotPasswordScreen = (props: Props) => {
   return (
     <>
       <BackButton goBack={goBack} />
-      {renderForm()}
+      <Background imageSet={2}>{renderForm()}</Background>
     </>
   );
 };

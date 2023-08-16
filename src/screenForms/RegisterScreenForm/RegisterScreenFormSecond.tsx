@@ -26,10 +26,10 @@ const RegisterScreenFormSecond: React.FC<
     <MyView>
       <TextView
         textColor={'black'}
-        textSize={43}
+        textSize={45}
         text={'Güvenlik Kodu Giriniz'}
         textStyle={'500'}
-        textMargin={{top: 0, bottom: 100}}
+        textMargin={{top: 50, bottom: 50}}
       />
       <TextView
         textColor={'black'}
@@ -46,7 +46,7 @@ const RegisterScreenFormSecond: React.FC<
         textColor=""
         text="Devam Et"
         mode="Button2"
-        borderStatus={true}
+        borderStatus={false}
       />
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>

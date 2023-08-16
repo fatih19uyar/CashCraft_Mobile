@@ -34,7 +34,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
     <>
       <Background imageSet={1}>
         <TopBar onProfileLogoPress={props.onProfile} />
-        <MoneyCard amount={'100.00,59'} accountName={'idv'} />
+        <MoneyCard amount={'10.000,59'} accountName={'idv'} />
         <TransactionList />
         <StyledView>
           <StyledText

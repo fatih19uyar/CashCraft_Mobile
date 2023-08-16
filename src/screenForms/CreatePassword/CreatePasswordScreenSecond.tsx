@@ -20,29 +20,28 @@ const CreatePasswordScreenSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goScreen}) => (
   <>
-    <Background imageSet={2}>
-      <TextView
-        textColor={'black'}
-        textSize={39}
-        text={'Şifreyi Tekrar Giriniz'}
-        textStyle={'500'}
-        textMargin={{top: 20, bottom: 50}}
-      />
-      <TextView
-        textColor={'black'}
-        textSize={18}
-        text={'Şifreniz yalnızca rakamlardan oluşmalıdır.'}
-        textStyle={'normal'}
-        textMargin={{top: 0, bottom: 0}}
-      />
-      <Field name="reCreatePassword" component={PasswordInputField} />
-      <PressButton
-        onPress={handleSubmit(goScreen)}
-        textColor=""
-        text="Devam Et"
-        mode="Button2"
-      />
-    </Background>
+    <TextView
+      textColor={'black'}
+      textSize={45}
+      text={'Şifreyi Tekrar Giriniz'}
+      textStyle={'500'}
+      textMargin={{top: 20, bottom: 50}}
+    />
+    <TextView
+      textColor={'black'}
+      textSize={18}
+      text={'Şifreniz yalnızca rakamlardan oluşmalıdır.'}
+      textStyle={'normal'}
+      textMargin={{top: 0, bottom: 0}}
+    />
+    <Field name="reCreatePassword" component={PasswordInputField} />
+    <PressButton
+      onPress={handleSubmit(goScreen)}
+      textColor=""
+      text="Devam Et"
+      mode="Button2"
+      borderStatus={false}
+    />
   </>
 );
 
