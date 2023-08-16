@@ -13,6 +13,15 @@ const themes = {
       buttonBackground: '#F5F5F5',
       buttonBorderColor: '#717171',
     },
+    textInput: {
+      background: '#F5F5F5',
+    },
+    passwordInput: {
+      background: '#F5F5F5',
+    },
+    checkBox: {
+      background: '#F5F5F5',
+    },
     topBarPage: {
       colors: {
         bigText: '#000000',
