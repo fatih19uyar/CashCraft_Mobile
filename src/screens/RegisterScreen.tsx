@@ -14,6 +14,7 @@ import CreatePasswordScreenFirst from '../screenForms/CreatePassword/CreatePassw
 import CreatePasswordScreenSecond from '../screenForms/CreatePassword/CreatePasswordScreenSecond';
 import Background from '../components/Background';
 import {NewUser} from '../types/type';
+import ConfirmationPopup from '../components/ConfirmationPopup';
 
 type RegisterScreenProps = {navigation: any};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
@@ -23,6 +24,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
+  const [isPopupVisible, setPopupVisible] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
     email: '',
     emailVerificationCode: 0,
@@ -33,6 +35,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   });
   const goBack = () => {
     dispatch(reset('RegisterScreen'));
+    dispatch(reset('createPassword'));
     props.navigation.goBack();
   };
   const goScreen = (values: any) => {
@@ -42,12 +45,14 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         ...prevUser,
         userPassword: createPassword,
       }));
-      setSnackbarMessage('Kayıt Başarılı');
-      setSnackbarVisible(true);
+      setPopupVisible(true);
       setTimeout(() => {
+        dispatch(reset('createPassword'));
         dispatch(reset('RegisterScreen'));
         props.navigation.navigate('WelcomeScreen');
-      }, 1000);
+      }, 2000);
+    } else if (createPassword && !reCreatePassword) {
+      setCurrentForm(currentForm + 1);
     } else {
       setSnackbarMessage('Şifreler Uyuşmuyor');
       setSnackbarVisible(true);
@@ -141,6 +146,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         duration={3000}>
         {snackbarMessage}
       </Snackbar>
+      <ConfirmationPopup
+        isVisible={isPopupVisible}
+        onCancel={() => {}}
+        onConfirm={() => {}}
+        onResent={() => console.log('Gönderdik')}
+        mode={'success'}
+      />
     </>
   );
 };
