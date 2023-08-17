@@ -3,9 +3,14 @@ import {Text} from 'react-native-paper';
 import styled from 'styled-components/native';
 import {TextViewProps} from '../types/type';
 
-const TextView: React.FC<TextViewProps> = props => {
-  const {textColor, textSize, textStyle, text, textMargin} = props;
-
+const TextView: React.FC<TextViewProps> = ({
+  textColor,
+  textSize,
+  textStyle,
+  textMargin,
+  text,
+  ...restProps
+}) => {
   const getMarginStyles = () => {
     if (textMargin) {
       if (typeof textMargin === 'object') {
@@ -28,13 +33,17 @@ const TextView: React.FC<TextViewProps> = props => {
   };
 
   const textStyleObject = {
-    fontSize: textSize,
+    fontSize: parseInt(textSize.toString()),
     lineHeight: textSize + 5,
     fontWeight: textStyle,
     ...getMarginStyles(),
   };
 
-  return <StyledText style={textStyleObject}>{text}</StyledText>;
+  return (
+    <StyledText style={textStyleObject} {...restProps}>
+      {text}
+    </StyledText>
+  );
 };
 
 const StyledText = styled(Text)`
