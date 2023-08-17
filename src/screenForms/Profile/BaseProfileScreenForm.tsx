@@ -75,7 +75,7 @@ const ProfileScreenForm = (props: Props) => {
           backColor={themes.light.colors.buttonFourth}
           leftImageSource={require('../../assets/delete_wallet.png')}
           rightImageSource={null}
-          onPress={() => {}}
+          onPress={() => props.onPress('DeleteWallet')}
           textColor={themes.light.colors.text1}
         />
       </ButtonContainer>

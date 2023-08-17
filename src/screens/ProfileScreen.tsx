@@ -30,7 +30,9 @@ const ProfileScreen = (props: Props) => {
   };
 
   const onPress = (values: string) => {
-    setCurrentForm(values);
+    values == 'DeleteWallet'
+      ? props.navigation.navigate('DeleteWalletScreen')
+      : setCurrentForm(values);
   };
 
   const editUser = (values: string) => {
