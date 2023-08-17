@@ -6,7 +6,13 @@ import colors from '../utils/colors';
 import styled, {css} from 'styled-components/native';
 import themes from '../utils/themes';
 
-const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
+const Input: React.FC<InputProps> = ({
+  secret,
+  label,
+  input,
+  meta,
+  ...restProps
+}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const getWidth = () => {
@@ -42,6 +48,7 @@ const Input: React.FC<InputProps> = ({secret, label, input, meta}) => {
         textColor={colors.text}
         activeUnderlineColor={colors.text}
         outlineColor={colors.inputTextOutline}
+        {...restProps}
       />
       {showError && (
         <HelperText style={{color: 'red'}} type="error">
