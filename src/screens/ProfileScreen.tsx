@@ -25,6 +25,7 @@ const ProfileScreen = (props: Props) => {
 
   const goBack = () => {
     dispatch(reset('EditUserScreen'));
+    dispatch(reset('ChangePasswordScreen'));
     props.navigation.goBack();
   };
 

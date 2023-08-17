@@ -1,8 +1,6 @@
-import {Image, SafeAreaView, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
-import TextView from '../../components/TextView';
-import themes from '../../utils/themes';
 import PressButton from '../../components/PressButton';
 import {
   Field,
@@ -13,10 +11,18 @@ import {
 import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import {ConnectedProps, connect} from 'react-redux';
-import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
 }
+const validate = (values: any) => {
+  const {oldPass, newPass, reNewPass} = values;
+  const errors: any = {};
+  if (!oldPass) errors.oldPass = 'Lütfen eski şifrenizi giriniz.';
+  if (!newPass) errors.newPass = 'Lütfen yeni şifrenizi giriniz.';
+  if (!reNewPass) errors.reNewPass = 'Lütfen tekrar yeni şifrenizi giriniz.';
+  if (newPass !== reNewPass) errors.reNewPass = 'Yeni şifreler eşleşmiyor.';
+  return errors;
+};
 
 const ChangePasswordScreenForm: React.FC<
   IProps & InjectedFormProps<{}, IProps>
@@ -29,15 +35,19 @@ const ChangePasswordScreenForm: React.FC<
           name="oldPass"
           component={Input}
           label="Eski Şifre"
-          secret={false}
+          secret={true}
+          maxLength={6}
+          keyboardType="numeric"
         />
         <View style={{height: '5%'}} />
         <Field
           color={colors.inputTextBackground}
           name="newPass"
           component={Input}
+          maxLength={6}
           label="Yeni Şifre"
-          secret={false}
+          secret={true}
+          keyboardType="numeric"
         />
         <View style={{height: '5%'}} />
         <Field
@@ -45,7 +55,9 @@ const ChangePasswordScreenForm: React.FC<
           name="reNewPass"
           component={Input}
           label="Yeni Şifrenizi Tekrar Giriniz"
-          secret={false}
+          secret={true}
+          maxLength={6}
+          keyboardType="numeric"
         />
         <SafeAreaView
           style={{width: '100%', alignItems: 'center', marginTop: '10%'}}>
@@ -88,5 +100,6 @@ export default connector(
     form: 'ChangePasswordScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
+    validate,
   })(ChangePasswordScreenForm),
 );
