@@ -7,11 +7,11 @@ import {
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import PasswordInput from '../../components/PasswordInput';
 import MyView from '../../components/MyView';
+import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -43,7 +43,7 @@ const RegisterScreenFormSecond: React.FC<
       <Field name="verificationCode" component={PasswordInputField} />
       <PressButton
         onPress={handleSubmit(goNext)}
-        textColor=""
+        textColor={themes.light.colors.text1}
         text="Devam Et"
         mode="Button2"
         borderStatus={false}

@@ -12,6 +12,7 @@ import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
 import CheckboxWithLabel from '../../components/CheckBox';
+import themes from '../../utils/themes';
 
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
@@ -63,7 +64,7 @@ const RegisterScreenFormThird: React.FC<
       />
       <PressButton
         onPress={handleSubmit(goNext)}
-        textColor=""
+        textColor={themes.light.colors.text1}
         text="Devam Et"
         mode="Button2"
         borderStatus={false}

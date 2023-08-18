@@ -12,6 +12,7 @@ import colors from '../../utils/colors';
 import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MyView from '../../components/MyView';
+import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -53,7 +54,7 @@ const RegisterScreenFormFirst: React.FC<
       />
       <PressButton
         onPress={handleSubmit(goNext)}
-        textColor=""
+        textColor={themes.light.colors.text1}
         text="Devam Et"
         mode="Button2"
         borderStatus={false}
