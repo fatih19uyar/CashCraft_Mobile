@@ -76,7 +76,17 @@ const ProfileScreen = (props: Props) => {
   const renderForm = () => {
     switch (currentForm) {
       case 'EditUser':
-        return <EditUserInfoScreenForm onPress={editUser} />;
+        return (
+          <EditUserInfoScreenForm
+            onPress={editUser}
+            user={{
+              name: 'Ezgi Beytaş',
+              email: 'ezgi@gmail.com',
+              photo: '',
+              phoneNumber: '5055719843',
+            }}
+          />
+        );
       case 'ChangePassword':
         return <ChangePasswordScreenForm onPress={changePassword} />;
       default:

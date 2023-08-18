@@ -14,13 +14,16 @@ import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import {ConnectedProps, connect} from 'react-redux';
 import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
+import {UserInfo} from '../../types/type';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
+  user: UserInfo;
 }
 
 const EditUserInfoScreenForm: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onPress}) => {
+> = ({handleSubmit, onPress, user}) => {
+  console.log(user.email);
   return (
     <>
       <Container>
@@ -29,7 +32,7 @@ const EditUserInfoScreenForm: React.FC<
           <TextView
             textColor={'black'}
             textSize={30}
-            text={'Ezgi Beytaş'}
+            text={user.name}
             textStyle={'normal'}
             textMargin={{top: 0, bottom: 0}}
           />
@@ -60,14 +63,16 @@ const EditUserInfoScreenForm: React.FC<
           component={Input}
           label="E-posta Adresi"
           secret={false}
+          placeholder={user.email}
         />
         <View style={{height: '10%'}} />
         <Field
           color={colors.inputTextBackground}
           name="phoneNumber"
           component={PhoneNumberInputWrapper}
-          label="Cep Telefonu Numarası"
+          label={user.phoneNumber}
           secret={false}
+          defaultValue={user.phoneNumber}
         />
         <SafeAreaView
           style={{width: '100%', alignItems: 'center', marginTop: '10%'}}>
@@ -76,7 +81,7 @@ const EditUserInfoScreenForm: React.FC<
             textColor="white"
             text="Bilgileri Kaydet"
             mode="Button2"
-            borderStatus={true}
+            borderStatus={false}
           />
         </SafeAreaView>
       </InputContainer>
