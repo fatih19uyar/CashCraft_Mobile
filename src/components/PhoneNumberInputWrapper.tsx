@@ -4,7 +4,7 @@ import PhoneNumberInput from 'react-native-phone-number-input';
 import {WrappedFieldProps} from 'redux-form';
 
 type PhoneNumberInputWrapperProps = WrappedFieldProps & {
-  label: string;
+  label: string | null;
   meta: {
     error: string;
     touched: boolean;
@@ -24,6 +24,7 @@ const PhoneNumberInputWrapper: React.FC<PhoneNumberInputWrapperProps> = ({
         defaultCode="TR"
         layout="first"
         withDarkTheme
+        placeholder={label ? label : 'Telefon Numarası'}
         ref={phoneInput}
         onChangeFormattedText={input.onChange}
         value={input.value}

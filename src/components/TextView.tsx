@@ -9,7 +9,6 @@ const TextView: React.FC<TextViewProps> = ({
   textStyle,
   textMargin,
   text,
-  ...restProps
 }) => {
   const getMarginStyles = () => {
     if (textMargin) {
@@ -39,11 +38,7 @@ const TextView: React.FC<TextViewProps> = ({
     ...getMarginStyles(),
   };
 
-  return (
-    <StyledText style={textStyleObject} {...restProps}>
-      {text}
-    </StyledText>
-  );
+  return <StyledText style={textStyleObject}>{text}</StyledText>;
 };
 
 const StyledText = styled(Text)`

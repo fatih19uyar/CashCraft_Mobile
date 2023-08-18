@@ -37,11 +37,13 @@ const Container = styled(View)`
   align-items: center;
   margin-vertical: 10px;
   margin-horizontal: 30px;
+  padding: 3px;
 `;
 
 const LabelText = styled(Text)`
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 10px;
+  font-weight: bold;
 `;
 
 export default CheckboxWithLabel;

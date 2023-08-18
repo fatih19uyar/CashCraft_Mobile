@@ -24,14 +24,21 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
 }) => {
   const [confirmationCode, setConfirmationCode] = useState('');
   const [inputError, setInputError] = useState(false);
+  const [inputErrorMessage, setInputErrorMessage] = useState('');
 
   const handleConfirm = () => {
+    console.log(confirmationCode);
     if (confirmationCode === '' && mode === 'confirmation') {
       setInputError(true);
+      setInputErrorMessage('Lütfen boş bırakmayınız.');
+    } else if (confirmationCode.length < 6 && mode === 'confirmation') {
+      setInputError(true);
+      setInputErrorMessage('Lütfen 6 haneli kodu giriniz.');
     } else {
+      setInputErrorMessage('');
+      setInputError(false);
       onConfirm(confirmationCode);
       setConfirmationCode('');
-      setInputError(false);
     }
   };
 
@@ -67,11 +74,12 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
               value={confirmationCode}
               onChangeText={setConfirmationCode}
               secureTextEntry={true}
+              inputMode="numeric"
               maxLength={6}
             />
             {inputError && (
               <HelperText style={{color: 'red'}} type="error">
-                Lütfen boş bırakmayınız.
+                {inputErrorMessage}
               </HelperText>
             )}
           </>
@@ -135,7 +143,7 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             onPress={() => {
               onConfirm('close');
             }}
-            textColor={themes.light.colors.text}
+            textColor={themes.light.colors.text1}
             text="Tamam"
             mode="Button2"
             borderStatus={false}

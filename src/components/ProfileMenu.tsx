@@ -78,17 +78,17 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                 />
                 <PressButton
                   onPress={handleCancelLogout}
-                  textColor="black"
+                  textColor="white"
                   text="İptal Et"
                   mode="Button2"
-                  borderStatus={true}
+                  borderStatus={false}
                 />
                 <PressButton
                   onPress={() => handlePressButton('logout')}
                   textColor="white"
                   text="Çıkış Yap"
                   mode="Button4"
-                  borderStatus={true}
+                  borderStatus={false}
                 />
               </>
             ) : (
