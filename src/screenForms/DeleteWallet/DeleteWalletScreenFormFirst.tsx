@@ -9,7 +9,7 @@ type Props = {
   goBack: () => void;
 };
 
-const DeleteWalletScreenForm = (props: Props) => {
+const DeleteWalletScreenFormFirst = (props: Props) => {
   return (
     <>
       <Image
@@ -69,4 +69,4 @@ const ButtonContainer = styled.View`
   margin-top: 10%;
 `;
 
-export default DeleteWalletScreenForm;
+export default DeleteWalletScreenFormFirst;
