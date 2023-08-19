@@ -13,6 +13,7 @@ import ButtonModal from '../components/ProfileMenu';
 
 type HomeScreenFormProps = {
   onProfile: () => void;
+  goForm: (values: string) => void;
 };
 const transactions = [
   {name: 'Alışveriş', amount: 150, date: '2023-07-30'},
@@ -35,12 +36,9 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
       <Background imageSet={1}>
         <TopBar onProfileLogoPress={props.onProfile} />
         <MoneyCard amount={'10.000,59'} accountName={'idv'} />
-        <TransactionList />
+        <TransactionList goForm={props.goForm} />
         <StyledView>
-          <StyledText
-            onPress={() => {
-              console.log('kampanya');
-            }}>
+          <StyledText onPress={() => props.goForm('CampaignsScreen')}>
             Kampanya -&gt;
           </StyledText>
         </StyledView>

@@ -122,7 +122,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   borderStatus={true}
                 />
                 <PressButton
-                  onPress={() => handlePressButton('kampanyalar')}
+                  onPress={() => handlePressButton('CampaignsScreen')}
                   textColor="black"
                   text="Kampanyalar"
                   mode="Button3"

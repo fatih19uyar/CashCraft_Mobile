@@ -1,18 +1,22 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {DataTable, Text} from 'react-native-paper';
+import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
 import {items} from '../values/values';
 import {styled} from 'styled-components/native';
 
-const TransactionList = () => {
+interface TransactionListProps {
+  goForm: (screenName: string) => void;
+}
+
+const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
   return (
     <>
       <DataTable>
         <DataTable.Header>
           <DataTable.Title
             textStyle={styles.headerTitle}
-            onPress={() => console.log('son')}>
+            onPress={() => goForm('TransactionScreen')}>
             Son İşlemler -{'> '}
           </DataTable.Title>
         </DataTable.Header>
@@ -43,6 +47,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
 });
+
 const NameText = styled.Text`
   font-size: 13px;
   font-weight: bold;

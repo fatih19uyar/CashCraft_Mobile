@@ -26,7 +26,7 @@ const HomeScreen = (props: Props) => {
   };
   return (
     <>
-      <HomeScreenForm onProfile={toggleMenu} />
+      <HomeScreenForm goForm={onPressButton} onProfile={toggleMenu} />
       <ProfileMenu
         onVisible={isMenuVisible}
         onCloseModal={toggleMenu}
