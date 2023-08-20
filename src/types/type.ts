@@ -71,6 +71,7 @@ export interface Campaign {
   campName: string;
   campImg: string;
   campDetails: string;
+  campTitle: string;
 }
 export interface TobBarItem {
   bigText: string;
