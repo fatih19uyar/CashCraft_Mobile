@@ -31,6 +31,9 @@ const StyledText = styled(Text)`
   margin-left: ${themes.light.spacing.medium}px;
 `;
 const HomeScreenForm = (props: HomeScreenFormProps) => {
+  const campaingPress = (index: number) => {
+    console.log('index', index);
+  };
   return (
     <>
       <Background imageSet={1}>
@@ -42,7 +45,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
             Kampanya -&gt;
           </StyledText>
         </StyledView>
-        <CampaignList campaigns={campaigns} />
+        <CampaignList campaigns={campaigns} handleCardPress={campaingPress} />
       </Background>
     </>
   );

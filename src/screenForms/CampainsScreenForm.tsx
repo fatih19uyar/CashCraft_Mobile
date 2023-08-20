@@ -1,36 +1,47 @@
-import {View, Text, Image} from 'react-native';
 import React from 'react';
+import {View, Image} from 'react-native';
 import CampaignList from '../components/CampaignList';
-import {campaigns} from '../values/values';
 import MyView from '../components/MyView';
-import {styled} from 'styled-components';
+import {styled} from 'styled-components/native';
 import TextView from '../components/TextView';
+import {Campaign} from '../types/type';
 
-type Props = {};
+interface CampainsScreenFormProps {
+  onPressCampaing: (index: number) => void;
+  CampingList: Campaign[];
+  selectedCampaing: Campaign;
+}
 
-const CampainsScreenForm = (props: Props) => {
+const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
+  onPressCampaing,
+  CampingList,
+  selectedCampaing,
+}) => {
+  console.log(selectedCampaing);
   return (
     <>
       <View style={{marginTop: '2%', height: '20%'}}>
-        <CampaignList campaigns={campaigns} />
+        <CampaignList
+          campaigns={CampingList}
+          handleCardPress={onPressCampaing}
+        />
       </View>
       <MyView>
         <Image
           style={{width: 100, height: 100, marginBottom: 10}}
-          source={require('../assets/burger_king.png')}
+          source={selectedCampaing.campImg}
         />
         <StyledTextView
           textColor={'black'}
           textSize={23}
-          text={`%10 anında nakit kazan`}
+          text={selectedCampaing?.campTitle}
           textStyle={'400'}
           textMargin={{top: 0, bottom: 0}}
         />
         <StyledTextView
           textColor={'black'}
           textSize={16}
-          text={`BurgerKing’den yapacağın ilk Cüzdan alışverişinde toplan 100 TL’ye varan nakit kazan.
-            Bu kampanya 2023 Ağustos sonuna kadar geçerli.`}
+          text={selectedCampaing.campDetails}
           textStyle={'300'}
           textMargin={{top: 0, bottom: 0}}
         />
@@ -38,7 +49,9 @@ const CampainsScreenForm = (props: Props) => {
     </>
   );
 };
+
 const StyledTextView = styled(TextView)`
   font-size: ${({theme}) => theme.textSize}px;
 `;
+
 export default CampainsScreenForm;
