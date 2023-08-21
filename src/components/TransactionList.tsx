@@ -16,7 +16,7 @@ const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
         <DataTable.Header>
           <DataTable.Title
             textStyle={styles.headerTitle}
-            onPress={() => goForm('TransactionScreen')}>
+            onPress={() => goForm('TransactionHistoryScreen')}>
             Son İşlemler -{'> '}
           </DataTable.Title>
         </DataTable.Header>

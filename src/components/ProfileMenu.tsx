@@ -108,7 +108,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   borderStatus={true}
                 />
                 <PressButton
-                  onPress={() => handlePressButton('işlem geçmişi')}
+                  onPress={() => handlePressButton('TransactionHistoryScreen')}
                   textColor="black"
                   text="İşlem Geçmişi"
                   mode="Button3"

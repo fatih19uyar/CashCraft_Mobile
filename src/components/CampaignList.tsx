@@ -35,7 +35,7 @@ const CampaignList: React.FC<CampaignListProps> = ({
           >
             <CardInnerWrapper>
               <StyledImage
-                style={{width: 40, height: 40}}
+                style={{width: 40, height: 40, marginTop: 10}}
                 source={campaign.campImg} // require ile dosya yolu kullanma
               />
               <TextView
@@ -50,7 +50,7 @@ const CampaignList: React.FC<CampaignListProps> = ({
                 textSize={12}
                 text={`${campaign.campTitle}`}
                 textStyle={'300'}
-                textMargin={{top: 5, bottom: 0}}
+                textMargin={{top: 0, bottom: 0}}
               />
             </CardInnerWrapper>
           </StyledCard>
