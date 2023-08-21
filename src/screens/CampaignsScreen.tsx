@@ -11,7 +11,6 @@ const CampaignsScreen = (props: Props) => {
   const [selectedCampaingData, setSelectedCampaingData] = useState<Campaign>(
     campaigns[0],
   );
-  console.log(selectedCampaingData);
   const goBack = () => {
     props.navigation.goBack();
   };
@@ -21,7 +20,7 @@ const CampaignsScreen = (props: Props) => {
   };
   return (
     <>
-      <Background imageSet={2}>
+      <Background imageSet={1}>
         <TopBarPage
           onGoBack={goBack}
           onTobBarItem={{

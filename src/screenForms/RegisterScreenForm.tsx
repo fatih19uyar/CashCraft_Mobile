@@ -32,7 +32,6 @@ const isValidEmail = (email_register: string) => {
 
 const RegisterScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
   handleSubmit,
-
   onRegister,
 }) => (
   <Background imageSet={1}>

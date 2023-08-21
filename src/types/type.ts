@@ -77,3 +77,14 @@ export interface TobBarItem {
   bigText: string;
   smallText: string;
 }
+export type Option = {
+  label: string;
+  status: 'checked' | 'unchecked' | 'indeterminate';
+  onPress: () => void;
+};
+export interface TransactionData {
+  title: string;
+  subtitle: string;
+  time: string;
+  rightTitle: string;
+}
