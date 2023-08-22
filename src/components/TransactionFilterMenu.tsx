@@ -122,6 +122,13 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
             <PressButton
               onPress={onCloseModal}
               textColor="white"
+              text="Ara"
+              mode="Button2"
+              borderStatus={false}
+            />
+            <PressButton
+              onPress={onCloseModal}
+              textColor="white"
               text="Kapat"
               mode="Button4"
               borderStatus={false}
