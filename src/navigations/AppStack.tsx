@@ -8,6 +8,7 @@ import CampaignsScreen from '../screens/CampaignsScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import MyCardScreen from '../screens/MyCardScreen';
 import BankCardDirectedScreen from '../screens/BankCardDirectedScreen';
+import CreditCardScreen from '../screens/CreditCardScreen';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ const HomeStack = () => {
         name="BankCardDirectedScreen"
         component={BankCardDirectedScreen}
       />
+      <Stack.Screen name="CreditCardScreen" component={CreditCardScreen} />
     </Stack.Navigator>
   );
 };
