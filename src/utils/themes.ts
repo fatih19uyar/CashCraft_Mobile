@@ -6,6 +6,7 @@ const themes = {
       textColor2: '#717171',
       buttonPrimary: '#44B978',
       buttonSecondary: '#A6E7C3',
+      viewBackgroundColor: '#D9D9D9',
       buttonThird: '#F5F5F5',
       buttonFourth: '#B94444',
       borderTopColor: '#9DCFBA',
