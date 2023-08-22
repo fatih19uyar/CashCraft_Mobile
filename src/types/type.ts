@@ -88,3 +88,9 @@ export interface TransactionData {
   time: string;
   rightTitle: string;
 }
+export interface CardData {
+  cardName: string;
+  cardNumber: string;
+  cardExpiration: string;
+  cardType: 'master' | 'visa';
+}

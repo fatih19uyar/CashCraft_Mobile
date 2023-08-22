@@ -44,18 +44,12 @@ const validate = (values: any) => {
   return errors;
 };
 
-const NewBankCardScreenForm: React.FC<
-  IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goToNextForm}) => (
+const NewMyCardScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
+  handleSubmit,
+  goToNextForm,
+}) => (
   <>
     <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={40}
-        text={'Kart Bilgileriniz'}
-        textStyle={'400'}
-        textMargin={{top: 0, bottom: 50}}
-      />
       <Field
         color={colors.inputTextBackground}
         name="cardName"
@@ -107,7 +101,7 @@ const NewBankCardScreenForm: React.FC<
   </>
 );
 
-const selector = formValueSelector('newBankCardScreen');
+const selector = formValueSelector('newMyCardScreen');
 const mapStateToProps = (state: any) => {
   const cardName = selector(state, 'cardName');
   const cardNumber = selector(state, 'cardNumber');
@@ -125,9 +119,9 @@ const mapStateToProps = (state: any) => {
 const connector = connect(mapStateToProps);
 export default connector(
   reduxForm<{}, IProps>({
-    form: 'newBankCardScreen',
+    form: 'newMyCardScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     validate,
-  })(NewBankCardScreenForm),
+  })(NewMyCardScreenForm),
 );

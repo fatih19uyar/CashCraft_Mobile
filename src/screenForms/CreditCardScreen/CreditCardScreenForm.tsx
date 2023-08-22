@@ -14,7 +14,7 @@ const CreditCardScreenForm = (props: Props) => {
           textColor={'black'}
           textSize={18}
           text={'Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.'}
-          textStyle={'normal'}
+          textStyle={'300'}
           textMargin={{top: 0, bottom: 0}}
         />
       </MyView>

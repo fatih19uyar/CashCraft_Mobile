@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImagesData} from '../assets/ImageManager';
-import {Option, TransactionData} from '../types/type';
+import {CardData, Option, TransactionData} from '../types/type';
 
 export const [items] = React.useState([
   {
@@ -110,5 +110,49 @@ export const transactionData: TransactionData[] = [
     subtitle: 'Spor',
     time: '15 Temmuz 2023, 16:45',
     rightTitle: '300 TL',
+  },
+];
+export const sampleCardData: CardData[] = [
+  {
+    cardName: 'John Doe',
+    cardNumber: '1234 5678 9012 3456',
+    cardExpiration: '12/23',
+    cardType: 'master',
+  },
+  {
+    cardName: 'Jane Smith',
+    cardNumber: '9876 5432 1098 7654',
+    cardExpiration: '09/25',
+    cardType: 'visa',
+  },
+  {
+    cardName: 'Michael Johnson',
+    cardNumber: '5678 1234 9012 3456',
+    cardExpiration: '06/24',
+    cardType: 'master',
+  },
+  {
+    cardName: 'Emily Davis',
+    cardNumber: '4567 8901 2345 6789',
+    cardExpiration: '03/22',
+    cardType: 'visa',
+  },
+  {
+    cardName: 'William Brown',
+    cardNumber: '9876 5432 1098 7654',
+    cardExpiration: '11/23',
+    cardType: 'master',
+  },
+  {
+    cardName: 'Olivia Wilson',
+    cardNumber: '2345 6789 9012 3456',
+    cardExpiration: '08/26',
+    cardType: 'visa',
+  },
+  {
+    cardName: 'Olivia Wilson',
+    cardNumber: '2345 6789 9012 3456',
+    cardExpiration: '08/26',
+    cardType: 'visa',
   },
 ];

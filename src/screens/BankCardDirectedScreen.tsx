@@ -34,7 +34,7 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
     setCurrentForm(5);
   };
   const goToHome = () => {
-    props.navigation.navigate('Cüzdan');
+    props.navigation.navigate('WalletScreen');
   };
 
   const renderForm = () => {
@@ -112,18 +112,7 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
     }
   };
 
-  return (
-    <Background imageSet={1}>
-      <TopBarPage
-        onGoBack={goBack}
-        onTobBarItem={{
-          bigText: 'Kayıtlı Kartlarım',
-          smallText: 'Banka Kartı Ekleme',
-        }}
-      />
-      {renderForm()}
-    </Background>
-  );
+  return <Background imageSet={1}>{renderForm()}</Background>;
 };
 
 export default BankCardDirectedScreen;

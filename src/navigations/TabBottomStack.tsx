@@ -7,6 +7,7 @@ import {Image} from 'react-native'; // Image bileşenini içe aktardık
 import themes from '../utils/themes';
 import AppStack from './AppStack';
 import HomeStack from './AppStack';
+import WalletStack from './WalletStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ const TopBottomStack = () => {
       })}>
       <Tab.Screen name="Ana Sayfa" component={HomeStack} />
       <Tab.Screen name="QR Ödeme" component={QRPaymentScreen} />
-      <Tab.Screen name="Cüzdan" component={WalletScreen} />
+      <Tab.Screen name="Cüzdan" component={WalletStack} />
     </Tab.Navigator>
   );
 };

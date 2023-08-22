@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {Image} from 'react-native';
 import React from 'react';
 import MyView from '../../components/MyView';
 import TextView from '../../components/TextView';
@@ -29,7 +29,6 @@ const UnSuccesAddCardForm = (props: Props) => {
         textStyle={'normal'}
         textMargin={{top: 0, bottom: 10}}
       />
-
       <PressButton
         onPress={props.onPress}
         textColor="white"

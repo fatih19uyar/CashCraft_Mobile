@@ -26,12 +26,6 @@ const HomeStack = () => {
         name="TransactionHistoryScreen"
         component={TransactionHistoryScreen}
       />
-      <Stack.Screen name="MyBankCardScreen" component={MyCardScreen} />
-      <Stack.Screen
-        name="BankCardDirectedScreen"
-        component={BankCardDirectedScreen}
-      />
-      <Stack.Screen name="CreditCardScreen" component={CreditCardScreen} />
     </Stack.Navigator>
   );
 };
