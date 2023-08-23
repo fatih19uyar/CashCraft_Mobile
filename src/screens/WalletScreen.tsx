@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import WalletScreenFormFirst from '../screenForms/WalletScreenForm/WalletScreenFormFirst';
 import Background from '../components/Background';
-import NewMyCardScreenForm from '../screenForms/MyCardScreen/NewMyCardScreenForm';
 import TopBarPage from '../components/TopBarPage';
 
 type WalletScreenProps = {navigation: any};
