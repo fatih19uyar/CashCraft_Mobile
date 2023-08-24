@@ -5,17 +5,15 @@ import PressButton from '../../components/PressButton';
 import {ReservationDetail} from '../../types/type';
 import {Dimensions, SafeAreaView} from 'react-native';
 
-interface RReservationDetailsFormProps {
+interface AddedNewReservationFormProps {
   reservationDetail: ReservationDetail | undefined;
-  onDelete: (id: number) => void;
+  onAdd: (id: number) => void;
 }
 
-const ReservationDetailsForm: React.FC<RReservationDetailsFormProps> = ({
+const AddedNewReservationForm: React.FC<AddedNewReservationFormProps> = ({
   reservationDetail,
-  onDelete,
+  onAdd,
 }) => {
-  const screenHeight = Dimensions.get('window').height;
-
   return (
     <>
       <MyView>
@@ -28,11 +26,11 @@ const ReservationDetailsForm: React.FC<RReservationDetailsFormProps> = ({
       <BottomButtonView>
         <PressButton
           onPress={() =>
-            reservationDetail?.id ? onDelete(reservationDetail.id) : onDelete(0)
+            reservationDetail?.id ? onAdd(reservationDetail.id) : onAdd(0)
           }
           textColor="white"
-          text="Rezervasyonu Kaldır"
-          mode="Button4"
+          text="İşlemi Ekle"
+          mode="Button2"
           borderStatus={false}
         />
       </BottomButtonView>
@@ -59,4 +57,4 @@ const BottomButtonView = styled.View`
   justify-content: center;
 `;
 
-export default ReservationDetailsForm;
+export default AddedNewReservationForm;
