@@ -35,6 +35,7 @@ const TextView: React.FC<TextViewProps> = ({
     fontSize: parseInt(textSize.toString()),
     lineHeight: textSize + 5,
     fontWeight: textStyle,
+    color: textColor,
     ...getMarginStyles(),
   };
 
