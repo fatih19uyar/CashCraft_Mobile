@@ -4,28 +4,30 @@ import MyView from '../../components/MyView';
 import PressButton from '../../components/PressButton';
 import {styled} from 'styled-components/native';
 import themes from '../../utils/themes';
+import ReservationListItem from '../../components/ReservationListItem';
+import {ReservationDetail} from '../../types/type';
+interface ReservationScreenFormProps {
+  onSelected: (ReservationsDetail: ReservationDetail) => void;
+  reservetionsData: ReservationDetail[];
+  onPressNewReservation: () => void;
+}
 
-type Props = {};
-
-const ReservationScreenForm = (props: Props) => {
+const ReservationScreenForm: React.FC<ReservationScreenFormProps> = ({
+  onSelected,
+  reservetionsData,
+  onPressNewReservation,
+}) => {
   return (
     <>
       <MyView>
-        <ListItemContainer>
-          <TextContainer>
-            <TitleText>Bilet bilgileri</TitleText>
-            <SubtitleText> bilgi </SubtitleText>
-          </TextContainer>
-          <TouchableOpacity onPress={() => console.log('seç')}>
-            <Thumbnail source={require('../../assets/arrow_right.png')} />
-          </TouchableOpacity>
-        </ListItemContainer>
+        <ReservationListItem
+          rezervetionsData={reservetionsData}
+          onSeleceted={onSelected}
+        />
       </MyView>
       <View style={{width: '90%', alignItems: 'center', marginBottom: 20}}>
         <PressButton
-          onPress={() => {
-            console.log('rezervasyon');
-          }}
+          onPress={onPressNewReservation}
           textColor="white"
           text="Rezervasyon ekle"
           mode="Button2"
