@@ -101,7 +101,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   borderStatus={true}
                 />
                 <PressButton
-                  onPress={() => handlePressButton('para yatır')}
+                  onPress={() => handlePressButton('InvestScreen')}
                   textColor="black"
                   text="Para Yatır"
                   mode="Button3"
@@ -115,7 +115,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                   borderStatus={true}
                 />
                 <PressButton
-                  onPress={() => handlePressButton('rezervasyonlarım')}
+                  onPress={() => handlePressButton('ReservationScreen')}
                   textColor="black"
                   text="Rezervasyonlarım"
                   mode="Button3"
