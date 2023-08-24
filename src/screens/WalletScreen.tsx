@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import WalletScreenFormFirst from '../screenForms/WalletScreenForm/WalletScreenFormFirst';
 import Background from '../components/Background';
 import TopBarPage from '../components/TopBarPage';

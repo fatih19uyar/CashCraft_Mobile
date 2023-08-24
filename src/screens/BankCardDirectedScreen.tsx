@@ -34,7 +34,7 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
     setCurrentForm(5);
   };
   const goToHome = () => {
-    props.navigation.navigate('WalletScreen');
+    props.navigation.navigate('HomeScreen');
   };
 
   const renderForm = () => {

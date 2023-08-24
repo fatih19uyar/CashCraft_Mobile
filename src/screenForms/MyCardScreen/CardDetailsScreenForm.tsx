@@ -5,6 +5,7 @@ import ImageButton from '../../components/ImageButton';
 import {CardData} from '../../types/type';
 import CreditCardDisplay from 'react-native-credit-card-display';
 import {View} from 'react-native';
+import TextView from '../../components/TextView';
 
 interface IProps {
   goToNextForm: () => void;
@@ -14,6 +15,13 @@ interface IProps {
 const CardDetailsScreenForm: React.FC<IProps> = ({goToNextForm, cardData}) => {
   return (
     <MyView>
+      <TextView
+        textColor={'black'}
+        textSize={20}
+        text={'Kart Adı'}
+        textStyle={'bold'}
+        textMargin={{top: 0, bottom: 20}}
+      />
       <CreditCardDisplay
         number={cardData.cardNumber}
         cvc={123}

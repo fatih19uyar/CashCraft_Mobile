@@ -1,6 +1,11 @@
 import React from 'react';
 import {ImagesData} from '../assets/ImageManager';
-import {CardData, Option, TransactionData} from '../types/type';
+import {
+  CardData,
+  Option,
+  ReservationDetail,
+  TransactionData,
+} from '../types/type';
 
 export const [items] = React.useState([
   {
@@ -154,5 +159,31 @@ export const sampleCardData: CardData[] = [
     cardNumber: '2345 6789 9012 3456',
     cardExpiration: '08/26',
     cardType: 'visa',
+  },
+];
+export const reservationDetails = [
+  {
+    id: 1,
+    title: 'İstanbul - New York Uçuşu',
+    description: 'THY uçuşu - Ekonomi',
+    date: '2023-08-15',
+  },
+  {
+    id: 2,
+    title: 'Ankara - İzmir Uçuşu',
+    description: 'Pegasus uçuşu - Business',
+    date: '2023-08-20',
+  },
+  {
+    id: 3,
+    title: 'Bodrum Tatili',
+    description: 'Hilton Bodrum - Deniz Manzaralı Oda',
+    date: '2023-08-25',
+  },
+  {
+    id: 4,
+    title: 'Prag Gezisi',
+    description: 'Turuncu Turlar - 5 Gün 4 Gece',
+    date: '2023-09-10',
   },
 ];

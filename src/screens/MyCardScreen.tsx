@@ -24,6 +24,8 @@ const BankCardScreen = (props: Props) => {
 
   const newCardData = (values: any) => {
     console.log('values', values);
+    setCurrentForm('');
+    props.navigation.goBack();
     props.navigation.navigate('BankCardDirectedScreen');
   };
 

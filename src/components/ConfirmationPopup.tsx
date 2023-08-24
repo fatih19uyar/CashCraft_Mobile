@@ -28,9 +28,13 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
 
   const handleConfirm = () => {
     console.log(confirmationCode);
+
     if (confirmationCode === '' && mode === 'confirmation') {
       setInputError(true);
       setInputErrorMessage('Lütfen boş bırakmayınız.');
+    } else if (confirmationCode !== '123456') {
+      setInputError(true);
+      setInputErrorMessage('Hatalı şifre.');
     } else if (confirmationCode.length < 6 && mode === 'confirmation') {
       setInputError(true);
       setInputErrorMessage('Lütfen 6 haneli kodu giriniz.');

@@ -49,7 +49,7 @@ const InvestScreenFormThird: React.FC<InvestScreenFormThirdProps> = ({
       </ListItemContainer>
       <ListItemContainer>
         <TextContainer>
-          <TitleText>İşem Ücreti</TitleText>
+          <TitleText>İşlem Ücreti</TitleText>
           <SubtitleText>{parseFloat(credit) / 10} TL</SubtitleText>
         </TextContainer>
       </ListItemContainer>

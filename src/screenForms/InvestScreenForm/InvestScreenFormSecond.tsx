@@ -21,7 +21,7 @@ const InvestScreenFormSecond: React.FC<InvestScreenFormSecondProps> = ({
           textSize={14}
           text={'En az ₺10 yükleme yapabilirsin.'}
           textStyle={'300'}
-          textMargin={{top: 10, bottom: 0}}
+          textMargin={{top: 10, bottom: 70}}
         />
         <TextView
           textColor={'black'}
@@ -35,15 +35,9 @@ const InvestScreenFormSecond: React.FC<InvestScreenFormSecondProps> = ({
           textSize={14}
           text={'Cüzdan Bakiyen: 100.58₺'}
           textStyle={'400'}
-          textMargin={{top: 10, bottom: 0}}
-        />
-        <TextView
-          textColor={'black'}
-          textSize={40}
-          text={'₺ 50,00'}
-          textStyle={'500'}
           textMargin={{top: 10, bottom: 100}}
         />
+
         <PressButton
           onPress={goNextForm}
           textColor="white"

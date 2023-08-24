@@ -50,6 +50,7 @@ const InvestScreen = (props: Props) => {
   };
   const goDirectBank = () => {
     props.navigation.navigate('BankCardDirectedScreen');
+    setCurrentForm(1);
   };
   const goNextForm = () => {
     setCurrentForm(currentForm + 1);
