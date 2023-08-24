@@ -65,9 +65,10 @@ const HeaderText = styled.Text`
   margin-left: 10px;
 `;
 const Text = styled.Text`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   margin-left: 10px;
+  color: ${themes.light.colors.buttonPrimary};
 `;
 
 const ProfileLogoContainer = styled(TouchableOpacity)`
