@@ -100,3 +100,7 @@ export interface ReservationDetail {
   date: string;
   id: number;
 }
+export interface PaymentDetails {
+  companyName: string;
+  price: string;
+}

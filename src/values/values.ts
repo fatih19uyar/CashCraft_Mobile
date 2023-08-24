@@ -3,6 +3,7 @@ import {ImagesData} from '../assets/ImageManager';
 import {
   CardData,
   Option,
+  PaymentDetails,
   ReservationDetail,
   TransactionData,
 } from '../types/type';
@@ -187,3 +188,7 @@ export const reservationDetails = [
     date: '2023-09-10',
   },
 ];
+export const payment = {
+  companyName: 'Ferdi Denemecilerden',
+  price: '-100',
+};
