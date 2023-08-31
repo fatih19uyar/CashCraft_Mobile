@@ -34,21 +34,6 @@ const CardDetailsScreenForm: React.FC<
 }) => {
   return (
     <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={20}
-        text={cardData.cardNickName}
-        textStyle={'bold'}
-        textMargin={{top: 0, bottom: 20}}
-      />
-      <CreditCardDisplay
-        number={cardData.cardNumber}
-        cvc={123}
-        expiration={cardData.cardExpiration}
-        name={cardData.cardName}
-        since={cardData.cardType}
-      />
-      <View style={{height: '10%'}} />
       <ImageButton
         text="Kart İsmini Güncelle"
         backColor={themes.light.colors.buttonBackground}
@@ -73,6 +58,22 @@ const CardDetailsScreenForm: React.FC<
       ) : (
         <></>
       )}
+      <TextView
+        textColor={'black'}
+        textSize={20}
+        text={cardData.cardNickName}
+        textStyle={'bold'}
+        textMargin={{top: 0, bottom: 20}}
+      />
+      <CreditCardDisplay
+        number={cardData.cardNumber}
+        cvc={123}
+        expiration={cardData.cardExpiration}
+        name={cardData.cardName}
+        since={cardData.cardType}
+      />
+      <View style={{height: '10%'}} />
+
       <ImageButton
         text="Banka Kartını Sil"
         backColor={themes.light.colors.buttonFourth}
