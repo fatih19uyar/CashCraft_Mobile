@@ -11,11 +11,13 @@ type Props = {navigation: any};
 const BankCardScreen = (props: Props) => {
   const [smallText, setSmallText] = useState('Banka Kartlarım');
   const [currentForm, setCurrentForm] = useState('');
+  const [updateNickNamePopup, setUpdateNickNamePopup] = useState(false);
   const [card, setCard] = useState<CardData>({
     cardName: '',
     cardNumber: '',
     cardExpiration: '',
     cardType: 'master',
+    cardNickName: '',
   });
 
   const goBack = () => {
@@ -38,6 +40,12 @@ const BankCardScreen = (props: Props) => {
     console.log('selectedCard', values);
     setCurrentForm('CardDetails');
   };
+  const goUpdateNickName = (values: any) => {
+    console.log(values.nickName);
+    values.nickName === undefined
+      ? setUpdateNickNamePopup(true)
+      : console.log('nick name', values);
+  };
 
   let content = null;
 
@@ -50,6 +58,8 @@ const BankCardScreen = (props: Props) => {
         <CardDetailsScreenForm
           goToNextForm={() => console.log('details')}
           cardData={card}
+          goUpdateNickName={goUpdateNickName}
+          visibleUpdateNickName={updateNickNamePopup}
         />
       );
       break;

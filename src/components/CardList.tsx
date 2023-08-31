@@ -49,7 +49,9 @@ const CardList: React.FC<CardListProps> = ({cardData, onItemPress}) => {
             <Thumbnail source={require('../assets/visa.png')} />
           )}
           <TextContainer>
-            <TitleText>{data.cardName}</TitleText>
+            <TitleText>
+              {data.cardNickName == '' ? data.cardName : data.cardNickName}
+            </TitleText>
             <SubtitleText>{data.cardNumber}</SubtitleText>
             <SubtitleText>{data.cardExpiration}</SubtitleText>
           </TextContainer>

@@ -6,19 +6,38 @@ import {CardData} from '../../types/type';
 import CreditCardDisplay from 'react-native-credit-card-display';
 import {View} from 'react-native';
 import TextView from '../../components/TextView';
+import Input from '../../components/Input';
+import colors from '../../utils/colors';
+import {
+  Field,
+  InjectedFormProps,
+  formValueSelector,
+  reduxForm,
+} from 'redux-form';
+import {connect} from 'react-redux';
 
 interface IProps {
   goToNextForm: () => void;
   cardData: CardData;
+  goUpdateNickName: (values: any) => void;
+  visibleUpdateNickName: boolean;
 }
 
-const CardDetailsScreenForm: React.FC<IProps> = ({goToNextForm, cardData}) => {
+const CardDetailsScreenForm: React.FC<
+  IProps & InjectedFormProps<{}, IProps>
+> = ({
+  goToNextForm,
+  cardData,
+  goUpdateNickName,
+  visibleUpdateNickName,
+  handleSubmit,
+}) => {
   return (
     <MyView>
       <TextView
         textColor={'black'}
         textSize={20}
-        text={'Kart Adı'}
+        text={cardData.cardNickName}
         textStyle={'bold'}
         textMargin={{top: 0, bottom: 20}}
       />
@@ -34,10 +53,26 @@ const CardDetailsScreenForm: React.FC<IProps> = ({goToNextForm, cardData}) => {
         text="Kart İsmini Güncelle"
         backColor={themes.light.colors.buttonBackground}
         leftImageSource={require('../../assets/edit.png')}
-        onPress={goToNextForm}
+        onPress={
+          visibleUpdateNickName
+            ? handleSubmit(goUpdateNickName)
+            : goUpdateNickName
+        }
         textColor={themes.light.colors.text}
         rightImageSource={undefined}
       />
+      {visibleUpdateNickName ? (
+        <Field
+          color={colors.inputTextBackground}
+          name="nickName"
+          component={Input}
+          label="Kart İsmi"
+          secret={false}
+          maxLength={50}
+        />
+      ) : (
+        <></>
+      )}
       <ImageButton
         text="Banka Kartını Sil"
         backColor={themes.light.colors.buttonFourth}
@@ -49,5 +84,18 @@ const CardDetailsScreenForm: React.FC<IProps> = ({goToNextForm, cardData}) => {
     </MyView>
   );
 };
-
-export default CardDetailsScreenForm;
+const selector = formValueSelector('CardDetailsScreenForm');
+const mapStateToProps = (state: any) => {
+  const nickName = selector(state, 'nickName');
+  return {
+    nickName,
+  };
+};
+const connector = connect(mapStateToProps);
+export default connector(
+  reduxForm<{}, IProps>({
+    form: 'CardDetailsScreenForm',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+  })(CardDetailsScreenForm),
+);

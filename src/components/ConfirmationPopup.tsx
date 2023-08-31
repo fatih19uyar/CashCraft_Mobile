@@ -212,7 +212,6 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             borderStatus={false}
           />
         );
-
       case 'createdAccount':
         return (
           <PressButton

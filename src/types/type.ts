@@ -98,6 +98,7 @@ export interface CardData {
   cardNumber: string;
   cardExpiration: string;
   cardType: 'master' | 'visa';
+  cardNickName: string;
 }
 export interface ReservationDetail {
   title: string;
