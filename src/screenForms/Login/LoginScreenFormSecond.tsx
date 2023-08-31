@@ -33,7 +33,7 @@ const LoginScreenFormSecond: React.FC<
       <Field name="password" component={PasswordInputField} />
       <PressButton
         onPress={handleSubmit(goToNextForm)}
-        textColor=""
+        textColor="white"
         text="Devam Et"
         mode="Button2"
         borderStatus={false}

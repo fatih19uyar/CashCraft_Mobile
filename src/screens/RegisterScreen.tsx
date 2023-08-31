@@ -151,7 +151,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         onCancel={() => {}}
         onConfirm={() => {}}
         onResent={() => console.log('Gönderdik')}
-        mode={'success'}
+        mode={'createdAccount'}
       />
     </>
   );

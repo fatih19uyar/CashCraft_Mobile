@@ -37,7 +37,7 @@ const CreatePasswordScreenSecond: React.FC<
     <Field name="reCreatePassword" component={PasswordInputField} />
     <PressButton
       onPress={handleSubmit(goScreen)}
-      textColor=""
+      textColor="white"
       text="Devam Et"
       mode="Button2"
       borderStatus={false}

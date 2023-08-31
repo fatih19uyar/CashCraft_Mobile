@@ -8,6 +8,7 @@ import {reset} from 'redux-form';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import Background from '../components/Background';
+import ConfirmationPopup from '../components/ConfirmationPopup';
 
 type Props = {navigation: any; route: any};
 
@@ -15,6 +16,7 @@ const ForgotPasswordScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);
   const [email, setEmail] = useState('');
   const dispatch: AppDispatch = useDispatch();
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   const goBack = () => {
     props.navigation.goBack();
@@ -26,8 +28,11 @@ const ForgotPasswordScreen = (props: Props) => {
   };
   const onGoNewPass = (values: any) => {
     console.log(values);
+    setPopupVisible(true);
     dispatch(reset('forgotPasswordScreen'));
-    props.navigation.navigate('WelcomeScreen');
+    setTimeout(() => {
+      props.navigation.navigate('WelcomeScreen');
+    }, 3000);
   };
   const renderForm = () => {
     switch (currentForm) {
@@ -52,6 +57,16 @@ const ForgotPasswordScreen = (props: Props) => {
     <>
       <BackButton goBack={goBack} />
       <Background imageSet={2}>{renderForm()}</Background>
+      <ConfirmationPopup
+        isVisible={isPopupVisible}
+        onCancel={() => {}}
+        onConfirm={() => {
+          setPopupVisible(false);
+          props.navigation.navigate('WelcomeScreen');
+        }}
+        onResent={() => console.log('Gönderdik')}
+        mode={'changedPassword'}
+      />
     </>
   );
 };

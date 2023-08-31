@@ -55,7 +55,12 @@ export type FontWeight =
   | '800'
   | '900';
 
-export type PopupMode = 'confirmation' | 'success' | 'default';
+export type PopupMode =
+  | 'confirmation'
+  | 'success'
+  | 'default'
+  | 'createdAccount'
+  | 'changedPassword';
 
 export interface InputProps extends WrappedFieldProps {
   label: string;

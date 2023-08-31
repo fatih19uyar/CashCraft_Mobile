@@ -32,6 +32,9 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
     if (confirmationCode === '' && mode === 'confirmation') {
       setInputError(true);
       setInputErrorMessage('Lütfen boş bırakmayınız.');
+    } else if (confirmationCode.length < 6) {
+      setInputError(true);
+      setInputErrorMessage('Eksik Karakter Bulunmaktadır.');
     } else if (confirmationCode !== '123456') {
       setInputError(true);
       setInputErrorMessage('Hatalı şifre.');
@@ -44,6 +47,12 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
       onConfirm(confirmationCode);
       setConfirmationCode('');
     }
+  };
+  const pressCancel = () => {
+    setConfirmationCode('');
+    setInputError(false);
+    setInputErrorMessage('');
+    onCancel();
   };
 
   const renderTextView = () => {
@@ -104,6 +113,56 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             />
           </>
         );
+      case 'createdAccount':
+        return (
+          <>
+            <TextView
+              textColor={themes.light.colors.text}
+              textSize={20}
+              text={'Cüzdan Hesabın Oluşturuldu'}
+              textStyle={'bold'}
+              textMargin={{top: 10, bottom: 5}}
+            />
+            <TextView
+              textColor={themes.light.colors.text}
+              textSize={12}
+              text={
+                'Hoşgeldin! Artık sende idvlabs Cüzdan hesanına sahipsin. Hesabına erişmen için seni giriş ekranına yönlendiriyoruz.'
+              }
+              textStyle={'300'}
+              textMargin={{top: 10, bottom: 5}}
+            />
+            <Image
+              style={{height: 100, width: 100}}
+              source={require('../assets/success.png')}
+            />
+          </>
+        );
+      case 'changedPassword':
+        return (
+          <>
+            <TextView
+              textColor={themes.light.colors.text}
+              textSize={20}
+              text={'Cüzdan Şifresi Başarıyla Değiştirildi'}
+              textStyle={'bold'}
+              textMargin={{top: 10, bottom: 5}}
+            />
+            <TextView
+              textColor={themes.light.colors.text}
+              textSize={12}
+              text={
+                'idvlabs Cüzdan hesabının şifresini başarıyla değiştirdin. Hesabına erişmen için giriş ekranına yönlendiriyoruz.'
+              }
+              textStyle={'300'}
+              textMargin={{top: 10, bottom: 5}}
+            />
+            <Image
+              style={{height: 100, width: 100}}
+              source={require('../assets/success.png')}
+            />
+          </>
+        );
       case 'default':
         return null;
       default:
@@ -124,7 +183,7 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
               borderStatus={false}
             />
             <PressButton
-              onPress={onCancel}
+              onPress={pressCancel}
               textColor={themes.light.colors.text1}
               text="Vazgeç"
               mode="Button4"
@@ -152,6 +211,33 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             mode="Button2"
             borderStatus={false}
           />
+        );
+
+      case 'createdAccount':
+        return (
+          <PressButton
+            onPress={() => {
+              onConfirm('close');
+            }}
+            textColor={themes.light.colors.text1}
+            text="Tamam"
+            mode="Button2"
+            borderStatus={false}
+          />
+        );
+      case 'changedPassword':
+        return (
+          <>
+            <PressButton
+              onPress={() => {
+                onConfirm('close');
+              }}
+              textColor={themes.light.colors.text1}
+              text="Tamam"
+              mode="Button2"
+              borderStatus={false}
+            />
+          </>
         );
       case 'default':
         return null;

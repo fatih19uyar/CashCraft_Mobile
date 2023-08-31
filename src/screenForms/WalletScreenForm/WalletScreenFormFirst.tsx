@@ -37,7 +37,6 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
-              <StyledImage source={require('../../assets/visa.png')} />
             </CardInnerWrapper>
           </StyledCard>
           <StyledCard
@@ -58,7 +57,6 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
-              <StyledImage source={require('../../assets/visa.png')} />
             </CardInnerWrapper>
           </StyledCard>
         </StyledView>
@@ -80,7 +78,6 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
-              <StyledImage source={require('../../assets/mastercard.png')} />
             </CardInnerWrapper>
           </StyledCard>
           <StyledCard
@@ -100,7 +97,6 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
-              <StyledImage source={require('../../assets/visa.png')} />
             </CardInnerWrapper>
           </StyledCard>
         </StyledView>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
 import {items} from '../values/values';
@@ -17,7 +17,7 @@ const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
           <DataTable.Title
             textStyle={styles.headerTitle}
             onPress={() => goForm('TransactionHistoryScreen')}>
-            Son İşlemler -{'> '}
+            Son İşlemler
           </DataTable.Title>
         </DataTable.Header>
 

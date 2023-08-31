@@ -51,7 +51,7 @@ const RegisterScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
     />
     <PressButton
       onPress={handleSubmit(onRegister)}
-      textColor=""
+      textColor="white"
       text="Devam Et"
       mode="Button2"
       borderStatus={true}

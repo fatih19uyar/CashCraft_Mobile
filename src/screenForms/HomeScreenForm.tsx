@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Background from '../components/Background';
 import MoneyCard from '../components/MoneyCard';
@@ -41,9 +41,13 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
         <MoneyCard amount={'10.000,59'} accountName={'idv'} />
         <TransactionList goForm={props.goForm} />
         <StyledView>
-          <StyledText onPress={() => props.goForm('CampaignsScreen')}>
-            Kampanya -&gt;
-          </StyledText>
+          <TouchableOpacity
+            onPress={() => props.goForm('CampaignsScreen')}
+            style={{
+              flexDirection: 'row',
+            }}>
+            <StyledText>Kampanya</StyledText>
+          </TouchableOpacity>
         </StyledView>
         <CampaignList campaigns={campaigns} handleCardPress={campaingPress} />
       </Background>

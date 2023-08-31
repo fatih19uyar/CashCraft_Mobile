@@ -47,7 +47,7 @@ const LoginScreenFormThird: React.FC<
       />
       <PressButton
         onPress={handleSubmit(onLogin)}
-        textColor=""
+        textColor="white"
         text="Giriş Yap"
         mode="Button2"
         borderStatus={false}
