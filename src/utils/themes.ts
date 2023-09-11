@@ -13,6 +13,8 @@ const themes = {
       background: 'white',
       buttonBackground: '#F5F5F5',
       buttonBorderColor: '#717171',
+      errorColor: 'red',
+      gray: 'gray',
     },
     textInput: {
       background: '#F5F5F5',
