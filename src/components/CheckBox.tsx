@@ -12,11 +12,13 @@ interface CheckboxWithLabelProps {
     onChange: (value: boolean) => void;
   };
   label: string;
+  error: boolean;
 }
 
 const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
   input: {value, onChange},
   label,
+  error,
 }) => {
   return (
     <Container>
@@ -26,6 +28,9 @@ const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
         onCheckColor={colors.buttonPrimary}
         onTintColor={colors.buttonPrimary}
         onFillColor={themes.light.checkBox.background}
+        tintColor={
+          error ? themes.light.colors.errorColor : themes.light.colors.gray
+        }
       />
       <LabelText>{label}</LabelText>
     </Container>

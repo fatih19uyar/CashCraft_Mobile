@@ -32,9 +32,7 @@ const Input: React.FC<InputProps> = ({
       />
     );
   };
-
   const showError = meta.touched && meta.error;
-
   return (
     <Container width={getWidth()}>
       <StyledTextInput

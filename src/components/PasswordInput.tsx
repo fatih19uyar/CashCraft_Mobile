@@ -42,6 +42,7 @@ const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
             ref={ref => (inputRefs.current[i] = ref)}
             value={passwords[i]}
             secureTextEntry
+            inputMode="numeric"
             onChangeText={value => handleChange(value, i)}
           />
         </PasswordBox>,
