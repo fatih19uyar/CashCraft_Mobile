@@ -13,7 +13,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image} from 'react-native';
 import MyView from '../../components/MyView';
 interface IProps extends ConnectedProps<typeof connector> {
-  onResendCode: () => void;
+  onResendCode: (values: any) => void;
   onLogin: (values: any) => void;
 }
 const PasswordInputField = ({input}: any) => {
@@ -55,7 +55,7 @@ const LoginScreenFormThird: React.FC<
     </MyView>
     <SafeAreaView style={{alignItems: 'center'}}>
       <PressButton
-        onPress={onResendCode}
+        onPress={handleSubmit(onResendCode)}
         textColor="black"
         text="Tekrar Gönder"
         mode="TextButton"

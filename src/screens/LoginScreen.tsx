@@ -45,7 +45,6 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     props.navigation.goBack();
   };
   const goOnSignUp = async (values: any) => {
-    console.log('values', values);
     await AuthService.signIn(values)
       .then(result => {
         console.log(result.data);
@@ -68,8 +67,15 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     setSnackbarMessage('Bildirdin tamam');
     setSnackbarVisible(true);
   };
-  const onResendCode = () => {
-    console.log('Gönderdik');
+  const onResendCode = async (values: any) => {
+    await AuthService.signIn(values)
+      .then(() => {
+        setSnackbarMessage('Tekrar Gönderildi.');
+        setSnackbarVisible(true);
+      })
+      .catch(error => {
+        console.log('ResentPhone Code', error);
+      });
   };
 
   const renderForm = () => {
