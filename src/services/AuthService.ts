@@ -42,8 +42,27 @@ const AuthService = {
   sendVerificationCodeByEmail: (email: string): Promise<AxiosResponse> => {
     return axiosInstance.post('/auth/sendEmailActivationCode', {email});
   },
+
   checkEmailExists: (email: string): Promise<AxiosResponse> => {
     return axiosInstance.post('/auth/checkEmailExists', {email});
+  },
+  verifyPhoneActivationCode: (
+    verificationCode: string,
+    email: string,
+  ): Promise<AxiosResponse> => {
+    return axiosInstance.post('/auth/verifyPhoneActivationCode', {
+      verificationCode,
+      email,
+    });
+  },
+  verifyResetCode: (
+    verificationCode: string,
+    email: string,
+  ): Promise<AxiosResponse> => {
+    return axiosInstance.post('/auth/verifyResetCode', {
+      verificationCode,
+      email,
+    });
   },
 
   verifyEmailActivationCode: (

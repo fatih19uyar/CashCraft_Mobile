@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Background from '../components/Background';
 import TopBarPage from '../components/TopBarPage';
-import TextView from '../components/TextView';
-import themes from '../utils/themes';
-import MyView from '../components/MyView';
 import CreditCardScreenForm from '../screenForms/CreditCardScreen/CreditCardScreenForm';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
 
