@@ -15,6 +15,7 @@ import CreatePasswordScreenSecond from '../screenForms/CreatePassword/CreatePass
 import Background from '../components/Background';
 import {NewUser} from '../types/type';
 import ConfirmationPopup from '../components/ConfirmationPopup';
+import AuthService from '../services/AuthService';
 
 type RegisterScreenProps = {navigation: any};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
@@ -38,7 +39,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
     dispatch(reset('createPassword'));
     props.navigation.goBack();
   };
-  const goScreen = (values: any) => {
+  const goScreen = async (values: any) => {
     const {createPassword, reCreatePassword} = values;
     if (createPassword === reCreatePassword) {
       setNewUser(prevUser => ({
@@ -46,6 +47,20 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         userPassword: createPassword,
       }));
       setPopupVisible(true);
+      console.log(newUser);
+      await AuthService.signUp({
+        name: newUser.userName + ' ' + newUser.userSurName,
+        phoneNumber: newUser.userPhoneNumber,
+        photo: 'userd.jpg',
+        email: newUser.email,
+        password: createPassword,
+      })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error.message);
+        });
       setTimeout(() => {
         dispatch(reset('createPassword'));
         dispatch(reset('RegisterScreen'));
@@ -57,42 +72,69 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
       setSnackbarMessage('Şifreler Uyuşmuyor');
       setSnackbarVisible(true);
     }
+    console.log('create', values);
+  };
+  const onGoEmailVerification = async (values: any) => {
+    try {
+      await AuthService.checkEmailExists(values.email_create);
+      await AuthService.sendVerificationCodeByEmail(values.email_create).then(
+        () => {
+          setNewUser({...newUser, email: values.email_create});
+          setCurrentForm(currentForm + 1);
+        },
+      );
+    } catch (error) {
+      setSnackbarMessage('Bu Email Kullanılıyor.');
+      setSnackbarVisible(true);
+    }
+  };
+  const onCheckEmailVerification = async (values: any) => {
     console.log(values);
+    await AuthService.verifyEmailActivationCode(
+      values.email_create,
+      values.verificationCode,
+    )
+      .then(() => {
+        setCurrentForm(currentForm + 1);
+      })
+      .catch(error => {
+        const {status} = error.response || {};
+        const errorMessage =
+          status === 400
+            ? 'Doğrulanmış Email'
+            : status === 401
+            ? 'Hatalı Doğrulama Kodu'
+            : 'Bir hata oluştu. Lütfen tekrar deneyin.';
+
+        setSnackbarMessage(errorMessage);
+        status === 400 &&
+          setTimeout(() => {
+            setCurrentForm(currentForm + 1);
+          }, 1000);
+        setSnackbarVisible(true);
+      });
   };
   const goNext = (values: any) => {
-    let {
-      campAgreement,
-      userAgreement,
-      email_create,
-      verificationCode,
-      userSurname,
-      userName,
-      phoneNumber,
-    } = values;
-    if (verificationCode) {
-      console.log('Email Check Code', verificationCode);
-    }
-    if (campAgreement && userAgreement) {
+    if (values.campAgreement && values.userAgreement) {
       setNewUser(prevUser => ({
         ...prevUser,
-        email: email_create,
-        emailVerificationCode: verificationCode,
-        userName: userName,
-        userSurName: userSurname,
-        userPhoneNumber: phoneNumber,
+        email: values.email_create,
+        emailVerificationCode: values.verificationCode,
+        userName: values.userName,
+        userSurName: values.userSurname,
+        userPhoneNumber: values.phoneNumber,
       }));
       setCurrentForm(currentForm + 1);
     } else if (
-      userAgreement !== undefined &&
-      !userAgreement &&
-      userName !== undefined
+      values.userAgreement !== undefined &&
+      !values.userAgreement &&
+      values.userName !== undefined
     ) {
       setSnackbarMessage('Lütfen Kullanıcı Sözleşmesini Kabul Edin');
       setSnackbarVisible(true);
       console.log(values);
       return;
     }
-    setCurrentForm(currentForm + 1);
     console.log(values);
   };
   const onReportProblem = () => {
@@ -105,14 +147,15 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         return (
           <RegisterScreenFormFirst
             onReportProblem={onReportProblem}
-            goNext={goNext}
+            goNext={onGoEmailVerification}
           />
         );
       case 2:
         return (
           <RegisterScreenFormSecond
             onReportProblem={onReportProblem}
-            goNext={goNext}
+            goNext={onCheckEmailVerification}
+            email={newUser.email}
           />
         );
       case 3:

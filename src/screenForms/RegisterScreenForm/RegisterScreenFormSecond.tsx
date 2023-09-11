@@ -15,13 +15,14 @@ import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
+  email: string;
 }
 const PasswordInputField = ({input}: any) => {
   return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
 const RegisterScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goNext, onReportProblem}) => (
+> = ({handleSubmit, goNext, onReportProblem, email}) => (
   <>
     <MyView>
       <TextView
@@ -34,9 +35,7 @@ const RegisterScreenFormSecond: React.FC<
       <TextView
         textColor={'black'}
         textSize={18}
-        text={
-          'ezgi.beytas@idvlabs.com adresine gönderdiğimiz 6 haneli kodu giriniz.'
-        }
+        text={email + ' gönderdiğimiz 6 haneli kodu giriniz.'}
         textStyle={'normal'}
         textMargin={{top: 0, bottom: 50}}
       />
