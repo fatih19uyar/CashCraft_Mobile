@@ -11,6 +11,7 @@ import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
 import {LoginUser} from '../types/type';
 import Background from '../components/Background';
 import LoadingScreen from '../components/LoadingScreen';
+import AuthService from '../services/AuthService';
 
 type LoginScreenProps = {navigation: any};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
@@ -20,18 +21,22 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
-  const onLogin = (values: LoginUser) => {
+  const onLogin = async (values: LoginUser) => {
     const {email, password, verificationCode} = values;
-    setEmail(email);
     if (password && email && verificationCode) {
       setLoading(true);
-      setTimeout(() => {
-        dispatch(loginSuccess({id: '1', email: email}));
-        dispatch(reset('loginScreen'));
-      }, 1000);
-    } else {
-      setSnackbarMessage('Geçersiz email. Lütfen tekrar deneyiniz...');
-      setSnackbarVisible(true);
+      await AuthService.verifyPhoneActivationCode(verificationCode, email)
+        .then(result => {
+          console.log(result.data);
+          dispatch(loginSuccess({id: result.data.id, email: email}));
+          dispatch(reset('loginScreen'));
+          setLoading(false);
+        })
+        .catch(() => {
+          setSnackbarMessage('Hatalı Kod. Lütfen tekrar deneyiniz...');
+          setSnackbarVisible(true);
+          setLoading(false);
+        });
     }
   };
 
@@ -39,12 +44,25 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     dispatch(reset('loginScreen'));
     props.navigation.goBack();
   };
+  const goOnSignUp = async (values: any) => {
+    console.log('values', values);
+    await AuthService.signIn(values)
+      .then(result => {
+        console.log(result.data);
+        setCurrentForm(currentForm + 1);
+      })
+      .catch(error => {
+        console.log(error);
+        setSnackbarMessage('Hatalı Kullanıcı Adı veya Parola');
+        setSnackbarVisible(true);
+      });
+  };
   const goToNextForm = (values: any) => {
     setCurrentForm(currentForm + 1);
   };
   const onForgotPassword = () => {
     dispatch(reset('loginScreen'));
-    props.navigation.navigate('ForgotPasswordScreen', email);
+    props.navigation.navigate('ForgotPasswordScreen');
   };
   const onReportProblem = () => {
     setSnackbarMessage('Bildirdin tamam');
@@ -66,7 +84,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
       case 2:
         return (
           <LoginScreenFormSecond
-            goToNextForm={goToNextForm}
+            goToNextForm={goOnSignUp}
             onForgotPassword={onForgotPassword}
           />
         );
