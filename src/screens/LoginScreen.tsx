@@ -20,15 +20,14 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
+  const [token, setToken] = useState('');
   const onLogin = async (values: LoginUser) => {
     const {email, password, verificationCode} = values;
     if (password && email && verificationCode) {
       setLoading(true);
       await AuthService.verifyPhoneActivationCode(verificationCode, email)
-        .then(result => {
-          console.log(result.data);
-          dispatch(loginSuccess({id: result.data.id, email: email}));
+        .then(async () => {
+          dispatch(loginSuccess({token: token}));
           dispatch(reset('loginScreen'));
           setLoading(false);
         })
@@ -47,7 +46,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const goOnSignUp = async (values: any) => {
     await AuthService.signIn(values)
       .then(result => {
-        console.log(result.data);
+        setToken(result.data.token);
         setCurrentForm(currentForm + 1);
       })
       .catch(error => {

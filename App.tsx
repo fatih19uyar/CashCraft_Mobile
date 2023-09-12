@@ -18,10 +18,9 @@ const Stack = () => {
     console.log(userIsLoggedIn);
     const checkUserLoggedIn = async () => {
       if (!userIsLoggedIn) {
-        const loggedInUser = await AsyncStorage.getItem('user');
+        const loggedInUser = await AsyncStorage.getItem('token');
         if (loggedInUser) {
-          const user = JSON.parse(loggedInUser);
-          dispatch(loginSuccess(user));
+          dispatch(loginSuccess({token: loggedInUser}));
         }
       }
     };

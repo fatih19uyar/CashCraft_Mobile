@@ -5,34 +5,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthState} from '../../types/type';
 
 const initialState: AuthState = {
-  user: null,
+  token: '',
   isAuthenticated: false,
   loading: false,
-  error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess: (
-      state,
-      action: PayloadAction<{id: string; email: string}>,
-    ) => {
-      state.user = action.payload;
+    loginSuccess: (state, action: PayloadAction<{token: string}>) => {
+      state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
-      state.error = null;
       // Kullanıcı bilgilerini AsyncStorage'e kaydetme
-      AsyncStorage.setItem('user', JSON.stringify(action.payload));
+      AsyncStorage.setItem('token', action.payload.token);
     },
     logOut: state => {
-      state.user = null;
+      state.token = '';
       state.isAuthenticated = false;
       state.loading = false;
-      state.error = null;
       // Kullanıcı bilgilerini AsyncStorage'e silme
-      AsyncStorage.removeItem('user');
+      AsyncStorage.removeItem('token');
     },
   },
 });
