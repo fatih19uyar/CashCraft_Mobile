@@ -17,7 +17,7 @@ import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
 import {UserInfo} from '../../types/type';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
-  user: UserInfo;
+  user: any;
 }
 
 const EditUserInfoScreenForm: React.FC<

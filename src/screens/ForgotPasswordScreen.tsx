@@ -40,7 +40,7 @@ const ForgotPasswordScreen = (props: Props) => {
   };
   const onCheckCode = async (values: any) => {
     setVerificationCode(values.verificationCode);
-    await AuthService.verifyResetCode(verificationCode, email)
+    await AuthService.verifyResetCode(values.verificationCode, email)
       .then(() => {
         setCurrentForm(currentForm + 1);
       })
