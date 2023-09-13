@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TopBarPage from '../components/TopBarPage';
 import Background from '../components/Background';
 import BaseProfileScreenForm from '../screenForms/Profile/BaseProfileScreenForm';
@@ -7,9 +7,11 @@ import ConfirmationPopup from '../components/ConfirmationPopup'; // Confirmation
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {reset} from 'redux-form';
-import {PopupMode} from '../types/type';
+import {PopupMode, UserInfo} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
 import {Snackbar} from 'react-native-paper';
+import UserService from '../services/UserService';
+import LoadingScreen from '../components/LoadingScreen';
 
 type Props = {navigation: any};
 
@@ -17,12 +19,28 @@ const ProfileScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-
+  const [user, setUser] = useState<UserInfo>({
+    name: '',
+    phoneNumber: '',
+    photo: '',
+    email: '',
+  });
+  const [loading, setLoading] = useState(true);
   const [isConfirmationPopupVisible, setConfirmationPopupVisible] =
     useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [popupMode, setPopupMode] = useState<PopupMode>('default');
-
+  useEffect(() => {
+    const getUserDetails = async () => {
+      await UserService.findUser()
+        .then(response => {
+          setLoading(false);
+          setUser(response.data);
+        })
+        .catch(error => console.log(error));
+    };
+    getUserDetails();
+  }, []);
   const goBack = () => {
     dispatch(reset('EditUserScreen'));
     dispatch(reset('ChangePasswordScreen'));
@@ -76,21 +94,11 @@ const ProfileScreen = (props: Props) => {
   const renderForm = () => {
     switch (currentForm) {
       case 'EditUser':
-        return (
-          <EditUserInfoScreenForm
-            onPress={editUser}
-            user={{
-              name: 'Ezgi Beytaş',
-              email: 'ezgi@gmail.com',
-              photo: '',
-              phoneNumber: '5055719843',
-            }}
-          />
-        );
+        return <EditUserInfoScreenForm onPress={editUser} user={user} />;
       case 'ChangePassword':
         return <ChangePasswordScreenForm onPress={changePassword} />;
       default:
-        return <BaseProfileScreenForm onPress={onPress} />;
+        return <BaseProfileScreenForm onPress={onPress} user={user} />;
     }
   };
 
@@ -119,6 +127,7 @@ const ProfileScreen = (props: Props) => {
         duration={3000}>
         {snackbarMessage}
       </Snackbar>
+      <LoadingScreen visible={loading} />
     </>
   );
 };

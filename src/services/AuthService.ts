@@ -1,14 +1,8 @@
 import axios, {AxiosResponse, AxiosError} from 'axios';
 import config from '../../config';
+import {axiosInstance} from '.';
 
 // Sunucu URL'i
-const API_BASE_URL = config.BASE_URL; // Sunucu API URL'inizi buraya ekleyin
-
-// Axios yapılandırması
-const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 10000, // İstek zaman aşımı süresi (ms)
-});
 
 // Sunucu isteklerini yöneten servis
 const AuthService = {

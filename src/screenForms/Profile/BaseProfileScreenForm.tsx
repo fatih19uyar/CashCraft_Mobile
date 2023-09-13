@@ -5,9 +5,10 @@ import TextView from '../../components/TextView';
 import ImageButton from '../../components/ImageButton';
 import themes from '../../utils/themes';
 
-type Props = {onPress: (values: any) => void};
+type Props = {onPress: (values: any) => void; user: any};
 
 const ProfileScreenForm = (props: Props) => {
+  console.log(props.user.email);
   return (
     <>
       <Container>
@@ -16,21 +17,21 @@ const ProfileScreenForm = (props: Props) => {
           <TextView
             textColor={'black'}
             textSize={30}
-            text={'Ezgi Beytaş'}
+            text={props.user.name}
             textStyle={'normal'}
             textMargin={{top: 0, bottom: 0}}
           />
           <TextView
             textColor={'black'}
             textSize={12}
-            text={'+095XXXXXXXXX'}
+            text={props.user.phoneNumber}
             textStyle={'normal'}
             textMargin={{top: 10, bottom: 0}}
           />
           <TextView
             textColor={'black'}
             textSize={12}
-            text={'ezgi.beytas@idvlabs.com'}
+            text={props.user.email}
             textStyle={'normal'}
             textMargin={{top: 0, bottom: 0}}
           />

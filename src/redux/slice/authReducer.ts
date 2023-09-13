@@ -3,6 +3,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthState} from '../../types/type';
+import {axiosInstance} from '../../services';
 
 const initialState: AuthState = {
   token: '',
@@ -18,6 +19,18 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
+      axiosInstance.interceptors.request.use(
+        async config => {
+          // Token varsa, isteğin başlığına ekleyin
+          if (action.payload.token) {
+            config.headers.Authorization = `Bearer ${action.payload.token}`;
+          }
+          return config;
+        },
+        error => {
+          return Promise.reject(error);
+        },
+      );
       // Kullanıcı bilgilerini AsyncStorage'e kaydetme
       AsyncStorage.setItem('token', action.payload.token);
     },
