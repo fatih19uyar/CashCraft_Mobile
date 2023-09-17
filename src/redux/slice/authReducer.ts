@@ -38,6 +38,15 @@ const authSlice = createSlice({
       state.token = '';
       state.isAuthenticated = false;
       state.loading = false;
+      axiosInstance.interceptors.request.use(
+        async config => {
+          config.headers.Authorization = `Bearer ${''}`;
+          return config;
+        },
+        error => {
+          return Promise.reject(error);
+        },
+      );
       // Kullanıcı bilgilerini AsyncStorage'e silme
       AsyncStorage.removeItem('token');
     },
