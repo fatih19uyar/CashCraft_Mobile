@@ -5,7 +5,10 @@ import {InputProps} from '../types/type';
 import colors from '../utils/colors';
 import styled, {css} from 'styled-components/native';
 import themes from '../utils/themes';
-
+const getWidth = () => {
+  const {width} = Dimensions.get('window');
+  return Math.floor(width * 0.8);
+};
 const Input: React.FC<InputProps> = ({
   secret,
   label,
@@ -14,11 +17,6 @@ const Input: React.FC<InputProps> = ({
   ...restProps
 }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const getWidth = () => {
-    const {width} = Dimensions.get('window');
-    return width * 0.8;
-  };
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -32,9 +30,10 @@ const Input: React.FC<InputProps> = ({
       />
     );
   };
+
   const showError = meta.touched && meta.error;
   return (
-    <Container width={getWidth()}>
+    <Container>
       <StyledTextInput
         label={label}
         secureTextEntry={secret && !passwordVisible}
@@ -58,9 +57,9 @@ const Input: React.FC<InputProps> = ({
 };
 
 // Styled Components
-const Container = styled(SafeAreaView)<{width: number}>`
+const Container = styled(SafeAreaView)<{widthSize: number}>`
   align-self: center;
-  width: ${props => props.width}px;
+  width: ${getWidth()}px;
 `;
 
 const StyledTextInput = styled(TextInput)`

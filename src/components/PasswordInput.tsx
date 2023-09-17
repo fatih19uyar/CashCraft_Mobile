@@ -1,14 +1,22 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {View, TextInput} from 'react-native';
 import styled from 'styled-components/native';
 import themes from '../utils/themes';
+import {HelperText} from 'react-native-paper';
 
 type PasswordInputProps = {
   length: number;
   onChangePassword: (password: string) => void;
+  shouldReset?: boolean;
+  meta?: any;
 };
 
-const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
+const PasswordInput = ({
+  length,
+  onChangePassword,
+  shouldReset,
+  meta,
+}: PasswordInputProps) => {
   const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
   const [passwords, setPasswords] = useState<string[]>(Array(length).fill(''));
 
@@ -17,7 +25,6 @@ const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
       const newPasswords = [...passwords];
       newPasswords[index] = value;
       setPasswords(newPasswords);
-
       // Otomatik olarak bir sonraki kutucuğa geçme
       if (
         index < length - 1 &&
@@ -50,8 +57,24 @@ const PasswordInput = ({length, onChangePassword}: PasswordInputProps) => {
     }
     return passwordBoxes;
   };
+  const showError = meta && meta.touched && meta.error;
 
-  return <Container>{renderPasswordBoxes()}</Container>;
+  useEffect(() => {
+    if (shouldReset) {
+      setPasswords(Array(length).fill(''));
+    }
+  }, [shouldReset]);
+
+  return (
+    <>
+      <Container>{renderPasswordBoxes()}</Container>
+      {showError && (
+        <HelperText style={{color: 'red'}} type="error">
+          {meta.error}
+        </HelperText>
+      )}
+    </>
+  );
 };
 
 const Container = styled(View)`

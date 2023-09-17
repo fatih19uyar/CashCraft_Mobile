@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator, Image} from 'react-native';
 
 interface LoadingScreenProps {
   visible: boolean;
@@ -11,7 +11,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({visible}) => {
   return (
     <View style={styles.container}>
       <View style={styles.overlay}>
-        <ActivityIndicator size="large" color="#ffffff" />
+        <Image
+          style={{height: 40, width: 40}}
+          source={require('../assets/loading.gif')}
+        />
         <Text style={styles.text}>Yükleniyor...</Text>
       </View>
     </View>
