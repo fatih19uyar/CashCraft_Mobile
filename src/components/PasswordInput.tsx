@@ -19,7 +19,6 @@ const PasswordInput = ({
 }: PasswordInputProps) => {
   const inputRefs = useRef<Array<TextInput | null>>(Array(length).fill(null));
   const [passwords, setPasswords] = useState<string[]>(Array(length).fill(''));
-
   const handleChange = (value: string, index: number) => {
     if (value.length <= 1) {
       const newPasswords = [...passwords];
