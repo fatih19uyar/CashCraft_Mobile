@@ -12,6 +12,7 @@ import {LoginUser} from '../types/type';
 import Background from '../components/Background';
 import LoadingScreen from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
+import {change} from 'redux-form';
 
 type LoginScreenProps = {navigation: any};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
@@ -19,6 +20,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const [currentForm, setCurrentForm] = useState(1);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [passwordClear, setPasswordClear] = useState(false);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState('');
   const onLogin = async (values: LoginUser) => {
@@ -51,8 +53,12 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
       })
       .catch(error => {
         console.log(error);
+        setPasswordClear(true);
         setSnackbarMessage('Hatalı Kullanıcı Adı veya Parola');
+        setPasswordClear(false);
+        dispatch(change('loginScreen', 'password', ''));
         setSnackbarVisible(true);
+        console.log(values);
       });
   };
   const goToNextForm = (values: any) => {
@@ -91,6 +97,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
           <LoginScreenFormSecond
             goToNextForm={goOnSignUp}
             onForgotPassword={onForgotPassword}
+            passWordClear={passwordClear}
           />
         );
       case 3:

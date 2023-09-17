@@ -22,21 +22,17 @@ interface IProps extends ConnectedProps<typeof connector> {
 const validate = (values: any) => {
   const errors: any = {};
 
-  // Ad, Soyad, Telefon Numarası alanlarını doğrula
-  const fieldsToValidate: string[] = ['userName', 'userSurname'];
-  fieldsToValidate.forEach(field => {
-    if (!values[field]) {
-      errors[field] = `${
-        field === 'phoneNumber' ? 'Telefon numarası' : field
-      } boş olamaz`;
-    } else if (!/^[A-Za-z\s]+$/.test(values[field])) {
-      errors[field] = `Geçersiz ${
-        field === 'phoneNumber' ? 'telefon numarası' : field
-      } formatı`;
-    } else if (field === 'phoneNumber' && values[field].length < 10) {
-      errors[field] = 'Telefon numarası en az 10 karakter içermelidir';
-    }
-  });
+  if (!values.userName) {
+    errors.userName = 'Ad boş olamaz';
+  } else if (!/^[A-Za-z\s]+$/.test(values.userName)) {
+    errors.userName = 'Geçersiz ad formatı';
+  }
+
+  if (!values.userSurname) {
+    errors.userSurname = 'Soyad boş olamaz';
+  } else if (!/^[A-Za-z\s]+$/.test(values.userSurname)) {
+    errors.userSurname = 'Geçersiz soyad formatı';
+  }
   return errors;
 };
 

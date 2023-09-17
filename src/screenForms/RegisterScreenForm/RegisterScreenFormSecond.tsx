@@ -17,8 +17,20 @@ interface IProps extends ConnectedProps<typeof connector> {
   onReportProblem: () => void;
   email: string;
 }
-const PasswordInputField = ({input}: any) => {
-  return <PasswordInput length={6} onChangePassword={input.onChange} />;
+const validate = (values: any) => {
+  const errors: any = {};
+
+  if (!values.verificationCode) {
+    errors.verificationCode = 'Bu alan boş bırakılamaz';
+  } else if (values.verificationCode.length !== 6) {
+    errors.verificationCode = 'Şifre 6 haneli olmalıdır';
+  }
+  return errors;
+};
+const PasswordInputField = ({input, meta}: any) => {
+  return (
+    <PasswordInput length={6} onChangePassword={input.onChange} meta={meta} />
+  );
 };
 const RegisterScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
@@ -73,5 +85,6 @@ export default connector(
     form: 'RegisterScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
+    validate,
   })(RegisterScreenFormSecond),
 );

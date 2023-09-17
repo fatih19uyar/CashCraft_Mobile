@@ -16,6 +16,15 @@ interface IProps extends ConnectedProps<typeof connector> {
 const PasswordInputField = ({input}: any) => {
   return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
+const validate = (values: any) => {
+  const errors: any = {};
+  if (!values.createPassword) {
+    errors.createPassword = 'Bu alan boş bırakılamaz';
+  } else if (values.createPassword.length !== 6) {
+    errors.createPassword = 'Şifre 6 haneli olmalıdır';
+  }
+  return errors;
+};
 const CreatePasswordScreenFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goToNextForm}) => (
@@ -58,5 +67,6 @@ export default connector(
     form: 'createPassword',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
+    validate,
   })(CreatePasswordScreenFirst),
 );

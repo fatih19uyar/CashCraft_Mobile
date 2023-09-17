@@ -56,7 +56,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         password: createPassword,
       })
         .then(response => {
-          console.log(response.data);
+          console.log('Register Success');
         })
         .catch(error => {
           console.error(error.message);
@@ -72,7 +72,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
       setSnackbarMessage('Şifreler Uyuşmuyor');
       setSnackbarVisible(true);
     }
-    console.log('create', values);
   };
   const onGoEmailVerification = async (values: any) => {
     try {
@@ -100,17 +99,10 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
       .catch(error => {
         const {status} = error.response || {};
         const errorMessage =
-          status === 400
-            ? 'Doğrulanmış Email'
-            : status === 401
+          status === 401
             ? 'Hatalı Doğrulama Kodu'
             : 'Bir hata oluştu. Lütfen tekrar deneyin.';
-
         setSnackbarMessage(errorMessage);
-        status === 400 &&
-          setTimeout(() => {
-            setCurrentForm(currentForm + 1);
-          }, 1000);
         setSnackbarVisible(true);
       });
   };
