@@ -13,6 +13,8 @@ import Background from '../components/Background';
 import LoadingScreen from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
+import {showToast, toastConfig} from '../components/ToastMessage';
+import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
 type LoginScreenProps = {navigation: any};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
@@ -69,8 +71,12 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     props.navigation.navigate('ForgotPasswordScreen');
   };
   const onReportProblem = () => {
-    setSnackbarMessage('Bildirdin tamam');
-    setSnackbarVisible(true);
+    const toastConfig = {
+      type: 'success',
+      text1: 'Sorun iletildi.',
+      text2: 'Teşekkürler.',
+    };
+    showToast(toastConfig);
   };
   const onResendCode = async (values: any) => {
     await AuthService.signIn(values)
@@ -125,6 +131,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
         {snackbarMessage}
       </Snackbar>
       <LoadingScreen visible={loading} />
+      <Toast config={toastConfig} />
     </>
   );
 };

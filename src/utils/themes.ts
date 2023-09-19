@@ -15,6 +15,21 @@ const themes = {
       buttonBorderColor: '#717171',
       errorColor: 'red',
       gray: 'gray',
+      toastColor: {
+        border: {
+          backgroundColor: 'white',
+          error: '#f44336',
+          warning: '#ffa726',
+          info: '#29b6f6',
+          success: '#66bb6a',
+        },
+        text: {
+          successColor: '#fff',
+          errorColor: '#fff',
+          warningColor: '#000',
+          infoColor: '#000',
+        },
+      },
     },
     textInput: {
       background: '#F5F5F5',

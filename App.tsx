@@ -8,6 +8,8 @@ import AuthStack from './src/navigations/AuthStack';
 import {ThemeProvider} from 'styled-components';
 import themes from './src/utils/themes';
 import TopBottomStack from './src/navigations/TabBottomStack';
+import {Toast} from 'react-native-toast-message/lib/src/Toast';
+import {toastConfig} from './src/components/ToastMessage';
 
 const Stack = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -43,6 +45,7 @@ const App = () => {
       <Provider store={store}>
         <Stack />
       </Provider>
+      <Toast config={toastConfig} />
     </ThemeProvider>
   );
 };
