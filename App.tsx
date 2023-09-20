@@ -10,6 +10,8 @@ import themes from './src/utils/themes';
 import TopBottomStack from './src/navigations/TabBottomStack';
 import {Toast} from 'react-native-toast-message/lib/src/Toast';
 import {toastConfig} from './src/components/ToastMessage';
+import './src/i18n/i18n';
+import 'intl-pluralrules';
 
 const Stack = () => {
   const dispatch: AppDispatch = useDispatch();

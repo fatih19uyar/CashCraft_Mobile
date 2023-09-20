@@ -1,0 +1,35 @@
+i18n 
+WelcomeScreenForm + 
+LoginScreenFormFirst +
+LoginScreenFormSecond +
+LoginScreenFormThird +
+
+RegisterScreenFormFirst + 
+RegisterScreenFormSecond +
+RegisterScreenFormThird +
+
+CreatePasswordScreenFirst +
+CreatePasswordScreenSecond +
+
+CreditCardScreenForm+
+
+ForgotPasswordScreenFormFirst +
+ForgotPasswordScreenFormSecond +
+
+DeleteWalletScreenFormFirst +
+DeleteWalletScreenFormSecond +
+DeleteWalletScreenFormThird +
+DeleteWalletScreenFormFourth +
+
+ChangePasswordScreenForm +
+ProfileScreenForm +
+EditUserInfoScreenForm +
+
+AddedNewReservationForm +
+NewReservationForm +
+ReservationScreenForm +
+
+CampainsScreenForm +
+
+QRPaymentScreenFormFirst +
+QRPayNowScreenForm +

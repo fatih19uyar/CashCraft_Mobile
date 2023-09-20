@@ -1,0 +1,11 @@
+{
+  "hello": "Hello, World!",
+  "welcome": "Welcome to our app.",
+  "changeLanguage": "Change Language",
+  "projectsDetails": "Your amazing app starts here. Open your favorite code editor and start editing this project.",
+  "Login": "Login",
+  "Register": "Register",
+  "Email": "Email",
+  "Password": "Password",
+  "ForgotPassword": "Forgot your password?"
+}
