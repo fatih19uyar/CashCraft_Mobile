@@ -14,7 +14,7 @@ import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import {ConnectedProps, connect} from 'react-redux';
 import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
-import {UserInfo} from '../../types/type';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
   user: any;
@@ -23,7 +23,7 @@ interface IProps extends ConnectedProps<typeof connector> {
 const EditUserInfoScreenForm: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onPress, user}) => {
-  console.log(user.email);
+  const {t} = useTranslation();
   return (
     <>
       <Container>
@@ -49,7 +49,7 @@ const EditUserInfoScreenForm: React.FC<
             <TextView
               textColor={'black'}
               textSize={15}
-              text={'Fotoğrafı Güncelle'}
+              text={t('UpdatePhoto')}
               textStyle={'500'}
               textMargin={{top: 0, bottom: 0}}
             />
@@ -61,7 +61,7 @@ const EditUserInfoScreenForm: React.FC<
           color={colors.inputTextBackground}
           name="email"
           component={Input}
-          label="E-posta Adresi"
+          label={t('EmailAdress')}
           secret={false}
           placeholder={user.email}
         />
@@ -79,7 +79,7 @@ const EditUserInfoScreenForm: React.FC<
           <PressButton
             onPress={handleSubmit(onPress)}
             textColor="white"
-            text="Bilgileri Kaydet"
+            text={t('SaveInformation')}
             mode="Button2"
             borderStatus={false}
           />

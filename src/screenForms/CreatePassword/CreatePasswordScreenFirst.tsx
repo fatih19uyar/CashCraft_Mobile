@@ -10,6 +10,7 @@ import PressButton from '../../components/PressButton';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
 }
@@ -27,32 +28,35 @@ const validate = (values: any) => {
 };
 const CreatePasswordScreenFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goToNextForm}) => (
-  <>
-    <TextView
-      textColor={'black'}
-      textSize={45}
-      text={'6 Haneli Şifre Oluştur'}
-      textStyle={'500'}
-      textMargin={{top: 20, bottom: 50}}
-    />
-    <TextView
-      textColor={'black'}
-      textSize={18}
-      text={'Şifreniz yalnızca rakamlardan oluşmalıdır.'}
-      textStyle={'normal'}
-      textMargin={{top: 0, bottom: 0}}
-    />
-    <Field name="createPassword" component={PasswordInputField} />
-    <PressButton
-      onPress={handleSubmit(goToNextForm)}
-      textColor="white"
-      text="Devam Et"
-      mode="Button2"
-      borderStatus={false}
-    />
-  </>
-);
+> = ({handleSubmit, goToNextForm}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <TextView
+        textColor={'black'}
+        textSize={45}
+        text={t('CreatePasswordScreenFirstHeaderText')}
+        textStyle={'500'}
+        textMargin={{top: 20, bottom: 50}}
+      />
+      <TextView
+        textColor={'black'}
+        textSize={18}
+        text={t('CreatePasswordScreenFirstText')}
+        textStyle={'normal'}
+        textMargin={{top: 0, bottom: 0}}
+      />
+      <Field name="createPassword" component={PasswordInputField} />
+      <PressButton
+        onPress={handleSubmit(goToNextForm)}
+        textColor="white"
+        text={t('Next')}
+        mode="Button2"
+        borderStatus={false}
+      />
+    </>
+  );
+};
 
 const selector = formValueSelector('createPassword');
 const mapStateToProps = (state: any) => {

@@ -11,6 +11,7 @@ import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import {SafeAreaView} from 'react-native';
 import MyView from '../../components/MyView';
+import {useTranslation} from 'react-i18next';
 
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
@@ -39,13 +40,14 @@ const PasswordInputField = ({input, meta, passWordClear}: any) => {
 const LoginScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goToNextForm, onForgotPassword, passWordClear}) => {
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
         <TextView
           textColor={'black'}
           textSize={39}
-          text={'Giriş Yapmak İçin Lütfen Cüzdan Şifrenizi Giriniz.'}
+          text={t('LoginScreenFormSecondHeaderText')}
           textStyle={'500'}
           textMargin={{top: 20, bottom: 50}}
         />
@@ -57,7 +59,7 @@ const LoginScreenFormSecond: React.FC<
         <PressButton
           onPress={handleSubmit(goToNextForm)}
           textColor="white"
-          text="Devam Et"
+          text={t('Next')}
           mode="Button2"
           borderStatus={false}
         />
@@ -66,7 +68,7 @@ const LoginScreenFormSecond: React.FC<
         <PressButton
           onPress={onForgotPassword}
           textColor="black"
-          text="Şifremi Unuttum"
+          text={t('ForgotPassword')}
           mode="TextButton"
           borderStatus={true}
         />

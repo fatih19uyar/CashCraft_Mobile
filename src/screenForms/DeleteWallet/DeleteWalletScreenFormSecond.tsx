@@ -11,6 +11,7 @@ import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import MyView from '../../components/MyView';
 import {HelperText} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   goBack: () => void;
@@ -37,34 +38,37 @@ const PasswordInputField = ({input, meta}: any) => {
 };
 const DeleteWalletScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goNext, goBack}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={39}
-        text={'6 Haneli Cüzdan Şifresini Giriniz.'}
-        textStyle={'500'}
-        textMargin={{top: 20, bottom: 50}}
-      />
-      <Field name="password" component={PasswordInputField} />
-      <PressButton
-        onPress={handleSubmit(goNext)}
-        textColor="white"
-        text="Devam Et"
-        mode="Button4"
-        borderStatus={false}
-      />
-      <PressButton
-        onPress={goBack}
-        textColor="white"
-        text="Vazgeç"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-  </>
-);
+> = ({handleSubmit, goNext, goBack}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={39}
+          text={t('DeleteWalletScreenFormSecondHeaderText')}
+          textStyle={'500'}
+          textMargin={{top: 20, bottom: 50}}
+        />
+        <Field name="password" component={PasswordInputField} />
+        <PressButton
+          onPress={handleSubmit(goNext)}
+          textColor="white"
+          text={t('Next')}
+          mode="Button4"
+          borderStatus={false}
+        />
+        <PressButton
+          onPress={goBack}
+          textColor="white"
+          text={t('GiveUp')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+    </>
+  );
+};
 
 const selector = formValueSelector('deleteWalletScreen');
 const mapStateToProps = (state: any) => {

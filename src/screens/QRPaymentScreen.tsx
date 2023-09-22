@@ -7,10 +7,12 @@ import QRPayNowScreenForm from '../screenForms/QRPaymentForm/QRPayNowScreenForm'
 import SelectPaymentTypeForm from '../screenForms/QRPaymentForm/SelectPaymentTypeForm';
 import {payment} from '../values/values';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const QRPaymentScreen = (props: Props) => {
+  const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState('');
   const [smallText, setSmallText] = useState('');
   const [getPassword, setGetPassword] = useState('');
@@ -24,10 +26,10 @@ const QRPaymentScreen = (props: Props) => {
   };
   const goNext = () => {
     if (currentForm === '') {
-      setSmallText('Ödeme Yap');
+      setSmallText(t('Pay'));
       setCurrentForm('QRPayNowScreen');
     } else if (currentForm === 'QRPayNowScreen' && getPassword.length === 6) {
-      setSmallText('Ödeme Yöntemi Seçiniz');
+      setSmallText(t('SelectPaymentMethod'));
       setCurrentForm('SelectPaymentType');
     } else if (currentForm === 'AddNewCardScreen') {
     }
@@ -40,7 +42,7 @@ const QRPaymentScreen = (props: Props) => {
   const addNewCard = () => {
     if (currentForm === 'SelectPaymentType') {
       setCurrentForm('AddNewCardScreen');
-      setSmallText('Kart ekle');
+      setSmallText(t('AddingCard'));
     }
   };
   const renderForm = () => {
@@ -74,7 +76,7 @@ const QRPaymentScreen = (props: Props) => {
       <TopBarPage
         onGoBack={goBack}
         onTobBarItem={{
-          bigText: 'QR İşlemleri',
+          bigText: t('QRTransactions'),
           smallText: smallText,
         }}
       />

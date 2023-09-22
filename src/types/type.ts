@@ -1,3 +1,4 @@
+import { ImageRequireSource } from 'react-native';
 import {WrappedFieldProps} from 'redux-form';
 export interface User {
   id: string;
@@ -73,7 +74,7 @@ export interface AuthState {
 }
 export interface Campaign {
   campName: string;
-  campImg: string;
+  campImg: ImageRequireSource;
   campDetails: string;
   campTitle: string;
 }

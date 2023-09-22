@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Searchbar} from 'react-native-paper';
 import themes from '../utils/themes';
-import {options} from '../values/values';
-import ListCheckboxFilter from '../components/TransactionHistoryFilter';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {styled} from 'styled-components/native';
 import colors from '../utils/colors';

@@ -3,10 +3,12 @@ import Background from '../components/Background';
 import TransactionHistoryScreenForm from '../screenForms/TransactionHistoryScreenForm';
 import TopBarPage from '../components/TopBarPage';
 import TransactionFilterMenu from '../components/TransactionFilterMenu';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const TransactionHistoryScreen = (props: Props) => {
+  const {t} = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -14,11 +16,10 @@ const TransactionHistoryScreen = (props: Props) => {
 
   const onSearch = (values: string) => {
     console.log('search', values);
-    // Burada arama işlemlerini gerçekleştirebilirsiniz
   };
 
   const onPressDetails = () => {
-    toggleModal(); // Modal açma fonksiyonunu çağırın
+    toggleModal();
   };
 
   const goBack = () => {
@@ -29,7 +30,7 @@ const TransactionHistoryScreen = (props: Props) => {
       <TopBarPage
         onGoBack={goBack}
         onTobBarItem={{
-          bigText: 'İşlem Geçmişi',
+          bigText: t('TransactionHistory'),
           smallText: '',
         }}
       />

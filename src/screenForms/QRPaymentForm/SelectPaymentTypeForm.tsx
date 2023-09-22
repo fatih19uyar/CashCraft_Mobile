@@ -7,6 +7,7 @@ import themes from '../../utils/themes';
 import TextView from '../../components/TextView';
 import {Image, TouchableOpacity, View} from 'react-native';
 import ImageButton from '../../components/ImageButton';
+import {useTranslation} from 'react-i18next';
 
 interface QRPayNowScreenFormProps {
   goNext: () => void;
@@ -18,21 +19,22 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
   addNewCard,
   readPayment,
 }) => {
+  const {t} = useTranslation();
   const buttonData = [
     {
-      text: 'Banka Kartı ile Öde',
+      text: t('PaywithBankCard'),
       onPress: 'bankCard',
     },
     {
-      text: 'Kredi Kartı ile Öde',
+      text: t('PaywithCreditCard'),
       onPress: 'creditCard',
     },
     {
-      text: 'Cüzdan Hesabı ile Öde',
+      text: t('PaywithWalletCard'),
       onPress: 'walletCard',
     },
     {
-      text: 'Diğer Kartlar ile Öde',
+      text: t('PaywithAnotherCard'),
       onPress: 'anotherCard',
     },
   ];
@@ -77,7 +79,7 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
           <TextView
             textColor={themes.light.colors.text}
             textSize={15}
-            text={'ÖDEME YÖNTEMLERİ'}
+            text={t('PaymentType')}
             textStyle={'500'}
             textMargin={{top: 10, bottom: 5}}
           />

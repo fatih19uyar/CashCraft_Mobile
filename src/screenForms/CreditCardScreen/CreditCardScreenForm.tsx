@@ -3,17 +3,19 @@ import TextView from '../../components/TextView';
 import MyView from '../../components/MyView';
 import {SafeAreaView} from 'react-native';
 import PressButton from '../../components/PressButton';
+import {useTranslation} from 'react-i18next';
 
 type Props = {onPress: (values: string) => void};
 
 const CreditCardScreenForm = (props: Props) => {
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
         <TextView
           textColor={'black'}
           textSize={18}
-          text={'Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.'}
+          text={t('NoFoundBankCard')}
           textStyle={'300'}
           textMargin={{top: 0, bottom: 0}}
         />
@@ -28,7 +30,7 @@ const CreditCardScreenForm = (props: Props) => {
         <PressButton
           onPress={() => props.onPress('NewCreditCard')}
           textColor="white"
-          text="Yeni Banka Kartı Ekle"
+          text={t('AddNewBankCard')}
           mode="Button2"
           borderStatus={false}
         />

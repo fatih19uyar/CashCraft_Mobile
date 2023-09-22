@@ -17,7 +17,6 @@ const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
   CampingList,
   selectedCampaing,
 }) => {
-  console.log(selectedCampaing);
   return (
     <>
       <View style={{marginTop: '2%', height: '20%'}}>

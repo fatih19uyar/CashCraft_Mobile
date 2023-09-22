@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import PasswordInput from '../../components/PasswordInput';
 import MyView from '../../components/MyView';
 import themes from '../../utils/themes';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -34,43 +35,46 @@ const PasswordInputField = ({input, meta}: any) => {
 };
 const RegisterScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goNext, onReportProblem, email}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={45}
-        text={'Güvenlik Kodu Giriniz'}
-        textStyle={'500'}
-        textMargin={{top: 50, bottom: 50}}
-      />
-      <TextView
-        textColor={'black'}
-        textSize={18}
-        text={email + ' gönderdiğimiz 6 haneli kodu giriniz.'}
-        textStyle={'normal'}
-        textMargin={{top: 0, bottom: 50}}
-      />
-      <Field name="verificationCode" component={PasswordInputField} />
-      <PressButton
-        onPress={handleSubmit(goNext)}
-        textColor={themes.light.colors.text1}
-        text="Devam Et"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-    <SafeAreaView style={{alignItems: 'center'}}>
-      <PressButton
-        onPress={onReportProblem}
-        textColor="black"
-        text="Sorun Bildir"
-        mode="TextButton"
-        borderStatus={true}
-      />
-    </SafeAreaView>
-  </>
-);
+> = ({handleSubmit, goNext, onReportProblem, email}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={45}
+          text={t('RegisterScreenFormSecondHeaderText')}
+          textStyle={'500'}
+          textMargin={{top: 50, bottom: 50}}
+        />
+        <TextView
+          textColor={'black'}
+          textSize={18}
+          text={email + t('RegisterScreenFormSecondText')}
+          textStyle={'normal'}
+          textMargin={{top: 0, bottom: 50}}
+        />
+        <Field name="verificationCode" component={PasswordInputField} />
+        <PressButton
+          onPress={handleSubmit(goNext)}
+          textColor={themes.light.colors.text1}
+          text={t('Next')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+      <SafeAreaView style={{alignItems: 'center'}}>
+        <PressButton
+          onPress={onReportProblem}
+          textColor="black"
+          text={t('ReportProblem')}
+          mode="TextButton"
+          borderStatus={true}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const selector = formValueSelector('RegisterScreen');
 const mapStateToProps = (state: any) => {

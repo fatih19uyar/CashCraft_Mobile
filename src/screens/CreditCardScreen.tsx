@@ -3,11 +3,13 @@ import Background from '../components/Background';
 import TopBarPage from '../components/TopBarPage';
 import CreditCardScreenForm from '../screenForms/CreditCardScreen/CreditCardScreenForm';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const CreditCardScreen: React.FC<Props> = (props: Props) => {
   const [currentForm, setCurrentForm] = useState<number>(0);
+  const {t} = useTranslation();
   const goBack = () => {
     props.navigation.goBack();
   };
@@ -36,7 +38,7 @@ const CreditCardScreen: React.FC<Props> = (props: Props) => {
       <TopBarPage
         onGoBack={goBack}
         onTobBarItem={{
-          bigText: 'Kredi Kartlarım',
+          bigText: t('MyCreditCards'),
           smallText: '',
         }}
       />

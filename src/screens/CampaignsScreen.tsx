@@ -4,10 +4,12 @@ import CampainsScreenForm from '../screenForms/CampainsScreenForm';
 import TopBarPage from '../components/TopBarPage';
 import {campaigns} from '../values/values';
 import {Campaign} from '../types/type';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const CampaignsScreen = (props: Props) => {
+  const {t} = useTranslation();
   const [selectedCampaingData, setSelectedCampaingData] = useState<Campaign>(
     campaigns[0],
   );
@@ -24,7 +26,7 @@ const CampaignsScreen = (props: Props) => {
         <TopBarPage
           onGoBack={goBack}
           onTobBarItem={{
-            bigText: 'Kampanyalar',
+            bigText: t('Campaigns'),
             smallText: '',
           }}
         />

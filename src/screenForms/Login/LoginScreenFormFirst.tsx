@@ -12,6 +12,7 @@ import colors from '../../utils/colors';
 import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MyView from '../../components/MyView';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
   onReportProblem: () => void;
@@ -34,42 +35,45 @@ const isValidEmail = (email: string) => {
 
 const LoginScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goToNextForm, onReportProblem}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={40}
-        text={'Giriş Yapın'}
-        textStyle={'500'}
-        textMargin={{top: 0, bottom: 100}}
-      />
-      <Field
-        color={colors.inputTextBackground}
-        name="email"
-        component={Input}
-        label="E-posta Adresi"
-        secret={false}
-      />
-      <PressButton
-        onPress={handleSubmit(goToNextForm)}
-        textColor="white"
-        text="Devam Et"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-    <SafeAreaView style={{alignItems: 'center'}}>
-      <PressButton
-        onPress={onReportProblem}
-        textColor="black"
-        text="Sorun Bildir"
-        mode="TextButton"
-        borderStatus={true}
-      />
-    </SafeAreaView>
-  </>
-);
+> = ({handleSubmit, goToNextForm, onReportProblem}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={40}
+          text={t('onLogin')}
+          textStyle={'500'}
+          textMargin={{top: 0, bottom: 100}}
+        />
+        <Field
+          color={colors.inputTextBackground}
+          name="email"
+          component={Input}
+          label={t('EmailAdress')}
+          secret={false}
+        />
+        <PressButton
+          onPress={handleSubmit(goToNextForm)}
+          textColor="white"
+          text={t('Next')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+      <SafeAreaView style={{alignItems: 'center'}}>
+        <PressButton
+          onPress={onReportProblem}
+          textColor="black"
+          text={t('ReportProblem')}
+          mode="TextButton"
+          borderStatus={true}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const selector = formValueSelector('loginScreen');
 const mapStateToProps = (state: any) => {

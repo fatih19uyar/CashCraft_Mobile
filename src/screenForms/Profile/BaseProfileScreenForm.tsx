@@ -4,11 +4,13 @@ import styled from 'styled-components/native';
 import TextView from '../../components/TextView';
 import ImageButton from '../../components/ImageButton';
 import themes from '../../utils/themes';
+import {useTranslation} from 'react-i18next';
 
 type Props = {onPress: (values: any) => void; user: any};
 
 const ProfileScreenForm = (props: Props) => {
-  console.log(props.user.email);
+  const {t} = useTranslation();
+
   return (
     <>
       <Container>
@@ -39,7 +41,7 @@ const ProfileScreenForm = (props: Props) => {
       </Container>
       <ButtonContainer>
         <ImageButton
-          text="Kullanıcı Bilgilerini Düzenle"
+          text={t('BaseProfileScreenFormEditUserButton')}
           backColor={themes.light.colors.buttonBackground}
           leftImageSource={require('../../assets/user-edit.png')}
           rightImageSource={require('../../assets/arrow_right.png')}
@@ -47,7 +49,7 @@ const ProfileScreenForm = (props: Props) => {
           textColor={themes.light.colors.text}
         />
         <ImageButton
-          text="Cüzdan Şifresi Değiştir"
+          text={t('BaseProfileScreenFormChangePasswordButton')}
           backColor={themes.light.colors.buttonBackground}
           leftImageSource={require('../../assets/password-validation.png')}
           rightImageSource={require('../../assets/arrow_right.png')}
@@ -55,7 +57,7 @@ const ProfileScreenForm = (props: Props) => {
           textColor={themes.light.colors.text}
         />
         <ImageButton
-          text="Sözleşmeler ve Yasal "
+          text={t('BaseProfileScreenFormEagreementButton')}
           backColor={themes.light.colors.buttonBackground}
           leftImageSource={require('../../assets/contract.png')}
           rightImageSource={require('../../assets/arrow_right.png')}
@@ -63,7 +65,7 @@ const ProfileScreenForm = (props: Props) => {
           textColor={themes.light.colors.text}
         />
         <ImageButton
-          text="Destek / SSS"
+          text={t('BaseProfileScreenFormSupportButton')}
           backColor={themes.light.colors.buttonBackground}
           leftImageSource={require('../../assets/support.png')}
           rightImageSource={require('../../assets/arrow_right.png')}
@@ -72,7 +74,7 @@ const ProfileScreenForm = (props: Props) => {
         />
         <View style={{marginTop: 15}} />
         <ImageButton
-          text="Cüzdan Hesabımı Sil"
+          text={t('BaseProfileScreenFormDeleteWalletButton')}
           backColor={themes.light.colors.buttonFourth}
           leftImageSource={require('../../assets/delete_wallet.png')}
           rightImageSource={null}

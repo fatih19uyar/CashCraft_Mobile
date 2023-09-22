@@ -7,10 +7,12 @@ import ReservationDetailsForm from '../screenForms/ReservationScreen/Reservation
 import ReservationScreenForm from '../screenForms/ReservationScreen/ReservationScreenForm';
 import NewReservationForm from '../screenForms/ReservationScreen/NewReservationForm';
 import AddedNewReservationForm from '../screenForms/ReservationScreen/AddedNewReservationForm';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const ReservationScreen: React.FC<Props> = (props: Props) => {
+  const {t} = useTranslation();
   const [smallText, setSmallText] = useState('');
   const [currentForm, setCurrentForm] = useState('');
   const [selectedReservation, setSelectedReservation] = useState<
@@ -18,7 +20,6 @@ const ReservationScreen: React.FC<Props> = (props: Props) => {
   >(undefined);
 
   const goBack = () => {
-    console.log('aa', currentForm);
     if (currentForm === '') {
       props.navigation.goBack();
     } else {
@@ -28,7 +29,7 @@ const ReservationScreen: React.FC<Props> = (props: Props) => {
 
   const onSelected = (reservation: ReservationDetail) => {
     console.log('selected reservation', reservation);
-    setSmallText('İşlem Detayı');
+    setSmallText(t('TransactionDetail'));
     setCurrentForm('ReservationDetails');
     setSelectedReservation(reservation);
   };
@@ -47,7 +48,7 @@ const ReservationScreen: React.FC<Props> = (props: Props) => {
   };
   const onPressNewReservation = () => {
     setCurrentForm('NewReservation');
-    setSmallText('İşlem Ekle');
+    setSmallText(t('AddingTransaction'));
     setTimeout(() => {
       setCurrentForm('AddNewReservation');
     }, 3000);
@@ -88,7 +89,7 @@ const ReservationScreen: React.FC<Props> = (props: Props) => {
         <TopBarPage
           onGoBack={goBack}
           onTobBarItem={{
-            bigText: 'Rezervasyonlarım',
+            bigText: t('MyReservations'),
             smallText: smallText,
           }}
         />

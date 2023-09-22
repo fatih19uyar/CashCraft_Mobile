@@ -8,10 +8,12 @@ import themes from '../utils/themes';
 import AppStack from './AppStack';
 import HomeStack from './AppStack';
 import WalletStack from './WalletStack';
+import {useTranslation} from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
 const TopBottomStack = () => {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -22,11 +24,11 @@ const TopBottomStack = () => {
         },
         tabBarIcon: ({color, size}) => {
           let iconName;
-          if (route.name === 'Ana Sayfa') {
+          if (route.name === t('HomePage')) {
             iconName = require('../assets/home_icon.png'); // İlgili ad için ikonun yolu
-          } else if (route.name === 'QR Ödeme') {
+          } else if (route.name === t('QRPayment')) {
             iconName = require('../assets/qr_code_icon.png'); // İlgili ad için ikonun yolu
-          } else if (route.name === 'Cüzdan') {
+          } else if (route.name === t('Wallet')) {
             iconName = require('../assets/wallet_icon.png'); // İlgili ad için ikonun yolu
           }
           return (
@@ -37,9 +39,9 @@ const TopBottomStack = () => {
           );
         },
       })}>
-      <Tab.Screen name="Ana Sayfa" component={HomeStack} />
-      <Tab.Screen name="QR Ödeme" component={QRPaymentScreen} />
-      <Tab.Screen name="Cüzdan" component={WalletStack} />
+      <Tab.Screen name={t('HomePage')} component={HomeStack} />
+      <Tab.Screen name={t('QRPayment')} component={QRPaymentScreen} />
+      <Tab.Screen name={t('Wallet')} component={WalletStack} />
     </Tab.Navigator>
   );
 };

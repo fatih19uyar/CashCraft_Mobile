@@ -5,14 +5,15 @@ import TopBarPage from '../components/TopBarPage';
 import {CardData} from '../types/type';
 import InvestScreenFormSecond from '../screenForms/InvestScreenForm/InvestScreenFormSecond';
 import InvestScreenFormThird from '../screenForms/InvestScreenForm/InvestScreenFormThird';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const InvestScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);
   const [topBarSmallText, setTopBarSmallText] = useState('Para Yatır');
-  const [price, setPrice] = useState('');
   const [card, setCard] = useState<CardData>();
+  const {t} = useTranslation();
   const renderForm = () => {
     switch (currentForm) {
       case 1:
@@ -43,7 +44,7 @@ const InvestScreen = (props: Props) => {
     console.log('selected', card);
     setCard(card);
     setCurrentForm(currentForm + 1);
-    setTopBarSmallText('Tutar Belirleme');
+    setTopBarSmallText(t('AmountDetermination'));
   };
   const goBack = () => {
     props.navigation.goBack();
@@ -54,14 +55,14 @@ const InvestScreen = (props: Props) => {
   };
   const goNextForm = () => {
     setCurrentForm(currentForm + 1);
-    currentForm == 2 ? setTopBarSmallText('İşlem Onayı') : null;
+    currentForm == 2 ? setTopBarSmallText(t('TransactionConfirmation')) : null;
   };
   return (
     <Background imageSet={1}>
       <TopBarPage
         onGoBack={goBack}
         onTobBarItem={{
-          bigText: 'Para Yatır',
+          bigText: t('Deposit'),
           smallText: topBarSmallText,
         }}
       />

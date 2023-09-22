@@ -4,6 +4,7 @@ import {styled} from 'styled-components/native';
 import PressButton from '../../components/PressButton';
 import {ReservationDetail} from '../../types/type';
 import {Dimensions, SafeAreaView} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 interface RReservationDetailsFormProps {
   reservationDetail: ReservationDetail | undefined;
@@ -14,8 +15,7 @@ const ReservationDetailsForm: React.FC<RReservationDetailsFormProps> = ({
   reservationDetail,
   onDelete,
 }) => {
-  const screenHeight = Dimensions.get('window').height;
-
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
@@ -31,7 +31,7 @@ const ReservationDetailsForm: React.FC<RReservationDetailsFormProps> = ({
             reservationDetail?.id ? onDelete(reservationDetail.id) : onDelete(0)
           }
           textColor="white"
-          text="Rezervasyonu Kaldır"
+          text={t('RemoveReservation')}
           mode="Button4"
           borderStatus={false}
         />

@@ -13,6 +13,7 @@ import Input from '../../components/Input';
 import PhoneNumberInputWrapper from '../../components/PhoneNumberInputWrapper';
 import CheckboxWithLabel from '../../components/CheckBox';
 import themes from '../../utils/themes';
+import {useTranslation} from 'react-i18next';
 
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
@@ -39,6 +40,7 @@ const validate = (values: any) => {
 const RegisterScreenFormThird: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, goNext}) => {
+  const {t} = useTranslation();
   const sendData = (values: any) => {
     if (!values.userAgreement && !values.campAgreement) {
       setCheckBoxStatus({campAgreement: true, userAgreement: true});
@@ -60,7 +62,7 @@ const RegisterScreenFormThird: React.FC<
       <TextView
         textColor={'black'}
         textSize={43}
-        text={'Kişisel Bilgileri Giriniz'}
+        text={t('RegisterScreenFormThirdHeaderText')}
         textStyle={'500'}
         textMargin={{top: 0, bottom: 20}}
       />
@@ -68,39 +70,39 @@ const RegisterScreenFormThird: React.FC<
         color={colors.inputTextBackground}
         name="userName"
         component={Input}
-        label="Ad"
+        label={t('Name')}
         secret={false}
       />
       <Field
         color={colors.inputTextBackground}
         name="userSurname"
         component={Input}
-        label="Soyad"
+        label={t('Surname')}
         secret={false}
       />
       <Field
         color={colors.inputTextBackground}
         name="phoneNumber"
         component={PhoneNumberInputWrapper}
-        label="Cep Telefonu Numarası"
+        label={t('PhoneNumber')}
         secret={false}
       />
       <Field
         name="userAgreement"
         component={CheckboxWithLabel}
-        label="Kullanıcı Sözleşmesi’ni ve Gizlilik Politikası’nı kabul ediyorum."
+        label={t('UserAgreementText')}
         error={checkBoxStatus.userAgreement}
       />
       <Field
         name="campAgreement"
         component={CheckboxWithLabel}
-        label="Kampanyalardan ve gelişmelerden haberdar olmak istiyorum."
+        label={t('CampaingAgreementText')}
         error={checkBoxStatus.campAgreement}
       />
       <PressButton
         onPress={handleSubmit(sendData)}
         textColor={themes.light.colors.text1}
-        text="Devam Et"
+        text={t('Next')}
         mode="Button2"
         borderStatus={false}
       />

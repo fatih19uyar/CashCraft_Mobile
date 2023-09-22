@@ -11,6 +11,7 @@ import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import {SafeAreaView} from 'react-native';
 import MyView from '../../components/MyView';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onGoNewPass: (values: any) => void;
   email: string;
@@ -18,45 +19,48 @@ interface IProps extends ConnectedProps<typeof connector> {
 const PasswordInputField = ({input}: any) => {
   return <PasswordInput length={6} onChangePassword={input.onChange} />;
 };
-const ForgotPasswordScreenFormFirst: React.FC<
+const ForgotPasswordScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onGoNewPass, email}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={45}
-        text={'Şifre Yenileme Onayı'}
-        textStyle={'500'}
-        textMargin={{top: 0, bottom: 50}}
-      />
-      <TextView
-        textColor={'black'}
-        textSize={16}
-        text={`Lütfen ${email} adresine gönderilen 6 hanelik güvenlik kodunu giriniz.`}
-        textStyle={'normal'}
-        textMargin={{top: 0, bottom: 50}}
-      />
-      <Field name="verificationCode" component={PasswordInputField} />
-      <PressButton
-        onPress={handleSubmit(onGoNewPass)}
-        textColor="white"
-        text="Devam Et"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-    <SafeAreaView style={{alignItems: 'center'}}>
-      <PressButton
-        onPress={() => {}}
-        textColor="black"
-        text="Sorun Bildir"
-        mode="TextButton"
-        borderStatus={true}
-      />
-    </SafeAreaView>
-  </>
-);
+> = ({handleSubmit, onGoNewPass, email}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={45}
+          text={t('ForgotPasswordScreenFormSecondHeaderText')}
+          textStyle={'500'}
+          textMargin={{top: 0, bottom: 50}}
+        />
+        <TextView
+          textColor={'black'}
+          textSize={16}
+          text={email + t('ForgotPasswordScreenFormSecondText')}
+          textStyle={'normal'}
+          textMargin={{top: 0, bottom: 50}}
+        />
+        <Field name="verificationCode" component={PasswordInputField} />
+        <PressButton
+          onPress={handleSubmit(onGoNewPass)}
+          textColor="white"
+          text={t('Next')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+      <SafeAreaView style={{alignItems: 'center'}}>
+        <PressButton
+          onPress={() => {}}
+          textColor="black"
+          text={t('ReportProblem')}
+          mode="TextButton"
+          borderStatus={true}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const selector = formValueSelector('forgotPasswordScreen');
 const mapStateToProps = (state: any) => {
@@ -71,5 +75,5 @@ export default connector(
     form: 'forgotPasswordScreen',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-  })(ForgotPasswordScreenFormFirst),
+  })(ForgotPasswordScreenFormSecond),
 );

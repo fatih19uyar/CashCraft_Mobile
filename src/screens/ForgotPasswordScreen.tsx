@@ -11,6 +11,7 @@ import Background from '../components/Background';
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
 import {Snackbar} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any; route: any};
 
@@ -22,7 +23,7 @@ const ForgotPasswordScreen = (props: Props) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
-
+  const {t} = useTranslation();
   const goBack = () => {
     props.navigation.navigate('WelcomeScreen');
   };
@@ -34,7 +35,7 @@ const ForgotPasswordScreen = (props: Props) => {
       })
       .catch(error => {
         console.log('error', error);
-        setSnackbarMessage('Şifre gönderilemedi');
+        setSnackbarMessage(t('PasswordCouldNotSent'));
         setSnackbarVisible(true);
       });
   };
@@ -45,7 +46,7 @@ const ForgotPasswordScreen = (props: Props) => {
         setCurrentForm(currentForm + 1);
       })
       .catch(error => {
-        setSnackbarMessage('Hatalı kod');
+        setSnackbarMessage(t('BadCode'));
         setSnackbarVisible(true);
       });
   };
@@ -64,7 +65,7 @@ const ForgotPasswordScreen = (props: Props) => {
             }, 3000);
           })
           .catch(error => console.log('forgot pass ', error))
-      : (setSnackbarMessage('Şifreler Uyuşmuyor'), setSnackbarVisible(true));
+      : (setSnackbarMessage(t('PasswordsDontMatch')), setSnackbarVisible(true));
   };
   const renderForm = () => {
     switch (currentForm) {

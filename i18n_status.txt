@@ -33,3 +33,16 @@ CampainsScreenForm +
 
 QRPaymentScreenFormFirst +
 QRPayNowScreenForm +
+
+CampaignsScreen +
+CreditCardScreen +
+DeleteWalletScreen +
+ForgotPasswordScreen +
+HomeScreen +
+InvestScreen +
+MyCardScreen +
+ProfileScreen +
+QRPaymentScreen +
+ReservationScreen +
+TransactionHistoryScreen +
+WalletScreen +

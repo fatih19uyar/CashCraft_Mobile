@@ -1,12 +1,11 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import ImageButton from '../../components/ImageButton';
-import themes from '../../utils/themes';
 import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';
 import {Card} from 'react-native-paper';
 import colors from '../../utils/colors';
 import TextView from '../../components/TextView';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   goScreen: (screenName: string) => void; // goScreen prop'unu tanımladık
@@ -15,6 +14,7 @@ type Props = {
 const WalletScreenFormFirst: React.FC<Props> = props => {
   const cardWidth = Dimensions.get('window').width * 0.3; // Ekran genişliğinin %30'u kadar bir kart genişliği
   const cardMargin = Dimensions.get('window').width * 0.02; // Ekran genişliğinin %2'si kadar bir kart kenar boşluğu
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
@@ -33,7 +33,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               <TextView
                 textColor={'black'}
                 textSize={15}
-                text={`Banka Kartılarım`}
+                text={t('MyBankCards')}
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
@@ -53,7 +53,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               <TextView
                 textColor={'black'}
                 textSize={15}
-                text={`Kredi Kartılarım`}
+                text={t('MyCreditCards')}
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
@@ -74,7 +74,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               <TextView
                 textColor={'black'}
                 textSize={15}
-                text={`Mağaza Kartılarım`}
+                text={t('MyStoreCards')}
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />
@@ -93,7 +93,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               <TextView
                 textColor={'black'}
                 textSize={15}
-                text={`Hediye Kartılarım`}
+                text={t('MyGiftCards')}
                 textStyle={'bold'}
                 textMargin={{top: 5, bottom: 0}}
               />

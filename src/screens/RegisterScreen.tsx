@@ -1,8 +1,5 @@
-import {View, Text} from 'react-native';
 import React, {useState} from 'react';
-import LoginScreenForm from '../screenForms/Login/LoginScreenFormFirst';
 import BackButton from '../components/BackButton';
-import RegisterScreenForm from '../screenForms/RegisterScreenForm';
 import RegisterScreenFormFirst from '../screenForms/RegisterScreenForm/RegisterScreenFormFirst';
 import {Snackbar} from 'react-native-paper';
 import RegisterScreenFormSecond from '../screenForms/RegisterScreenForm/RegisterScreenFormSecond';

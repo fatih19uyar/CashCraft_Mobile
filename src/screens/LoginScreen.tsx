@@ -13,7 +13,7 @@ import Background from '../components/Background';
 import LoadingScreen from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
-import {showToast, toastConfig} from '../components/ToastMessage';
+import {ToastTypes, showToast, toastConfig} from '../components/ToastMessage';
 import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
 type LoginScreenProps = {navigation: any};
@@ -36,8 +36,11 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
           setLoading(false);
         })
         .catch(() => {
-          setSnackbarMessage('Hatalı Kod. Lütfen tekrar deneyiniz...');
-          setSnackbarVisible(true);
+          const toastConfig = {
+            type: 'fault' as ToastTypes,
+            text1: 'Hatalı Kod. Lütfen tekrar deneyiniz...',
+          };
+          showToast(toastConfig);
           setLoading(false);
         });
     }
@@ -56,10 +59,14 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
       .catch(error => {
         console.log(error);
         setPasswordClear(true);
-        setSnackbarMessage('Hatalı Kullanıcı Adı veya Parola');
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: 'Hatalı Kullanıcı Adı veya Parola',
+          text2: 'Lütfen tekrar deneyiniz',
+        };
+        showToast(toastConfig);
         setPasswordClear(false);
         dispatch(change('loginScreen', 'password', ''));
-        setSnackbarVisible(true);
         console.log(values);
       });
   };
@@ -131,7 +138,6 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
         {snackbarMessage}
       </Snackbar>
       <LoadingScreen visible={loading} />
-      <Toast config={toastConfig} />
     </>
   );
 };

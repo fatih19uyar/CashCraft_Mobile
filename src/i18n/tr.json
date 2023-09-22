@@ -39,6 +39,10 @@
   "RemoveReservation": "Rezervasyonu Kaldır",
   "AddReservation": "Rezervasyon ekle",
 
+  "HomePage": "Ana Sayfa",
+  "QRPayment": "QR Ödeme",
+  "Wallet": "Cüzdan",
+
   "MyCreditCards": "Kredi Kartılarım",
   "MyBankCards": "Banka Kartılarım",
   "MyStoreCards": "Mağaza Kartılarım",
@@ -59,6 +63,26 @@
   "PaywithCreditCard": "Kredi Kartı ile Öde",
   "PaywithWalletCard": "Cüzdan Hesabı ile Öde",
   "PaywithAnotherCard": "Diğer Kartlar ile Öde",
+
+  "Campaigns": "Kampanyalar",
+
+  "PasswordsDontMatch": "Şifreler Uyuşmuyor",
+  "BadCode": "Hatalı Kod",
+  "PasswordCouldNotSent": "Şifre gönderilemedi",
+  "Deposit": "Para Yatır",
+  "AmountDetermination": "Tutar Belirleme",
+  "TransactionConfirmation": "İşlem Onayı",
+  "MyRegisteredCards": "Kayıtlı Kartlarım",
+  "AddingBankCard": "Banka Kartı Ekleme",
+  "MyProfile": "Profilim",
+  "QRTransactions": "QR İşlemleri",
+  "AddingCard": "Kart Ekle",
+  "Pay": "Ödeme Yap",
+  "SelectPaymentMethod": "Ödeme Yöntemi Seçiniz",
+  "TransactionDetail": "İşlem Detayı",
+  "AddingTransaction": "İşlem Ekle",
+  "MyReservations": "Rezervasyonlarım",
+  "TransactionHistory": "İşlem Geçmişi",
 
   "LoginScreenFormSecondHeaderText": "Giriş Yapmak İçin Lütfen Cüzdan Şifrenizi Giriniz.",
   "LoginScreenFormThirdHeaderText": "Telefonunuza Gelen Giriş Şifresini Girin",

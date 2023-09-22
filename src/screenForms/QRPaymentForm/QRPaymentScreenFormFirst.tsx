@@ -5,6 +5,7 @@ import TextView from '../../components/TextView';
 import {styled} from 'styled-components/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import PressButton from '../../components/PressButton';
+import {useTranslation} from 'react-i18next';
 
 interface QRPaymentScreenFormFirstProps {
   goNext: () => void;
@@ -13,6 +14,7 @@ interface QRPaymentScreenFormFirstProps {
 const QRPaymentScreenFormFirst: React.FC<QRPaymentScreenFormFirstProps> = ({
   goNext,
 }) => {
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
@@ -22,7 +24,7 @@ const QRPaymentScreenFormFirst: React.FC<QRPaymentScreenFormFirstProps> = ({
         <PressButton
           onPress={goNext}
           textColor="white"
-          text="Devam"
+          text={t('Next')}
           mode="Button2"
           borderStatus={false}
         />

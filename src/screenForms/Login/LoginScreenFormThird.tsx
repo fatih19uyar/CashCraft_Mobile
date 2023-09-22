@@ -12,6 +12,7 @@ import PasswordInput from '../../components/PasswordInput';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image} from 'react-native';
 import MyView from '../../components/MyView';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onResendCode: (values: any) => void;
   onLogin: (values: any) => void;
@@ -21,49 +22,50 @@ const PasswordInputField = ({input}: any) => {
 };
 const LoginScreenFormThird: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onResendCode, onLogin}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={39}
-        text={'Telefonunuza Gelen Giriş Şifresini Girin'}
-        textStyle={'500'}
-        textMargin={{top: 100, bottom: 20}}
-      />
-      <TextView
-        textColor={'black'}
-        textSize={18}
-        text={
-          'Lütfen 5XXXXXXXXXX numarasına gönderilen 6 hanelik güvenlik kodunu giriniz.'
-        }
-        textStyle={'normal'}
-        textMargin={{top: 0, bottom: 0}}
-      />
-      <Field name="verificationCode" component={PasswordInputField} />
-      <Image
-        source={require('../../assets/mail-send.png')}
-        style={{width: 100, height: 100, margin: 10}}
-      />
-      <PressButton
-        onPress={handleSubmit(onLogin)}
-        textColor="white"
-        text="Giriş Yap"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-    <SafeAreaView style={{alignItems: 'center'}}>
-      <PressButton
-        onPress={handleSubmit(onResendCode)}
-        textColor="black"
-        text="Tekrar Gönder"
-        mode="TextButton"
-        borderStatus={true}
-      />
-    </SafeAreaView>
-  </>
-);
+> = ({handleSubmit, onResendCode, onLogin}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={39}
+          text={t('LoginScreenFormThirdHeaderText')}
+          textStyle={'500'}
+          textMargin={{top: 100, bottom: 20}}
+        />
+        <TextView
+          textColor={'black'}
+          textSize={18}
+          text={t('LoginScreenFormSecondText')}
+          textStyle={'normal'}
+          textMargin={{top: 0, bottom: 0}}
+        />
+        <Field name="verificationCode" component={PasswordInputField} />
+        <Image
+          source={require('../../assets/mail-send.png')}
+          style={{width: 100, height: 100, margin: 10}}
+        />
+        <PressButton
+          onPress={handleSubmit(onLogin)}
+          textColor="white"
+          text={t('Login')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+      <SafeAreaView style={{alignItems: 'center'}}>
+        <PressButton
+          onPress={handleSubmit(onResendCode)}
+          textColor="black"
+          text={t('ReSend')}
+          mode="TextButton"
+          borderStatus={true}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const selector = formValueSelector('loginScreen');
 const mapStateToProps = (state: any) => {

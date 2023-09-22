@@ -11,6 +11,7 @@ import {
 import colors from '../../utils/colors';
 import Input from '../../components/Input';
 import {ConnectedProps, connect} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
 }
@@ -27,6 +28,7 @@ const validate = (values: any) => {
 const ChangePasswordScreenForm: React.FC<
   IProps & InjectedFormProps<{}, IProps>
 > = ({handleSubmit, onPress}) => {
+  const {t} = useTranslation();
   return (
     <>
       <InputContainer>
@@ -34,7 +36,7 @@ const ChangePasswordScreenForm: React.FC<
           color={colors.inputTextBackground}
           name="oldPass"
           component={Input}
-          label="Eski Şifre"
+          text={t('OldPassword')}
           secret={true}
           maxLength={6}
           keyboardType="numeric"
@@ -45,7 +47,7 @@ const ChangePasswordScreenForm: React.FC<
           name="newPass"
           component={Input}
           maxLength={6}
-          label="Yeni Şifre"
+          text={t('NewPassword')}
           secret={true}
           keyboardType="numeric"
         />
@@ -54,7 +56,7 @@ const ChangePasswordScreenForm: React.FC<
           color={colors.inputTextBackground}
           name="reNewPass"
           component={Input}
-          label="Yeni Şifrenizi Tekrar Giriniz"
+          text={t('ReNewPassword')}
           secret={true}
           maxLength={6}
           keyboardType="numeric"
@@ -64,7 +66,7 @@ const ChangePasswordScreenForm: React.FC<
           <PressButton
             onPress={handleSubmit(onPress)}
             textColor="white"
-            text="Bilgileri Kaydet"
+            text={t('SaveInformation')}
             mode="Button2"
             borderStatus={false}
           />

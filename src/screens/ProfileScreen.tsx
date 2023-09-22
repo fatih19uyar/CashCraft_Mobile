@@ -12,10 +12,12 @@ import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScree
 import {Snackbar} from 'react-native-paper';
 import UserService from '../services/UserService';
 import LoadingScreen from '../components/LoadingScreen';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const ProfileScreen = (props: Props) => {
+  const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState('');
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -70,7 +72,7 @@ const ProfileScreen = (props: Props) => {
         setCurrentForm('');
       }, 2000);
     } else {
-      setSnackbarMessage('Yeni şifreler birbiriyle uyuşmuyor.');
+      setSnackbarMessage(t('PasswordsDontMatch'));
       setSnackbarVisible(true);
     }
   };
@@ -108,7 +110,7 @@ const ProfileScreen = (props: Props) => {
         <TopBarPage
           onGoBack={goBack}
           onTobBarItem={{
-            bigText: 'Profilim',
+            bigText: t('MyProfile'),
             smallText: '',
           }}
         />

@@ -11,6 +11,7 @@ import PressButton from '../../components/PressButton';
 import colors from '../../utils/colors';
 import Background from '../../components/Background';
 import TextView from '../../components/TextView';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onForgotPass: (values: any) => void;
 }
@@ -32,31 +33,34 @@ const isValidEmail = (email_forgot: string) => {
 
 const ForgotPasswordScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onForgotPass}) => (
-  <>
-    <TextView
-      textColor={'black'}
-      textSize={40}
-      text={'Şifremi Unuttum'}
-      textStyle={'500'}
-      textMargin={{top: 0, bottom: 100}}
-    />
-    <Field
-      color={colors.inputTextBackground}
-      name="email_forgot"
-      component={Input}
-      label="E-posta Adresi"
-      secret={false}
-    />
-    <PressButton
-      onPress={handleSubmit(onForgotPass)}
-      textColor="white"
-      text="Şifre Yenileme Kodu Gönder"
-      mode="Button2"
-      borderStatus={false}
-    />
-  </>
-);
+> = ({handleSubmit, onForgotPass}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <TextView
+        textColor={'black'}
+        textSize={40}
+        text={t('ForgotPasswordScreenFormFirstHeaderText')}
+        textStyle={'500'}
+        textMargin={{top: 0, bottom: 100}}
+      />
+      <Field
+        color={colors.inputTextBackground}
+        name="email_forgot"
+        component={Input}
+        label={t('EmailAdress')}
+        secret={false}
+      />
+      <PressButton
+        onPress={handleSubmit(onForgotPass)}
+        textColor="white"
+        text={t('SendPasswordResetCode')}
+        mode="Button2"
+        borderStatus={false}
+      />
+    </>
+  );
+};
 
 const selector = formValueSelector('forgotPasswordScreen');
 const mapStateToProps = (state: any) => {

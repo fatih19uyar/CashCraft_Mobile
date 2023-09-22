@@ -5,13 +5,16 @@ import TopBarPage from '../components/TopBarPage';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
 import {CardData} from '../types/type';
 import CardDetailsScreenForm from '../screenForms/MyCardScreen/CardDetailsScreenForm';
+import {useTranslation} from 'react-i18next';
 
 type Props = {navigation: any};
 
 const BankCardScreen = (props: Props) => {
-  const [smallText, setSmallText] = useState('Banka Kartlarım');
+  const {t} = useTranslation();
+  const [smallText, setSmallText] = useState(t('MyBankCards'));
   const [currentForm, setCurrentForm] = useState('');
   const [updateNickNamePopup, setUpdateNickNamePopup] = useState(false);
+
   const [card, setCard] = useState<CardData>({
     cardName: '',
     cardNumber: '',
@@ -32,7 +35,7 @@ const BankCardScreen = (props: Props) => {
   };
 
   const nextForm = (screenName: string) => {
-    if (screenName === 'NewCard') setSmallText('Banka Kartı Ekleme');
+    if (screenName === 'NewCard') setSmallText(t('AddingBankCard'));
     setCurrentForm(screenName);
   };
   const selectedCard = (values: any) => {
@@ -75,7 +78,7 @@ const BankCardScreen = (props: Props) => {
       <TopBarPage
         onGoBack={goBack}
         onTobBarItem={{
-          bigText: 'Kayıtlı Kartlarım',
+          bigText: t('MyRegisteredCards'),
           smallText: smallText,
         }}
       />

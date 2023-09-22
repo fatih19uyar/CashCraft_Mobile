@@ -7,9 +7,9 @@ import {
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goScreen: (values: any) => void;
 }
@@ -18,32 +18,35 @@ const PasswordInputField = ({input}: any) => {
 };
 const CreatePasswordScreenSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goScreen}) => (
-  <>
-    <TextView
-      textColor={'black'}
-      textSize={45}
-      text={'Şifreyi Tekrar Giriniz'}
-      textStyle={'500'}
-      textMargin={{top: 20, bottom: 50}}
-    />
-    <TextView
-      textColor={'black'}
-      textSize={18}
-      text={'Şifreniz yalnızca rakamlardan oluşmalıdır.'}
-      textStyle={'normal'}
-      textMargin={{top: 0, bottom: 0}}
-    />
-    <Field name="reCreatePassword" component={PasswordInputField} />
-    <PressButton
-      onPress={handleSubmit(goScreen)}
-      textColor="white"
-      text="Devam Et"
-      mode="Button2"
-      borderStatus={false}
-    />
-  </>
-);
+> = ({handleSubmit, goScreen}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <TextView
+        textColor={'black'}
+        textSize={45}
+        text={t('CreatePasswordScreenSecondHeaderText')}
+        textStyle={'500'}
+        textMargin={{top: 20, bottom: 50}}
+      />
+      <TextView
+        textColor={'black'}
+        textSize={18}
+        text={t('CreatePasswordScreenSecondText')}
+        textStyle={'normal'}
+        textMargin={{top: 0, bottom: 0}}
+      />
+      <Field name="reCreatePassword" component={PasswordInputField} />
+      <PressButton
+        onPress={handleSubmit(goScreen)}
+        textColor="white"
+        text={t('Next')}
+        mode="Button2"
+        borderStatus={false}
+      />
+    </>
+  );
+};
 
 const selector = formValueSelector('createPassword');
 const mapStateToProps = (state: any) => {

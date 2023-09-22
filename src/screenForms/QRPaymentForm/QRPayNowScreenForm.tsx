@@ -5,8 +5,8 @@ import themes from '../../utils/themes';
 import {styled} from 'styled-components/native';
 import PasswordInput from '../../components/PasswordInput';
 import PressButton from '../../components/PressButton';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {PaymentDetails} from '../../types/type';
+import {useTranslation} from 'react-i18next';
 
 interface QRPayNowScreenFormProps {
   getPassword: (password: any) => void;
@@ -18,16 +18,17 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
   readPayment,
   goNext,
 }) => {
+  const {t} = useTranslation();
   const paymentDetails = () => {
     return (
       <ListItemContainer>
         <Thumbnail source={require('../../assets/payment_details_right.png')} />
         <TextContainer>
-          <TitleText>Firma Adı</TitleText>
+          <TitleText>{t('CompanyName')}</TitleText>
           <SubtitleText>{readPayment.companyName}</SubtitleText>
         </TextContainer>
         <TextContainer>
-          <TitleText>Miktar</TitleText>
+          <TitleText>{t('Amount')}</TitleText>
           <SubtitleText>{readPayment.price} TL</SubtitleText>
         </TextContainer>
       </ListItemContainer>
@@ -39,7 +40,7 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
         <TextView
           textColor={themes.light.colors.buttonPrimary}
           textSize={30}
-          text={'Cüzdan Şifresi Giriniz'}
+          text={t('EnterWalletPassword')}
           textStyle={'500'}
           textMargin={{top: 25, bottom: 0}}
         />
@@ -53,7 +54,7 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
         <TextView
           textColor={themes.light.colors.text}
           textSize={23}
-          text={'Merhaba Ezgi Beytaş'}
+          text={t('welcome') + ' Ezgi Beytaş'}
           textStyle={'500'}
           textMargin={{top: 0, bottom: 25}}
         />
@@ -62,7 +63,7 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
         <PressButton
           onPress={goNext}
           textColor="white"
-          text="Devam"
+          text={t('Next')}
           mode="Button2"
           borderStatus={false}
         />

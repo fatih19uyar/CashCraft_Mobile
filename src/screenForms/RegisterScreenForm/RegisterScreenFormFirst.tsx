@@ -13,6 +13,7 @@ import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MyView from '../../components/MyView';
 import themes from '../../utils/themes';
+import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
   onReportProblem: () => void;
@@ -35,42 +36,45 @@ const isValidEmail = (email_create: string) => {
 
 const RegisterScreenFormFirst: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goNext, onReportProblem}) => (
-  <>
-    <MyView>
-      <TextView
-        textColor={'black'}
-        textSize={40}
-        text={'Hesap Oluşturun'}
-        textStyle={'500'}
-        textMargin={{top: 0, bottom: 100}}
-      />
-      <Field
-        color={colors.inputTextBackground}
-        name="email_create"
-        component={Input}
-        label="E-posta Adresi"
-        secret={false}
-      />
-      <PressButton
-        onPress={handleSubmit(goNext)}
-        textColor={themes.light.colors.text1}
-        text="Devam Et"
-        mode="Button2"
-        borderStatus={false}
-      />
-    </MyView>
-    <SafeAreaView style={{justifyContent: 'space-between'}}>
-      <PressButton
-        onPress={onReportProblem}
-        textColor="black"
-        text="Sorun Bildir"
-        mode="TextButton"
-        borderStatus={false}
-      />
-    </SafeAreaView>
-  </>
-);
+> = ({handleSubmit, goNext, onReportProblem}) => {
+  const {t} = useTranslation();
+  return (
+    <>
+      <MyView>
+        <TextView
+          textColor={'black'}
+          textSize={40}
+          text={t('RegisterScreenFormFirstHeaderText')}
+          textStyle={'500'}
+          textMargin={{top: 0, bottom: 100}}
+        />
+        <Field
+          color={colors.inputTextBackground}
+          name="email_create"
+          component={Input}
+          label={t('EmailAdress')}
+          secret={false}
+        />
+        <PressButton
+          onPress={handleSubmit(goNext)}
+          textColor={themes.light.colors.text1}
+          text={t('Next')}
+          mode="Button2"
+          borderStatus={false}
+        />
+      </MyView>
+      <SafeAreaView style={{justifyContent: 'space-between'}}>
+        <PressButton
+          onPress={onReportProblem}
+          textColor="black"
+          text={t('ReportProblem')}
+          mode="TextButton"
+          borderStatus={false}
+        />
+      </SafeAreaView>
+    </>
+  );
+};
 
 const selector = formValueSelector('RegisterScreen');
 const mapStateToProps = (state: any) => {

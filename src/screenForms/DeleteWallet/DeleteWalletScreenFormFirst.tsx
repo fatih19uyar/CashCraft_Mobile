@@ -3,6 +3,7 @@ import React from 'react';
 import TextView from '../../components/TextView';
 import PressButton from '../../components/PressButton';
 import {styled} from 'styled-components/native';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   goNext: () => void;
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const DeleteWalletScreenFormFirst = (props: Props) => {
+  const {t} = useTranslation();
   return (
     <>
       <Image
@@ -20,18 +22,14 @@ const DeleteWalletScreenFormFirst = (props: Props) => {
         <TextView
           textColor={'black'}
           textSize={18}
-          text={'idvlabs Cüzdan hesabını kapatmak mı istiyorsun?'}
+          text={t('DeleteWalletScreenFormFirstHeaderText')}
           textStyle={'500'}
           textMargin={{top: 10, bottom: 0}}
         />
         <TextView
           textColor={'black'}
           textSize={14}
-          text={
-            'Hesabını kapatırsan idvlabs Cüzdan imkanlarından' +
-            ' ve kampanyalarından yararlanamayacaksın.' +
-            ' Kaydettiğin tüm kart bilgileri silinecek.'
-          }
+          text={t('DeleteWalletScreenFormFirstText')}
           textStyle={'300'}
           textMargin={{top: 10, bottom: 0}}
         />
@@ -40,14 +38,14 @@ const DeleteWalletScreenFormFirst = (props: Props) => {
         <PressButton
           onPress={props.goBack}
           textColor="white"
-          text="Vazgeç"
+          text={t('GiveUp')}
           mode="Button2"
           borderStatus={false}
         />
         <PressButton
           onPress={props.goNext}
           textColor="white"
-          text="Hesabımı Sil"
+          text={t('DeleteAccount')}
           mode="Button4"
           borderStatus={false}
         />
