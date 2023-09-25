@@ -30,6 +30,11 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -37,8 +42,14 @@
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+			<key>ankara.idvlabs.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
