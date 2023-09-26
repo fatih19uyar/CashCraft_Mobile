@@ -1,14 +1,7 @@
-import React from 'react';
 import {ImagesData} from '../assets/ImageManager';
-import {
-  CardData,
-  Option,
-  PaymentDetails,
-  ReservationDetail,
-  TransactionData,
-} from '../types/type';
+import {CardData, Option, TransactionData} from '../types/type';
 
-export const [items] = React.useState([
+export const items = [
   {
     key: 1,
     name: 'Alışveriş',
@@ -33,7 +26,7 @@ export const [items] = React.useState([
     amount: 333,
     date: '2023-07-28',
   },
-]);
+];
 export const campaigns = [
   {
     campName: 'Burger',

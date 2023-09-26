@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
 import {items} from '../values/values';
