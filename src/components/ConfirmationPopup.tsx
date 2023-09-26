@@ -9,9 +9,9 @@ import {HelperText} from 'react-native-paper';
 
 type ConfirmationPopupProps = {
   isVisible: boolean;
-  onCancel: () => void;
+  onCancel?: () => void;
   onConfirm: (confirmationCode: string) => void;
-  onResent: () => void;
+  onResent?: () => void;
   mode: PopupMode;
 };
 
@@ -52,7 +52,9 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
     setConfirmationCode('');
     setInputError(false);
     setInputErrorMessage('');
-    onCancel();
+    if (typeof onCancel === 'function') {
+      onCancel();
+    }
   };
 
   const renderTextView = () => {

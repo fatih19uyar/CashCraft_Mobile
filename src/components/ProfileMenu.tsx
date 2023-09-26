@@ -4,6 +4,7 @@ import {Modal, TouchableWithoutFeedback} from 'react-native';
 import PressButton from './PressButton';
 import TextView from './TextView';
 import themes from '../utils/themes';
+import {useTranslation} from 'react-i18next';
 
 const ModalContainer = styled.View`
   flex: 1;
@@ -32,7 +33,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
   onPressButton,
 }) => {
   const [isLogOut, setLogOut] = useState(false);
-
+  const {t} = useTranslation();
   if (!onVisible) {
     return null;
   }
@@ -65,28 +66,28 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                 <TextView
                   textColor={'black'}
                   textSize={20}
-                  text={'Çıkış Yap'}
+                  text={t('LogOut')}
                   textStyle={'bold'}
                   textMargin={{top: 0, bottom: 10}}
                 />
                 <TextView
                   textColor={themes.light.colors.textColor2}
                   textSize={15}
-                  text={'Çıkış yapmak istediğine emin misin?'}
+                  text={t('LogOutText')}
                   textStyle={'500'}
                   textMargin={{top: 0, bottom: 10}}
                 />
                 <PressButton
                   onPress={handleCancelLogout}
                   textColor="white"
-                  text="İptal Et"
+                  text={t('Cancel')}
                   mode="Button2"
                   borderStatus={false}
                 />
                 <PressButton
                   onPress={() => handlePressButton('logout')}
                   textColor="white"
-                  text="Çıkış Yap"
+                  text={t('LogOut')}
                   mode="Button4"
                   borderStatus={false}
                 />
@@ -96,49 +97,49 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                 <PressButton
                   onPress={() => handlePressButton('ProfileScreen')}
                   textColor="black"
-                  text="Profilim"
+                  text={t('MyProfile')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('InvestScreen')}
                   textColor="black"
-                  text="Para Yatır"
+                  text={t('Deposit')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('TransactionHistoryScreen')}
                   textColor="black"
-                  text="İşlem Geçmişi"
+                  text={t('TransactionHistory')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('ReservationScreen')}
                   textColor="black"
-                  text="Rezervasyonlarım"
+                  text={t('MyReservations')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={() => handlePressButton('CampaignsScreen')}
                   textColor="black"
-                  text="Kampanyalar"
+                  text={t('Campaigns')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={handleLogout} // Çıkış Yap butonuna basılınca çıkış yapma moduna geç
                   textColor="black"
-                  text="Çıkış Yap"
+                  text={t('LogOut')}
                   mode="Button3"
                   borderStatus={true}
                 />
                 <PressButton
                   onPress={onCloseModal}
                   textColor="black"
-                  text="Kapat"
+                  text={t('Close')}
                   mode="Button2"
                   borderStatus={true}
                 />

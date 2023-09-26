@@ -59,19 +59,17 @@ const PasswordInput = ({
   const showError = meta && meta.touched && meta.error;
 
   useEffect(() => {
-    if (shouldReset) {
-      setPasswords(Array(length).fill(''));
-    }
+    setPasswords(Array(length).fill(''));
   }, [shouldReset]);
 
   return (
     <>
       <Container>{renderPasswordBoxes()}</Container>
-      {showError && (
+      {showError ? (
         <HelperText style={{color: 'red'}} type="error">
           {meta.error}
         </HelperText>
-      )}
+      ) : null}
     </>
   );
 };

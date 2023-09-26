@@ -1,86 +1,95 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {View, Text} from 'react-native';
-import Toast, {BaseToast, ErrorToast} from 'react-native-toast-message';
+import Toast, {
+  ToastConfig,
+  ToastConfigParams,
+} from 'react-native-toast-message';
 import themes from '../utils/themes';
+import styled from 'styled-components/native';
 
-export const toastConfig = {
-  success: ({text1, text2, props}: any) => (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        padding: 20,
-        height: 60,
-        width: '90%',
-        backgroundColor: themes.light.colors.toastColor.border.backgroundColor,
-        borderLeftWidth: 20,
-        borderRightWidth: 10,
-        borderTopLeftRadius: 15,
-        borderBottomLeftRadius: 15,
-        borderTopRightRadius: 5,
-        borderBottomEndRadius: 5,
-        borderColor: themes.light.colors.toastColor.border.success,
-      }}>
-      <Text style={{fontWeight: 'bold', fontSize: 15}}>{text1}</Text>
-      <Text style={{fontWeight: '400', fontSize: 12}}>{text2}</Text>
-    </View>
+export type ToastTypes = 'success' | 'info' | 'fault';
+
+const StyledToastContainer = styled(View)<{id: ToastTypes}>`
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  height: 60px;
+  width: 90%;
+  background-color: ${themes.light.colors.toastColor.border.backgroundColor};
+  border-left-width: 20px;
+  border-right-width: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-color: ${props => {
+    switch (props.id) {
+      case 'success':
+        return themes.light.colors.toastColor.border.success;
+      case 'info':
+        return themes.light.colors.toastColor.border.info;
+      case 'fault':
+        return themes.light.colors.toastColor.border.error;
+      default:
+        return 'transparent';
+    }
+  }};
+`;
+
+const StyledTextBold = styled(Text)`
+  font-weight: bold;
+  font-size: 15px;
+`;
+
+const StyledTextRegular = styled(Text)`
+  font-weight: 400;
+  font-size: 12px;
+`;
+
+export const toastConfig: {
+  [key in ToastTypes]: (config: ToastConfigParams<ToastTypes>) => ReactNode;
+} = {
+  success: ({text1, text2, ...params}: ToastConfigParams<ToastTypes>) => {
+    return (
+      <StyledToastContainer id="success">
+        <StyledTextBold>{text1}</StyledTextBold>
+        <StyledTextRegular>{text2}</StyledTextRegular>
+      </StyledToastContainer>
+    );
+  },
+  fault: ({text1, text2, ...params}: ToastConfigParams<ToastTypes>) => (
+    <StyledToastContainer id="fault">
+      <StyledTextBold>{text1}</StyledTextBold>
+      <StyledTextRegular>{text2}</StyledTextRegular>
+    </StyledToastContainer>
   ),
-  fault: ({text1, text2, props}: any) => (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        padding: 20,
-        height: 60,
-        width: '90%',
-        backgroundColor: themes.light.colors.toastColor.border.backgroundColor,
-        borderLeftWidth: 20,
-        borderRightWidth: 10,
-        borderTopLeftRadius: 15,
-        borderBottomLeftRadius: 15,
-        borderTopRightRadius: 5,
-        borderBottomEndRadius: 5,
-        borderColor: themes.light.colors.toastColor.border.error,
-      }}>
-      <Text style={{fontWeight: 'bold', fontSize: 15}}>{text1}</Text>
-      <Text style={{fontWeight: '400', fontSize: 12}}>{text2}</Text>
-    </View>
-  ),
-  info: ({text1, text2, props}: any) => (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        padding: 20,
-        height: 60,
-        width: '90%',
-        backgroundColor: themes.light.colors.toastColor.border.backgroundColor,
-        borderLeftWidth: 20,
-        borderRightWidth: 10,
-        borderTopLeftRadius: 15,
-        borderBottomLeftRadius: 15,
-        borderTopRightRadius: 5,
-        borderBottomEndRadius: 5,
-        borderColor: themes.light.colors.toastColor.border.info,
-      }}>
-      <Text style={{fontWeight: 'bold', fontSize: 15}}>{text1}</Text>
-      <Text style={{fontWeight: '400', fontSize: 12}}>{text2}</Text>
-    </View>
+  info: ({text1, text2, ...params}: ToastConfigParams<ToastTypes>) => (
+    <StyledToastContainer id="info">
+      <StyledTextBold>{text1}</StyledTextBold>
+      <StyledTextRegular>{text2}</StyledTextRegular>
+    </StyledToastContainer>
   ),
 };
-
-export const showToast = (config: any) => {
+type ToastData = {
+  type: string;
+  text1: string;
+  text2?: string;
+  onPress?: () => void;
+  onShow?: () => void;
+  onHide?: () => void;
+};
+export const showToast = (config: ToastData) => {
   const {type, text1, text2, onPress, onShow, onHide} = config;
-
   Toast.show({
-    type: type,
+    type: type as ToastTypes,
     text1: text1,
-    text2: text2,
+    text2: text2 ? text2 : '',
     visibilityTime: 3000,
     autoHide: true,
     topOffset: 30,
     position: 'bottom',
     bottomOffset: 30,
+    props: {},
     onShow: () => {
       onShow && onShow();
     },

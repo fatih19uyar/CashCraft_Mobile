@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, Text, StyleSheet, ActivityIndicator, Image} from 'react-native';
 
 interface LoadingScreenProps {
@@ -7,7 +8,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({visible}) => {
   if (!visible) return null;
-
+  const {t} = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.overlay}>

@@ -9,7 +9,7 @@ interface CardListProps {
   onItemPress: (data: CardData) => void;
 }
 
-const ListItemContainer = styled.View`
+const ListItemContainer = styled.View<{type:string}>`
   flex-direction: row;
   align-items: center;
   border: 1px solid ${themes.light.colors.buttonBorderColor};

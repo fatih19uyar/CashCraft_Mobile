@@ -4,12 +4,14 @@ import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
 import {items} from '../values/values';
 import {styled} from 'styled-components/native';
+import {useTranslation} from 'react-i18next';
 
 interface TransactionListProps {
   goForm: (screenName: string) => void;
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
+  const {t} = useTranslation();
   return (
     <>
       <DataTable>
@@ -17,7 +19,7 @@ const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
           <DataTable.Title
             textStyle={styles.headerTitle}
             onPress={() => goForm('TransactionHistoryScreen')}>
-            Son İşlemler
+            {t('LastTransaction')}
           </DataTable.Title>
         </DataTable.Header>
 

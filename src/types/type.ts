@@ -1,4 +1,4 @@
-import { ImageRequireSource } from 'react-native';
+import {ImageRequireSource} from 'react-native';
 import {WrappedFieldProps} from 'redux-form';
 export interface User {
   id: string;
@@ -80,7 +80,7 @@ export interface Campaign {
 }
 export interface TobBarItem {
   bigText: string;
-  smallText: string;
+  smallText?: string;
 }
 export type Option = {
   label: string;

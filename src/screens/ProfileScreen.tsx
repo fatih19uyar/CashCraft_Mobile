@@ -3,24 +3,23 @@ import TopBarPage from '../components/TopBarPage';
 import Background from '../components/Background';
 import BaseProfileScreenForm from '../screenForms/Profile/BaseProfileScreenForm';
 import EditUserInfoScreenForm from '../screenForms/Profile/EditUserInfoScreenForm';
-import ConfirmationPopup from '../components/ConfirmationPopup'; // ConfirmationPopup bileşenini dahil edin
+import ConfirmationPopup from '../components/ConfirmationPopup';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {reset} from 'redux-form';
 import {PopupMode, UserInfo} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
-import {Snackbar} from 'react-native-paper';
 import UserService from '../services/UserService';
 import LoadingScreen from '../components/LoadingScreen';
 import {useTranslation} from 'react-i18next';
+import i18n from '../i18n/i18n';
+import {ToastTypes, showToast} from '../components/ToastMessage';
 
 type Props = {navigation: any};
 
 const ProfileScreen = (props: Props) => {
   const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState('');
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [user, setUser] = useState<UserInfo>({
     name: '',
     phoneNumber: '',
@@ -70,11 +69,18 @@ const ProfileScreen = (props: Props) => {
         dispatch(reset('ChangePasswordScreen'));
         setConfirmationPopupVisible(false);
         setCurrentForm('');
-      }, 2000);
+      }, 3000);
     } else {
-      setSnackbarMessage(t('PasswordsDontMatch'));
-      setSnackbarVisible(true);
+      const toastConfig = {
+        type: 'fault' as ToastTypes,
+        text1: t('PasswordsDontMatch'),
+      };
+      showToast(toastConfig);
     }
+  };
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'tr' : 'en'; // Dil geçişi yap
+    i18n.changeLanguage(newLanguage); // Dil değiştir
   };
 
   const handleConfirmationCode = (confirmationCode: string) => {
@@ -100,7 +106,13 @@ const ProfileScreen = (props: Props) => {
       case 'ChangePassword':
         return <ChangePasswordScreenForm onPress={changePassword} />;
       default:
-        return <BaseProfileScreenForm onPress={onPress} user={user} />;
+        return (
+          <BaseProfileScreenForm
+            toggleLanguage={toggleLanguage}
+            onPress={onPress}
+            user={user}
+          />
+        );
     }
   };
 
@@ -111,7 +123,6 @@ const ProfileScreen = (props: Props) => {
           onGoBack={goBack}
           onTobBarItem={{
             bigText: t('MyProfile'),
-            smallText: '',
           }}
         />
         {renderForm()}
@@ -123,12 +134,6 @@ const ProfileScreen = (props: Props) => {
         onResent={() => console.log('Gönderdik')}
         mode={popupMode}
       />
-      <Snackbar
-        visible={snackbarVisible}
-        onDismiss={() => setSnackbarVisible(false)}
-        duration={3000}>
-        {snackbarMessage}
-      </Snackbar>
       <LoadingScreen visible={loading} />
     </>
   );

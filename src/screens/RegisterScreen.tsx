@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import BackButton from '../components/BackButton';
 import RegisterScreenFormFirst from '../screenForms/RegisterScreenForm/RegisterScreenFormFirst';
-import {Snackbar} from 'react-native-paper';
 import RegisterScreenFormSecond from '../screenForms/RegisterScreenForm/RegisterScreenFormSecond';
 import RegisterScreenFormThird from '../screenForms/RegisterScreenForm/RegisterScreenFormThird';
 import {AppDispatch} from '../redux/stores';
@@ -13,14 +12,15 @@ import Background from '../components/Background';
 import {NewUser} from '../types/type';
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
+import {ToastTypes, showToast} from '../components/ToastMessage';
+import {useTranslation} from 'react-i18next';
 
 type RegisterScreenProps = {navigation: any};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
   props: RegisterScreenProps,
 ) => {
+  const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState(1);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
@@ -66,8 +66,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
     } else if (createPassword && !reCreatePassword) {
       setCurrentForm(currentForm + 1);
     } else {
-      setSnackbarMessage('Şifreler Uyuşmuyor');
-      setSnackbarVisible(true);
+      const toastConfig = {
+        type: 'fault' as ToastTypes,
+        text1: t('PasswordsDontMatch'),
+      };
+      showToast(toastConfig);
     }
   };
   const onGoEmailVerification = async (values: any) => {
@@ -80,8 +83,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         },
       );
     } catch (error) {
-      setSnackbarMessage('Bu Email Kullanılıyor.');
-      setSnackbarVisible(true);
+      const toastConfig = {
+        type: 'fault' as ToastTypes,
+        text1: t('EmailAlreadyExists'),
+      };
+      showToast(toastConfig);
     }
   };
   const onCheckEmailVerification = async (values: any) => {
@@ -96,11 +102,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
       .catch(error => {
         const {status} = error.response || {};
         const errorMessage =
-          status === 401
-            ? 'Hatalı Doğrulama Kodu'
-            : 'Bir hata oluştu. Lütfen tekrar deneyin.';
-        setSnackbarMessage(errorMessage);
-        setSnackbarVisible(true);
+          status === 401 ? t('BadCode') : t('SomethingWentWrong');
+
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: errorMessage,
+        };
+        showToast(toastConfig);
       });
   };
   const goNext = (values: any) => {
@@ -119,16 +127,23 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
       !values.userAgreement &&
       values.userName !== undefined
     ) {
-      setSnackbarMessage('Lütfen Kullanıcı Sözleşmesini Kabul Edin');
-      setSnackbarVisible(true);
+      const toastConfig = {
+        type: 'info' as ToastTypes,
+        text1: t('AcceptUserAgreement'),
+      };
+      showToast(toastConfig);
       console.log(values);
       return;
     }
     console.log(values);
   };
   const onReportProblem = () => {
-    setSnackbarMessage('Bildirdin tamam');
-    setSnackbarVisible(true);
+    const toastConfig = {
+      type: 'info' as ToastTypes,
+      text1: t('ProblemReported'),
+      text2: t('Thanks'),
+    };
+    showToast(toastConfig);
   };
   const renderForm = () => {
     switch (currentForm) {
@@ -172,12 +187,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
     <>
       <BackButton goBack={goBack} />
       <Background imageSet={2}>{renderForm()}</Background>
-      <Snackbar
-        visible={snackbarVisible}
-        onDismiss={() => setSnackbarVisible(false)}
-        duration={3000}>
-        {snackbarMessage}
-      </Snackbar>
       <ConfirmationPopup
         isVisible={isPopupVisible}
         onCancel={() => {}}

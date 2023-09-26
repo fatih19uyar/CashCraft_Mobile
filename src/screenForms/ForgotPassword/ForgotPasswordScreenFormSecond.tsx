@@ -14,6 +14,7 @@ import MyView from '../../components/MyView';
 import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onGoNewPass: (values: any) => void;
+  onSendReport: () => void;
   email: string;
 }
 const PasswordInputField = ({input}: any) => {
@@ -21,7 +22,7 @@ const PasswordInputField = ({input}: any) => {
 };
 const ForgotPasswordScreenFormSecond: React.FC<
   IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, onGoNewPass, email}) => {
+> = ({handleSubmit, onGoNewPass, onSendReport, email}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -36,7 +37,7 @@ const ForgotPasswordScreenFormSecond: React.FC<
         <TextView
           textColor={'black'}
           textSize={16}
-          text={email + t('ForgotPasswordScreenFormSecondText')}
+          text={email + ' ' + t('ForgotPasswordScreenFormSecondText')}
           textStyle={'normal'}
           textMargin={{top: 0, bottom: 50}}
         />
@@ -51,7 +52,7 @@ const ForgotPasswordScreenFormSecond: React.FC<
       </MyView>
       <SafeAreaView style={{alignItems: 'center'}}>
         <PressButton
-          onPress={() => {}}
+          onPress={onSendReport}
           textColor="black"
           text={t('ReportProblem')}
           mode="TextButton"

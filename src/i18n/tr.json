@@ -8,6 +8,9 @@
   "Email": "E-posta",
   "Password": "Şifre",
   "ReSend": "Tekrar Gönder",
+  "ProblemReported": "Sorun iletildi.",
+  "Thanks": "Teşekkürler",
+  "CodeSentAgain": "Kod tekrar gönderildi",
   "ForgotPassword": "Şifremi Unuttum",
   "WelcomeScreenFormHeaderText": "Cüzdan ile tüm kartların tek bir yerde.",
   "onLogin": "Giriş Yapın",
@@ -18,6 +21,7 @@
   "ReportProblem": "Sorun Bildir",
   "EmailValidateNull": "Lütfen e-posta giriniz.",
   "EmailValidateInvalid": "Geçersiz e-posta formatı",
+  "EmailAlreadyExists": "Bu e-posta zaten var.",
   "Name": "Ad",
   "Surname": "Soyad",
   "PhoneNumber": "Cep Telefonu Numarası",
@@ -27,6 +31,7 @@
   "AddNewBankCard": "Yeni Banka Kartı Ekle",
   "SendPasswordResetCode": "Şifre Yenileme Kodu Gönder",
   "DeleteAccount": "Hesabımı Sil",
+  "Loading": "Yükleniyor...",
 
   "OldPassword": "Eski Şifre",
   "NewPassword": "Yeni Şifre",
@@ -66,6 +71,9 @@
 
   "Campaigns": "Kampanyalar",
 
+  "SomethingWentWrong": "Bir hata oluştu. Lütfen tekrar deneyin.",
+  "AcceptUserAgreement": "Lütfen Kullanıcı Sözleşmesini Kabul Edin",
+
   "PasswordsDontMatch": "Şifreler Uyuşmuyor",
   "BadCode": "Hatalı Kod",
   "PasswordCouldNotSent": "Şifre gönderilemedi",
@@ -83,6 +91,22 @@
   "AddingTransaction": "İşlem Ekle",
   "MyReservations": "Rezervasyonlarım",
   "TransactionHistory": "İşlem Geçmişi",
+
+  "LogOut": "Çıkış Yap",
+  "Cancel": "İptal Et",
+  "Close": "Kapat",
+  "LogOutText": "Çıkış yapmak istediğine emin misin?",
+
+  "LastTransaction": "Son İşlemler",
+
+  "CreditCard": "Kredi Kartı",
+  "BankCard": "Banka Kartı",
+  "WalletCard": "Cüzdan Hesabı",
+  "Back": "Geri",
+  "TransactionType": "İşlem Tipi",
+  "StartDate": "Başlangıç Tarihi",
+  "EndDate": "Bitiş Tarihi",
+  "Search": "Ara",
 
   "LoginScreenFormSecondHeaderText": "Giriş Yapmak İçin Lütfen Cüzdan Şifrenizi Giriniz.",
   "LoginScreenFormThirdHeaderText": "Telefonunuza Gelen Giriş Şifresini Girin",
@@ -103,5 +127,6 @@
   "DeleteWalletScreenFormSecondHeaderText": "6 Haneli Cüzdan Şifresini Giriniz.",
   "DeleteWalletScreenFormThirdHeaderText": "Şifreyi Tekrar Giriniz",
   "DeleteWalletScreenFormFourthHeaderText": "idvlabs Cüzdan hesabını kapattın.",
-  "DeleteWalletScreenFormFourthText": "idvlabs Cüzdan hesabın kapatılmıştır.  Kaydettiğin tüm kart bilgileri sistemden silinmiştir."
+  "DeleteWalletScreenFormFourthText": "idvlabs Cüzdan hesabın kapatılmıştır.  Kaydettiğin tüm kart bilgileri sistemden silinmiştir.",
+  "InvestScreenFormFirstText": " 'Cüzdan hesabına kayıtlı banka/kredi kartınla veya yeni bir kart ile para yatırabilirsin. Para yatırma işlemlerinde tutarın %1’i kadar işlem ücreti alınmaktadır."
 }

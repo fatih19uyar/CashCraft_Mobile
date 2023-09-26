@@ -12,7 +12,7 @@ interface CheckboxWithLabelProps {
     onChange: (value: boolean) => void;
   };
   label: string;
-  error: boolean;
+  error?: boolean;
 }
 
 const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({

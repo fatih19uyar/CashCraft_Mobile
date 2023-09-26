@@ -4,6 +4,7 @@ import {Modal, TouchableWithoutFeedback} from 'react-native';
 import PressButton from './PressButton';
 import DatePicker from 'react-native-date-picker';
 import CheckboxWithLabel from './CheckBox';
+import {useTranslation} from 'react-i18next';
 
 const ModalContainer = styled.View`
   flex: 1;
@@ -32,8 +33,8 @@ interface ProfileMenuProps {
 const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
   onVisible,
   onCloseModal,
-  onPressButton,
 }) => {
+  const {t} = useTranslation();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -49,7 +50,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
             {history ? (
               <>
                 <CheckboxWithLabel
-                  label={'Kredi Kartı'}
+                  label={t('CreditCard')}
                   input={{
                     value: false,
                     onChange: function (value: boolean): void {
@@ -58,7 +59,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                   }}
                 />
                 <CheckboxWithLabel
-                  label={'Banka Kartı'}
+                  label={t('BankCard')}
                   input={{
                     value: false,
                     onChange: function (value: boolean): void {
@@ -67,7 +68,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                   }}
                 />
                 <CheckboxWithLabel
-                  label={'Cüzdan Hesabı'}
+                  label={t('WalletCard')}
                   input={{
                     value: false,
                     onChange: function (value: boolean): void {
@@ -80,7 +81,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                     setHistory(false);
                   }}
                   textColor="white"
-                  text="Geri"
+                  text={t('Back')}
                   mode="Button2"
                   borderStatus={false}
                 />
@@ -92,7 +93,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                     setHistory(true);
                   }}
                   textColor="white"
-                  text="İşlem Tipi"
+                  text={t('TransactionType')}
                   mode="Button2"
                   borderStatus={false}
                 />
@@ -101,7 +102,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                     setOpenStart(true);
                   }}
                   textColor="white"
-                  text="Başlangıç Tarihi"
+                  text={t('StartDate')}
                   mode="Button2"
                   borderStatus={false}
                 />
@@ -110,7 +111,7 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                     setOpenEnd(true);
                   }}
                   textColor="white"
-                  text="Bitiş Tarihi"
+                  text={t('EndDate')}
                   mode="Button2"
                   borderStatus={false}
                 />
@@ -143,14 +144,14 @@ const TransactionFilterMenu: React.FC<ProfileMenuProps> = ({
                 <PressButton
                   onPress={onCloseModal}
                   textColor="white"
-                  text="Ara"
+                  text={t('Search')}
                   mode="Button2"
                   borderStatus={false}
                 />
                 <PressButton
                   onPress={onCloseModal}
                   textColor="white"
-                  text="Kapat"
+                  text={t('Close')}
                   mode="Button4"
                   borderStatus={false}
                 />

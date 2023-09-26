@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import BackButton from '../components/BackButton';
-import {Snackbar} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/stores';
 import {loginSuccess} from '../redux/slice/authReducer';
@@ -14,14 +13,13 @@ import LoadingScreen from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
 import {ToastTypes, showToast, toastConfig} from '../components/ToastMessage';
-import {Toast} from 'react-native-toast-message/lib/src/Toast';
+import {useTranslation} from 'react-i18next';
 
 type LoginScreenProps = {navigation: any};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
+  const {t} = useTranslation();
   const dispatch: AppDispatch = useDispatch();
   const [currentForm, setCurrentForm] = useState(1);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [passwordClear, setPasswordClear] = useState(false);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState('');
@@ -67,7 +65,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
         showToast(toastConfig);
         setPasswordClear(false);
         dispatch(change('loginScreen', 'password', ''));
-        console.log(values);
+        console.log(error.message);
       });
   };
   const goToNextForm = (values: any) => {
@@ -79,17 +77,20 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   };
   const onReportProblem = () => {
     const toastConfig = {
-      type: 'success',
-      text1: 'Sorun iletildi.',
-      text2: 'Teşekkürler.',
+      type: 'success' as ToastTypes,
+      text1: t('ProblemReported'),
+      text2: t('Thanks'),
     };
     showToast(toastConfig);
   };
   const onResendCode = async (values: any) => {
     await AuthService.signIn(values)
       .then(() => {
-        setSnackbarMessage('Tekrar Gönderildi.');
-        setSnackbarVisible(true);
+        const toastConfig = {
+          type: 'info' as ToastTypes,
+          text1: t('CodeSentAgain'),
+        };
+        showToast(toastConfig);
       })
       .catch(error => {
         console.log('ResentPhone Code', error);
@@ -131,12 +132,6 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     <>
       <BackButton goBack={goBack} />
       <Background imageSet={2}>{renderForm()}</Background>
-      <Snackbar
-        visible={snackbarVisible}
-        onDismiss={() => setSnackbarVisible(false)}
-        duration={3000}>
-        {snackbarMessage}
-      </Snackbar>
       <LoadingScreen visible={loading} />
     </>
   );

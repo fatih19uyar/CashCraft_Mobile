@@ -10,10 +10,11 @@ import {useTranslation} from 'react-i18next';
 type Props = {navigation: any};
 
 const InvestScreen = (props: Props) => {
-  const [currentForm, setCurrentForm] = useState(1);
-  const [topBarSmallText, setTopBarSmallText] = useState('Para Yatır');
-  const [card, setCard] = useState<CardData>();
   const {t} = useTranslation();
+  const [currentForm, setCurrentForm] = useState(1);
+  const [topBarSmallText, setTopBarSmallText] = useState(t('Deposit'));
+  const [card, setCard] = useState<CardData>();
+
   const renderForm = () => {
     switch (currentForm) {
       case 1:

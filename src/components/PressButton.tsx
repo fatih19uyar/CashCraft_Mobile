@@ -1,10 +1,11 @@
 import React from 'react';
-import {TouchableOpacity, Text, Dimensions} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-paper';
 import {PressButtonProps} from '../types/type';
 import colors from '../utils/colors';
-import styled from 'styled-components/native';
 import themes from '../utils/themes';
+import styled from 'styled-components/native';
+import {Text} from 'react-native-paper';
 
 const PressButton: React.FC<PressButtonProps> = props => {
   const {mode, textColor, onPress, text, borderStatus} = props;
@@ -88,7 +89,6 @@ const ContainedButton = styled(Button)`
 const TextButton = styled(Text)<{color: string}>`
   align-self: flex-end;
   margin-vertical: 20px;
-  color: ${(props: any) => props.color};
 `;
 
 export default PressButton;

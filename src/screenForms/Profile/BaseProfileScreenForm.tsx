@@ -5,8 +5,13 @@ import TextView from '../../components/TextView';
 import ImageButton from '../../components/ImageButton';
 import themes from '../../utils/themes';
 import {useTranslation} from 'react-i18next';
+import PressButton from '../../components/PressButton';
 
-type Props = {onPress: (values: any) => void; user: any};
+type Props = {
+  onPress: (values: any) => void;
+  toggleLanguage: () => void;
+  user: any;
+};
 
 const ProfileScreenForm = (props: Props) => {
   const {t} = useTranslation();
@@ -82,6 +87,15 @@ const ProfileScreenForm = (props: Props) => {
           textColor={themes.light.colors.text1}
         />
       </ButtonContainer>
+      <View style={{alignItems: 'center'}}>
+        <PressButton
+          onPress={props.toggleLanguage}
+          textColor="black"
+          text={t('changeLanguage')}
+          mode="TextButton"
+          borderStatus={true}
+        />
+      </View>
     </>
   );
 };

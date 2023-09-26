@@ -10,8 +10,8 @@ import {useDispatch} from 'react-redux';
 import Background from '../components/Background';
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
-import {Snackbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import {ToastTypes, showToast} from '../components/ToastMessage';
 
 type Props = {navigation: any; route: any};
 
@@ -19,8 +19,6 @@ const ForgotPasswordScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);
   const [email, setEmail] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
   const {t} = useTranslation();
@@ -35,8 +33,11 @@ const ForgotPasswordScreen = (props: Props) => {
       })
       .catch(error => {
         console.log('error', error);
-        setSnackbarMessage(t('PasswordCouldNotSent'));
-        setSnackbarVisible(true);
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: t('PasswordCouldNotSent'),
+        };
+        showToast(toastConfig);
       });
   };
   const onCheckCode = async (values: any) => {
@@ -46,26 +47,55 @@ const ForgotPasswordScreen = (props: Props) => {
         setCurrentForm(currentForm + 1);
       })
       .catch(error => {
-        setSnackbarMessage(t('BadCode'));
-        setSnackbarVisible(true);
+        console.log(error);
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: t('BadCode'),
+        };
+        showToast(toastConfig);
       });
   };
   const goNext = () => {
     setCurrentForm(currentForm + 1);
   };
+  const onSendReport = () => {
+    const toastConfig = {
+      type: 'info' as ToastTypes,
+      text1: 'Sorun iletildi.',
+      text2: 'Teşekkürler.',
+    };
+    showToast(toastConfig);
+  };
+
   const onGoNewPass = async (values: any) => {
     const {createPassword, reCreatePassword} = values;
-    createPassword === reCreatePassword
-      ? await AuthService.resetPassword(email, verificationCode, createPassword)
-          .then(() => {
-            setPopupVisible(true);
-            dispatch(reset('forgotPasswordScreen'));
-            setTimeout(() => {
-              props.navigation.navigate('WelcomeScreen');
-            }, 3000);
-          })
-          .catch(error => console.log('forgot pass ', error))
-      : (setSnackbarMessage(t('PasswordsDontMatch')), setSnackbarVisible(true));
+    if (createPassword === reCreatePassword) {
+      try {
+        await AuthService.resetPassword(
+          email,
+          verificationCode,
+          createPassword,
+        );
+        setPopupVisible(true);
+        dispatch(reset('forgotPasswordScreen'));
+        setTimeout(() => {
+          props.navigation.navigate('WelcomeScreen');
+        }, 3000);
+      } catch (error) {
+        console.error('Reset Password Error:', error);
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: t('BadCode'),
+        };
+        showToast(toastConfig);
+      }
+    } else {
+      const toastConfig = {
+        type: 'fault' as ToastTypes,
+        text1: t('PasswordsDontMatch'),
+      };
+      showToast(toastConfig);
+    }
   };
   const renderForm = () => {
     switch (currentForm) {
@@ -76,6 +106,7 @@ const ForgotPasswordScreen = (props: Props) => {
           <ForgotPasswordScreenFormSecond
             email={email}
             onGoNewPass={onCheckCode}
+            onSendReport={onSendReport}
           />
         );
       case 3:
@@ -92,20 +123,12 @@ const ForgotPasswordScreen = (props: Props) => {
       <Background imageSet={2}>{renderForm()}</Background>
       <ConfirmationPopup
         isVisible={isPopupVisible}
-        onCancel={() => {}}
         onConfirm={() => {
           setPopupVisible(false);
           props.navigation.navigate('WelcomeScreen');
         }}
-        onResent={() => console.log('Gönderdik')}
         mode={'changedPassword'}
       />
-      <Snackbar
-        visible={snackbarVisible}
-        onDismiss={() => setSnackbarVisible(false)}
-        duration={3000}>
-        {snackbarMessage}
-      </Snackbar>
     </>
   );
 };

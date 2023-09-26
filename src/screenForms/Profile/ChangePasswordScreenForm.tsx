@@ -36,7 +36,7 @@ const ChangePasswordScreenForm: React.FC<
           color={colors.inputTextBackground}
           name="oldPass"
           component={Input}
-          text={t('OldPassword')}
+          label={t('OldPassword')}
           secret={true}
           maxLength={6}
           keyboardType="numeric"
@@ -46,17 +46,17 @@ const ChangePasswordScreenForm: React.FC<
           color={colors.inputTextBackground}
           name="newPass"
           component={Input}
-          maxLength={6}
-          text={t('NewPassword')}
+          label={t('NewPassword')}
           secret={true}
           keyboardType="numeric"
+          maxLength={6}
         />
         <View style={{height: '5%'}} />
         <Field
           color={colors.inputTextBackground}
           name="reNewPass"
           component={Input}
-          text={t('ReNewPassword')}
+          label={t('ReNewPassword')}
           secret={true}
           maxLength={6}
           keyboardType="numeric"
