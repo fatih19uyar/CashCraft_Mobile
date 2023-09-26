@@ -53,20 +53,20 @@ export const toastConfig: {
     return (
       <StyledToastContainer id="success">
         <StyledTextBold>{text1}</StyledTextBold>
-        <StyledTextRegular>{text2}</StyledTextRegular>
+        {text2 ? <StyledTextRegular>{text2}</StyledTextRegular> : null}
       </StyledToastContainer>
     );
   },
   fault: ({text1, text2, ...params}: ToastConfigParams<ToastTypes>) => (
     <StyledToastContainer id="fault">
       <StyledTextBold>{text1}</StyledTextBold>
-      <StyledTextRegular>{text2}</StyledTextRegular>
+      {text2 ? <StyledTextRegular>{text2}</StyledTextRegular> : null}
     </StyledToastContainer>
   ),
   info: ({text1, text2, ...params}: ToastConfigParams<ToastTypes>) => (
     <StyledToastContainer id="info">
       <StyledTextBold>{text1}</StyledTextBold>
-      <StyledTextRegular>{text2}</StyledTextRegular>
+      {text2 ? <StyledTextRegular>{text2}</StyledTextRegular> : null}
     </StyledToastContainer>
   ),
 };

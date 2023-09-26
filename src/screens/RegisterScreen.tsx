@@ -14,6 +14,7 @@ import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
+import LoadingScreen from '../components/LoadingScreen';
 
 type RegisterScreenProps = {navigation: any};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
@@ -23,6 +24,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   const [currentForm, setCurrentForm] = useState(1);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
     email: '',
     emailVerificationCode: 0,
@@ -52,17 +54,21 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         email: newUser.email,
         password: createPassword,
       })
-        .then(response => {
-          console.log('Register Success');
+        .then(() => {
+          setTimeout(() => {
+            dispatch(reset('createPassword'));
+            dispatch(reset('RegisterScreen'));
+            props.navigation.navigate('WelcomeScreen');
+          }, 2000);
         })
         .catch(error => {
-          console.error(error.message);
+          const toastConfig = {
+            type: 'fault' as ToastTypes,
+            text1: t('AccountCreationError'),
+            text2: error.message,
+          };
+          showToast(toastConfig);
         });
-      setTimeout(() => {
-        dispatch(reset('createPassword'));
-        dispatch(reset('RegisterScreen'));
-        props.navigation.navigate('WelcomeScreen');
-      }, 2000);
     } else if (createPassword && !reCreatePassword) {
       setCurrentForm(currentForm + 1);
     } else {
@@ -92,11 +98,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   };
   const onCheckEmailVerification = async (values: any) => {
     console.log(values);
+    setLoading(true);
     await AuthService.verifyEmailActivationCode(
       values.email_create,
       values.verificationCode,
     )
       .then(() => {
+        setLoading(false);
         setCurrentForm(currentForm + 1);
       })
       .catch(error => {
@@ -109,19 +117,33 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
           text1: errorMessage,
         };
         showToast(toastConfig);
+        setLoading(false);
       });
   };
-  const goNext = (values: any) => {
+  const goNext = async (values: any) => {
     if (values.campAgreement && values.userAgreement) {
-      setNewUser(prevUser => ({
-        ...prevUser,
-        email: values.email_create,
-        emailVerificationCode: values.verificationCode,
-        userName: values.userName,
-        userSurName: values.userSurname,
-        userPhoneNumber: values.phoneNumber,
-      }));
-      setCurrentForm(currentForm + 1);
+      setLoading(true);
+      await AuthService.checkPhoneNumberExists(values.phoneNumber)
+        .then(() => {
+          setNewUser(prevUser => ({
+            ...prevUser,
+            email: values.email_create,
+            emailVerificationCode: values.verificationCode,
+            userName: values.userName,
+            userSurName: values.userSurname,
+            userPhoneNumber: values.phoneNumber,
+          }));
+          setCurrentForm(currentForm + 1);
+          setLoading(false);
+        })
+        .catch(() => {
+          const toastConfig = {
+            type: 'fault' as ToastTypes,
+            text1: t('PhoneAlreadyExists'),
+          };
+          showToast(toastConfig);
+          setLoading(false);
+        });
     } else if (
       values.userAgreement !== undefined &&
       !values.userAgreement &&
@@ -194,6 +216,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         onResent={() => console.log('Gönderdik')}
         mode={'createdAccount'}
       />
+      <LoadingScreen visible={loading} />
     </>
   );
 };

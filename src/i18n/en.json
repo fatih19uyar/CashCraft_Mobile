@@ -22,6 +22,7 @@
   "EmailValidateNull": "Please enter an email.",
   "EmailValidateInvalid": "Invalid email format",
   "EmailAlreadyExists": "Email already exists.",
+  "PhoneAlreadyExists": "Phone number already exists.",
   "Name": "Name",
   "Surname": "Surname",
   "PhoneNumber": "Phone Number",
@@ -37,6 +38,8 @@
   "NewPassword": "New Password",
   "ReNewPassword": "Re-enter Your New Password",
   "SaveInformation": "Save Information",
+
+  "AccountCreationError.": "Account creation error.",
 
   "UpdatePhoto": "Update Photo",
   "AddTransaction": "Add Transaction",

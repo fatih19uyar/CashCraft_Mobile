@@ -40,6 +40,9 @@ const AuthService = {
   checkEmailExists: (email: string): Promise<AxiosResponse> => {
     return axiosInstance.post('/auth/checkEmailExists', {email});
   },
+  checkPhoneNumberExists: (phoneNumber: string): Promise<AxiosResponse> => {
+    return axiosInstance.post('/auth/checkPhoneNumberExists', {phoneNumber});
+  },
   verifyPhoneActivationCode: (
     verificationCode: string,
     email: string,

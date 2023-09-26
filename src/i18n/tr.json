@@ -22,6 +22,7 @@
   "EmailValidateNull": "Lütfen e-posta giriniz.",
   "EmailValidateInvalid": "Geçersiz e-posta formatı",
   "EmailAlreadyExists": "Bu e-posta zaten var.",
+  "PhoneAlreadyExists": "Bu telefon numarsı zaten var.",
   "Name": "Ad",
   "Surname": "Soyad",
   "PhoneNumber": "Cep Telefonu Numarası",
@@ -37,6 +38,8 @@
   "NewPassword": "Yeni Şifre",
   "ReNewPassword": "Yeni Şifrenizi Tekrar Giriniz",
   "SaveInformation": "Bilgileri Kaydet",
+
+  "AccountCreationError.": "Hesap oluşturma hatası.",
 
   "UpdatePhoto": "Fotoğrafı Güncelle",
   "AddTransaction": "İşlemi Ekle",
