@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type BackButtonProps = {
-  goBack: any;
+  goBack: () => void;
 };
 
 const BackButton: React.FC<BackButtonProps> = ({goBack}) => {

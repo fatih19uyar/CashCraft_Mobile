@@ -81,11 +81,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   };
   const onGoEmailVerification = async (values: any) => {
     try {
+      setLoading(true);
       await AuthService.checkEmailExists(values.email_create);
       await AuthService.sendVerificationCodeByEmail(values.email_create).then(
         () => {
           setNewUser({...newUser, email: values.email_create});
           setCurrentForm(currentForm + 1);
+          setLoading(false);
         },
       );
     } catch (error) {

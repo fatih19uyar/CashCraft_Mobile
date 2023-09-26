@@ -24,7 +24,7 @@ const CheckboxWithLabel: React.FC<CheckboxWithLabelProps> = ({
     <Container>
       <CheckBox
         value={value}
-        onValueChange={(newValue: any) => onChange(newValue)}
+        onValueChange={(newValue: boolean) => onChange(newValue)}
         onCheckColor={colors.buttonPrimary}
         onTintColor={colors.buttonPrimary}
         onFillColor={themes.light.checkBox.background}
