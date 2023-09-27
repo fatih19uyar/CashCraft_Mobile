@@ -31,7 +31,6 @@ const TransactionHistoryScreen = (props: Props) => {
         onGoBack={goBack}
         onTobBarItem={{
           bigText: t('TransactionHistory'),
-          smallText: '',
         }}
       />
       <TransactionHistoryScreenForm

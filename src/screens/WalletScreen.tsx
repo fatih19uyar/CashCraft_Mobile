@@ -20,7 +20,6 @@ const WalletScreen: React.FC<WalletScreenProps> = ({navigation}) => {
         onGoBack={goBack}
         onTobBarItem={{
           bigText: t('MyRegisteredCards'),
-          smallText: '',
         }}
       />
       <WalletScreenFormFirst goScreen={goScreen} />

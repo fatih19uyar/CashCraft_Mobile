@@ -27,7 +27,6 @@ const CampaignsScreen = (props: Props) => {
           onGoBack={goBack}
           onTobBarItem={{
             bigText: t('Campaigns'),
-            smallText: '',
           }}
         />
         <CampainsScreenForm

@@ -39,7 +39,6 @@ const CreditCardScreen: React.FC<Props> = (props: Props) => {
         onGoBack={goBack}
         onTobBarItem={{
           bigText: t('MyCreditCards'),
-          smallText: '',
         }}
       />
       {renderForm()}
