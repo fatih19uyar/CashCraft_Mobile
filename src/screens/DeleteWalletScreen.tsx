@@ -9,7 +9,13 @@ import {reset} from 'redux-form';
 import DeleteWalletScreenFormFourth from '../screenForms/DeleteWallet/DeleteWalletScreenFormFourth';
 import {logOut} from '../redux/slice/authReducer';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const DeleteWalletScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);

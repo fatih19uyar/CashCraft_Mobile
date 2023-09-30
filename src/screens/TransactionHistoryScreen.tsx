@@ -5,7 +5,13 @@ import TopBarPage from '../components/TopBarPage';
 import TransactionFilterMenu from '../components/TransactionFilterMenu';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const TransactionHistoryScreen = (props: Props) => {
   const {t} = useTranslation();

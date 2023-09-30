@@ -9,7 +9,13 @@ import {payment} from '../values/values';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const QRPaymentScreen = (props: Props) => {
   const {t} = useTranslation();

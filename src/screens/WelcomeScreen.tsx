@@ -3,7 +3,13 @@ import WelcomeScreenForm from '../screenForms/WelcomeScreenForm';
 import LoadingScreen from '../components/LoadingScreen';
 import Background from '../components/Background';
 
-type WelcomeScreenProps = {navigation: any};
+type WelcomeScreenProps = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({navigation}) => {
   const [loading, setLoading] = useState(true);

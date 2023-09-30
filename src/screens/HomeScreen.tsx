@@ -5,7 +5,13 @@ import {useDispatch} from 'react-redux';
 import {logOut} from '../redux/slice/authReducer';
 import ProfileMenu from '../components/ProfileMenu';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const HomeScreen = (props: Props) => {
   const dispatch: AppDispatch = useDispatch();

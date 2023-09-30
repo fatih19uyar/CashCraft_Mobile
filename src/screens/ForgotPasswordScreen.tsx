@@ -13,7 +13,14 @@ import AuthService from '../services/AuthService';
 import {useTranslation} from 'react-i18next';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 
-type Props = {navigation: any; route: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+  route: any;
+};
 
 const ForgotPasswordScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);

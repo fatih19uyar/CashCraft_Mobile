@@ -9,7 +9,13 @@ import PressButton from '../components/PressButton';
 import SuccesAddCardForm from '../screenForms/MyCardScreen/SuccesAddCardForm';
 import UnSuccesAddCardForm from '../screenForms/MyCardScreen/UnSuccesAddCardForm';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
   const [currentForm, setCurrentForm] = useState<number>(1);

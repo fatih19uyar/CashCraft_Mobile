@@ -16,7 +16,13 @@ import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
 import LoadingScreen from '../components/LoadingScreen';
 
-type RegisterScreenProps = {navigation: any};
+type RegisterScreenProps = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 const RegisterScreen: React.FC<RegisterScreenProps> = (
   props: RegisterScreenProps,
 ) => {

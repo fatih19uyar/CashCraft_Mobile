@@ -5,7 +5,13 @@ import CreditCardScreenForm from '../screenForms/CreditCardScreen/CreditCardScre
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const CreditCardScreen: React.FC<Props> = (props: Props) => {
   const [currentForm, setCurrentForm] = useState<number>(0);

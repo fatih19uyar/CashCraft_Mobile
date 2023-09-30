@@ -15,7 +15,13 @@ import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const ProfileScreen = (props: Props) => {
   const {t} = useTranslation();

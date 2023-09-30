@@ -15,7 +15,13 @@ import {change} from 'redux-form';
 import {ToastTypes, showToast, toastConfig} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
 
-type LoginScreenProps = {navigation: any};
+type LoginScreenProps = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const {t} = useTranslation();
   const dispatch: AppDispatch = useDispatch();

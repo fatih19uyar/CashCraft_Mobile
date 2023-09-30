@@ -6,7 +6,13 @@ import {campaigns} from '../values/values';
 import {Campaign} from '../types/type';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const CampaignsScreen = (props: Props) => {
   const {t} = useTranslation();

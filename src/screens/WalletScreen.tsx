@@ -4,7 +4,13 @@ import Background from '../components/Background';
 import TopBarPage from '../components/TopBarPage';
 import {useTranslation} from 'react-i18next';
 
-type WalletScreenProps = {navigation: any};
+type WalletScreenProps = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const WalletScreen: React.FC<WalletScreenProps> = ({navigation}) => {
   const {t} = useTranslation();

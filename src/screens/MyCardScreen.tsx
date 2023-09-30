@@ -7,7 +7,13 @@ import {CardData} from '../types/type';
 import CardDetailsScreenForm from '../screenForms/MyCardScreen/CardDetailsScreenForm';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const BankCardScreen = (props: Props) => {
   const {t} = useTranslation();

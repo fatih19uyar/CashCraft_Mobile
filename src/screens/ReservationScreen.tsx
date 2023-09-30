@@ -9,7 +9,13 @@ import NewReservationForm from '../screenForms/ReservationScreen/NewReservationF
 import AddedNewReservationForm from '../screenForms/ReservationScreen/AddedNewReservationForm';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const ReservationScreen: React.FC<Props> = (props: Props) => {
   const {t} = useTranslation();

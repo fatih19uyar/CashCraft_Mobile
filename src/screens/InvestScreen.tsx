@@ -7,7 +7,13 @@ import InvestScreenFormSecond from '../screenForms/InvestScreenForm/InvestScreen
 import InvestScreenFormThird from '../screenForms/InvestScreenForm/InvestScreenFormThird';
 import {useTranslation} from 'react-i18next';
 
-type Props = {navigation: any};
+type Props = {
+  navigation: {
+    goBack: () => void;
+    replace: (name: string) => void;
+    navigate: (name: string) => void;
+  };
+};
 
 const InvestScreen = (props: Props) => {
   const {t} = useTranslation();
