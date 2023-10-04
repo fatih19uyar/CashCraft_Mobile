@@ -74,7 +74,7 @@ export interface AuthState {
 }
 export interface Campaign {
   campName: string;
-  campImg: ImageRequireSource;
+  campImg: string;
   campDetails: string;
   campTitle: string;
 }

@@ -36,7 +36,7 @@ const CampaignList: React.FC<CampaignListProps> = ({
             <CardInnerWrapper>
               <StyledImage
                 style={{width: 40, height: 40, marginTop: 10}}
-                source={campaign.campImg} // require ile dosya yolu kullanma
+                source={{uri: `data:image/jpeg;base64,${campaign.campImg}`}}
               />
               <TextView
                 textColor={'black'}

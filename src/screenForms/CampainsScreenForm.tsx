@@ -9,13 +9,13 @@ import {Campaign} from '../types/type';
 interface CampainsScreenFormProps {
   onPressCampaing: (index: number) => void;
   CampingList: Campaign[];
-  selectedCampaing: Campaign;
+  selectedCampaign: Campaign;
 }
 
 const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
   onPressCampaing,
   CampingList,
-  selectedCampaing,
+  selectedCampaign,
 }) => {
   return (
     <>
@@ -28,19 +28,19 @@ const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
       <MyView>
         <Image
           style={{width: 100, height: 100, marginBottom: 10}}
-          source={selectedCampaing.campImg}
+          source={{uri: `data:image/jpeg;base64,${selectedCampaign.campImg}`}}
         />
         <StyledTextView
           textColor={'black'}
           textSize={23}
-          text={selectedCampaing?.campTitle}
+          text={selectedCampaign?.campTitle}
           textStyle={'400'}
           textMargin={{top: 0, bottom: 0}}
         />
         <StyledTextView
           textColor={'black'}
           textSize={16}
-          text={selectedCampaing.campDetails}
+          text={selectedCampaign.campDetails}
           textStyle={'300'}
           textMargin={{top: 0, bottom: 0}}
         />
