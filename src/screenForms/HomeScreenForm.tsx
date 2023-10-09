@@ -1,11 +1,10 @@
 import {TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Background from '../components/Background';
 import MoneyCard from '../components/MoneyCard';
 import TopBar from '../components/TopBar';
 import TransactionList from '../components/TransactionList';
 import CampaignList from '../components/CampaignList';
-import {campaigns} from '../values/values';
 import {Text} from 'react-native-paper';
 import themes from '../utils/themes';
 import styled from 'styled-components/native';
@@ -45,7 +44,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
             <StyledText>{t('Campaigns')}</StyledText>
           </TouchableOpacity>
         </StyledView>
-        <CampaignList campaigns={campaigns} handleCardPress={campaingPress} />
+        <CampaignList handleCardPress={campaingPress} />
       </Background>
     </>
   );

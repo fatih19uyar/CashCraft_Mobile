@@ -13,6 +13,7 @@
     "styled-components": "^5"
   },
   "dependencies": {
+    "@notifee/react-native": "^7.8.0",
     "@react-native-async-storage/async-storage": "^1.19.1",
     "@react-native-community/checkbox": "^0.5.16",
     "@react-native-community/masked-view": "^0.1.11",

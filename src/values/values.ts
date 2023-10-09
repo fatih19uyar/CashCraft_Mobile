@@ -1,4 +1,3 @@
-import {ImagesData} from '../assets/ImageManager';
 import {CardData, Option, TransactionData} from '../types/type';
 
 export const items = [
@@ -27,40 +26,7 @@ export const items = [
     date: '2023-07-28',
   },
 ];
-export const campaigns = [
-  {
-    campName: 'Burger',
-    campImg: ImagesData.burgerKing,
-    campDetails:
-      'BurgerKing’den yapacağın ilk Cüzdan alışverişinde toplan 110 TL’ye varan nakit kazan.' +
-      'Bu kampanya 2023 Ağustos sonuna kadar geçerli.',
-    campTitle: '%10 anında nakit kazan',
-  },
-  {
-    campName: 'Uber',
-    campImg: ImagesData.uber,
-    campDetails:
-      'Uber’den yapacağın ilk Cüzdan alışverişinde toplan 200 TL’ye varan nakit kazan.' +
-      'Bu kampanya 2023 Ağustos sonuna kadar geçerli.',
-    campTitle: '%15 anında nakit kazan',
-  },
-  {
-    campName: 'Trendyol',
-    campImg: ImagesData.trendyol,
-    campDetails:
-      'Trendyol’dan yapacağın ilk Cüzdan alışverişinde toplan 300 TL’ye varan nakit kazan.' +
-      'Bu kampanya 2023 Ağustos sonuna kadar geçerli.',
-    campTitle: '%20 anında nakit kazan',
-  },
-  {
-    campName: 'Defacto',
-    campImg: ImagesData.defacto,
-    campDetails:
-      'Defacto’den yapacağın ilk Cüzdan alışverişinde toplan 200 TL’ye varan nakit kazan.' +
-      'Bu kampanya 2023 Ağustos sonuna kadar geçerli.',
-    campTitle: '%30 anında nakit kazan',
-  },
-];
+
 export const options: Option[] = [
   {label: 'Hepsi', status: 'unchecked', onPress: () => {}},
   {label: 'Kredi Kartı', status: 'unchecked', onPress: () => {}},

@@ -27,9 +27,12 @@ const CampaignsScreen = (props: Props) => {
       campTitle: '',
     },
   ]);
-  const [selectedCampaingData, setSelectedCampaingData] = useState<Campaign>(
-    campaigns[0],
-  );
+  const [selectedCampaingData, setSelectedCampaingData] = useState<Campaign>({
+    campName: '',
+    campImg: '',
+    campDetails: '',
+    campTitle: '',
+  });
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
@@ -37,13 +40,12 @@ const CampaignsScreen = (props: Props) => {
           await CampaignService.getAllCampaigns();
         const campaigns = response.data;
         setCampaign(campaigns);
+        setSelectedCampaingData(campaigns[0]);
         setLoading(false);
       } catch (error) {
         console.error('Kampanyaları alma hatası:', error);
-        // Hata durumunu ele alabilirsiniz
       }
     };
-
     fetchCampaigns();
   }, []);
 
@@ -51,7 +53,6 @@ const CampaignsScreen = (props: Props) => {
     props.navigation.goBack();
   };
   const selectedCampaing = (index: number) => {
-    console.log('index', index);
     setSelectedCampaingData(campaigns[index]);
   };
   return (
@@ -64,7 +65,6 @@ const CampaignsScreen = (props: Props) => {
           }}
         />
         <CampainsScreenForm
-          CampingList={campaigns}
           onPressCampaing={selectedCampaing}
           selectedCampaign={selectedCampaingData}
         />

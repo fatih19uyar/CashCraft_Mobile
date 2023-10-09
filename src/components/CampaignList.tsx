@@ -1,24 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Dimensions, ScrollView} from 'react-native';
 import {Card} from 'react-native-paper';
 import styled from 'styled-components/native';
 import colors from '../utils/colors';
 import TextView from './TextView';
 import {Campaign} from '../types/type';
-import {ImagesData} from '../assets/ImageManager';
+import {AxiosResponse} from 'axios';
+import CampaignService from '../services/CampaignService';
 
 interface CampaignListProps {
-  campaigns: Campaign[];
   handleCardPress: (index: number) => void;
 }
 
-const CampaignList: React.FC<CampaignListProps> = ({
-  campaigns,
-  handleCardPress,
-}) => {
+const CampaignList: React.FC<CampaignListProps> = ({handleCardPress}) => {
   const cardWidth = Dimensions.get('window').width * 0.3; // Ekran genişliğinin %30'u kadar bir kart genişliği
   const cardMargin = Dimensions.get('window').width * 0.02; // Ekran genişliğinin %2'si kadar bir kart kenar boşluğu
-
+  const [campaigns, setCampaign] = useState<Campaign[]>([
+    {
+      campName: '',
+      campImg: '',
+      campDetails: '',
+      campTitle: '',
+    },
+  ]);
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      try {
+        const response: AxiosResponse<Campaign[]> =
+          await CampaignService.getAllCampaigns();
+        const campaigns = response.data;
+        setCampaign(campaigns);
+      } catch (error) {
+        console.error('Kampanyaları alma hatası:', error);
+        // Hata durumunu ele alabilirsiniz
+      }
+    };
+    fetchCampaigns();
+  }, []);
   return (
     <>
       <StyledScrollView style={{height: '20%'}} horizontal>
