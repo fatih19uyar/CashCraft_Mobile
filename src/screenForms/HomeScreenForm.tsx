@@ -1,4 +1,4 @@
-import {TouchableOpacity} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 import Background from '../components/Background';
 import MoneyCard from '../components/MoneyCard';
@@ -33,18 +33,20 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
     <>
       <Background imageSet={1}>
         <TopBar onProfileLogoPress={props.onProfile} />
-        <MoneyCard amount={'10.000,59'} accountName={'idv'} />
-        <TransactionList goForm={props.goForm} />
-        <StyledView>
-          <TouchableOpacity
-            onPress={() => props.goForm('CampaignsScreen')}
-            style={{
-              flexDirection: 'row',
-            }}>
-            <StyledText>{t('Campaigns')}</StyledText>
-          </TouchableOpacity>
-        </StyledView>
-        <CampaignList handleCardPress={campaingPress} />
+        <ScrollView>
+          <MoneyCard amount={'10.000,59'} accountName={'idv'} />
+          <TransactionList goForm={props.goForm} />
+          <StyledView>
+            <TouchableOpacity
+              onPress={() => props.goForm('CampaignsScreen')}
+              style={{
+                flexDirection: 'row',
+              }}>
+              <StyledText>{t('Campaigns')}</StyledText>
+            </TouchableOpacity>
+          </StyledView>
+          <CampaignList handleCardPress={campaingPress} />
+        </ScrollView>
       </Background>
     </>
   );
