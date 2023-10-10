@@ -17,13 +17,9 @@ const WalletScreen: React.FC<WalletScreenProps> = ({navigation}) => {
   const goScreen = (values: string) => {
     navigation.navigate(values);
   };
-  const goBack = () => {
-    navigation.navigate('Ana Sayfa');
-  };
   return (
     <Background imageSet={1}>
       <TopBarPage
-        onGoBack={goBack}
         onTobBarItem={{
           bigText: t('MyRegisteredCards'),
         }}

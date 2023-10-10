@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {Text, ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import themes from '../utils/themes';
-import {transactionData} from '../values/values';
+import {TransactionData} from '../types/type';
 
 const ListItemContainer = styled.View`
   flex-direction: row;
@@ -32,19 +32,26 @@ const TitleText = styled.Text`
 const SubtitleText = styled.Text`
   color: gray;
 `;
+interface DetailTransactionListProps {
+  transactions: TransactionData[];
+}
 
-const DetailTransactionList = () => {
+const DetailTransactionList: React.FC<DetailTransactionListProps> = ({
+  transactions,
+}) => {
   return (
     <ScrollView style={{width: '95%'}}>
-      {transactionData.map((data, index) => (
+      {transactions.map((data, index) => (
         <ListItemContainer key={index}>
           <Thumbnail source={require('../assets/user-sharing.png')} />
           <TextContainer>
             <TitleText>{data.title}</TitleText>
             <SubtitleText>{data.subtitle}</SubtitleText>
-            <SubtitleText>{data.time}</SubtitleText>
+            <SubtitleText>{data.createDate}</SubtitleText>
           </TextContainer>
-          <Text style={{fontWeight: 'bold'}}>{data.rightTitle}</Text>
+          <Text style={{fontWeight: 'bold'}}>
+            {data.price} {data.currency}
+          </Text>
         </ListItemContainer>
       ))}
     </ScrollView>

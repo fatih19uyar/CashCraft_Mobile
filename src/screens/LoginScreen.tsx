@@ -9,7 +9,7 @@ import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
 import {LoginUser} from '../types/type';
 import Background from '../components/Background';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen, {LoadingContext} from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
 import {ToastTypes, showToast, toastConfig} from '../components/ToastMessage';
@@ -27,7 +27,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const dispatch: AppDispatch = useDispatch();
   const [currentForm, setCurrentForm] = useState(1);
   const [passwordClear, setPasswordClear] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const {setLoading} = React.useContext(LoadingContext);
   const [token, setToken] = useState('');
   const onLogin = async (values: LoginUser) => {
     const {email, password, verificationCode} = values;
@@ -138,7 +138,6 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     <>
       <BackButton goBack={goBack} />
       <Background imageSet={2}>{renderForm()}</Background>
-      <LoadingScreen visible={loading} />
     </>
   );
 };

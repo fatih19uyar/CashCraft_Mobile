@@ -10,7 +10,7 @@ import {reset} from 'redux-form';
 import {PopupMode, UserInfo} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
 import UserService from '../services/UserService';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen, {LoadingContext} from '../components/LoadingScreen';
 import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';
@@ -32,12 +32,13 @@ const ProfileScreen = (props: Props) => {
     photo: '',
     email: '',
   });
-  const [loading, setLoading] = useState(true);
+  const {setLoading} = React.useContext(LoadingContext);
   const [isConfirmationPopupVisible, setConfirmationPopupVisible] =
     useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [popupMode, setPopupMode] = useState<PopupMode>('default');
   useEffect(() => {
+    setLoading(true);
     const getUserDetails = async () => {
       await UserService.findUser()
         .then(response => {
@@ -140,7 +141,6 @@ const ProfileScreen = (props: Props) => {
         onResent={() => console.log('Gönderdik')}
         mode={popupMode}
       />
-      <LoadingScreen visible={loading} />
     </>
   );
 };

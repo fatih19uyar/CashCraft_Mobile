@@ -41,8 +41,12 @@
 
   "AccountCreationError.": "Hesap oluşturma hatası.",
 
+  "SearchPlaceHolder": "Ara...",
+
   "UpdatePhoto": "Fotoğrafı Güncelle",
   "AddTransaction": "İşlemi Ekle",
+
+  "WalletAccount": "cüzdan hesabının",
 
   "RemoveReservation": "Rezervasyonu Kaldır",
   "AddReservation": "Rezervasyon ekle",

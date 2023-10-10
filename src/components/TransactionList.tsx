@@ -1,17 +1,23 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
-import {items} from '../values/values';
 import {styled} from 'styled-components/native';
 import {useTranslation} from 'react-i18next';
+import {TransactionData} from '../types/type';
 
 interface TransactionListProps {
   goForm: (screenName: string) => void;
+  transactions: TransactionData[];
 }
 
-const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
+const TransactionList: React.FC<TransactionListProps> = ({
+  goForm,
+  transactions,
+}) => {
   const {t} = useTranslation();
+  const limitedTransactions = transactions.slice(0, 4);
+
   return (
     <>
       <DataTable>
@@ -23,21 +29,27 @@ const TransactionList: React.FC<TransactionListProps> = ({goForm}) => {
           </DataTable.Title>
         </DataTable.Header>
 
-        {items.map(item => (
-          <DataTable.Row key={item.key} style={{borderColor: colors.gray}}>
-            <DataTable.Cell>
-              <View>
-                <NameText>{item.name}</NameText>
-                <DateText>{item.date}</DateText>
-              </View>
-            </DataTable.Cell>
-            <DataTable.Cell numeric>
-              <View>
-                <AmountText>{item.amount} TL</AmountText>
-              </View>
-            </DataTable.Cell>
-          </DataTable.Row>
-        ))}
+        {limitedTransactions.length > 0 ? (
+          limitedTransactions.map(item => (
+            <DataTable.Row key={item._id} style={{borderColor: colors.gray}}>
+              <DataTable.Cell>
+                <View>
+                  <NameText>{item.title}</NameText>
+                  <DateText>{item.createDate}</DateText>
+                </View>
+              </DataTable.Cell>
+              <DataTable.Cell numeric>
+                <View>
+                  <AmountText>
+                    {item.price} {item.currency}
+                  </AmountText>
+                </View>
+              </DataTable.Cell>
+            </DataTable.Row>
+          ))
+        ) : (
+          <></>
+        )}
       </DataTable>
     </>
   );

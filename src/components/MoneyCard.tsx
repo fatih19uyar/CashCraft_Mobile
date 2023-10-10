@@ -3,18 +3,20 @@ import {Card} from 'react-native-paper';
 import styled from 'styled-components/native';
 import colors from '../utils/colors';
 import TextView from './TextView';
+import {useTranslation} from 'react-i18next';
 
 interface MoneyCardProps {
   amount: string;
   accountName: string;
 }
 const MoneyCard: React.FC<MoneyCardProps> = ({amount, accountName}) => {
+  const [t] = useTranslation();
   return (
     <StyledCard>
       <StyledTextView
         textColor={'black'}
         textSize={25}
-        text={`${accountName} cüzdan hesabın`}
+        text={`${accountName} ${t('WalletAccount')}`}
         textStyle={'300'}
         textMargin={{top: 0, bottom: 0}}
       />

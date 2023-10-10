@@ -224,7 +224,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         onResent={() => console.log('Gönderdik')}
         mode={'createdAccount'}
       />
-      <LoadingScreen visible={loading} />
     </>
   );
 };

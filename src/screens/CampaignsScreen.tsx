@@ -69,7 +69,6 @@ const CampaignsScreen = (props: Props) => {
           selectedCampaign={selectedCampaingData}
         />
       </Background>
-      <LoadingScreen visible={loading} />
     </>
   );
 };

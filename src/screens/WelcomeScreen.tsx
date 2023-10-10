@@ -28,7 +28,6 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({navigation}) => {
           onRegister={() => navigation.navigate('RegisterScreen')}
         />
       </Background>
-      <LoadingScreen visible={loading} />
     </>
   );
 };

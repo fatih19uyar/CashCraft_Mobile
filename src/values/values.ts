@@ -33,50 +33,7 @@ export const options: Option[] = [
   {label: 'Banka Kartı', status: 'unchecked', onPress: () => {}},
   {label: 'Cüzdan Hesap', status: 'unchecked', onPress: () => {}},
 ];
-export const transactionData: TransactionData[] = [
-  {
-    title: 'H&M Mağazası',
-    subtitle: 'Alışveriş',
-    time: '21 Temmuz 2023, 15:30',
-    rightTitle: '150 TL',
-  },
-  {
-    title: 'Starbucks',
-    subtitle: 'Kahve',
-    time: '20 Temmuz 2023, 09:45',
-    rightTitle: '25 TL',
-  },
-  {
-    title: 'Market Alışverişi',
-    subtitle: 'Market',
-    time: '19 Temmuz 2023, 18:20',
-    rightTitle: '350 TL',
-  },
-  {
-    title: 'Giyim Mağazası',
-    subtitle: 'Alışveriş',
-    time: '18 Temmuz 2023, 14:15',
-    rightTitle: '200 TL',
-  },
-  {
-    title: 'Restoran Yemeği',
-    subtitle: 'Restoran',
-    time: '17 Temmuz 2023, 20:00',
-    rightTitle: '120 TL',
-  },
-  {
-    title: 'Elektronik Mağazası',
-    subtitle: 'Alışveriş',
-    time: '16 Temmuz 2023, 11:30',
-    rightTitle: '800 TL',
-  },
-  {
-    title: 'Spor Salonu Üyeliği',
-    subtitle: 'Spor',
-    time: '15 Temmuz 2023, 16:45',
-    rightTitle: '300 TL',
-  },
-];
+
 export const sampleCardData: CardData[] = [
   {
     cardName: 'John Doe',

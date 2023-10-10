@@ -88,10 +88,12 @@ export type Option = {
   onPress: () => void;
 };
 export interface TransactionData {
+  _id: string;
   title: string;
   subtitle: string;
-  time: string;
-  rightTitle: string;
+  createDate: string;
+  price: string;
+  currency: string;
 }
 export interface CardData {
   cardName: string;

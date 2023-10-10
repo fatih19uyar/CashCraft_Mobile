@@ -44,6 +44,10 @@
   "UpdatePhoto": "Update Photo",
   "AddTransaction": "Add Transaction",
 
+  "WalletAccount": "wallet account",
+
+  "SearchPlaceHolder": "Search...",
+
   "RemoveReservation": "Remove Reservation",
   "AddReservation": "Add Reservation",
 

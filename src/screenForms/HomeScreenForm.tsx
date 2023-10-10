@@ -1,5 +1,5 @@
-import {ScrollView, TouchableOpacity} from 'react-native';
-import React, {useEffect} from 'react';
+import {RefreshControl, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
 import Background from '../components/Background';
 import MoneyCard from '../components/MoneyCard';
 import TopBar from '../components/TopBar';
@@ -9,10 +9,16 @@ import {Text} from 'react-native-paper';
 import themes from '../utils/themes';
 import styled from 'styled-components/native';
 import {useTranslation} from 'react-i18next';
+import {Campaign, TransactionData} from '../types/type';
 
 type HomeScreenFormProps = {
   onProfile: () => void;
   goForm: (values: string) => void;
+  loadingStatus: (status: boolean) => void;
+  refreshing: boolean;
+  onRefresh: () => void;
+  transactions: TransactionData[];
+  campaings: Campaign[];
 };
 const StyledView = styled.View`
   align-self: flex-start;
@@ -27,15 +33,24 @@ const StyledText = styled(Text)`
 const HomeScreenForm = (props: HomeScreenFormProps) => {
   const {t} = useTranslation();
   const campaingPress = (index: number) => {
-    console.log('index', index);
+    props.goForm('CampaignsScreen');
   };
   return (
     <>
       <Background imageSet={1}>
         <TopBar onProfileLogoPress={props.onProfile} />
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={props.refreshing}
+              onRefresh={props.onRefresh}
+            />
+          }>
           <MoneyCard amount={'10.000,59'} accountName={'idv'} />
-          <TransactionList goForm={props.goForm} />
+          <TransactionList
+            transactions={props.transactions}
+            goForm={props.goForm}
+          />
           <StyledView>
             <TouchableOpacity
               onPress={() => props.goForm('CampaignsScreen')}
@@ -45,7 +60,10 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
               <StyledText>{t('Campaigns')}</StyledText>
             </TouchableOpacity>
           </StyledView>
-          <CampaignList handleCardPress={campaingPress} />
+          <CampaignList
+            campaings={props.campaings}
+            handleCardPress={campaingPress}
+          />
         </ScrollView>
       </Background>
     </>

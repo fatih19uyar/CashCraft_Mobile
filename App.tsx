@@ -12,6 +12,7 @@ import {Toast} from 'react-native-toast-message/lib/src/Toast';
 import {toastConfig} from './src/components/ToastMessage';
 import './src/i18n/i18n';
 import 'intl-pluralrules';
+import LoadingScreen, {LoadingProvider} from './src/components/LoadingScreen';
 
 const Stack = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -41,13 +42,15 @@ const Stack = () => {
 
 const App = () => {
   const currentTheme = 'light'; // Seçilen tema
-
   return (
     <ThemeProvider theme={themes[currentTheme]}>
-      <Provider store={store}>
-        <Stack />
-      </Provider>
-      <Toast config={toastConfig} />
+      <LoadingProvider>
+        <Provider store={store}>
+          <Stack />
+        </Provider>
+        <Toast config={toastConfig} />
+        <LoadingScreen />
+      </LoadingProvider>
     </ThemeProvider>
   );
 };

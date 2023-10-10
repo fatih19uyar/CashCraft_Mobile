@@ -1,31 +1,30 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {TouchableOpacity, Dimensions, Image} from 'react-native';
+import {TouchableOpacity, Dimensions, Image, View} from 'react-native';
 import {TobBarItem} from '../types/type';
 import colors from '../utils/colors';
 import themes from '../utils/themes';
 
 interface TopBarProps {
-  onGoBack: () => void;
+  onGoBack?: () => void;
   onTobBarItem: TobBarItem;
 }
-
-const getWidth = () => {
-  const {width} = Dimensions.get('window');
-  return width;
-};
 
 const TopBarPage: React.FC<TopBarProps> = ({onGoBack, onTobBarItem}) => {
   return (
     <>
       <Container>
         <BackButtonContainer>
-          <TouchableOpacity onPress={onGoBack}>
-            <Image
-              style={{width: 30, height: 30}}
-              source={require('../assets/back_icon.png')}
-            />
-          </TouchableOpacity>
+          {onGoBack ? (
+            <TouchableOpacity onPress={onGoBack}>
+              <Image
+                style={{width: 30, height: 30}}
+                source={require('../assets/back_icon.png')}
+              />
+            </TouchableOpacity>
+          ) : (
+            <View style={{padding: 15}} />
+          )}
         </BackButtonContainer>
         <TextContainer>
           <HeaderText>{onTobBarItem.bigText}</HeaderText>
