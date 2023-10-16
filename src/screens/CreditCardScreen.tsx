@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Background from '../components/Background';
 import TopBarPage from '../components/TopBarPage';
 import CreditCardScreenForm from '../screenForms/CreditCardScreen/CreditCardScreenForm';
