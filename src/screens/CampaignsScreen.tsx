@@ -37,6 +37,7 @@ const CampaignsScreen = (props: Props) => {
         const response: AxiosResponse<Campaign[]> =
           await CampaignService.getAllCampaigns();
         const campaigns = response.data;
+        console.log(campaigns);
         setCampaign(campaigns);
         setSelectedCampaingData(campaigns[0]);
       } catch (error) {
@@ -64,6 +65,7 @@ const CampaignsScreen = (props: Props) => {
         <CampainsScreenForm
           onPressCampaing={selectedCampaing}
           selectedCampaign={selectedCampaingData}
+          campaigns={campaigns}
         />
       </Background>
     </>

@@ -9,16 +9,18 @@ import {Campaign} from '../types/type';
 interface CampainsScreenFormProps {
   onPressCampaing: (index: number) => void;
   selectedCampaign: Campaign;
+  campaigns: Campaign[];
 }
 
 const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
   onPressCampaing,
   selectedCampaign,
+  campaigns,
 }) => {
   return (
     <>
       <View style={{marginTop: '2%', height: '20%'}}>
-        <CampaignList handleCardPress={onPressCampaing} />
+        <CampaignList campaings={campaigns} handleCardPress={onPressCampaing} />
       </View>
       <MyView>
         <Image
