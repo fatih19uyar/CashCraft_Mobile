@@ -1,6 +1,5 @@
-import {Image, SafeAreaView, View} from 'react-native';
+import {Image, SafeAreaView} from 'react-native';
 import React from 'react';
-import Background from '../components/Background';
 import PressButton from '../components/PressButton';
 import TextView from '../components/TextView';
 import MyView from '../components/MyView';

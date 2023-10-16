@@ -1,5 +1,4 @@
-import axios, {AxiosResponse, AxiosError} from 'axios';
-import config from '../../config';
+import {AxiosResponse} from 'axios';
 import {axiosInstance} from '.';
 
 // Sunucu URL'i

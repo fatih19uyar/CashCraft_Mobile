@@ -1,9 +1,6 @@
-import {Text} from 'react-native';
 import React from 'react';
 import MyView from '../../components/MyView';
-import TextView from '../../components/TextView';
 import {styled} from 'styled-components/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import PressButton from '../../components/PressButton';
 import {useTranslation} from 'react-i18next';
 

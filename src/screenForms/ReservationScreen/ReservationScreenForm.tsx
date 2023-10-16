@@ -1,9 +1,7 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import MyView from '../../components/MyView';
 import PressButton from '../../components/PressButton';
-import {styled} from 'styled-components/native';
-import themes from '../../utils/themes';
 import ReservationListItem from '../../components/ReservationListItem';
 import {ReservationDetail} from '../../types/type';
 import {useTranslation} from 'react-i18next';

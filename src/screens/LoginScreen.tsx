@@ -9,10 +9,10 @@ import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
 import {LoginUser} from '../types/type';
 import Background from '../components/Background';
-import LoadingScreen, {LoadingContext} from '../components/LoadingScreen';
+import {LoadingContext} from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
-import {ToastTypes, showToast, toastConfig} from '../components/ToastMessage';
+import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
 
 type LoginScreenProps = {
@@ -74,7 +74,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
         console.log(error.message);
       });
   };
-  const goToNextForm = (values: any) => {
+  const goToNextForm = () => {
     setCurrentForm(currentForm + 1);
   };
   const onForgotPassword = () => {

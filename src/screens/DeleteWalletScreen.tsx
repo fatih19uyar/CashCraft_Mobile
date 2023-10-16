@@ -28,7 +28,7 @@ const DeleteWalletScreen = (props: Props) => {
   const goNext = () => {
     currentForm == 4 ? dispatch(logOut()) : setCurrentForm(currentForm + 1);
   };
-  const passwordCheck = (values: any) => {
+  const passwordCheck = () => {
     setCurrentForm(currentForm + 1);
   };
   const renderForm = () => {

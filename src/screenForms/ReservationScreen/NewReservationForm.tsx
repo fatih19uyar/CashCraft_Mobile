@@ -28,11 +28,4 @@ const ReservationImage = styled.Image`
   height: 100%;
 `;
 
-const BottomButtonView = styled.View`
-  margin-bottom: 10px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-`;
-
 export default NewReservationForm;

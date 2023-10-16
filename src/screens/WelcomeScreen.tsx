@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import WelcomeScreenForm from '../screenForms/WelcomeScreenForm';
-import LoadingScreen from '../components/LoadingScreen';
+import {LoadingContext} from '../components/LoadingScreen';
 import Background from '../components/Background';
 
 type WelcomeScreenProps = {
@@ -12,7 +12,8 @@ type WelcomeScreenProps = {
 };
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({navigation}) => {
-  const [loading, setLoading] = useState(true);
+  const {setLoading} = useContext(LoadingContext);
+  setLoading(true);
 
   useEffect(() => {
     setTimeout(() => {

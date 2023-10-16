@@ -9,7 +9,6 @@ import {ConnectedProps, connect} from 'react-redux';
 import Input from '../../components/Input';
 import PressButton from '../../components/PressButton';
 import colors from '../../utils/colors';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {

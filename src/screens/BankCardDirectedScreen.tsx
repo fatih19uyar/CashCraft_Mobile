@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import Background from '../components/Background';
-import TopBarPage from '../components/TopBarPage';
 import TextView from '../components/TextView';
 import themes from '../utils/themes';
 import MyView from '../components/MyView';
@@ -30,9 +29,6 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
     };
   }, []);
 
-  const goBack = () => {
-    props.navigation.goBack();
-  };
   const goSuccess = () => {
     setCurrentForm(currentForm + 1);
   };

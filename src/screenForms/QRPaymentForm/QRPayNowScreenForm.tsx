@@ -9,7 +9,7 @@ import {PaymentDetails} from '../../types/type';
 import {useTranslation} from 'react-i18next';
 
 interface QRPayNowScreenFormProps {
-  getPassword: (password: any) => void;
+  getPassword: (password: string) => void;
   goNext: () => void;
   readPayment: PaymentDetails;
 }

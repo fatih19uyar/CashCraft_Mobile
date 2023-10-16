@@ -1,4 +1,4 @@
-import {CardData, Option, TransactionData} from '../types/type';
+import {CardData, Option} from '../types/type';
 
 export const items = [
   {

@@ -10,7 +10,7 @@ import {reset} from 'redux-form';
 import {PopupMode, UserInfo} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
 import UserService from '../services/UserService';
-import LoadingScreen, {LoadingContext} from '../components/LoadingScreen';
+import {LoadingContext} from '../components/LoadingScreen';
 import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';
@@ -69,6 +69,7 @@ const ProfileScreen = (props: Props) => {
   const changePassword = (values: string) => {
     console.log('ChangePassword', values);
     const {newPass, oldPass, reNewPass}: any = values;
+    console.log(oldPass);
     if (newPass == reNewPass) {
       setPopupMode('success');
       setConfirmationPopupVisible(true);

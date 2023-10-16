@@ -1,4 +1,4 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';
@@ -23,7 +23,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             key={0}
             style={{
               width: cardWidth,
-              marginLeft: 0 === 0 ? cardMargin : 0, // İlk kartın sol kenar boşluğu
+              marginLeft: cardMargin, // İlk kartın sol kenar boşluğu
               marginRight: cardMargin, // Kartlar arası sağ kenar boşluğu
               height: 150,
             }}
@@ -43,7 +43,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             key={1}
             style={{
               width: cardWidth,
-              marginLeft: 0 === 0 ? cardMargin : 0, // İlk kartın sol kenar boşluğu
+              marginLeft: cardMargin, // İlk kartın sol kenar boşluğu
               marginRight: cardMargin, // Kartlar arası sağ kenar boşluğu
               height: 150,
             }}
@@ -65,7 +65,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             key={0}
             style={{
               width: cardWidth,
-              marginLeft: 0 === 0 ? cardMargin : 0,
+              marginLeft: cardMargin,
               marginRight: cardMargin,
               height: 150,
             }}
@@ -84,7 +84,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             key={1}
             style={{
               width: cardWidth,
-              marginLeft: 0 === 0 ? cardMargin : 0,
+              marginLeft: cardMargin,
               marginRight: cardMargin,
               height: 150,
             }}
@@ -117,15 +117,9 @@ const CardInnerWrapper = styled(View)`
   align-items: center;
   justify-content: center;
 `;
-const StyledImage = styled(Image)`
-  width: 55px;
-  height: 55px;
-`;
 const StyledView = styled(View)`
   flex-direction: row;
   margin-top: 10px;
 `;
 
 export default WalletScreenFormFirst;
-
-const styles = StyleSheet.create({});

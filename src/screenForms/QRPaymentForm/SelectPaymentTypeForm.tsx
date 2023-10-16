@@ -15,7 +15,6 @@ interface QRPayNowScreenFormProps {
   addNewCard: () => void;
 }
 const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
-  goNext,
   addNewCard,
   readPayment,
 }) => {

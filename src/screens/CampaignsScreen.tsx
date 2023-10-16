@@ -4,7 +4,6 @@ import CampainsScreenForm from '../screenForms/CampainsScreenForm';
 import TopBarPage from '../components/TopBarPage';
 import {Campaign} from '../types/type';
 import {useTranslation} from 'react-i18next';
-import LoadingScreen from '../components/LoadingScreen';
 import CampaignService from '../services/CampaignService';
 import {AxiosResponse} from 'axios';
 
@@ -18,7 +17,6 @@ type Props = {
 
 const CampaignsScreen = (props: Props) => {
   const {t} = useTranslation();
-  const [loading, setLoading] = useState(true);
   const [campaigns, setCampaign] = useState<Campaign[]>([
     {
       campName: '',
@@ -41,7 +39,6 @@ const CampaignsScreen = (props: Props) => {
         const campaigns = response.data;
         setCampaign(campaigns);
         setSelectedCampaingData(campaigns[0]);
-        setLoading(false);
       } catch (error) {
         console.error('Kampanyaları alma hatası:', error);
       }

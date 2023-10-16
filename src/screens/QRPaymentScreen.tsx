@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React, {useState} from 'react';
 import Background from '../components/Background';
 import QRPaymentScreenFormFirst from '../screenForms/QRPaymentForm/QRPaymentScreenFormFirst';
@@ -38,6 +37,7 @@ const QRPaymentScreen = (props: Props) => {
       setSmallText(t('SelectPaymentMethod'));
       setCurrentForm('SelectPaymentType');
     } else if (currentForm === 'AddNewCardScreen') {
+      console.log(currentForm);
     }
   };
 

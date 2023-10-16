@@ -10,7 +10,7 @@ import PressButton from '../../components/PressButton';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import MyView from '../../components/MyView';
-import {HelperText, Text} from 'react-native-paper';
+import {HelperText} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   goNext: (values: any) => void;
