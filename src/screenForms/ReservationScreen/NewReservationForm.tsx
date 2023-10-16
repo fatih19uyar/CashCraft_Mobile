@@ -4,7 +4,7 @@ import {styled} from 'styled-components/native';
 
 interface NewReservationFormProps {}
 
-const NewReservationForm: React.FC<NewReservationFormProps> = ({}) => {
+const NewReservationForm: React.FC<NewReservationFormProps> = () => {
   return (
     <>
       <MyView>

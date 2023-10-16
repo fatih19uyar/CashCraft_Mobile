@@ -3,7 +3,6 @@ import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';
 import PressButton from '../../components/PressButton';
 import {ReservationDetail} from '../../types/type';
-import {Dimensions, SafeAreaView} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 interface RReservationDetailsFormProps {

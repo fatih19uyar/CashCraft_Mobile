@@ -116,8 +116,8 @@
   "Search": "Search",
 
   "LoginScreenFormSecondHeaderText": "Please enter your wallet password to log in.",
-  "LoginScreenFormThirdHeaderText": "Enter the login code sent to your phone.",
-  "LoginScreenFormSecondText": "Please enter the 6-digit security code sent to 5XXXXXXXXXX.",
+  "LoginScreenFormThirdHeaderText": "Enter the login code sent to your email.",
+  "LoginScreenFormSecondText": "Please enter the 6-digit security code sent to your email.",
   "RegisterScreenFormFirstHeaderText": "Create an Account",
   "RegisterScreenFormSecondHeaderText": "Enter the Security Code",
   "RegisterScreenFormSecondText": "Enter the 6-digit code we sent.",

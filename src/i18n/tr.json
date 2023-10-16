@@ -116,8 +116,8 @@
   "Search": "Ara",
 
   "LoginScreenFormSecondHeaderText": "Giriş Yapmak İçin Lütfen Cüzdan Şifrenizi Giriniz.",
-  "LoginScreenFormThirdHeaderText": "Telefonunuza Gelen Giriş Şifresini Girin",
-  "LoginScreenFormSecondText": "Lütfen 5XXXXXXXXXX numarasına gönderilen 6 hanelik güvenlik kodunu giriniz.",
+  "LoginScreenFormThirdHeaderText": "Email Adresinize Gelen Giriş Şifresini Girin",
+  "LoginScreenFormSecondText": "Lütfen e-mail adresinize gönderilen 6 hanelik güvenlik kodunu giriniz.",
   "RegisterScreenFormFirstHeaderText": "Hesap Oluşturun",
   "RegisterScreenFormSecondHeaderText": "Güvenlik Kodu Giriniz",
   "RegisterScreenFormSecondText": " gönderdiğimiz 6 haneli kodu giriniz.",

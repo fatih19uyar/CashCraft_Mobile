@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import MyView from '../../components/MyView';
 import themes from '../../utils/themes';
 import ImageButton from '../../components/ImageButton';

@@ -1,9 +1,6 @@
 import React, {ReactNode} from 'react';
 import {View, Text} from 'react-native';
-import Toast, {
-  ToastConfig,
-  ToastConfigParams,
-} from 'react-native-toast-message';
+import Toast, {ToastConfigParams} from 'react-native-toast-message';
 import themes from '../utils/themes';
 import styled from 'styled-components/native';
 

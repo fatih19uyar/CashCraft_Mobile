@@ -48,7 +48,6 @@ const TransactionHistoryScreen = (props: Props) => {
   };
   useEffect(() => {
     setLoading(true);
-    let isMounted = true;
     const fetchTransactions = async () => {
       try {
         const response: AxiosResponse<TransactionData[]> =
@@ -76,7 +75,7 @@ const TransactionHistoryScreen = (props: Props) => {
     };
     fetchTransactions();
     return () => {
-      isMounted = false;
+      false;
     };
   }, []);
   return (

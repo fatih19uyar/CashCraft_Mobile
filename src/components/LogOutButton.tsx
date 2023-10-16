@@ -1,9 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../redux/stores';
-import { logOut } from '../redux/slice/authReducer';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../redux/stores';
+import {logOut} from '../redux/slice/authReducer';
 import styled from 'styled-components/native';
 
 const LogOutButton = () => {
@@ -15,7 +14,7 @@ const LogOutButton = () => {
   };
 
   return (
-    <Container style={{ paddingTop: insets.top }}>
+    <Container style={{paddingTop: insets.top}}>
       <Touchable onPress={logOutFun}>
         <LogoutImage source={require('../assets/logout.png')} />
       </Touchable>

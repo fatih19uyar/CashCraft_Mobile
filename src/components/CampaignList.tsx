@@ -7,7 +7,7 @@ import TextView from './TextView';
 import {Campaign} from '../types/type';
 
 interface CampaignListProps {
-  handleCardPress: (index: number) => void;
+  handleCardPress?: (index: number) => void;
   campaings: Campaign[];
 }
 

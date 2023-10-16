@@ -1,8 +1,6 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {styled} from 'styled-components/native';
 import themes from '../../utils/themes';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {CardData} from '../../types/type';
 import PressButton from '../../components/PressButton';
 import MyView from '../../components/MyView';

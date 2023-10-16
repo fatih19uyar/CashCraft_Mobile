@@ -7,7 +7,6 @@ import {
 } from 'redux-form';
 import {ConnectedProps, connect} from 'react-redux';
 import PressButton from '../../components/PressButton';
-import Background from '../../components/Background';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import {useTranslation} from 'react-i18next';

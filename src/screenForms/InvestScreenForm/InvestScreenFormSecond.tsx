@@ -1,10 +1,7 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import {CardData} from '../../types/type';
 import MyView from '../../components/MyView';
 import TextView from '../../components/TextView';
 import PressButton from '../../components/PressButton';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface InvestScreenFormSecondProps {
   goNextForm: () => void;

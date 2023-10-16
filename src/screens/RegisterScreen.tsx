@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import BackButton from '../components/BackButton';
 import RegisterScreenFormFirst from '../screenForms/RegisterScreenForm/RegisterScreenFormFirst';
 import RegisterScreenFormSecond from '../screenForms/RegisterScreenForm/RegisterScreenFormSecond';
@@ -14,7 +14,7 @@ import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
-import LoadingScreen from '../components/LoadingScreen';
+import {LoadingContext} from '../components/LoadingScreen';
 
 type RegisterScreenProps = {
   navigation: {
@@ -28,9 +28,9 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
 ) => {
   const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState(1);
+  const {setLoading} = useContext(LoadingContext);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
     email: '',
     emailVerificationCode: 0,

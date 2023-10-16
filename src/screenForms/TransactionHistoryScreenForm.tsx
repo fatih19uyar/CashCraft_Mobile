@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Searchbar} from 'react-native-paper';
 import themes from '../utils/themes';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {styled} from 'styled-components/native';
 import colors from '../utils/colors';
 import DetailTransactionList from '../components/DetailTransactionList';

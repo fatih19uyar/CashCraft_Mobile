@@ -3,7 +3,7 @@ import {SafeAreaView, Dimensions} from 'react-native';
 import {TextInput, HelperText} from 'react-native-paper';
 import {InputProps} from '../types/type';
 import colors from '../utils/colors';
-import styled, {css} from 'styled-components/native';
+import styled from 'styled-components/native';
 import themes from '../utils/themes';
 const getWidth = () => {
   const {width} = Dimensions.get('window');

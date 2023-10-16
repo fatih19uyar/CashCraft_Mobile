@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 import {DataTable} from 'react-native-paper';
 import colors from '../utils/colors';
 import {styled} from 'styled-components/native';

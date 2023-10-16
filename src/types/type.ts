@@ -1,4 +1,3 @@
-import {ImageRequireSource} from 'react-native';
 import {WrappedFieldProps} from 'redux-form';
 export interface User {
   id: string;

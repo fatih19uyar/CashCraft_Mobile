@@ -1,11 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
 import QRPaymentScreen from '../screens/QRPaymentScreen';
-import WalletScreen from '../screens/WalletScreen';
 import {Image} from 'react-native'; // Image bileşenini içe aktardık
 import themes from '../utils/themes';
-import AppStack from './AppStack';
 import HomeStack from './AppStack';
 import WalletStack from './WalletStack';
 import {useTranslation} from 'react-i18next';

@@ -32,7 +32,7 @@ const StyledText = styled(Text)`
 `;
 const HomeScreenForm = (props: HomeScreenFormProps) => {
   const {t} = useTranslation();
-  const campaingPress = (index: number) => {
+  const campaingPress = () => {
     props.goForm('CampaignsScreen');
   };
   return (

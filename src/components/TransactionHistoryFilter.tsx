@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {List, Checkbox} from 'react-native-paper';
 import themes from '../utils/themes';
 import {Option} from '../types/type';
