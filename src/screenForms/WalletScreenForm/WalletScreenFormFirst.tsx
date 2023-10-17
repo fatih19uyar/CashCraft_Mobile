@@ -1,4 +1,4 @@
-import {Dimensions, Image, StyleSheet, View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import React from 'react';
 import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';

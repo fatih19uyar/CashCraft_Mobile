@@ -1,46 +1,50 @@
-import * as React from 'react';
-import {
-  Field,
-  InjectedFormProps,
-  formValueSelector,
-  reduxForm,
-} from 'redux-form';
-import {ConnectedProps, connect} from 'react-redux';
+import React from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import PasswordInput from '../../components/PasswordInput';
 import PressButton from '../../components/PressButton';
 import TextView from '../../components/TextView';
-import PasswordInput from '../../components/PasswordInput';
 import {SafeAreaView} from 'react-native';
 import MyView from '../../components/MyView';
 import {useTranslation} from 'react-i18next';
 
-interface IProps extends ConnectedProps<typeof connector> {
-  goToNextForm: (values: any) => void;
+interface IProps {
+  goToNextForm: (values: {email: string; password: string}) => void;
   onForgotPassword: () => void;
   passWordClear: boolean;
 }
-const validate = (values: any) => {
-  const errors: any = {};
-  if (!values.password) {
-    errors.password = 'Bu alan boş bırakılamaz';
-  } else if (values.password.length !== 6) {
-    errors.password = 'Şifre 6 haneli olmalıdır';
-  }
-  return errors;
-};
-const PasswordInputField = ({input, meta, passWordClear}: any) => {
+
+const PasswordInputField = ({control, passWordClear}: any) => {
   return (
-    <PasswordInput
-      shouldReset={passWordClear}
-      length={6}
-      onChangePassword={input.onChange}
-      meta={meta}
+    <Controller
+      name="password"
+      control={control}
+      render={({field, fieldState}) => (
+        <PasswordInput
+          shouldReset={passWordClear}
+          length={6}
+          onChangePassword={field.onChange}
+          meta={fieldState}
+        />
+      )}
     />
   );
 };
-const LoginScreenFormSecond: React.FC<
-  IProps & InjectedFormProps<{}, IProps>
-> = ({handleSubmit, goToNextForm, onForgotPassword, passWordClear}) => {
+
+const LoginScreenFormSecond: React.FC<IProps> = ({
+  goToNextForm,
+  onForgotPassword,
+  passWordClear,
+}) => {
   const {t} = useTranslation();
+  const {control, handleSubmit} = useForm({
+    mode: 'onBlur',
+  });
+
+  const onSubmit = (data: any) => {
+    console.log('fa', data);
+    goToNextForm(data);
+  };
+
   return (
     <>
       <MyView>
@@ -51,13 +55,9 @@ const LoginScreenFormSecond: React.FC<
           textStyle={'500'}
           textMargin={{top: 20, bottom: 50}}
         />
-        <Field
-          name="password"
-          component={PasswordInputField}
-          passWordClear={passWordClear}
-        />
+        <PasswordInputField control={control} passWordClear={passWordClear} />
         <PressButton
-          onPress={handleSubmit(goToNextForm)}
+          onPress={handleSubmit(onSubmit)}
           textColor="white"
           text={t('Next')}
           mode="Button2"
@@ -77,19 +77,4 @@ const LoginScreenFormSecond: React.FC<
   );
 };
 
-const selector = formValueSelector('loginScreen');
-const mapStateToProps = (state: any) => {
-  const password = selector(state, 'password');
-  return {
-    password,
-  };
-};
-const connector = connect(mapStateToProps);
-export default connector(
-  reduxForm<{}, IProps>({
-    form: 'loginScreen',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-    validate,
-  })(LoginScreenFormSecond),
-);
+export default LoginScreenFormSecond;
