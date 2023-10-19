@@ -4,6 +4,7 @@ import PressButton from '../components/PressButton';
 import TextView from '../components/TextView';
 import MyView from '../components/MyView';
 import {useTranslation} from 'react-i18next';
+import themes from '../utils/themes';
 
 type WelcomeScreenFormProps = {
   onSign: () => void;
@@ -25,12 +26,15 @@ const WelcomeScreenForm = (props: WelcomeScreenFormProps) => {
           style={{width: 200, height: 52, marginBottom: 20}}
         />
         <TextView
-          textColor={'black'}
-          textSize={18}
-          text={t('WelcomeScreenFormHeaderText')}
-          textStyle={'500'}
-          textMargin={{top: 20, bottom: 100}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.medium,
+            fontWeight: '500',
+            marginBottom: themes.light.textMargin.bottom.extraLarge,
+            marginTop: themes.light.textMargin.top.medium,
+          }}>
+          {t('WelcomeScreenFormHeaderText')}
+        </TextView>
         <PressButton
           textColor={'black'}
           mode={'Button1'}

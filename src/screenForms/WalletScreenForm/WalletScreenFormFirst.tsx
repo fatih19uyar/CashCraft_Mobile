@@ -6,6 +6,7 @@ import {Card} from 'react-native-paper';
 import colors from '../../utils/colors';
 import TextView from '../../components/TextView';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
 
 type Props = {
   goScreen: (screenName: string) => void; // goScreen prop'unu tanımladık
@@ -31,12 +32,14 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
           >
             <CardInnerWrapper>
               <TextView
-                textColor={'black'}
-                textSize={15}
-                text={t('MyBankCards')}
-                textStyle={'bold'}
-                textMargin={{top: 5, bottom: 0}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium,
+                  fontWeight: 'bold',
+                  marginTop: themes.light.textMargin.top.small,
+                }}>
+                {t('MyBankCards')}
+              </TextView>
             </CardInnerWrapper>
           </StyledCard>
           <StyledCard
@@ -51,12 +54,14 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
           >
             <CardInnerWrapper>
               <TextView
-                textColor={'black'}
-                textSize={15}
-                text={t('MyCreditCards')}
-                textStyle={'bold'}
-                textMargin={{top: 5, bottom: 0}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium,
+                  fontWeight: 'bold',
+                  marginTop: themes.light.textMargin.top.small,
+                }}>
+                {t('MyCreditCards')}
+              </TextView>
             </CardInnerWrapper>
           </StyledCard>
         </StyledView>
@@ -72,12 +77,14 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             onPress={() => props.goScreen('MyMyCardScreen')}>
             <CardInnerWrapper>
               <TextView
-                textColor={'black'}
-                textSize={15}
-                text={t('MyStoreCards')}
-                textStyle={'bold'}
-                textMargin={{top: 5, bottom: 0}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium,
+                  fontWeight: 'bold',
+                  marginTop: themes.light.textMargin.top.small,
+                }}>
+                {t('MyStoreCards')}
+              </TextView>
             </CardInnerWrapper>
           </StyledCard>
           <StyledCard
@@ -91,12 +98,14 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
             onPress={() => props.goScreen('MyMyCardScreen')}>
             <CardInnerWrapper>
               <TextView
-                textColor={'black'}
-                textSize={15}
-                text={t('MyGiftCards')}
-                textStyle={'bold'}
-                textMargin={{top: 5, bottom: 0}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium,
+                  fontWeight: 'bold',
+                  marginTop: themes.light.textMargin.top.small,
+                }}>
+                {t('MyGiftCards')}
+              </TextView>
             </CardInnerWrapper>
           </StyledCard>
         </StyledView>

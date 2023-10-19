@@ -2,14 +2,14 @@ import React from 'react';
 import {View, Image} from 'react-native';
 import CampaignList from '../components/CampaignList';
 import MyView from '../components/MyView';
-import {styled} from 'styled-components/native';
 import TextView from '../components/TextView';
-import {Campaign} from '../types/type';
+import {CampaignState} from '../types/type';
+import themes from '../utils/themes';
 
 interface CampainsScreenFormProps {
   onPressCampaing: (index: number) => void;
-  selectedCampaign: Campaign;
-  campaigns: Campaign[];
+  selectedCampaign: CampaignState['selecetedCampaign'];
+  campaigns: CampaignState['campaigns'];
 }
 
 const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
@@ -17,6 +17,7 @@ const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
   selectedCampaign,
   campaigns,
 }) => {
+  Boolean(selectedCampaign) ? null : (selectedCampaign = campaigns[0]);
   return (
     <>
       <View style={{marginTop: '2%', height: '20%'}}>
@@ -25,29 +26,30 @@ const CampainsScreenForm: React.FC<CampainsScreenFormProps> = ({
       <MyView>
         <Image
           style={{width: 100, height: 100, marginBottom: 10}}
-          source={{uri: `data:image/jpeg;base64,${selectedCampaign.campImg}`}}
+          source={{
+            uri: `data:image/jpeg;base64,${selectedCampaign?.campImg}`,
+          }}
         />
-        <StyledTextView
-          textColor={'black'}
-          textSize={23}
-          text={selectedCampaign?.campTitle}
-          textStyle={'400'}
-          textMargin={{top: 0, bottom: 0}}
-        />
-        <StyledTextView
-          textColor={'black'}
-          textSize={16}
-          text={selectedCampaign.campDetails}
-          textStyle={'300'}
-          textMargin={{top: 0, bottom: 0}}
-        />
+
+        <TextView
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.large + 3,
+            fontWeight: '400',
+          }}>
+          {selectedCampaign?.campTitle}
+        </TextView>
+        <TextView
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.medium,
+            fontWeight: '300',
+          }}>
+          {selectedCampaign?.campDetails}
+        </TextView>
       </MyView>
     </>
   );
 };
-
-const StyledTextView = styled(TextView)`
-  font-size: ${({theme}) => theme.textSize}px;
-`;
 
 export default CampainsScreenForm;

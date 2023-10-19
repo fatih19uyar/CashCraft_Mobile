@@ -6,11 +6,12 @@ import ImageButton from '../../components/ImageButton';
 import themes from '../../utils/themes';
 import {useTranslation} from 'react-i18next';
 import PressButton from '../../components/PressButton';
+import {UserInfo} from '../../types/type';
 
 type Props = {
-  onPress: (values: any) => void;
+  onPress: (values: string) => void;
   toggleLanguage: () => void;
-  user: any;
+  user: UserInfo | null;
 };
 
 const ProfileScreenForm = (props: Props) => {
@@ -22,26 +23,31 @@ const ProfileScreenForm = (props: Props) => {
         <ProfileLogo source={require('../../assets/user.png')} />
         <TextContainer>
           <TextView
-            textColor={'black'}
-            textSize={30}
-            text={props.user.name}
-            textStyle={'normal'}
-            textMargin={{top: 0, bottom: 0}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.large + 10,
+              fontWeight: 'normal',
+            }}>
+            {props.user?.name}
+          </TextView>
           <TextView
-            textColor={'black'}
-            textSize={12}
-            text={props.user.phoneNumber}
-            textStyle={'normal'}
-            textMargin={{top: 10, bottom: 0}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.large + 10,
+              marginTop: themes.light.textMargin.top.medium,
+              fontWeight: 'normal',
+            }}>
+            {props.user?.phoneNumber}
+          </TextView>
           <TextView
-            textColor={'black'}
-            textSize={12}
-            text={props.user.email}
-            textStyle={'normal'}
-            textMargin={{top: 0, bottom: 0}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.large + 10,
+              marginTop: themes.light.textMargin.top.medium,
+              fontWeight: 'normal',
+            }}>
+            {props.user?.email}
+          </TextView>
         </TextContainer>
       </Container>
       <ButtonContainer>

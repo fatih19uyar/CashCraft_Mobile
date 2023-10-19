@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import colors from '../utils/colors';
 import TextView from './TextView';
 import {Campaign} from '../types/type';
+import themes from '../utils/themes';
 
 interface CampaignListProps {
   handleCardPress?: (index: number) => void;
@@ -17,6 +18,7 @@ const CampaignList: React.FC<CampaignListProps> = ({
 }) => {
   const cardWidth = Dimensions.get('window').width * 0.3; // Ekran genişliğinin %30'u kadar bir kart genişliği
   const cardMargin = Dimensions.get('window').width * 0.02; // Ekran genişliğinin %2'si kadar bir kart kenar boşluğu
+
   return (
     <>
       {campaings ? (
@@ -30,27 +32,27 @@ const CampaignList: React.FC<CampaignListProps> = ({
                 marginRight: cardMargin, // Kartlar arası sağ kenar boşluğu
                 height: 150,
               }}
-              onPress={() => handleCardPress(index)} // onPress eventini handleCardPress fonksiyonu ile yönlendiriyoruz
-            >
+              onPress={() =>
+                handleCardPress ? handleCardPress(index) : () => {}
+              }>
               <CardInnerWrapper>
                 <StyledImage
                   style={{width: 40, height: 40, marginTop: 10}}
                   source={{uri: `data:image/jpeg;base64,${campaign.campImg}`}}
                 />
                 <TextView
-                  textColor={'black'}
-                  textSize={15}
-                  text={`${campaign.campName}`}
-                  textStyle={'bold'}
-                  textMargin={{top: 5, bottom: 0}}
-                />
+                  style={{
+                    color: themes.light.colors.text,
+                    fontSize: themes.light.fontSize.medium,
+                    marginTop: themes.light.textMargin.top.small,
+                    fontWeight: 'bold',
+                  }}>{`${campaign.campName}`}</TextView>
                 <TextView
-                  textColor={'black'}
-                  textSize={12}
-                  text={`${campaign.campTitle}`}
-                  textStyle={'300'}
-                  textMargin={{top: 0, bottom: 0}}
-                />
+                  style={{
+                    color: themes.light.colors.text,
+                    fontSize: themes.light.fontSize.medium - 5,
+                    fontWeight: '300',
+                  }}>{`${campaign.campTitle}`}</TextView>
               </CardInnerWrapper>
             </StyledCard>
           ))}

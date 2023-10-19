@@ -60,12 +60,14 @@ const RegisterScreenFormThird: React.FC<
   return (
     <>
       <TextView
-        textColor={'black'}
-        textSize={43}
-        text={t('RegisterScreenFormThirdHeaderText')}
-        textStyle={'500'}
-        textMargin={{top: 0, bottom: 20}}
-      />
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.customeSize1,
+          marginBottom: themes.light.textMargin.bottom.large,
+          fontWeight: '500',
+        }}>
+        {t('RegisterScreenFormThirdHeaderText')}
+      </TextView>
       <Field
         color={colors.inputTextBackground}
         name="userName"

@@ -13,6 +13,7 @@ import TextView from '../../components/TextView';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MyView from '../../components/MyView';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
   onReportProblem: () => void;
@@ -41,12 +42,14 @@ const LoginScreenFormFirst: React.FC<
     <>
       <MyView>
         <TextView
-          textColor={'black'}
-          textSize={40}
-          text={t('onLogin')}
-          textStyle={'500'}
-          textMargin={{top: 0, bottom: 100}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.customeSize2,
+            marginBottom: themes.light.textMargin.bottom.extraLarge,
+            fontWeight: '500',
+          }}>
+          {t('onLogin')}
+        </TextView>
         <Field
           color={colors.inputTextBackground}
           name="email"

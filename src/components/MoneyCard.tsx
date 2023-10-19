@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import colors from '../utils/colors';
 import TextView from './TextView';
 import {useTranslation} from 'react-i18next';
+import themes from '../utils/themes';
 
 interface MoneyCardProps {
   amount: string;
@@ -13,20 +14,21 @@ const MoneyCard: React.FC<MoneyCardProps> = ({amount, accountName}) => {
   const [t] = useTranslation();
   return (
     <StyledCard>
-      <StyledTextView
-        textColor={'black'}
-        textSize={25}
-        text={`${accountName} ${t('WalletAccount')}`}
-        textStyle={'300'}
-        textMargin={{top: 0, bottom: 0}}
-      />
-      <StyledTextView
-        textColor={'black'}
-        textSize={40}
-        text={`₺ ${amount}`}
-        textStyle={'bold'}
-        textMargin={{top: 0, bottom: 0}}
-      />
+      <TextView
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.large,
+          fontWeight: '300',
+        }}>
+        {`${accountName} ${t('WalletAccount')}`}
+      </TextView>
+
+      <TextView
+        style={{
+          color: themes.light.colors.text,
+          fontSize: 40,
+          fontWeight: 'bold',
+        }}>{`₺ ${amount}`}</TextView>
     </StyledCard>
   );
 };
@@ -42,12 +44,6 @@ const StyledCard = styled(Card)`
   margin: 10px;
   justify-content: center;
   align-items: center;
-`;
-
-const StyledTextView = styled(TextView)`
-  margin: ${({theme}) => theme.textMargin.top}px 0
-    ${({theme}) => theme.textMargin.bottom}px;
-  font-size: ${({theme}) => theme.textSize}px;
 `;
 
 export default MoneyCard;
