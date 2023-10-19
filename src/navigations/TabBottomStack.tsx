@@ -6,13 +6,15 @@ import themes from '../utils/themes';
 import HomeStack from './AppStack';
 import WalletStack from './WalletStack';
 import {useTranslation} from 'react-i18next';
+import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
-const TopBottomStack = () => {
+const TabBottomStack = () => {
   const {t} = useTranslation();
   return (
     <Tab.Navigator
+      initialRouteName="HomePage"
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarStyle: {
@@ -43,4 +45,4 @@ const TopBottomStack = () => {
   );
 };
 
-export default TopBottomStack;
+export default TabBottomStack;
