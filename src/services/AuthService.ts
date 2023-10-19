@@ -1,23 +1,23 @@
 import {AxiosResponse} from 'axios';
-import {axiosInstance} from '.';
+import Api from '.';
 
 // Sunucu URL'i
 
 // Sunucu isteklerini yöneten servis
 const AuthService = {
   signUp: (userData: any): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/signup', userData);
+    return Api.post('/auth/signup', userData);
   },
 
   signIn: (credentials: {
     email: string;
     password: string;
   }): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/signin', credentials);
+    return Api.post('/auth/signin', credentials);
   },
 
   forgotPassword: (email: string): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/forgotPassword', {email});
+    return Api.post('/auth/forgotPassword', {email});
   },
 
   resetPassword: (
@@ -25,7 +25,7 @@ const AuthService = {
     resetCode: string,
     newPassword: string,
   ): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/resetPassword', {
+    return Api.post('/auth/resetPassword', {
       email,
       resetCode,
       newPassword,
@@ -33,20 +33,20 @@ const AuthService = {
   },
 
   sendVerificationCodeByEmail: (email: string): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/sendEmailActivationCode', {email});
+    return Api.post('/auth/sendEmailActivationCode', {email});
   },
 
   checkEmailExists: (email: string): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/checkEmailExists', {email});
+    return Api.post('/auth/checkEmailExists', {email});
   },
   checkPhoneNumberExists: (phoneNumber: string): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/checkPhoneNumberExists', {phoneNumber});
+    return Api.post('/auth/checkPhoneNumberExists', {phoneNumber});
   },
   verifyPhoneActivationCode: (
     verificationCode: string,
     email: string,
   ): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/verifyPhoneActivationCode', {
+    return Api.post('/auth/verifyPhoneActivationCode', {
       verificationCode,
       email,
     });
@@ -55,7 +55,7 @@ const AuthService = {
     verificationCode: string,
     email: string,
   ): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/verifyResetCode', {
+    return Api.post('/auth/verifyResetCode', {
       verificationCode,
       email,
     });
@@ -65,7 +65,7 @@ const AuthService = {
     email: string,
     verificationCode: string,
   ): Promise<AxiosResponse> => {
-    return axiosInstance.post('/auth/verifyEmailActivationCode', {
+    return Api.post('/auth/verifyEmailActivationCode', {
       email,
       verificationCode,
     });

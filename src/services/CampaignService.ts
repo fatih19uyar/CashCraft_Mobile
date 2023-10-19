@@ -1,26 +1,27 @@
 import {AxiosResponse} from 'axios';
-import {axiosInstance} from '.';
+import Api from '.';
+import {CampaignState} from '../types/type';
 
 // Kampanya işlemlerini yöneten servis
 
 const CampaignService = {
-  getAllCampaigns: (): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get('/campaigns/getAllCampaigns');
+  getAllCampaigns: (): Promise<AxiosResponse<CampaignState['campaigns']>> => {
+    return Api.get('/campaigns/getAllCampaigns');
   },
 
   getCampaignById: (campaignId: string): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get(`/campaigns/${campaignId}`);
+    return Api.get(`/campaigns/${campaignId}`);
   },
 
   updateCampaign: (
     campaignId: string,
     campaignData: any,
   ): Promise<AxiosResponse<any>> => {
-    return axiosInstance.put(`/campaigns/${campaignId}`, campaignData);
+    return Api.put(`/campaigns/${campaignId}`, campaignData);
   },
 
   deleteCampaign: (campaignId: string): Promise<AxiosResponse<any>> => {
-    return axiosInstance.delete(`/campaigns/${campaignId}`);
+    return Api.delete(`/campaigns/${campaignId}`);
   },
 };
 

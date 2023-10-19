@@ -1,37 +1,41 @@
 import {AxiosResponse} from 'axios';
-import {axiosInstance} from '.';
+import Api from '.';
+import {TransactionData} from '../types/type';
 
 // İşlem işlemlerini yöneten servis
 
 const TransactionService = {
-  getAllTransactions: (): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get('/transactions/getAllTransactions');
+  getAllTransactions: (): Promise<AxiosResponse<TransactionData[]>> => {
+    return Api.get('/transactions/getAllTransactions');
   },
 
-  getTransactionById: (transactionId: string): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get(`/transactions/${transactionId}`);
+  getTransactionById: (
+    transactionId: string,
+  ): Promise<AxiosResponse<TransactionData>> => {
+    return Api.get(`/transactions/${transactionId}`);
   },
 
-  getTransactionsByUserId: (userId: string): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get(`/transactions/getTransactionByUserId/${userId}`);
+  getTransactionsByUserId: (
+    userId: string,
+  ): Promise<AxiosResponse<TransactionData[]>> => {
+    return Api.get(`/transactions/getTransactionByUserId/${userId}`);
   },
 
   createTransaction: (transactionData: any): Promise<AxiosResponse<any>> => {
-    return axiosInstance.post(
-      '/transactions/createTransaction',
-      transactionData,
-    );
+    return Api.post('/transactions/createTransaction', transactionData);
   },
 
   updateTransaction: (
     transactionId: string,
     transactionData: any,
-  ): Promise<AxiosResponse<any>> => {
-    return axiosInstance.put(`/transactions/${transactionId}`, transactionData);
+  ): Promise<AxiosResponse<TransactionData>> => {
+    return Api.put(`/transactions/${transactionId}`, transactionData);
   },
 
-  deleteTransaction: (transactionId: string): Promise<AxiosResponse<any>> => {
-    return axiosInstance.delete(`/transactions/${transactionId}`);
+  deleteTransaction: (
+    transactionId: string,
+  ): Promise<AxiosResponse<string>> => {
+    return Api.delete(`/transactions/${transactionId}`);
   },
 };
 

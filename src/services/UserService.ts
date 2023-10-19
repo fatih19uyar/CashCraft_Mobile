@@ -1,19 +1,20 @@
 import {AxiosResponse} from 'axios';
-import {axiosInstance} from '.';
+import Api from '.';
+import {UserInfo} from '../types/type';
 
 // Kullanıcı işlemlerini yöneten servis
 
 const UserService = {
-  findUser: (): Promise<AxiosResponse<any>> => {
-    return axiosInstance.get(`/users/findUser`);
+  findUser: (): Promise<AxiosResponse<UserInfo>> => {
+    return Api.get(`/users/findUser`);
   },
 
-  updateUser: (userData: any): Promise<AxiosResponse<any>> => {
-    return axiosInstance.put(`/users/updateUser`, userData);
+  updateUser: (userData: any): Promise<AxiosResponse<UserInfo>> => {
+    return Api.put(`/users/updateUser`, userData);
   },
 
-  deleteUser: (): Promise<AxiosResponse<any>> => {
-    return axiosInstance.delete(`/users/deleteUser`);
+  deleteUser: (): Promise<AxiosResponse<string>> => {
+    return Api.delete(`/users/deleteUser`);
   },
 };
 export default UserService;
