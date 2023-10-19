@@ -14,6 +14,7 @@ import {LoadingContext} from '../components/LoadingScreen';
 import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';
+import useUser from '../hooks/useUser';
 
 type Props = {
   navigation: {
@@ -26,29 +27,11 @@ type Props = {
 const ProfileScreen = (props: Props) => {
   const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState('');
-  const [user, setUser] = useState<UserInfo>({
-    name: '',
-    phoneNumber: '',
-    photo: '',
-    email: '',
-  });
-  const {setLoading} = React.useContext(LoadingContext);
+  const {user} = useUser();
   const [isConfirmationPopupVisible, setConfirmationPopupVisible] =
     useState(false);
   const dispatch: AppDispatch = useDispatch();
   const [popupMode, setPopupMode] = useState<PopupMode>('default');
-  useEffect(() => {
-    setLoading(true);
-    const getUserDetails = async () => {
-      await UserService.findUser()
-        .then(response => {
-          setLoading(false);
-          setUser(response.data);
-        })
-        .catch(error => console.log(error));
-    };
-    getUserDetails();
-  }, []);
   const goBack = () => {
     dispatch(reset('EditUserScreen'));
     dispatch(reset('ChangePasswordScreen'));

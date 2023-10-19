@@ -1,13 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Background from '../components/Background';
 import TransactionHistoryScreenForm from '../screenForms/TransactionHistoryScreenForm';
 import TopBarPage from '../components/TopBarPage';
 import TransactionFilterMenu from '../components/TransactionFilterMenu';
 import {useTranslation} from 'react-i18next';
-import {AxiosResponse} from 'axios';
-import {TransactionData} from '../types/type';
-import TransactionService from '../services/TransactionService';
-import {LoadingContext} from '../components/LoadingScreen';
+import useTransactions from '../hooks/useTransactions';
 
 type Props = {
   navigation: {
@@ -19,18 +16,8 @@ type Props = {
 
 const TransactionHistoryScreen = (props: Props) => {
   const {t} = useTranslation();
-  const {setLoading} = useContext(LoadingContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [transactions, setTransactions] = useState<TransactionData[]>([
-    {
-      _id: '1',
-      title: '',
-      subtitle: '',
-      createDate: '',
-      price: '',
-      currency: '',
-    },
-  ]);
+  const {transactions} = useTransactions();
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
@@ -46,38 +33,6 @@ const TransactionHistoryScreen = (props: Props) => {
   const goBack = () => {
     props.navigation.goBack();
   };
-  useEffect(() => {
-    setLoading(true);
-    const fetchTransactions = async () => {
-      try {
-        const response: AxiosResponse<TransactionData[]> =
-          await TransactionService.getAllTransactions();
-        const transactions: TransactionData[] = response.data.map(
-          transaction => {
-            const {_id, title, createDate, price, currency, subtitle} =
-              transaction;
-            const currencySymbol: any = currency;
-            return {
-              _id: _id,
-              title: title,
-              createDate: createDate,
-              price: price,
-              currency: currencySymbol.symbol,
-              subtitle: subtitle,
-            };
-          },
-        );
-        setTransactions(transactions);
-        setLoading(false);
-      } catch (error) {
-        console.error('Transactions alma hatası:', error);
-      }
-    };
-    fetchTransactions();
-    return () => {
-      false;
-    };
-  }, []);
   return (
     <Background imageSet={1}>
       <TopBarPage

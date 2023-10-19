@@ -6,6 +6,8 @@ import {Campaign} from '../types/type';
 import {useTranslation} from 'react-i18next';
 import CampaignService from '../services/CampaignService';
 import {AxiosResponse} from 'axios';
+import {store} from '../redux/stores';
+import useCampaigns from '../hooks/useCampaigns';
 
 type Props = {
   navigation: {
@@ -17,40 +19,14 @@ type Props = {
 
 const CampaignsScreen = (props: Props) => {
   const {t} = useTranslation();
-  const [campaigns, setCampaign] = useState<Campaign[]>([
-    {
-      campName: '',
-      campImg: '',
-      campDetails: '',
-      campTitle: '',
-    },
-  ]);
-  const [selectedCampaingData, setSelectedCampaingData] = useState<Campaign>({
-    campName: '',
-    campImg: '',
-    campDetails: '',
-    campTitle: '',
-  });
-  useEffect(() => {
-    const fetchCampaigns = async () => {
-      try {
-        const response: AxiosResponse<Campaign[]> =
-          await CampaignService.getAllCampaigns();
-        const campaigns = response.data;
-        setCampaign(campaigns);
-        setSelectedCampaingData(campaigns[0]);
-      } catch (error) {
-        console.error('Kampanyaları alma hatası:', error);
-      }
-    };
-    fetchCampaigns();
-  }, []);
+  const {campaigns, selectedCampaign, handleSelectCampaign} = useCampaigns();
 
   const goBack = () => {
     props.navigation.goBack();
   };
+
   const selectedCampaing = (index: number) => {
-    setSelectedCampaingData(campaigns[index]);
+    handleSelectCampaign(campaigns[index]);
   };
   return (
     <>
@@ -63,7 +39,7 @@ const CampaignsScreen = (props: Props) => {
         />
         <CampainsScreenForm
           onPressCampaing={selectedCampaing}
-          selectedCampaign={selectedCampaingData}
+          selectedCampaign={selectedCampaign ? selectedCampaign : null}
           campaigns={campaigns}
         />
       </Background>
