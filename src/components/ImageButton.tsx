@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View, Image} from 'react-native';
 import {Text} from 'react-native-paper';
 import styled from 'styled-components/native';
+import themes from '../utils/themes';
 
 interface ImageButtonProps {
   onPress: () => void;
@@ -55,8 +56,8 @@ const ButtonContainer = styled(TouchableOpacity)<{backColor: string}>`
 `;
 
 const StyledTextView = styled(Text)<{textColor: string}>`
-  margin: ${({theme}) => theme.textMargin.top}px 0
-    ${({theme}) => theme.textMargin.bottom}px;
+  margin: ${themes.light.textMargin.top.small}px 0
+    ${themes.light.textMargin.top.small}px;
   color: ${props => props.textColor};
 `;
 

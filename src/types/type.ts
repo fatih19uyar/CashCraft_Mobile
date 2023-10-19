@@ -3,6 +3,9 @@ export interface User {
   id: string;
   email: string;
 }
+export interface UserState {
+  user: UserInfo | null;
+}
 export interface UserInfo {
   name: string;
   phoneNumber: string;
@@ -35,13 +38,6 @@ export interface PressButtonProps {
   text: string;
   borderStatus: boolean;
 }
-export interface TextViewProps {
-  textColor: string;
-  textSize: number;
-  textStyle: FontWeight;
-  textMargin: number | {top?: number; bottom?: number};
-  text: string;
-}
 export type FontWeight =
   | 'normal'
   | 'bold'
@@ -71,12 +67,17 @@ export interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
 }
+export interface CampaignState {
+  campaigns: Campaign[];
+  selecetedCampaign: Campaign | null;
+}
 export interface Campaign {
   campName: string;
   campImg: string;
   campDetails: string;
   campTitle: string;
 }
+
 export interface TobBarItem {
   bigText: string;
   smallText?: string;
@@ -86,13 +87,21 @@ export type Option = {
   status: 'checked' | 'unchecked' | 'indeterminate';
   onPress: () => void;
 };
+export interface TransactionState {
+  transactions: TransactionData[];
+  selecetedTransaction: TransactionData | null;
+}
 export interface TransactionData {
   _id: string;
   title: string;
   subtitle: string;
   createDate: string;
   price: string;
-  currency: string;
+  currency: {
+    symbol: string;
+    code: string;
+    name: string;
+  };
 }
 export interface CardData {
   cardName: string;

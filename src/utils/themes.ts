@@ -50,6 +50,8 @@ const themes = {
       small: 12,
       medium: 16,
       large: 20,
+      customeSize1: 43,
+      customeSize2: 40,
     },
     spacing: {
       small: 5,
@@ -57,8 +59,21 @@ const themes = {
       large: 20,
     },
     textMargin: {
-      top: 5,
-      bottom: 5,
+      top: {
+        small: 5,
+        medium: 10,
+        large: 20,
+        extraLarge: 100,
+        customSize: 200,
+      },
+      bottom: {
+        small: 5,
+        medium: 10,
+        large: 20,
+        xLarge: 50,
+        extraLarge: 100,
+        customSize: 200,
+      },
     },
     itemMargin: {
       small: 5,

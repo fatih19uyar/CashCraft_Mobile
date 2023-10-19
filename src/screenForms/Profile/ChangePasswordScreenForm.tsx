@@ -15,7 +15,12 @@ import {useTranslation} from 'react-i18next';
 interface IProps extends ConnectedProps<typeof connector> {
   onPress: (values: any) => void;
 }
-const validate = (values: any) => {
+type ValuesProps = {
+  oldPass: string;
+  newPass: string;
+  reNewPass: string;
+};
+const validate = (values: ValuesProps) => {
   const {oldPass, newPass, reNewPass} = values;
   const errors: any = {};
   if (!oldPass) errors.oldPass = 'Lütfen eski şifrenizi giriniz.';

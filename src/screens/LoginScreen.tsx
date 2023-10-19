@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import BackButton from '../components/BackButton';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/stores';
-import {loginSuccess} from '../redux/slice/authReducer';
+import {loginSuccess} from '../redux/slice/authSlice';
 import {reset} from 'redux-form';
 import LoginScreenFormFirst from '../screenForms/Login/LoginScreenFormFirst';
 import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
-import {LoginUser} from '../types/type';
+import {Login, LoginUser} from '../types/type';
 import Background from '../components/Background';
 import {LoadingContext} from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
@@ -21,6 +21,10 @@ type LoginScreenProps = {
     replace: (name: string) => void;
     navigate: (name: string) => void;
   };
+};
+type LoginData = {
+  email: string;
+  password: string;
 };
 const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const {t} = useTranslation();
@@ -36,6 +40,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
       await AuthService.verifyPhoneActivationCode(verificationCode, email)
         .then(async () => {
           dispatch(loginSuccess({token: token}));
+          props.navigation.navigate('HomeScreen');
           dispatch(reset('loginScreen'));
           setLoading(false);
         })
@@ -54,7 +59,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     dispatch(reset('loginScreen'));
     props.navigation.goBack();
   };
-  const goOnSignUp = async (values: any) => {
+  const goOnSignUp = async (values: LoginData) => {
     await AuthService.signIn(values)
       .then(result => {
         setToken(result.data.token);
@@ -89,7 +94,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     };
     showToast(toastConfig);
   };
-  const onResendCode = async (values: any) => {
+  const onResendCode = async (values: LoginData) => {
     await AuthService.signIn(values)
       .then(() => {
         const toastConfig = {
