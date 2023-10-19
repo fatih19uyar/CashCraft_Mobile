@@ -64,19 +64,25 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
             {isLogOut ? (
               <>
                 <TextView
-                  textColor={'black'}
-                  textSize={20}
-                  text={t('LogOut')}
-                  textStyle={'bold'}
-                  textMargin={{top: 0, bottom: 10}}
-                />
+                  style={{
+                    color: themes.light.colors.text,
+                    fontSize: themes.light.fontSize.large,
+                    marginBottom: themes.light.textMargin.bottom.medium,
+                    fontWeight: 'bold',
+                  }}>
+                  {t('LogOut')}
+                </TextView>
+
                 <TextView
-                  textColor={themes.light.colors.textColor2}
-                  textSize={15}
-                  text={t('LogOutText')}
-                  textStyle={'500'}
-                  textMargin={{top: 0, bottom: 10}}
-                />
+                  style={{
+                    color: themes.light.colors.textColor2,
+                    fontSize: themes.light.fontSize.large - 5,
+                    marginBottom: themes.light.textMargin.bottom.medium,
+                    fontWeight: '500',
+                  }}>
+                  {t('LogOutText')}
+                </TextView>
+
                 <PressButton
                   onPress={handleCancelLogout}
                   textColor="white"

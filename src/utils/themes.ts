@@ -48,8 +48,10 @@ const themes = {
     },
     fontSize: {
       small: 12,
+      xSmall: 15,
       medium: 16,
       large: 20,
+      xlarge: 30,
       customeSize1: 43,
       customeSize2: 40,
     },

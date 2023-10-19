@@ -30,12 +30,12 @@ const EditUserInfoScreenForm: React.FC<
         <ProfileLogo source={require('../../assets/user.png')} />
         <TextContainer>
           <TextView
-            textColor={'black'}
-            textSize={30}
-            text={user.name}
-            textStyle={'normal'}
-            textMargin={{top: 0, bottom: 0}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.xlarge,
+            }}>
+            {user.name}
+          </TextView>
           <TouchableOpacity
             style={{
               flexDirection: 'row',
@@ -47,12 +47,13 @@ const EditUserInfoScreenForm: React.FC<
               source={require('../../assets/camera.png')}
             />
             <TextView
-              textColor={'black'}
-              textSize={15}
-              text={t('UpdatePhoto')}
-              textStyle={'500'}
-              textMargin={{top: 0, bottom: 0}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.xSmall,
+                fontWeight: '500',
+              }}>
+              {t('UpdatePhoto')}
+            </TextView>
           </TouchableOpacity>
         </TextContainer>
       </Container>

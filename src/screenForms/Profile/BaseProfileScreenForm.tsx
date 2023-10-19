@@ -25,7 +25,7 @@ const ProfileScreenForm = (props: Props) => {
           <TextView
             style={{
               color: themes.light.colors.text,
-              fontSize: themes.light.fontSize.large + 10,
+              fontSize: themes.light.fontSize.large,
               fontWeight: 'normal',
             }}>
             {props.user?.name}
@@ -33,8 +33,7 @@ const ProfileScreenForm = (props: Props) => {
           <TextView
             style={{
               color: themes.light.colors.text,
-              fontSize: themes.light.fontSize.large + 10,
-              marginTop: themes.light.textMargin.top.medium,
+              fontSize: themes.light.fontSize.medium - 4,
               fontWeight: 'normal',
             }}>
             {props.user?.phoneNumber}
@@ -42,8 +41,7 @@ const ProfileScreenForm = (props: Props) => {
           <TextView
             style={{
               color: themes.light.colors.text,
-              fontSize: themes.light.fontSize.large + 10,
-              marginTop: themes.light.textMargin.top.medium,
+              fontSize: themes.light.fontSize.medium - 4,
               fontWeight: 'normal',
             }}>
             {props.user?.email}
