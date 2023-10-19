@@ -50,7 +50,7 @@ const DetailTransactionList: React.FC<DetailTransactionListProps> = ({
             <SubtitleText>{data.createDate}</SubtitleText>
           </TextContainer>
           <Text style={{fontWeight: 'bold'}}>
-            {data.price} {data.currency}
+            {data.price} {data.currency.symbol}
           </Text>
         </ListItemContainer>
       ))}

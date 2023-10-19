@@ -2,7 +2,7 @@ import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/stores';
-import {logOut} from '../redux/slice/authReducer';
+import {logOut} from '../redux/slice/authSlice';
 import styled from 'styled-components/native';
 
 const LogOutButton = () => {

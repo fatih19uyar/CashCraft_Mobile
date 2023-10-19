@@ -13,6 +13,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Image} from 'react-native';
 import MyView from '../../components/MyView';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   onResendCode: (values: any) => void;
   onLogin: (values: any) => void;
@@ -28,12 +29,15 @@ const LoginScreenFormThird: React.FC<
     <>
       <MyView>
         <TextView
-          textColor={'black'}
-          textSize={39}
-          text={t('LoginScreenFormThirdHeaderText')}
-          textStyle={'500'}
-          textMargin={{top: 100, bottom: 20}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.customeSize2,
+            marginBottom: themes.light.textMargin.bottom.large,
+            marginTop: themes.light.textMargin.top.extraLarge,
+            fontWeight: '500',
+          }}>
+          {t('LoginScreenFormThirdHeaderText')}
+        </TextView>
         <TextView
           textColor={'black'}
           textSize={18}

@@ -7,7 +7,7 @@ import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {reset} from 'redux-form';
 import DeleteWalletScreenFormFourth from '../screenForms/DeleteWallet/DeleteWalletScreenFormFourth';
-import {logOut} from '../redux/slice/authReducer';
+import {logOut} from '../redux/slice/authSlice';
 
 type Props = {
   navigation: {

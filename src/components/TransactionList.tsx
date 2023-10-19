@@ -17,7 +17,6 @@ const TransactionList: React.FC<TransactionListProps> = ({
 }) => {
   const {t} = useTranslation();
   const limitedTransactions = transactions.slice(0, 4);
-
   return (
     <>
       <DataTable>
@@ -41,7 +40,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
               <DataTable.Cell numeric>
                 <View>
                   <AmountText>
-                    {item.price} {item.currency}
+                    {item.price} {item.currency.symbol}
                   </AmountText>
                 </View>
               </DataTable.Cell>

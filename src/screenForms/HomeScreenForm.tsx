@@ -32,9 +32,6 @@ const StyledText = styled(Text)`
 `;
 const HomeScreenForm = (props: HomeScreenFormProps) => {
   const {t} = useTranslation();
-  const campaingPress = () => {
-    props.goForm('CampaignsScreen');
-  };
   return (
     <>
       <Background imageSet={1}>
@@ -62,7 +59,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
           </StyledView>
           <CampaignList
             campaings={props.campaings}
-            handleCardPress={campaingPress}
+            handleCardPress={() => props.goForm('CampaignsScreen')}
           />
         </ScrollView>
       </Background>
