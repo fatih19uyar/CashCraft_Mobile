@@ -5,26 +5,34 @@ import {SafeAreaView} from 'react-native';
 import PressButton from '../../components/PressButton';
 import CardList from '../../components/CardList';
 import {sampleCardData} from '../../values/values';
+import {CardData, CardStyle} from '../../types/type';
+import themes from '../../utils/themes';
 
 type Props = {
   onPress: (values: string) => void;
   onPressCard: (values: any) => void;
+  cards: CardData[];
 };
 
 const MyCardScreenForm = (props: Props) => {
   return (
     <>
       <MyView>
-        {sampleCardData ? (
-          <CardList cardData={sampleCardData} onItemPress={props.onPressCard} />
+        {Boolean(props.cards) ? (
+          <CardList
+            cardStyle={'bank' as CardStyle}
+            cardData={props.cards}
+            onItemPress={props.onPressCard}
+          />
         ) : (
           <TextView
-            textColor={'black'}
-            textSize={18}
-            text={'Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.'}
-            textStyle={'200'}
-            textMargin={{top: 0, bottom: 0}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.medium,
+              fontWeight: '200',
+            }}>
+            {'Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.'}
+          </TextView>
         )}
       </MyView>
       <SafeAreaView

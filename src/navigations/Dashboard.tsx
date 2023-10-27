@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -15,38 +18,49 @@ import {AppDispatch, RootState} from '../redux/stores';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginSuccess} from '../redux/slice/authSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {
+  NavigationContainerRef,
+  StackActions,
+  useNavigation,
+} from '@react-navigation/native';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import WalletScreen from '../screens/WalletScreen';
+import MyCardScreen from '../screens/MyCardScreen';
+import CreditCardScreen from '../screens/CreditCardScreen';
 
-type Props = {};
 const Stack = createStackNavigator();
+type MyStackParamList = {
+  Home: undefined;
+  Settings: undefined;
+  Profile: undefined;
+  Wallet: undefined;
+};
 
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const dispatch: AppDispatch = useDispatch();
   const [loginStatus, setLoginStatus] = useState('WelcomeScreen');
   const userIsLoggedIn: boolean = useSelector<RootState, boolean>(
     state => state.authReducer.isAuthenticated,
   );
-  const navigation: {navigate: (name: string) => void} = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<MyStackParamList>>();
   useEffect(() => {
     console.log(userIsLoggedIn);
     const checkUserLoggedIn = async () => {
-      console.log(userIsLoggedIn, 'login');
       if (!userIsLoggedIn) {
         const loggedInUser = await AsyncStorage.getItem('token');
         if (loggedInUser) {
           dispatch(loginSuccess({token: loggedInUser}));
           setLoginStatus('TabBottomStack');
         } else {
-          navigation.navigate('WelcomeScreen');
+          navigation.dispatch(StackActions.replace('WelcomeScreen'));
           setLoginStatus('WelcomeScreen');
         }
       } else {
-        navigation.navigate('HomeScreen');
-        setLoginStatus('HomeScreen');
+        navigation.dispatch(StackActions.replace('TabBottomStack'));
+        setLoginStatus('TabBottomStack');
       }
     };
     checkUserLoggedIn();
@@ -66,6 +80,13 @@ const Dashboard = (props: Props) => {
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <Stack.Screen name="WalletScreen" component={WalletScreen} />
+      <Stack.Screen name="MyCardScreen" component={MyCardScreen} />
+      <Stack.Screen name="CreditCardScreen" component={CreditCardScreen} />
+      <Stack.Screen
+        name="BankCardDirectedScreen"
+        component={BankCardDirectedScreen}
+      />
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
@@ -73,10 +94,6 @@ const Dashboard = (props: Props) => {
       <Stack.Screen
         name="TransactionHistoryScreen"
         component={TransactionHistoryScreen}
-      />
-      <Stack.Screen
-        name="BankCardDirectedScreen"
-        component={BankCardDirectedScreen}
       />
       <Stack.Screen name="TabBottomStack" component={TabBottomStack} />
     </Stack.Navigator>

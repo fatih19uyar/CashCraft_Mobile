@@ -2,11 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Background from '../components/Background';
 import CampainsScreenForm from '../screenForms/CampainsScreenForm';
 import TopBarPage from '../components/TopBarPage';
-import {Campaign} from '../types/type';
 import {useTranslation} from 'react-i18next';
-import CampaignService from '../services/CampaignService';
-import {AxiosResponse} from 'axios';
-import {store} from '../redux/stores';
 import useCampaigns from '../hooks/useCampaigns';
 
 type Props = {

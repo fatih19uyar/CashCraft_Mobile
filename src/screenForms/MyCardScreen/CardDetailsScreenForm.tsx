@@ -18,7 +18,7 @@ import {connect} from 'react-redux';
 
 interface IProps {
   goToNextForm: () => void;
-  cardData: CardData;
+  cardData: CardData | null;
   goUpdateNickName: (values: any) => void;
   visibleUpdateNickName: boolean;
 }
@@ -61,16 +61,16 @@ const CardDetailsScreenForm: React.FC<
       <TextView
         textColor={'black'}
         textSize={20}
-        text={cardData.cardNickName}
+        text={cardData?.cardNickName}
         textStyle={'bold'}
         textMargin={{top: 0, bottom: 20}}
       />
       <CreditCardDisplay
-        number={cardData.cardNumber}
+        number={cardData?.cardNumber}
         cvc={123}
-        expiration={cardData.cardExpiration}
-        name={cardData.cardName}
-        since={cardData.cardType}
+        expiration={cardData?.cardExpiration}
+        name={cardData?.cardName}
+        since={cardData?.cardType}
       />
       <View style={{height: '10%'}} />
 

@@ -45,12 +45,15 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
         return (
           <MyView>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'Banka ödeme ekranına yönlendiriliyorsunuz.'}
-              textStyle={'400'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                fontWeight: '400',
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+              }}>
+              {'Banka ödeme ekranına yönlendiriliyorsunuz.'}
+            </TextView>
           </MyView>
         );
       case 2:
@@ -62,22 +65,28 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
                 alignItems: 'center',
               }}>
               <TextView
-                textColor={themes.light.colors.text}
-                textSize={20}
-                text={'BANKA ÖDEME EKRANI'}
-                textStyle={'400'}
-                textMargin={{top: 10, bottom: 5}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.large,
+                  fontWeight: '400',
+                  marginBottom: themes.light.textMargin.bottom.small,
+                  marginTop: themes.light.textMargin.top.medium,
+                }}>
+                {'BANKA ÖDEME EKRANI'}
+              </TextView>
+
               <TextView
-                textColor={themes.light.colors.text}
-                textSize={15}
-                text={
-                  'Biz bunun için bir ekran tasarlamayacağız.' +
-                  'Bankadan gelen iframe direkt olarak ekrana yansıtılacaktır'
-                }
-                textStyle={'200'}
-                textMargin={{top: 10, bottom: 5}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium,
+                  fontWeight: '200',
+                  marginBottom: themes.light.textMargin.bottom.small,
+                  marginTop: themes.light.textMargin.top.medium,
+                }}>
+                {'Biz bunun için bir ekran tasarlamayacağız.' +
+                  'Bankadan gelen iframe direkt olarak ekrana yansıtılacaktır'}
+              </TextView>
+
               <PressButton
                 onPress={goSuccess}
                 textColor={themes.light.colors.text1}
@@ -103,12 +112,15 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
         return (
           <MyView>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'Banka ödeme ekranına yönlendiriliyorsunuz.'}
-              textStyle={'400'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                fontWeight: '400',
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+              }}>
+              {'Banka ödeme ekranına yönlendiriliyorsunuz.'}
+            </TextView>
           </MyView>
         );
     }

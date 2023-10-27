@@ -6,6 +6,7 @@ import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreen
 import {CardData} from '../types/type';
 import CardDetailsScreenForm from '../screenForms/MyCardScreen/CardDetailsScreenForm';
 import {useTranslation} from 'react-i18next';
+import useCards from '../hooks/useCards';
 
 type Props = {
   navigation: {
@@ -20,14 +21,7 @@ const BankCardScreen = (props: Props) => {
   const [smallText, setSmallText] = useState(t('MyBankCards'));
   const [currentForm, setCurrentForm] = useState('');
   const [updateNickNamePopup, setUpdateNickNamePopup] = useState(false);
-
-  const [card, setCard] = useState<CardData>({
-    cardName: '',
-    cardNumber: '',
-    cardExpiration: '',
-    cardType: 'master',
-    cardNickName: '',
-  });
+  const {cards, selectedCard, handleSelectCard} = useCards();
 
   const goBack = () => {
     props.navigation.goBack();
@@ -44,8 +38,8 @@ const BankCardScreen = (props: Props) => {
     if (screenName === 'NewCard') setSmallText(t('AddingBankCard'));
     setCurrentForm(screenName);
   };
-  const selectedCard = (values: any) => {
-    setCard(values);
+  const handleSelectedCard = (values: CardData) => {
+    handleSelectCard(values);
     console.log('selectedCard', values);
     setCurrentForm('CardDetails');
   };
@@ -66,7 +60,7 @@ const BankCardScreen = (props: Props) => {
       content = (
         <CardDetailsScreenForm
           goToNextForm={() => console.log('details')}
-          cardData={card}
+          cardData={selectedCard}
           goUpdateNickName={goUpdateNickName}
           visibleUpdateNickName={updateNickNamePopup}
         />
@@ -74,7 +68,11 @@ const BankCardScreen = (props: Props) => {
       break;
     default:
       content = (
-        <BankCardScreenForm onPress={nextForm} onPressCard={selectedCard} />
+        <BankCardScreenForm
+          cards={cards}
+          onPress={nextForm}
+          onPressCard={handleSelectedCard}
+        />
       );
       break;
   }

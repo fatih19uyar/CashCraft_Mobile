@@ -1,5 +1,10 @@
 import React from 'react';
-import {TouchableOpacity, View, Image} from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Image,
+  TouchableOpacityProps,
+} from 'react-native';
 import {Text} from 'react-native-paper';
 import styled from 'styled-components/native';
 import themes from '../utils/themes';
@@ -11,6 +16,9 @@ interface ImageButtonProps {
   textColor: string;
   leftImageSource: any; // Sol resim yolunu belirlemek için
   rightImageSource: any; // Sağ resim yolunu belirlemek için
+}
+interface ImageButtonProps extends TouchableOpacityProps {
+  backColor: string;
 }
 
 const ImageButton: React.FC<ImageButtonProps> = props => {
@@ -24,7 +32,7 @@ const ImageButton: React.FC<ImageButtonProps> = props => {
   } = props;
 
   return (
-    <ButtonContainer backColor={backColor} onPress={onPress}>
+    <ButtonContainer style={{backgroundColor: backColor}} onPress={onPress}>
       <ImageContainer>
         {leftImageSource ? (
           <Image style={{height: 30, width: 30}} source={leftImageSource} />
@@ -45,7 +53,6 @@ const ImageButton: React.FC<ImageButtonProps> = props => {
 const ButtonContainer = styled(TouchableOpacity)<{backColor: string}>`
   flex-direction: row;
   align-items: center;
-  background-color: ${props => props.backColor};
   width: 80%;
   margin-top: 10px;
   margin-vertical: 5px;

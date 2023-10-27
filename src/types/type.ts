@@ -103,12 +103,23 @@ export interface TransactionData {
     name: string;
   };
 }
+export interface CardState {
+  cards: CardData[];
+  selectedCard: CardData | null;
+}
 export interface CardData {
   cardName: string;
   cardNumber: string;
   cardExpiration: string;
   cardType: 'master' | 'visa';
   cardNickName: string;
+  cardStyle: CardStyle;
+}
+export enum CardStyle {
+  GIFT = 'gift',
+  STORE = 'store',
+  BANK = 'bank',
+  CREDIT = 'credit',
 }
 export interface ReservationDetail {
   title: string;

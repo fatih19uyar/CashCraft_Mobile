@@ -4,6 +4,7 @@ import {reducer as formReducer} from 'redux-form';
 import campaignsSlice from '../slice/campaignsSlice';
 import transactionSlice from '../slice/transactionSlice';
 import userSlice from '../slice/userSlice';
+import cardsSlice from '../slice/cardsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     camgaigns: campaignsSlice,
     transactions: transactionSlice,
     userInfo: userSlice,
+    cards: cardsSlice,
     form: formReducer,
   },
 });

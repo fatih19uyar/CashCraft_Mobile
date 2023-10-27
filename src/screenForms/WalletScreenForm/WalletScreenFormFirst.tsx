@@ -28,7 +28,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               marginRight: cardMargin, // Kartlar arası sağ kenar boşluğu
               height: 150,
             }}
-            onPress={() => props.goScreen('MyMyCardScreen')} // onPress eventini handleCardPress fonksiyonu ile yönlendiriyoruz
+            onPress={() => props.goScreen('MyCardScreen')} // onPress eventini handleCardPress fonksiyonu ile yönlendiriyoruz
           >
             <CardInnerWrapper>
               <TextView
