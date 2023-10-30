@@ -39,12 +39,13 @@ const LoginScreenFormThird: React.FC<
           {t('LoginScreenFormThirdHeaderText')}
         </TextView>
         <TextView
-          textColor={'black'}
-          textSize={18}
-          text={t('LoginScreenFormSecondText')}
-          textStyle={'normal'}
-          textMargin={{top: 0, bottom: 0}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.medium,
+            fontWeight: 'normal',
+          }}>
+          {t('LoginScreenFormSecondText')}
+        </TextView>
         <Field name="verificationCode" component={PasswordInputField} />
         <Image
           source={require('../../assets/mail-send.png')}

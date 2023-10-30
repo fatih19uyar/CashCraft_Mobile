@@ -36,7 +36,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     const {email, password, verificationCode} = values;
     if (password && email && verificationCode) {
       dispatch(loadingSet({loading: true}));
-      await AuthService.verifyPhoneActivationCode(verificationCode, email)
+      AuthService.verifyPhoneActivationCode(verificationCode, email)
         .then(async () => {
           dispatch(loginSuccess({token: token}));
           props.navigation.navigate('HomeScreen');
