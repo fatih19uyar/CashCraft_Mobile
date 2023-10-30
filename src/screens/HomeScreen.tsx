@@ -4,13 +4,9 @@ import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {logOut} from '../redux/slice/authSlice';
 import ProfileMenu from '../components/ProfileMenu';
-import {LoadingContext} from '../components/LoadingScreen';
-import {Campaign, TransactionData} from '../types/type';
-import {AxiosResponse} from 'axios';
-import TransactionService from '../services/TransactionService';
-import CampaignService from '../services/CampaignService';
 import useCampaigns from '../hooks/useCampaigns';
 import useTransactions from '../hooks/useTransactions';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 type Props = {
   navigation: {
@@ -24,8 +20,6 @@ const HomeScreen = (props: Props) => {
   const dispatch: AppDispatch = useDispatch();
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false); // RefreshControl için durum
-  const {setLoading} = useContext(LoadingContext);
-
   const {campaigns} = useCampaigns();
   const {transactions} = useTransactions();
 
@@ -45,9 +39,10 @@ const HomeScreen = (props: Props) => {
   };
   const onRefresh = () => {
     setRefreshing(true);
-
+    dispatch(loadingSet({loading: true}));
     setTimeout(() => {
       setRefreshing(false);
+      dispatch(loadingSet({loading: false}));
     }, 5000);
   };
   return (
@@ -57,7 +52,6 @@ const HomeScreen = (props: Props) => {
         transactions={transactions}
         refreshing={refreshing}
         onRefresh={onRefresh}
-        loadingStatus={setLoading}
         goForm={onPressButton}
         onProfile={toggleMenu}
       />

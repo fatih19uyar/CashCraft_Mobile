@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import BackButton from '../components/BackButton';
 import RegisterScreenFormFirst from '../screenForms/RegisterScreenForm/RegisterScreenFormFirst';
 import RegisterScreenFormSecond from '../screenForms/RegisterScreenForm/RegisterScreenFormSecond';
@@ -14,7 +14,7 @@ import ConfirmationPopup from '../components/ConfirmationPopup';
 import AuthService from '../services/AuthService';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
-import {LoadingContext} from '../components/LoadingScreen';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 type RegisterScreenProps = {
   navigation: {
@@ -28,7 +28,6 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
 ) => {
   const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState(1);
-  const {setLoading} = useContext(LoadingContext);
   const dispatch: AppDispatch = useDispatch();
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [newUser, setNewUser] = useState<NewUser>({
@@ -87,13 +86,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   };
   const onGoEmailVerification = async (values: any) => {
     try {
-      setLoading(true);
+      dispatch(loadingSet({loading: true}));
       await AuthService.checkEmailExists(values.email_create);
       await AuthService.sendVerificationCodeByEmail(values.email_create).then(
         () => {
           setNewUser({...newUser, email: values.email_create});
           setCurrentForm(currentForm + 1);
-          setLoading(false);
+          dispatch(loadingSet({loading: false}));
         },
       );
     } catch (error) {
@@ -106,13 +105,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
   };
   const onCheckEmailVerification = async (values: any) => {
     console.log(values);
-    setLoading(true);
+    dispatch(loadingSet({loading: true}));
     await AuthService.verifyEmailActivationCode(
       values.email_create,
       values.verificationCode,
     )
       .then(() => {
-        setLoading(false);
+        dispatch(loadingSet({loading: false}));
         setCurrentForm(currentForm + 1);
       })
       .catch(error => {
@@ -125,12 +124,12 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
           text1: errorMessage,
         };
         showToast(toastConfig);
-        setLoading(false);
+        dispatch(loadingSet({loading: false}));
       });
   };
   const goNext = async (values: any) => {
     if (values.campAgreement && values.userAgreement) {
-      setLoading(true);
+      dispatch(loadingSet({loading: true}));
       await AuthService.checkPhoneNumberExists(values.phoneNumber)
         .then(() => {
           setNewUser(prevUser => ({
@@ -142,7 +141,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
             userPhoneNumber: values.phoneNumber,
           }));
           setCurrentForm(currentForm + 1);
-          setLoading(false);
+          dispatch(loadingSet({loading: false}));
         })
         .catch(() => {
           const toastConfig = {
@@ -150,7 +149,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
             text1: t('PhoneAlreadyExists'),
           };
           showToast(toastConfig);
-          setLoading(false);
+          dispatch(loadingSet({loading: false}));
         });
     } else if (
       values.userAgreement !== undefined &&

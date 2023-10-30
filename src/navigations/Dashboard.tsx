@@ -15,14 +15,10 @@ import BankCardDirectedScreen from '../screens/BankCardDirectedScreen';
 import ReservationScreen from '../screens/ReservationScreen';
 import TabBottomStack from './TabBottomStack';
 import {AppDispatch, RootState} from '../redux/stores';
-import {useDispatch, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import {loginSuccess} from '../redux/slice/authSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  NavigationContainerRef,
-  StackActions,
-  useNavigation,
-} from '@react-navigation/native';
+import {StackActions, useNavigation} from '@react-navigation/native';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -30,6 +26,8 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import WalletScreen from '../screens/WalletScreen';
 import MyCardScreen from '../screens/MyCardScreen';
 import CreditCardScreen from '../screens/CreditCardScreen';
+import {useAppSelector} from '../hooks/useStore';
+import {initialRouteNameSet} from '../redux/slice/navigationSlice';
 
 const Stack = createStackNavigator();
 type MyStackParamList = {
@@ -41,9 +39,14 @@ type MyStackParamList = {
 
 const Dashboard = () => {
   const dispatch: AppDispatch = useDispatch();
-  const [loginStatus, setLoginStatus] = useState('WelcomeScreen');
   const userIsLoggedIn: boolean = useSelector<RootState, boolean>(
     state => state.authReducer.isAuthenticated,
+  );
+  const {navigationState} = useAppSelector(
+    state => ({
+      navigationState: state.navigation,
+    }),
+    shallowEqual,
   );
   const navigation = useNavigation<StackNavigationProp<MyStackParamList>>();
   useEffect(() => {
@@ -53,21 +56,21 @@ const Dashboard = () => {
         const loggedInUser = await AsyncStorage.getItem('token');
         if (loggedInUser) {
           dispatch(loginSuccess({token: loggedInUser}));
-          setLoginStatus('TabBottomStack');
+          dispatch(initialRouteNameSet({initialRouteName: 'TabBottomStack'}));
         } else {
           navigation.dispatch(StackActions.replace('WelcomeScreen'));
-          setLoginStatus('WelcomeScreen');
+          dispatch(initialRouteNameSet({initialRouteName: 'WelcomeScreen'}));
         }
       } else {
         navigation.dispatch(StackActions.replace('TabBottomStack'));
-        setLoginStatus('TabBottomStack');
+        dispatch(initialRouteNameSet({initialRouteName: 'TabBottomStack'}));
       }
     };
     checkUserLoggedIn();
-  }, [dispatch, userIsLoggedIn]);
+  }, [dispatch, userIsLoggedIn, navigationState.initialRouteName]);
   return (
     <Stack.Navigator
-      initialRouteName={loginStatus}
+      initialRouteName={navigationState.initialRouteName}
       screenOptions={{
         headerShown: false,
       }}>

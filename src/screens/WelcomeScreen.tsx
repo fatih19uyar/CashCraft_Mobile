@@ -1,7 +1,8 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import WelcomeScreenForm from '../screenForms/WelcomeScreenForm';
-import {LoadingContext} from '../components/LoadingScreen';
 import Background from '../components/Background';
+import {useAppDispatch} from '../hooks/useStore';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 type WelcomeScreenProps = {
   navigation: {
@@ -12,12 +13,11 @@ type WelcomeScreenProps = {
 };
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({navigation}) => {
-  const {setLoading} = useContext(LoadingContext);
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    setLoading(true);
+    dispatch(loadingSet({loading: true}));
     setTimeout(() => {
-      setLoading(false);
+      dispatch(loadingSet({loading: false}));
     }, 3000);
   }, []);
 

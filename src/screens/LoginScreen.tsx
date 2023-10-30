@@ -7,13 +7,13 @@ import {reset} from 'redux-form';
 import LoginScreenFormFirst from '../screenForms/Login/LoginScreenFormFirst';
 import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
-import {Login, LoginUser} from '../types/type';
+import {LoginUser} from '../types/type';
 import Background from '../components/Background';
-import {LoadingContext} from '../components/LoadingScreen';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 type LoginScreenProps = {
   navigation: {
@@ -31,18 +31,17 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
   const dispatch: AppDispatch = useDispatch();
   const [currentForm, setCurrentForm] = useState(1);
   const [passwordClear, setPasswordClear] = useState(false);
-  const {setLoading} = React.useContext(LoadingContext);
   const [token, setToken] = useState('');
   const onLogin = async (values: LoginUser) => {
     const {email, password, verificationCode} = values;
     if (password && email && verificationCode) {
-      setLoading(true);
+      dispatch(loadingSet({loading: true}));
       await AuthService.verifyPhoneActivationCode(verificationCode, email)
         .then(async () => {
           dispatch(loginSuccess({token: token}));
           props.navigation.navigate('HomeScreen');
           dispatch(reset('loginScreen'));
-          setLoading(false);
+          dispatch(loadingSet({loading: false}));
         })
         .catch(() => {
           const toastConfig = {
@@ -50,7 +49,7 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
             text1: 'Hatalı Kod. Lütfen tekrar deneyiniz...',
           };
           showToast(toastConfig);
-          setLoading(false);
+          dispatch(loadingSet({loading: false}));
         });
     }
   };

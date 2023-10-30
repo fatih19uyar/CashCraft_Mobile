@@ -1,12 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import QRPaymentScreen from '../screens/QRPaymentScreen';
-import {Image} from 'react-native'; // Image bileşenini içe aktardık
+import {Image} from 'react-native';
 import themes from '../utils/themes';
 import HomeStack from './AppStack';
 import WalletStack from './WalletStack';
 import {useTranslation} from 'react-i18next';
-import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 

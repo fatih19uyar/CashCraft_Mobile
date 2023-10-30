@@ -1,32 +1,20 @@
-import React, {createContext, useContext, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-
-export const LoadingContext = createContext({
-  loading: false,
-  setLoading: (value: boolean) => {},
-});
-export const LoadingProvider: React.FC<{children: React.ReactNode}> = ({
-  children,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const value = {loading, setLoading};
-  return (
-    <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
-  );
-};
-export function useLoading() {
-  const context = useContext(LoadingContext);
-  if (!context) {
-    throw new Error('useLoading must be used within LoadingProvider');
-  }
-  return context;
-}
+import {useAppSelector} from '../hooks/useStore';
+import {shallowEqual} from 'react-redux';
 
 const LoadingScreen: React.FC = () => {
-  const {loading} = useContext(LoadingContext);
-  const {t} = useTranslation();
-  console.log('loading', loading);
+  const {navigationState} = useAppSelector(
+    state => ({
+      navigationState: state.navigation,
+    }),
+    shallowEqual,
+  );
+  const [loading, setLoading] = useState(navigationState.loading);
+  useEffect(() => {
+    setLoading(navigationState.loading);
+  }, [navigationState]);
+
   if (!loading) return null;
 
   return (
@@ -36,7 +24,7 @@ const LoadingScreen: React.FC = () => {
           style={{height: 40, width: 40}}
           source={require('../assets/loading.gif')}
         />
-        <Text style={styles.text}>{t('Loading')}</Text>
+        <Text style={styles.text}>Loading</Text>
       </View>
     </View>
   );
