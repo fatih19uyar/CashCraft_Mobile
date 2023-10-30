@@ -1,5 +1,3 @@
-// authSlice.ts
-
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {UserState} from '../../types/type';
 import UserService from '../../services/UserService';

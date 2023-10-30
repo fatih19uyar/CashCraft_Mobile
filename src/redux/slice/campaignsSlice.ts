@@ -1,5 +1,3 @@
-// authSlice.ts
-
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Campaign, CampaignState} from '../../types/type';
 import CampaignService from '../../services/CampaignService';

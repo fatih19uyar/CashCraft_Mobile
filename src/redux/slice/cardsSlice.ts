@@ -1,5 +1,3 @@
-// authSlice.ts
-
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {CardState} from '../../types/type';
 import CardService from '../../services/CardService';

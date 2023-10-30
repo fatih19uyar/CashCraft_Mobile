@@ -1,5 +1,3 @@
-// authSlice.ts
-
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthState} from '../../types/type';

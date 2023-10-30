@@ -1,5 +1,3 @@
-// navigationSlice.ts
-
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NavigationState} from '../../types/type';
 
