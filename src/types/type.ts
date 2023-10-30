@@ -67,6 +67,10 @@ export interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
 }
+export interface NavigationState {
+  loading: boolean;
+  initialRouteName: string;
+}
 export interface CampaignState {
   campaigns: Campaign[];
   selecetedCampaign: Campaign | null;
