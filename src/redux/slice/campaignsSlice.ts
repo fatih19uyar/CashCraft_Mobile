@@ -29,6 +29,9 @@ const camgaignsSlice = createSlice({
     ) => {
       state.selecetedCampaign = action.payload;
     },
+    resetCampaigns: state => {
+      state = initialState;
+    },
   },
   extraReducers: builder => {
     builder
@@ -41,5 +44,5 @@ const camgaignsSlice = createSlice({
       });
   },
 });
-export const {setSelectedCampaign} = camgaignsSlice.actions;
+export const {setSelectedCampaign, resetCampaigns} = camgaignsSlice.actions;
 export default camgaignsSlice.reducer;

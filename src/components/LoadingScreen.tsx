@@ -13,7 +13,7 @@ const LoadingScreen: React.FC = () => {
   const [loading, setLoading] = useState(navigationState.loading);
   useEffect(() => {
     setLoading(navigationState.loading);
-  }, [navigationState]);
+  }, [navigationState.loading]);
 
   if (!loading) return null;
 

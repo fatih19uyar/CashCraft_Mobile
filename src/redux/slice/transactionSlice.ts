@@ -29,6 +29,9 @@ const transactionsSlice = createSlice({
     ) => {
       state.selecetedTransaction = action.payload;
     },
+    resetTrasaction: state => {
+      state = initialState;
+    },
   },
   extraReducers: builder => {
     builder
@@ -41,5 +44,6 @@ const transactionsSlice = createSlice({
       });
   },
 });
-export const {setSelectedTransaction} = transactionsSlice.actions;
+export const {setSelectedTransaction, resetTrasaction} =
+  transactionsSlice.actions;
 export default transactionsSlice.reducer;
