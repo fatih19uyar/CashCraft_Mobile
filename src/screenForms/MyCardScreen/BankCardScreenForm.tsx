@@ -4,9 +4,9 @@ import MyView from '../../components/MyView';
 import {SafeAreaView} from 'react-native';
 import PressButton from '../../components/PressButton';
 import CardList from '../../components/CardList';
-import {sampleCardData} from '../../values/values';
 import {CardData, CardStyle} from '../../types/type';
 import themes from '../../utils/themes';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   onPress: (values: string) => void;
@@ -15,10 +15,11 @@ type Props = {
 };
 
 const MyCardScreenForm = (props: Props) => {
+  const {t} = useTranslation();
   return (
     <>
       <MyView>
-        {Boolean(props.cards) ? (
+        {props.cards.length > 0 ? (
           <CardList
             cardStyle={'bank' as CardStyle}
             cardData={props.cards}
@@ -31,7 +32,7 @@ const MyCardScreenForm = (props: Props) => {
               fontSize: themes.light.fontSize.medium,
               fontWeight: '200',
             }}>
-            {'Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.'}
+            {t('EmptyBankCardText')}
           </TextView>
         )}
       </MyView>

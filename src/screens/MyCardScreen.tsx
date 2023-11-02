@@ -3,7 +3,7 @@ import Background from '../components/Background';
 import BankCardScreenForm from '../screenForms/MyCardScreen/BankCardScreenForm';
 import TopBarPage from '../components/TopBarPage';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
-import {CardData} from '../types/type';
+import {CardData, CardStyle} from '../types/type';
 import CardDetailsScreenForm from '../screenForms/MyCardScreen/CardDetailsScreenForm';
 import {useTranslation} from 'react-i18next';
 import useCards from '../hooks/useCards';
@@ -22,6 +22,11 @@ const BankCardScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState('');
   const [updateNickNamePopup, setUpdateNickNamePopup] = useState(false);
   const {cards, selectedCard, handleSelectCard} = useCards();
+
+  const filterCards = (cards: CardData[], cardStyle: CardStyle) => {
+    const bankCards = cards.filter(card => card.cardStyle === cardStyle);
+    return bankCards;
+  };
 
   const goBack = () => {
     props.navigation.goBack();
@@ -69,7 +74,7 @@ const BankCardScreen = (props: Props) => {
     default:
       content = (
         <BankCardScreenForm
-          cards={cards}
+          cards={filterCards(cards, CardStyle.BANK)}
           onPress={nextForm}
           onPressCard={handleSelectedCard}
         />

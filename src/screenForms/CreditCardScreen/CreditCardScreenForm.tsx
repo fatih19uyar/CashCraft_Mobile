@@ -4,21 +4,38 @@ import MyView from '../../components/MyView';
 import {SafeAreaView} from 'react-native';
 import PressButton from '../../components/PressButton';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
+import CardList from '../../components/CardList';
+import {CardData, CardStyle} from '../../types/type';
 
-type Props = {onPress: (values: string) => void};
+type Props = {
+  onPress: (values: string) => void;
+  cards: CardData[];
+  onPressCard: (values: any) => void;
+};
 
 const CreditCardScreenForm = (props: Props) => {
   const {t} = useTranslation();
   return (
     <>
       <MyView>
-        <TextView
-          textColor={'black'}
-          textSize={18}
-          text={t('NoFoundBankCard')}
-          textStyle={'300'}
-          textMargin={{top: 0, bottom: 0}}
-        />
+        {props.cards.length > 0 ? (
+          <CardList
+            cardStyle={'credit' as CardStyle}
+            cardData={props.cards}
+            onItemPress={props.onPressCard}
+          />
+        ) : (
+          <TextView
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.medium + 2,
+              fontWeight: '300',
+              marginTop: themes.light.textMargin.top.small,
+            }}>
+            {t('NoFoundBankCard')}
+          </TextView>
+        )}
       </MyView>
       <SafeAreaView
         style={{
