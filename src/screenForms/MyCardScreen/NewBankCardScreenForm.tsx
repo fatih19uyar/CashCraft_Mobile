@@ -101,14 +101,16 @@ const NewMyCardScreenForm: React.FC<IProps & InjectedFormProps<{}, IProps>> = ({
         defaultValue={''}
       />
       <TextView
-        textColor={'black'}
-        textSize={13}
-        text={
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.small + 1,
+          marginBottom: themes.light.textMargin.bottom.large,
+          fontWeight: '300',
+        }}>
+        {
           'Kartınızı doğrulamak için 3D Secure sayfasına yönlendirileceksiniz. Kartınızdan 1 TL tutarında işlem gerçekleşecek ve anında iade edilecektir.'
         }
-        textStyle={'300'}
-        textMargin={{top: 0, bottom: 0}}
-      />
+      </TextView>
       <ImageButton
         text="Yeni Banka Kartı Ekle"
         backColor={themes.light.colors.buttonPrimary}

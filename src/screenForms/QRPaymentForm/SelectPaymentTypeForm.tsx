@@ -76,12 +76,15 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
         <Text>Kalan Süre: 00:00</Text>
         <RowTextContaier>
           <TextView
-            textColor={themes.light.colors.text}
-            textSize={15}
-            text={t('PaymentType')}
-            textStyle={'500'}
-            textMargin={{top: 10, bottom: 5}}
-          />
+            style={{
+              color: themes.light.colors.text,
+              fontSize: themes.light.fontSize.medium - 1,
+              marginBottom: themes.light.textMargin.bottom.small,
+              marginTop: themes.light.textMargin.top.medium,
+              fontWeight: '500',
+            }}>
+            {t('PaymentType')}
+          </TextView>
           <View style={{flex: 1}} />
           <TouchableOpacity onPress={addNewCard} style={{flexDirection: 'row'}}>
             <Image
@@ -89,12 +92,15 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
               style={{width: 25, height: 25, marginTop: 13, marginBottom: 5}}
             />
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={15}
-              text={'Kart Ekle'}
-              textStyle={'400'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.medium - 1,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+                fontWeight: '400',
+              }}>
+              {t('AddCard')}
+            </TextView>
           </TouchableOpacity>
         </RowTextContaier>
         {buttonFunc()}

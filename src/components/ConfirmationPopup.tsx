@@ -6,6 +6,7 @@ import PressButton from '../components/PressButton';
 import TextView from './TextView';
 import {PopupMode} from '../types/type';
 import {HelperText} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 
 type ConfirmationPopupProps = {
   isVisible: boolean;
@@ -22,6 +23,7 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
   onResent,
   mode,
 }) => {
+  const {t} = useTranslation();
   const [confirmationCode, setConfirmationCode] = useState('');
   const [inputError, setInputError] = useState(false);
   const [inputErrorMessage, setInputErrorMessage] = useState('');
@@ -63,19 +65,25 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
         return (
           <>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'Onay Kodu'}
-              textStyle={'bold'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                marginBottom: themes.light.textMargin.bottom.medium,
+                marginTop: themes.light.textMargin.top.small,
+                fontWeight: 'bold',
+              }}>
+              {t('ConfirmationCode')}
+            </TextView>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={15}
-              text={'Lütfen gönderilen 6 hanelik güvenlik kodunu giriniz.'}
-              textStyle={'200'}
-              textMargin={{top: 5, bottom: 20}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.medium - 1,
+                marginBottom: themes.light.textMargin.bottom.large,
+                marginTop: themes.light.textMargin.top.small,
+                fontWeight: '200',
+              }}>
+              {t('ConfirmationCodeEnter6Digit')}
+            </TextView>
             <TextInput
               style={{
                 backgroundColor: themes.light.colors.buttonSecondary,
@@ -103,12 +111,15 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
         return (
           <>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'İşlem Başarılı'}
-              textStyle={'bold'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.large,
+                fontWeight: 'bold',
+              }}>
+              {t('TransactionSuccessfull')}
+            </TextView>
             <Image
               style={{height: 100, width: 100}}
               source={require('../assets/success.gif')}
@@ -119,21 +130,25 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
         return (
           <>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'Cüzdan Hesabın Oluşturuldu'}
-              textStyle={'bold'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+                fontWeight: 'bold',
+              }}>
+              {t('CreatedWalletAccount')}
+            </TextView>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={12}
-              text={
-                'Hoşgeldin! Artık sende idvlabs Cüzdan hesanına sahipsin. Hesabına erişmen için seni giriş ekranına yönlendiriyoruz.'
-              }
-              textStyle={'300'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.small,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+                fontWeight: '300',
+              }}>
+              {t('AfterWalletAccountCreated')}
+            </TextView>
             <Image
               style={{height: 100, width: 100}}
               source={require('../assets/success.png')}
@@ -144,21 +159,25 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
         return (
           <>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={20}
-              text={'Cüzdan Şifresi Başarıyla Değiştirildi'}
-              textStyle={'bold'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+                fontWeight: 'bold',
+              }}>
+              {t('PasswordChangedSuccessfull')}
+            </TextView>
             <TextView
-              textColor={themes.light.colors.text}
-              textSize={12}
-              text={
-                'idvlabs Cüzdan hesabının şifresini başarıyla değiştirdin. Hesabına erişmen için giriş ekranına yönlendiriyoruz.'
-              }
-              textStyle={'300'}
-              textMargin={{top: 10, bottom: 5}}
-            />
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.small,
+                marginBottom: themes.light.textMargin.bottom.small,
+                marginTop: themes.light.textMargin.top.medium,
+                fontWeight: '300',
+              }}>
+              {t('AfterPasswordChangedSuccessfull')}
+            </TextView>
             <Image
               style={{height: 100, width: 100}}
               source={require('../assets/success.png')}
@@ -193,12 +212,15 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             />
             <TouchableOpacity onPress={onResent}>
               <TextView
-                textColor={themes.light.colors.text}
-                textSize={12}
-                text={'Tekrar Onay Kodu Gönder'}
-                textStyle={'400'}
-                textMargin={{top: 10, bottom: 5}}
-              />
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.small,
+                  marginBottom: themes.light.textMargin.bottom.small,
+                  marginTop: themes.light.textMargin.top.medium,
+                  fontWeight: '400',
+                }}>
+                {t('ReSendConformationCode')}
+              </TextView>
             </TouchableOpacity>
           </>
         );

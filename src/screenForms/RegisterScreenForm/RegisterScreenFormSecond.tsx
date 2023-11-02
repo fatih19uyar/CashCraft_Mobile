@@ -41,19 +41,23 @@ const RegisterScreenFormSecond: React.FC<
     <>
       <MyView>
         <TextView
-          textColor={'black'}
-          textSize={45}
-          text={t('RegisterScreenFormSecondHeaderText')}
-          textStyle={'500'}
-          textMargin={{top: 50, bottom: 50}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.customeSize2 + 5,
+            marginBottom: themes.light.textMargin.bottom.xLarge,
+            marginTop: themes.light.textMargin.top.xLarge,
+            fontWeight: '500',
+          }}>
+          {t('RegisterScreenFormSecondHeaderText')}
+        </TextView>
         <TextView
-          textColor={'black'}
-          textSize={18}
-          text={email + t('RegisterScreenFormSecondText')}
-          textStyle={'normal'}
-          textMargin={{top: 0, bottom: 50}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.large - 2,
+            marginBottom: themes.light.textMargin.bottom.xLarge,
+          }}>
+          {email + t('RegisterScreenFormSecondText')}
+        </TextView>
         <Field name="verificationCode" component={PasswordInputField} />
         <PressButton
           onPress={handleSubmit(goNext)}

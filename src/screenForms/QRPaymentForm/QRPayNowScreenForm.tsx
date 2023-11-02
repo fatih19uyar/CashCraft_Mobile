@@ -38,26 +38,32 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
     <>
       <MyView>
         <TextView
-          textColor={themes.light.colors.buttonPrimary}
-          textSize={30}
-          text={t('EnterWalletPassword')}
-          textStyle={'500'}
-          textMargin={{top: 25, bottom: 0}}
-        />
+          style={{
+            color: themes.light.colors.buttonPrimary,
+            fontSize: themes.light.fontSize.xlarge,
+            marginTop: themes.light.textMargin.top.large + 5,
+            fontWeight: '500',
+          }}>
+          {t('EnterWalletPassword')}
+        </TextView>
         <TextView
-          textColor={themes.light.colors.text}
-          textSize={20}
-          text={'Kalan Süre: 00:00'}
-          textStyle={'300'}
-          textMargin={{top: 0, bottom: 25}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.xlarge,
+            marginBottom: themes.light.textMargin.bottom.large + 5,
+            fontWeight: '300',
+          }}>
+          {t('RemainingTime')}
+        </TextView>
         <TextView
-          textColor={themes.light.colors.text}
-          textSize={23}
-          text={t('welcome') + ' Ezgi Beytaş'}
-          textStyle={'500'}
-          textMargin={{top: 0, bottom: 25}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.large + 3,
+            marginBottom: themes.light.textMargin.bottom.large + 5,
+            fontWeight: '500',
+          }}>
+          {t('welcome') + ' Ezgi Beytaş'}
+        </TextView>
         <StyledImage source={require('../../assets/profile_element.png')} />
         <PasswordInput length={6} onChangePassword={getPassword} />
         <PressButton

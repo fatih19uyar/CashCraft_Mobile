@@ -59,19 +59,25 @@ const CardDetailsScreenForm: React.FC<
         <></>
       )}
       <TextView
-        textColor={'black'}
-        textSize={20}
-        text={cardData?.cardNickName}
-        textStyle={'bold'}
-        textMargin={{top: 0, bottom: 20}}
-      />
-      <CreditCardDisplay
-        number={cardData?.cardNumber}
-        cvc={123}
-        expiration={cardData?.cardExpiration}
-        name={cardData?.cardName}
-        since={cardData?.cardType}
-      />
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.medium,
+          marginBottom: themes.light.textMargin.bottom.large,
+          fontWeight: 'bold',
+        }}>
+        {cardData?.cardNickName}
+      </TextView>
+      {cardData ? (
+        <CreditCardDisplay
+          number={cardData?.cardNumber}
+          cvc={123}
+          expiration={cardData?.cardExpiration}
+          name={cardData?.cardName}
+          since={cardData?.cardType}
+        />
+      ) : (
+        <></>
+      )}
       <View style={{height: '10%'}} />
 
       <ImageButton

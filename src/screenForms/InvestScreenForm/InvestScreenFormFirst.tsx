@@ -2,9 +2,10 @@ import {StyleSheet} from 'react-native';
 import React from 'react';
 import TextView from '../../components/TextView';
 import CardList from '../../components/CardList';
-import {CardData} from '../../types/type';
+import {CardData, CardStyle} from '../../types/type';
 import {sampleCardData} from '../../values/values';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
 
 interface InvestScreenFormFirstProps {
   goNewCard: () => void;
@@ -19,13 +20,20 @@ const InvestScreenFormFirst: React.FC<InvestScreenFormFirstProps> = ({
   return (
     <>
       <TextView
-        textColor={'black'}
-        textSize={14}
-        text={t('InvestScreenFormFirstText')}
-        textStyle={'300'}
-        textMargin={{top: 10, bottom: 10}}
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.small + 2,
+          marginBottom: themes.light.textMargin.bottom.medium,
+          marginTop: themes.light.textMargin.bottom.medium,
+          fontWeight: '300',
+        }}>
+        {t('InvestScreenFormFirstText')}
+      </TextView>
+      <CardList
+        cardData={sampleCardData}
+        onItemPress={selectedCard}
+        cardStyle={CardStyle.BANK}
       />
-      <CardList cardData={sampleCardData} onItemPress={selectedCard} />
     </>
   );
 };

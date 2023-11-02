@@ -42,12 +42,14 @@ const RegisterScreenFormFirst: React.FC<
     <>
       <MyView>
         <TextView
-          textColor={'black'}
-          textSize={40}
-          text={t('RegisterScreenFormFirstHeaderText')}
-          textStyle={'500'}
-          textMargin={{top: 0, bottom: 100}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.customeSize2,
+            marginBottom: themes.light.textMargin.bottom.extraLarge,
+            fontWeight: '500',
+          }}>
+          {t('RegisterScreenFormFirstHeaderText')}
+        </TextView>
         <Field
           color={colors.inputTextBackground}
           name="email_create"
