@@ -98,6 +98,23 @@
   "AddingTransaction": "İşlem Ekle",
   "MyReservations": "Rezervasyonlarım",
   "TransactionHistory": "İşlem Geçmişi",
+  "TransactionSuccessfull": "İşlem Başarıyla Gerçekleşti.",
+  "TransactionUnSuccessfull": "İşlem Başarısız.",
+  "AddCard": "Kart Ekle",
+
+  "CreatedWalletAccount": "Cüzdan Hesabın Oluşturuldu",
+  "AfterWalletAccountCreated": "Hoşgeldin! Artık sende idvlabs Cüzdan hesabına sahipsin. Hesabına erişmek için seni giriş ekranına yönlendiriyoruz.",
+  "PasswordChangedSuccessfull": "Cüzdan şifreniz başarıyla değiştirildi.",
+  "AfterPasswordChangedSuccessfull": "Cüzdan hesabının şifresini başarıyla değiştirdiniz. Hesabına erişmek için giriş ekranına yönlendiriyoruz.",
+
+  "ReSendConformationCode": "Tekrar Onay Kodu Gönder",
+
+  "SuccessfullBankCardAdded": "Banka kartı ekleme işlemi başarıyla gerçekleşti. Kayıtlı kartlarım menüsünden kart bilgilerine erişebilirsin.",
+
+  "PaymentFailedForCardBalance": "Ödeme işlemi başarısız oldu. Kart bakiyenizi kontrol ediniz ve tekrar deneyiniz.",
+
+  "ConfirmationCode": "Onay Kodu",
+  "ConfirmationCodeEnter6Digit": "Lütfen gönderilen 6 haneli güvenlik kodunu giriniz.",
 
   "LogOut": "Çıkış Yap",
   "Cancel": "İptal Et",

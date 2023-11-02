@@ -33,6 +33,10 @@
   "SendPasswordResetCode": "Send Password Reset Code",
   "DeleteAccount": "Delete My Account",
   "Loading": "Loading...",
+  "AddCard": "Card Add.",
+
+  "ConfirmationCode": "Confirmation Code",
+  "ConfirmationCodeEnter6Digit": "Please enter the 6-digit security code sent.",
 
   "OldPassword": "Old Password",
   "NewPassword": "New Password",
@@ -98,6 +102,19 @@
   "AddingTransaction": "Add Transaction",
   "MyReservations": "My Reservations",
   "TransactionHistory": "Transaction History",
+  "TransactionSuccessfull": "Transaction was completed successfully.",
+
+  "CreatedWalletAccount": "Your Wallet Account Has Been Created.",
+  "AfterWalletAccountCreated": "Welcome! You now have an idvlabs Wallet account. 'We are directing you to the login screen to access your account.",
+  "PasswordChangedSuccessfull": "Your wallet password has been changed successfully.",
+  "AfterPasswordChangedSuccessfull": "You have successfully changed the password of the wallet account. We direct you to the login screen to access your account.",
+
+  "ReSendConformationCode": "Send Verification Code Again",
+
+  "SuccessfullBankCardAdded": "Adding a bank card was successful. You can access your card information from the My Saved Cards menu.",
+
+  "PaymentFailedForCardBalance": "Payment failed. Check your card balance and try again.",
+  "RemainingTime": "Remaining Time: 00:00",
 
   "LogOut": "Log Out",
   "Cancel": "Cancel",
