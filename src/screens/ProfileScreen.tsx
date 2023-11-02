@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import TopBarPage from '../components/TopBarPage';
 import Background from '../components/Background';
 import BaseProfileScreenForm from '../screenForms/Profile/BaseProfileScreenForm';
@@ -7,10 +7,8 @@ import ConfirmationPopup from '../components/ConfirmationPopup';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {reset} from 'redux-form';
-import {PopupMode, UserInfo} from '../types/type';
+import {PopupMode} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
-import UserService from '../services/UserService';
-import {LoadingContext} from '../components/LoadingScreen';
 import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';

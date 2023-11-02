@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Background from '../components/Background';
 import CampainsScreenForm from '../screenForms/CampainsScreenForm';
 import TopBarPage from '../components/TopBarPage';

@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthState} from '../../types/type';
-import {RootState} from '../stores';
 import {resetCampaigns} from './campaignsSlice';
 import {resetTrasaction} from './transactionSlice';
 import {resetCards} from './cardsSlice';

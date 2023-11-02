@@ -1,5 +1,5 @@
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {Campaign, CampaignState} from '../../types/type';
+import {CampaignState} from '../../types/type';
 import CampaignService from '../../services/CampaignService';
 
 const initialState: CampaignState = {
@@ -35,8 +35,8 @@ const camgaignsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getAllCampaigns.pending, (state, action) => {})
-      .addCase(getAllCampaigns.rejected, (state, action) => {
+      .addCase(getAllCampaigns.pending, () => {})
+      .addCase(getAllCampaigns.rejected, (_, action) => {
         console.log(action.payload);
       })
       .addCase(getAllCampaigns.fulfilled, (state, aciton) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../../config';
 import {store} from '../redux/stores';
-import {initialRouteNameSet, loadingSet} from '../redux/slice/navigationSlice';
+import {initialRouteNameSet} from '../redux/slice/navigationSlice';
 import {logOut} from '../redux/slice/authSlice';
 
 // Axios yapılandırması

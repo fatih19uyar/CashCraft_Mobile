@@ -5,7 +5,7 @@ import {
 } from '../redux/slice/campaignsSlice';
 import {useAppDispatch, useAppSelector} from './useStore';
 import {shallowEqual} from 'react-redux';
-import {Campaign, CampaignState} from '../types/type';
+import {CampaignState} from '../types/type';
 
 // tsrfc
 export default function useCampaigns() {
