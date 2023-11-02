@@ -1,4 +1,4 @@
-import {CardData, Option} from '../types/type';
+import {CardData, CardStyle, Option} from '../types/type';
 
 export const items = [
   {
@@ -38,51 +38,42 @@ export const sampleCardData: CardData[] = [
   {
     cardName: 'John Doe',
     cardNumber: '1234 5678 9012 3456',
-    cardExpiration: '12/23',
+    cardExpiration: '12/25',
     cardType: 'master',
-    cardNickName: 'John Kartı',
+    cardNickName: 'Primary Card',
+    cardStyle: CardStyle.BANK,
   },
   {
     cardName: 'Jane Smith',
     cardNumber: '9876 5432 1098 7654',
-    cardExpiration: '09/25',
+    cardExpiration: '09/24',
     cardType: 'visa',
-    cardNickName: '',
+    cardNickName: 'Personal Card',
+    cardStyle: CardStyle.CREDIT,
   },
   {
-    cardName: 'Michael Johnson',
-    cardNumber: '5678 1234 9012 3456',
-    cardExpiration: '06/24',
+    cardName: 'Alice Johnson',
+    cardNumber: '5555 1234 9876 0011',
+    cardExpiration: '03/27',
     cardType: 'master',
-    cardNickName: '',
+    cardNickName: 'Travel Card',
+    cardStyle: CardStyle.BANK,
   },
   {
-    cardName: 'Emily Davis',
-    cardNumber: '4567 8901 2345 6789',
-    cardExpiration: '03/22',
+    cardName: 'Bob Brown',
+    cardNumber: '1111 2222 3333 4444',
+    cardExpiration: '08/26',
     cardType: 'visa',
-    cardNickName: 'Emily Kartı',
+    cardNickName: 'Work Card',
+    cardStyle: CardStyle.CREDIT,
   },
   {
-    cardName: 'William Brown',
-    cardNumber: '9876 5432 1098 7654',
+    cardName: 'Elena Garcia',
+    cardNumber: '7777 8888 9999 0000',
     cardExpiration: '11/23',
     cardType: 'master',
-    cardNickName: 'William Kartı',
-  },
-  {
-    cardName: 'Olivia Wilson',
-    cardNumber: '2345 6789 9012 3456',
-    cardExpiration: '08/26',
-    cardType: 'visa',
-    cardNickName: 'Olivia Kartı',
-  },
-  {
-    cardName: 'Olivia Wilson',
-    cardNumber: '2345 6789 9012 3456',
-    cardExpiration: '08/26',
-    cardType: 'visa',
-    cardNickName: 'Olivia Kartı',
+    cardNickName: 'Emergency Card',
+    cardStyle: CardStyle.BANK,
   },
 ];
 export const reservationDetails = [

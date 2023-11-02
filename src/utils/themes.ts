@@ -65,6 +65,7 @@ const themes = {
         small: 5,
         medium: 10,
         large: 20,
+        xLarge: 50,
         extraLarge: 100,
         customSize: 200,
       },
