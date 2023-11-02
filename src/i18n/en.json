@@ -111,6 +111,8 @@
 
   "ReSendConformationCode": "Send Verification Code Again",
 
+  "EmptyBankCardText": "You do not have a bank card defined in your Idvlabs Wallet account.",
+
   "SuccessfullBankCardAdded": "Adding a bank card was successful. You can access your card information from the My Saved Cards menu.",
 
   "PaymentFailedForCardBalance": "Payment failed. Check your card balance and try again.",

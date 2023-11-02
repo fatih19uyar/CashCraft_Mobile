@@ -109,6 +109,8 @@
 
   "ReSendConformationCode": "Tekrar Onay Kodu Gönder",
 
+  "EmptyBankCardText": "Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.",
+
   "SuccessfullBankCardAdded": "Banka kartı ekleme işlemi başarıyla gerçekleşti. Kayıtlı kartlarım menüsünden kart bilgilerine erişebilirsin.",
 
   "PaymentFailedForCardBalance": "Ödeme işlemi başarısız oldu. Kart bakiyenizi kontrol ediniz ve tekrar deneyiniz.",
