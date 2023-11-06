@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 type ConfirmationPopupProps = {
   isVisible: boolean;
   onCancel?: () => void;
-  onConfirm: (confirmationCode: string) => void;
+  onConfirm: (confirmationCode?: string) => void;
   onResent?: () => void;
   mode: PopupMode;
 };
@@ -61,6 +61,21 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
 
   const renderTextView = () => {
     switch (mode) {
+      case 'paymentSuccess':
+        return (
+          <>
+            <TextView
+              style={{
+                color: themes.light.colors.text,
+                fontSize: themes.light.fontSize.large,
+                marginBottom: themes.light.textMargin.bottom.medium,
+                marginTop: themes.light.textMargin.top.small,
+                fontWeight: 'bold',
+              }}>
+              {t('TransactionSuccessfull')}
+            </TextView>
+          </>
+        );
       case 'confirmation':
         return (
           <>
@@ -193,6 +208,18 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
 
   const renderButtonView = () => {
     switch (mode) {
+      case 'paymentSuccess':
+        return (
+          <>
+            <PressButton
+              onPress={() => onConfirm()}
+              textColor={themes.light.colors.text1}
+              text="Devam Et"
+              mode="Button2"
+              borderStatus={false}
+            />
+          </>
+        );
       case 'confirmation':
         return (
           <>

@@ -10,6 +10,7 @@ import PressButton from '../../components/PressButton';
 import TextView from '../../components/TextView';
 import PasswordInput from '../../components/PasswordInput';
 import {useTranslation} from 'react-i18next';
+import themes from '../../utils/themes';
 interface IProps extends ConnectedProps<typeof connector> {
   goToNextForm: (values: any) => void;
 }
@@ -32,19 +33,23 @@ const CreatePasswordScreenFirst: React.FC<
   return (
     <>
       <TextView
-        textColor={'black'}
-        textSize={45}
-        text={t('CreatePasswordScreenFirstHeaderText')}
-        textStyle={'500'}
-        textMargin={{top: 20, bottom: 50}}
-      />
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.customeSize1,
+          marginBottom: themes.light.textMargin.bottom.xLarge,
+          marginTop: themes.light.textMargin.top.large,
+          fontWeight: '500',
+        }}>
+        {t('CreatePasswordScreenFirstHeaderText')}
+      </TextView>
       <TextView
-        textColor={'black'}
-        textSize={18}
-        text={t('CreatePasswordScreenFirstText')}
-        textStyle={'normal'}
-        textMargin={{top: 0, bottom: 0}}
-      />
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.medium + 2,
+          fontWeight: 'normal',
+        }}>
+        {t('CreatePasswordScreenFirstText')}
+      </TextView>
       <Field name="createPassword" component={PasswordInputField} />
       <PressButton
         onPress={handleSubmit(goToNextForm)}
