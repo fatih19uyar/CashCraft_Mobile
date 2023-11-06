@@ -56,6 +56,8 @@ export type PopupMode =
   | 'success'
   | 'default'
   | 'createdAccount'
+  | 'paymentSuccess'
+  | 'paymentFail'
   | 'changedPassword';
 
 export interface InputProps extends WrappedFieldProps {
@@ -124,6 +126,12 @@ export enum CardStyle {
   STORE = 'store',
   BANK = 'bank',
   CREDIT = 'credit',
+}
+export enum PaymentCardStyle {
+  BANK = 'bank',
+  CREDIT = 'credit',
+  WALLET = 'wallet',
+  ANOTHER = 'another',
 }
 export interface ReservationDetail {
   title: string;

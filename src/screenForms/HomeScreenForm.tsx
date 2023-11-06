@@ -14,7 +14,6 @@ import {Campaign, TransactionData} from '../types/type';
 type HomeScreenFormProps = {
   onProfile: () => void;
   goForm: (values: string) => void;
-  loadingStatus: (status: boolean) => void;
   refreshing: boolean;
   onRefresh: () => void;
   transactions: TransactionData[];

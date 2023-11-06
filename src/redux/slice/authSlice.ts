@@ -4,6 +4,7 @@ import {AuthState} from '../../types/type';
 import {resetCampaigns} from './campaignsSlice';
 import {resetTrasaction} from './transactionSlice';
 import {resetCards} from './cardsSlice';
+import {reset} from 'redux-form';
 
 const initialState: AuthState = {
   token: '',
@@ -16,7 +17,6 @@ export const logOut = createAsyncThunk('auth/full', async (_, {dispatch}) => {
   dispatch(resetTrasaction());
   dispatch(resetCards());
   dispatch(logOutApp());
-  AsyncStorage.removeItem('token');
 });
 
 const authSlice = createSlice({
@@ -31,7 +31,9 @@ const authSlice = createSlice({
       AsyncStorage.setItem('token', action.payload.token);
     },
     logOutApp: state => {
-      state = initialState;
+      state.token = '';
+      state.isAuthenticated = false;
+      AsyncStorage.removeItem('token');
     },
   },
 });
