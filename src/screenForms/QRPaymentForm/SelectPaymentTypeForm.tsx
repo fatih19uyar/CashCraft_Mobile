@@ -2,7 +2,7 @@ import React from 'react';
 import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';
 import {Text} from 'react-native-paper';
-import {PaymentDetails} from '../../types/type';
+import {CardStyle, PaymentCardStyle, PaymentDetails} from '../../types/type';
 import themes from '../../utils/themes';
 import TextView from '../../components/TextView';
 import {Image, TouchableOpacity, View} from 'react-native';
@@ -10,31 +10,32 @@ import ImageButton from '../../components/ImageButton';
 import {useTranslation} from 'react-i18next';
 
 interface QRPayNowScreenFormProps {
-  goNext: () => void;
+  selectCard: (cartStyle: PaymentCardStyle) => void;
   readPayment: PaymentDetails;
   addNewCard: () => void;
 }
 const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
   addNewCard,
   readPayment,
+  selectCard,
 }) => {
   const {t} = useTranslation();
   const buttonData = [
     {
       text: t('PaywithBankCard'),
-      onPress: 'bankCard',
+      onPress: PaymentCardStyle.BANK,
     },
     {
       text: t('PaywithCreditCard'),
-      onPress: 'creditCard',
+      onPress: PaymentCardStyle.CREDIT,
     },
     {
       text: t('PaywithWalletCard'),
-      onPress: 'walletCard',
+      onPress: PaymentCardStyle.WALLET,
     },
     {
       text: t('PaywithAnotherCard'),
-      onPress: 'anotherCard',
+      onPress: PaymentCardStyle.ANOTHER,
     },
   ];
   const paymentDetails = () => {
@@ -62,7 +63,7 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
             backColor={themes.light.colors.buttonBackground}
             leftImageSource={''}
             rightImageSource={require('../../assets/arrow_right.png')}
-            onPress={() => {}}
+            onPress={() => selectCard(button.onPress)}
             textColor={themes.light.colors.text}
           />
         ))}

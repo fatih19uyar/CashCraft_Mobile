@@ -95,7 +95,7 @@ const WalletScreenFormFirst: React.FC<Props> = props => {
               marginRight: cardMargin,
               height: 150,
             }}
-            onPress={() => props.goScreen('MyMyCardScreen')}>
+            onPress={() => props.goScreen('MyCardScreen')}>
             <CardInnerWrapper>
               <TextView
                 style={{

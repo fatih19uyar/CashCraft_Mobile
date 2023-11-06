@@ -7,18 +7,23 @@ import PasswordInput from '../../components/PasswordInput';
 import PressButton from '../../components/PressButton';
 import {PaymentDetails} from '../../types/type';
 import {useTranslation} from 'react-i18next';
+import useTimer from '../../hooks/useTimer';
+import {ToastTypes, showToast} from '../../components/ToastMessage';
 
 interface QRPayNowScreenFormProps {
   getPassword: (password: string) => void;
   goNext: () => void;
+  handleTimeout: () => void;
   readPayment: PaymentDetails;
 }
 const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
   getPassword,
   readPayment,
   goNext,
+  handleTimeout,
 }) => {
   const {t} = useTranslation();
+  const oneMinutes: number = useTimer(handleTimeout, 60, 1000);
   const paymentDetails = () => {
     return (
       <ListItemContainer>
@@ -54,6 +59,7 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
             fontWeight: '300',
           }}>
           {t('RemainingTime')}
+          {oneMinutes}
         </TextView>
         <TextView
           style={{
