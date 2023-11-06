@@ -4,10 +4,12 @@ import {CardData} from '../types/type';
 
 const PaymentService = {
   payment: (credentials: {
-    cardData: CardData;
-    price: string;
+    creditCardNumber: string;
+    cvv: string;
+    amount: string;
   }): Promise<AxiosResponse> => {
-    return Api.post('/payment/makePayment', credentials);
+    console.log(credentials);
+    return Api.post('payments/creditCardPayment', credentials);
   },
 };
 
