@@ -10,10 +10,14 @@ import './src/i18n/i18n';
 import 'intl-pluralrules';
 import LoadingScreen from './src/components/LoadingScreen';
 import Dashboard from './src/navigations/Dashboard';
+import {Animated} from 'react-native';
 
 const App = () => {
   const currentTheme = 'light'; // Seçilen tema
-
+  const av = new Animated.Value(0);
+  av.addListener(() => {
+    return;
+  });
   return (
     <ThemeProvider theme={themes[currentTheme]}>
       <Provider store={store}>
