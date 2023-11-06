@@ -116,7 +116,7 @@
   "SuccessfullBankCardAdded": "Adding a bank card was successful. You can access your card information from the My Saved Cards menu.",
 
   "PaymentFailedForCardBalance": "Payment failed. Check your card balance and try again.",
-  "RemainingTime": "Remaining Time: 00:00",
+  "RemainingTime": "Remaining Time: ",
 
   "LogOut": "Log Out",
   "Cancel": "Cancel",
