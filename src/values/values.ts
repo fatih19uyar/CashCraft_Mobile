@@ -104,5 +104,5 @@ export const reservationDetails = [
 ];
 export const payment = {
   companyName: 'Ferdi Denemecilerden',
-  price: '-100',
+  price: '100',
 };

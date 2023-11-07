@@ -45,7 +45,6 @@ const BankCardScreen = (props: Props) => {
   };
   const handleSelectedCard = (values: CardData) => {
     handleSelectCard(values);
-    console.log('selectedCard', values);
     setCurrentForm('CardDetails');
   };
   const goUpdateNickName = (values: any) => {

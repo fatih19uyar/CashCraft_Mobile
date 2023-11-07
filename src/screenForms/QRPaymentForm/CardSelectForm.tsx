@@ -19,7 +19,7 @@ const CardSelectForm = (props: Props) => {
       <MyView>
         {props.cards.length > 0 ? (
           <CardList
-            cardStyle={'bank' as CardStyle}
+            cardStyle={props.cardStyle as unknown as CardStyle}
             cardData={props.cards}
             onItemPress={props.onPressCard}
           />

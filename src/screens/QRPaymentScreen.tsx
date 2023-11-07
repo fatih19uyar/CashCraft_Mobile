@@ -117,7 +117,7 @@ const QRPaymentScreen = (props: Props) => {
     await PaymentService.payment({
       creditCardNumber: selectCard.cardNumber,
       cvv: '123',
-      amount: '100',
+      amount: payment.price,
     })
       .then(res => {
         setTimeout(() => {
@@ -130,7 +130,7 @@ const QRPaymentScreen = (props: Props) => {
       .catch(err => {
         const toastConfig = {
           type: 'fault' as ToastTypes,
-          text1: 'Ödeme Hatası' + err.meesage,
+          text1: 'Ödeme Hatası ' + err.meesage,
         };
         dispatch(loadingSet({loading: false}));
         showToast(toastConfig);
@@ -204,7 +204,6 @@ const QRPaymentScreen = (props: Props) => {
         isVisible={popupVisible}
         onCancel={() => {}}
         onConfirm={popupOnConfirm}
-        onResent={() => console.log('Gönderdik')}
         mode={popupMode}
       />
     </>
