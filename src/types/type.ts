@@ -143,3 +143,8 @@ export interface PaymentDetails {
   companyName: string;
   price: string;
 }
+
+export interface LoginRecordData {
+  userId: string;
+  type: string;
+}
