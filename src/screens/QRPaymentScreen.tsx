@@ -16,6 +16,7 @@ import PaymentService from '../services/PaymentService';
 import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {loadingSet} from '../redux/slice/navigationSlice';
+import useTransactions from '../hooks/useTransactions';
 
 type Props = {
   navigation: {
@@ -37,6 +38,9 @@ const QRPaymentScreen = (props: Props) => {
   const [popupMode, setPopupMode] = useState<PopupMode>('paymentSuccess');
 
   const [smallText, setSmallText] = useState('');
+
+  const {transactions} = useTransactions();
+
   const [selectedCardStyle, setSelectedCardStyle] = useState<PaymentCardStyle>(
     PaymentCardStyle.BANK,
   );
@@ -157,7 +161,12 @@ const QRPaymentScreen = (props: Props) => {
           />
         );
       case 'QRPaymentScreenFormFirst':
-        return <QRPaymentScreenFormFirst goNext={goNext} />;
+        return (
+          <QRPaymentScreenFormFirst
+            transaction={transactions[9]}
+            goNext={goNext}
+          />
+        );
       case 'QRPayNowScreen':
         return (
           <QRPayNowScreenForm
@@ -176,7 +185,12 @@ const QRPaymentScreen = (props: Props) => {
           />
         );
       default:
-        return <QRPaymentScreenFormFirst goNext={goNext} />;
+        return (
+          <QRPaymentScreenFormFirst
+            transaction={transactions[9]}
+            goNext={goNext}
+          />
+        );
     }
   };
   return (

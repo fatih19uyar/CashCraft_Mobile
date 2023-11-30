@@ -3,20 +3,27 @@ import MyView from '../../components/MyView';
 import {styled} from 'styled-components/native';
 import PressButton from '../../components/PressButton';
 import {useTranslation} from 'react-i18next';
+import {TransactionData} from '../../types/type';
+import {Image} from 'react-native';
 
 interface QRPaymentScreenFormFirstProps {
   goNext: () => void;
+  transaction: TransactionData;
 }
 
 const QRPaymentScreenFormFirst: React.FC<QRPaymentScreenFormFirstProps> = ({
   goNext,
+  transaction,
 }) => {
   const {t} = useTranslation();
   return (
     <>
       <MyView>
         <ReservationImageContainer>
-          <ReservationImage source={require('../../assets/qr_payment.png')} />
+          <ReservationImage
+            source={{uri: `${transaction.qrCode}`}}
+            style={{width: 400, height: 400}}
+          />
         </ReservationImageContainer>
         <PressButton
           onPress={goNext}

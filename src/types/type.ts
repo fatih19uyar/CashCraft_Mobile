@@ -104,6 +104,7 @@ export interface TransactionData {
   subtitle: string;
   createDate: string;
   price: string;
+  qrCode: string | null;
   currency: {
     symbol: string;
     code: string;
