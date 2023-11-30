@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
 import HomeScreenForm from '../screenForms/HomeScreenForm';
-import {AppDispatch} from '../redux/stores';
-import {useDispatch} from 'react-redux';
+import {AppDispatch, RootState} from '../redux/stores';
+import {useDispatch, useSelector} from 'react-redux';
 import {logOut} from '../redux/slice/authSlice';
 import ProfileMenu from '../components/ProfileMenu';
 import useCampaigns from '../hooks/useCampaigns';
 import useTransactions from '../hooks/useTransactions';
 import {loadingSet} from '../redux/slice/navigationSlice';
+import LoginRecordService from '../services/LoginRecordService';
+import {LoginRecordType} from '../types/type';
+import publicIP from 'react-native-public-ip';
+import getDeviceInfo from '../utils/DeviceInfo';
 
 type Props = {
   navigation: {
@@ -18,6 +22,9 @@ type Props = {
 
 const HomeScreen = (props: Props) => {
   const dispatch: AppDispatch = useDispatch();
+  const userId: string | null = useSelector<RootState, string | null>(
+    state => state.authReducer.userId,
+  );
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false); // RefreshControl için durum
   const {campaigns} = useCampaigns();
@@ -29,13 +36,23 @@ const HomeScreen = (props: Props) => {
   const onPressButton = (screenName: string) => {
     switch (screenName) {
       case 'logout': {
-        dispatch(logOut());
+        onLogOut();
         break;
       }
       default: {
         props.navigation.navigate(screenName);
       }
     }
+  };
+  const onLogOut = async () => {
+    LoginRecordService.createLoginRecord({
+      userId: userId ? userId : '6507717bc16df61df6f0eb82',
+      type: LoginRecordType.SIGNOUT,
+      ipAddress: (await publicIP()).toString(),
+      deviceInfo: (await getDeviceInfo()).uniqueId,
+    }).then(() => {
+      dispatch(logOut());
+    });
   };
   const onRefresh = () => {
     setRefreshing(true);

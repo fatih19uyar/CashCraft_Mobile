@@ -4,12 +4,12 @@ import {AuthState} from '../../types/type';
 import {resetCampaigns} from './campaignsSlice';
 import {resetTrasaction} from './transactionSlice';
 import {resetCards} from './cardsSlice';
-import {reset} from 'redux-form';
 
 const initialState: AuthState = {
   token: '',
   isAuthenticated: false,
   loading: false,
+  userId: '',
 };
 
 export const logOut = createAsyncThunk('auth/full', async (_, {dispatch}) => {
@@ -23,17 +23,24 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess: (state, action: PayloadAction<{token: string}>) => {
+    loginSuccess: (
+      state,
+      action: PayloadAction<{token: string; userId: string}>,
+    ) => {
       state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
+      state.userId = action.payload.userId;
       // Kullanıcı bilgilerini AsyncStorage'e kaydetme
-      AsyncStorage.setItem('token', action.payload.token);
+      AsyncStorage.setItem(
+        'userData',
+        JSON.stringify({token: action.payload, userId: action.payload.userId}),
+      );
     },
     logOutApp: state => {
       state.token = '';
       state.isAuthenticated = false;
-      AsyncStorage.removeItem('token');
+      AsyncStorage.removeItem('userData');
     },
   },
 });

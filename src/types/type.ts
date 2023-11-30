@@ -68,6 +68,7 @@ export interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
+  userId: string | null;
 }
 export interface NavigationState {
   loading: boolean;
@@ -146,5 +147,18 @@ export interface PaymentDetails {
 
 export interface LoginRecordData {
   userId: string;
-  type: string;
+  type: LoginRecordType;
+  ipAddress: string;
+  deviceInfo: string;
 }
+export enum LoginRecordType {
+  SIGNIN = 'SIGNIN',
+  SIGNOUT = 'SIGNOUT',
+}
+export type DeviceInfoType = {
+  uniqueId: string;
+};
+export type userData = {
+  token: string;
+  userId: string;
+};

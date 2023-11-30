@@ -1,10 +1,6 @@
 import {AxiosResponse} from 'axios';
 import Api from '.';
-
-export interface LoginRecordData {
-  userId: string;
-  type: string;
-}
+import {LoginRecordData} from '../types/type';
 
 const LoginRecordService = {
   createLoginRecord: (

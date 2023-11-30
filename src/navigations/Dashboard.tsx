@@ -27,6 +27,7 @@ import MyCardScreen from '../screens/MyCardScreen';
 import CreditCardScreen from '../screens/CreditCardScreen';
 import {useAppSelector} from '../hooks/useStore';
 import {initialRouteNameSet} from '../redux/slice/navigationSlice';
+import {userData} from '../types/type';
 
 const Stack = createStackNavigator();
 type MyStackParamList = {
@@ -52,9 +53,17 @@ const Dashboard = () => {
     console.log(userIsLoggedIn);
     const checkUserLoggedIn = async () => {
       if (!userIsLoggedIn) {
-        const loggedInUser = await AsyncStorage.getItem('token');
-        if (loggedInUser) {
-          dispatch(loginSuccess({token: loggedInUser}));
+        const loggedInUserString: string | null = await AsyncStorage.getItem(
+          'userData',
+        );
+        if (loggedInUserString) {
+          const loggedInUser: userData = JSON.parse(loggedInUserString);
+          dispatch(
+            loginSuccess({
+              token: loggedInUser.token,
+              userId: loggedInUser.userId,
+            }),
+          );
           dispatch(initialRouteNameSet({initialRouteName: 'TabBottomStack'}));
         } else {
           navigation.dispatch(StackActions.replace('WelcomeScreen'));

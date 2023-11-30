@@ -7,13 +7,16 @@ import {reset} from 'redux-form';
 import LoginScreenFormFirst from '../screenForms/Login/LoginScreenFormFirst';
 import LoginScreenFormSecond from '../screenForms/Login/LoginScreenFormSecond';
 import LoginScreenFormThird from '../screenForms/Login/LoginScreenFormThird';
-import {LoginUser} from '../types/type';
+import {LoginRecordType, LoginUser} from '../types/type';
 import Background from '../components/Background';
 import AuthService from '../services/AuthService';
 import {change} from 'redux-form';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import {useTranslation} from 'react-i18next';
 import {loadingSet} from '../redux/slice/navigationSlice';
+import LoginRecordService from '../services/LoginRecordService';
+import publicIP from 'react-native-public-ip';
+import getDeviceInfo from '../utils/DeviceInfo';
 
 type LoginScreenProps = {
   navigation: {
@@ -37,10 +40,26 @@ const LoginScreen: React.FC<LoginScreenProps> = (props: LoginScreenProps) => {
     if (password && email && verificationCode) {
       dispatch(loadingSet({loading: true}));
       AuthService.verifyPhoneActivationCode(verificationCode, email)
-        .then(async () => {
-          dispatch(loginSuccess({token: token}));
-          dispatch(reset('loginScreen'));
-          dispatch(loadingSet({loading: false}));
+        .then(async res => {
+          LoginRecordService.createLoginRecord({
+            userId: res.data.id,
+            type: LoginRecordType.SIGNIN,
+            ipAddress: (await publicIP()).toString(),
+            deviceInfo: (await getDeviceInfo()).uniqueId,
+          })
+            .then(() => {
+              dispatch(loginSuccess({token: token, userId: res.data.id}));
+              dispatch(reset('loginScreen'));
+              dispatch(loadingSet({loading: false}));
+            })
+            .catch(() => {
+              const toastConfig = {
+                type: 'fault' as ToastTypes,
+                text1: 'Login kayıt. Lütfen tekrar deneyiniz...',
+              };
+              showToast(toastConfig);
+              dispatch(loadingSet({loading: false}));
+            });
         })
         .catch(() => {
           const toastConfig = {
