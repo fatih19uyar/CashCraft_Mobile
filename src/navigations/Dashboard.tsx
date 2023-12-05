@@ -58,9 +58,10 @@ const Dashboard = () => {
         );
         if (loggedInUserString) {
           const loggedInUser: userData = JSON.parse(loggedInUserString);
+          const data: any = loggedInUser.token;
           dispatch(
             loginSuccess({
-              token: loggedInUser.token,
+              token: data.token,
               userId: loggedInUser.userId,
             }),
           );
