@@ -24,9 +24,13 @@ export default function useTransactions() {
   ) => {
     dispatch(setSelectedTransaction(newCampaign));
   };
+  const handleRefreshTransactions = () => {
+    dispatch(getAllTransactions());
+  };
   return {
     transactions: transactionsList,
     selectedTransaction,
     handleSelectTransaction,
+    handleRefreshTransactions,
   };
 }

@@ -12,9 +12,13 @@ export default function useUser() {
     shallowEqual,
   );
   useEffect(() => {
-    dispatch(getUser());
+    if (user === null) dispatch(getUser());
   }, [user]);
+  const handleRefreshUser = () => {
+    dispatch(getUser());
+  };
   return {
     user,
+    handleRefreshUser,
   };
 }
