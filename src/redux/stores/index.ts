@@ -6,6 +6,7 @@ import transactionSlice from '../slice/transactionSlice';
 import userSlice from '../slice/userSlice';
 import cardsSlice from '../slice/cardsSlice';
 import navigationSlice from '../slice/navigationSlice';
+import walletCardSlice from '../slice/walletCardSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     userInfo: userSlice,
     cards: cardsSlice,
     navigation: navigationSlice,
+    walletCard: walletCardSlice,
     form: formReducer,
   },
 });
