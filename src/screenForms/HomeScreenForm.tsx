@@ -9,7 +9,8 @@ import {Text} from 'react-native-paper';
 import themes from '../utils/themes';
 import styled from 'styled-components/native';
 import {useTranslation} from 'react-i18next';
-import {Campaign, TransactionData} from '../types/type';
+import {Campaign, TransactionData, WalletCardType} from '../types/type';
+import walletCard from '../redux/slice/walletCardSlice';
 
 type HomeScreenFormProps = {
   onProfile: () => void;
@@ -18,6 +19,7 @@ type HomeScreenFormProps = {
   onRefresh: () => void;
   transactions: TransactionData[];
   campaings: Campaign[];
+  walletCard: WalletCardType;
 };
 const StyledView = styled.View`
   align-self: flex-start;
@@ -42,7 +44,7 @@ const HomeScreenForm = (props: HomeScreenFormProps) => {
               onRefresh={props.onRefresh}
             />
           }>
-          <MoneyCard amount={'10.000,59'} accountName={'idv'} />
+          <MoneyCard walletCard={props.walletCard} />
           <TransactionList
             transactions={props.transactions}
             goForm={props.goForm}

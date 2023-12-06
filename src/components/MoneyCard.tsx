@@ -5,12 +5,12 @@ import colors from '../utils/colors';
 import TextView from './TextView';
 import {useTranslation} from 'react-i18next';
 import themes from '../utils/themes';
+import {WalletCardType} from '../types/type';
 
 interface MoneyCardProps {
-  amount: string;
-  accountName: string;
+  walletCard: WalletCardType;
 }
-const MoneyCard: React.FC<MoneyCardProps> = ({amount, accountName}) => {
+const MoneyCard: React.FC<MoneyCardProps> = ({walletCard}) => {
   const [t] = useTranslation();
   return (
     <StyledCard>
@@ -20,7 +20,7 @@ const MoneyCard: React.FC<MoneyCardProps> = ({amount, accountName}) => {
           fontSize: themes.light.fontSize.large,
           fontWeight: '300',
         }}>
-        {`${accountName} ${t('WalletAccount')}`}
+        {`${walletCard.cardName} ${t('WalletAccount')}`}
       </TextView>
 
       <TextView
@@ -28,7 +28,7 @@ const MoneyCard: React.FC<MoneyCardProps> = ({amount, accountName}) => {
           color: themes.light.colors.text,
           fontSize: 40,
           fontWeight: 'bold',
-        }}>{`₺ ${amount}`}</TextView>
+        }}>{` ${walletCard.balance} ${walletCard.currency}`}</TextView>
     </StyledCard>
   );
 };

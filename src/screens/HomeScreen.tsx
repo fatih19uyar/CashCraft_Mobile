@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import HomeScreenForm from '../screenForms/HomeScreenForm';
 import {AppDispatch, RootState} from '../redux/stores';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,6 +11,8 @@ import LoginRecordService from '../services/LoginRecordService';
 import {LoginRecordType} from '../types/type';
 import publicIP from 'react-native-public-ip';
 import getDeviceInfo from '../utils/DeviceInfo';
+import useWalletCard from '../hooks/useWalletCard';
+import {resetTrasaction} from '../redux/slice/transactionSlice';
 
 type Props = {
   navigation: {
@@ -28,8 +30,8 @@ const HomeScreen = (props: Props) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false); // RefreshControl için durum
   const {campaigns} = useCampaigns();
-  const {transactions} = useTransactions();
-
+  const {transactions, handleRefreshTransactions} = useTransactions();
+  const {walletCard, handleRefreshWalletCard} = useWalletCard();
   const toggleMenu = () => {
     setMenuVisible(!isMenuVisible);
   };
@@ -44,6 +46,7 @@ const HomeScreen = (props: Props) => {
       }
     }
   };
+
   const onLogOut = async () => {
     LoginRecordService.createLoginRecord({
       userId: userId ? userId : '6507717bc16df61df6f0eb82',
@@ -54,17 +57,18 @@ const HomeScreen = (props: Props) => {
       dispatch(logOut());
     });
   };
-  const onRefresh = () => {
+  const onRefresh = async () => {
     setRefreshing(true);
-    dispatch(loadingSet({loading: true}));
+    handleRefreshTransactions();
+    handleRefreshWalletCard();
     setTimeout(() => {
       setRefreshing(false);
-      dispatch(loadingSet({loading: false}));
     }, 5000);
   };
   return (
     <>
       <HomeScreenForm
+        walletCard={walletCard}
         campaings={campaigns}
         transactions={transactions}
         refreshing={refreshing}
