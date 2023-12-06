@@ -163,3 +163,11 @@ export type userData = {
   token: string;
   userId: string;
 };
+export type WalletCardType = {
+  cardNumber: string;
+  cardName: string;
+  currency: string;
+  balance: number;
+  expirationDate?: Date;
+  cardStatus?: string;
+};
