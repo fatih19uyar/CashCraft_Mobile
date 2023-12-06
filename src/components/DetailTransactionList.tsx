@@ -47,7 +47,11 @@ const DetailTransactionList: React.FC<DetailTransactionListProps> = ({
           <TextContainer>
             <TitleText>{data.title}</TitleText>
             <SubtitleText>{data.subtitle}</SubtitleText>
-            <SubtitleText>{data.createDate}</SubtitleText>
+            <SubtitleText>
+              {new Date(data.createDate).toLocaleString('en-US', {
+                hour12: false,
+              })}
+            </SubtitleText>
           </TextContainer>
           <Text style={{fontWeight: 'bold'}}>
             {data.price} {data.currency.symbol}

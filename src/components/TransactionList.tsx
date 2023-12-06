@@ -34,7 +34,11 @@ const TransactionList: React.FC<TransactionListProps> = ({
               <DataTable.Cell>
                 <View>
                   <NameText>{item.title}</NameText>
-                  <DateText>{item.createDate}</DateText>
+                  <DateText>
+                    {new Date(item.createDate).toLocaleString('en-US', {
+                      hour12: false,
+                    })}
+                  </DateText>
                 </View>
               </DataTable.Cell>
               <DataTable.Cell numeric>
