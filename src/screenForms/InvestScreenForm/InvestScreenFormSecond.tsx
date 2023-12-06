@@ -2,38 +2,50 @@ import React from 'react';
 import MyView from '../../components/MyView';
 import TextView from '../../components/TextView';
 import PressButton from '../../components/PressButton';
+import themes from '../../utils/themes';
+import {WalletCardType} from '../../types/type';
 
 interface InvestScreenFormSecondProps {
   goNextForm: () => void;
+  walletCard: WalletCardType;
 }
 
 const InvestScreenFormSecond: React.FC<InvestScreenFormSecondProps> = ({
   goNextForm,
+  walletCard,
 }) => {
   return (
     <>
       <MyView>
         <TextView
-          textColor={'black'}
-          textSize={14}
-          text={'En az ₺10 yükleme yapabilirsin.'}
-          textStyle={'300'}
-          textMargin={{top: 10, bottom: 70}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.small + 2,
+            marginBottom: themes.light.textMargin.bottom.xLarge + 20,
+            marginTop: themes.light.textMargin.top.medium,
+            fontWeight: '300',
+          }}>
+          En az ₺10 yükleme yapabilirsin.
+        </TextView>
         <TextView
-          textColor={'black'}
-          textSize={40}
-          text={'₺ _ _,_ _'}
-          textStyle={'500'}
-          textMargin={{top: 10, bottom: 0}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.customeSize2,
+            marginTop: themes.light.textMargin.top.medium,
+            fontWeight: '500',
+          }}>
+          ₺ _ _,_ _
+        </TextView>
         <TextView
-          textColor={'black'}
-          textSize={14}
-          text={'Cüzdan Bakiyen: 100.58₺'}
-          textStyle={'400'}
-          textMargin={{top: 10, bottom: 100}}
-        />
+          style={{
+            color: themes.light.colors.text,
+            fontSize: themes.light.fontSize.small + 2,
+            marginTop: themes.light.textMargin.top.medium,
+            marginBottom: themes.light.textMargin.bottom.extraLarge,
+            fontWeight: '400',
+          }}>
+          Cüzdan Bakiyen: {walletCard.balance + ' ' + walletCard.currency}
+        </TextView>
 
         <PressButton
           onPress={goNextForm}

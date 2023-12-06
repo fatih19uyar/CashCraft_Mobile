@@ -6,6 +6,8 @@ import {CardData} from '../types/type';
 import InvestScreenFormSecond from '../screenForms/InvestScreenForm/InvestScreenFormSecond';
 import InvestScreenFormThird from '../screenForms/InvestScreenForm/InvestScreenFormThird';
 import {useTranslation} from 'react-i18next';
+import useWalletCard from '../hooks/useWalletCard';
+import WalletCardService from '../services/WalletCardService';
 
 type Props = {
   navigation: {
@@ -20,6 +22,7 @@ const InvestScreen = (props: Props) => {
   const [currentForm, setCurrentForm] = useState(1);
   const [topBarSmallText, setTopBarSmallText] = useState(t('Deposit'));
   const [card, setCard] = useState<CardData>();
+  const {walletCard} = useWalletCard();
 
   const renderForm = () => {
     switch (currentForm) {
@@ -31,7 +34,12 @@ const InvestScreen = (props: Props) => {
           />
         );
       case 2:
-        return <InvestScreenFormSecond goNextForm={goNextForm} />;
+        return (
+          <InvestScreenFormSecond
+            walletCard={walletCard}
+            goNextForm={goNextForm}
+          />
+        );
       case 3:
         return (
           <InvestScreenFormThird
@@ -56,9 +64,16 @@ const InvestScreen = (props: Props) => {
   const goBack = () => {
     props.navigation.goBack();
   };
-  const goDirectBank = () => {
-    props.navigation.navigate('BankCardDirectedScreen');
-    setCurrentForm(1);
+  const goDirectBank = async () => {
+    WalletCardService.updateWalletCardBalance(10, '+')
+      .then(() => {
+        props.navigation.navigate('BankCardDirectedScreen');
+        setCurrentForm(1);
+      })
+      .catch(() => {
+        console.log('Bakiye Yükleme Sorunu');
+        setCurrentForm(1);
+      });
   };
   const goNextForm = () => {
     setCurrentForm(currentForm + 1);
