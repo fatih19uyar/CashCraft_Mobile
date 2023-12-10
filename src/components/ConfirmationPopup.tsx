@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 type ConfirmationPopupProps = {
   isVisible: boolean;
   onCancel?: () => void;
-  onConfirm: (confirmationCode?: string) => void;
+  onConfirm: (confirmationCode: string) => void;
   onResent?: () => void;
   mode: PopupMode;
 };
@@ -29,17 +29,12 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
   const [inputErrorMessage, setInputErrorMessage] = useState('');
 
   const handleConfirm = () => {
-    console.log(confirmationCode);
-
     if (confirmationCode === '' && mode === 'confirmation') {
       setInputError(true);
       setInputErrorMessage('Lütfen boş bırakmayınız.');
     } else if (confirmationCode.length < 6) {
       setInputError(true);
       setInputErrorMessage('Eksik Karakter Bulunmaktadır.');
-    } else if (confirmationCode !== '123456') {
-      setInputError(true);
-      setInputErrorMessage('Hatalı şifre.');
     } else if (confirmationCode.length < 6 && mode === 'confirmation') {
       setInputError(true);
       setInputErrorMessage('Lütfen 6 haneli kodu giriniz.');
@@ -212,7 +207,7 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
         return (
           <>
             <PressButton
-              onPress={() => onConfirm()}
+              onPress={() => onConfirm('')}
               textColor={themes.light.colors.text1}
               text="Devam Et"
               mode="Button2"

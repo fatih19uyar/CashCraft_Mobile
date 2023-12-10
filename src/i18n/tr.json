@@ -156,5 +156,7 @@
   "DeleteWalletScreenFormThirdHeaderText": "Şifreyi Tekrar Giriniz",
   "DeleteWalletScreenFormFourthHeaderText": "idvlabs Cüzdan hesabını kapattın.",
   "DeleteWalletScreenFormFourthText": "idvlabs Cüzdan hesabın kapatılmıştır.  Kaydettiğin tüm kart bilgileri sistemden silinmiştir.",
-  "InvestScreenFormFirstText": " 'Cüzdan hesabına kayıtlı banka/kredi kartınla veya yeni bir kart ile para yatırabilirsin. Para yatırma işlemlerinde tutarın %1’i kadar işlem ücreti alınmaktadır."
+  "InvestScreenFormFirstText": " 'Cüzdan hesabına kayıtlı banka/kredi kartınla veya yeni bir kart ile para yatırabilirsin. Para yatırma işlemlerinde tutarın %1’i kadar işlem ücreti alınmaktadır.",
+  "ConformationCodeCreateError": "Doğrulama kodu oluşturulurken bir hata oluştu.",
+  "ConformationCodeFault": "Geçersiz doğrulama kodu"
 }

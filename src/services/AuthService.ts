@@ -70,6 +70,20 @@ const AuthService = {
       verificationCode,
     });
   },
+  verifyConfirmationCode: (
+    id: string,
+    confirmationCode: string,
+  ): Promise<AxiosResponse> => {
+    return Api.post('/auth/verifyConfirmationCode', {
+      id,
+      confirmationCode,
+    });
+  },
+  confirmationCode: (id: string): Promise<AxiosResponse> => {
+    return Api.post('/auth/confirmationCode', {
+      id,
+    });
+  },
 };
 
 export default AuthService;

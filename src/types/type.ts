@@ -12,6 +12,10 @@ export interface UserInfo {
   photo: string;
   email: string;
 }
+export interface UserUpdate {
+  email: string;
+  phoneNumber: string;
+}
 export interface LoginUser {
   password: string;
   verificationCode: string;

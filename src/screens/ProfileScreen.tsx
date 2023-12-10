@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TopBarPage from '../components/TopBarPage';
 import Background from '../components/Background';
 import BaseProfileScreenForm from '../screenForms/Profile/BaseProfileScreenForm';
 import EditUserInfoScreenForm from '../screenForms/Profile/EditUserInfoScreenForm';
 import ConfirmationPopup from '../components/ConfirmationPopup';
-import {AppDispatch} from '../redux/stores';
-import {useDispatch} from 'react-redux';
-import {reset} from 'redux-form';
-import {PopupMode} from '../types/type';
+import {getFormValues, reset} from 'redux-form';
+import {PopupMode, UserUpdate} from '../types/type';
 import ChangePasswordScreenForm from '../screenForms/Profile/ChangePasswordScreenForm';
 import {useTranslation} from 'react-i18next';
 import i18n from '../i18n/i18n';
 import {ToastTypes, showToast} from '../components/ToastMessage';
 import useUser from '../hooks/useUser';
+import UserService from '../services/UserService';
+import {loadingSet} from '../redux/slice/navigationSlice';
+import {useAppDispatch, useAppSelector} from '../hooks/useStore';
+import AuthService from '../services/AuthService';
 
 type Props = {
   navigation: {
@@ -25,11 +27,15 @@ type Props = {
 const ProfileScreen = (props: Props) => {
   const {t} = useTranslation();
   const [currentForm, setCurrentForm] = useState('');
-  const {user} = useUser();
+  const {user, handleRefreshUser} = useUser();
   const [isConfirmationPopupVisible, setConfirmationPopupVisible] =
     useState(false);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [popupMode, setPopupMode] = useState<PopupMode>('default');
+  const [editUserData, setEditUserData] = useState<UserUpdate>();
+  const userId: string | null = useAppSelector(
+    state => state.authReducer.userId,
+  );
   const goBack = () => {
     dispatch(reset('EditUserScreen'));
     dispatch(reset('ChangePasswordScreen'));
@@ -42,10 +48,28 @@ const ProfileScreen = (props: Props) => {
       : setCurrentForm(values);
   };
 
-  const editUser = (values: string) => {
-    console.log('editUser', values);
-    setPopupMode('confirmation');
-    setConfirmationPopupVisible(true);
+  useEffect(() => {
+    dispatch(loadingSet({loading: !Boolean(user)}));
+  }, [user]);
+
+  const editUser = async (values: UserUpdate) => {
+    setEditUserData({phoneNumber: values.phoneNumber, email: values.email});
+    dispatch(loadingSet({loading: true}));
+    AuthService.confirmationCode(userId ? userId : '')
+      .then(() => {
+        setPopupMode('confirmation');
+        setConfirmationPopupVisible(true);
+        dispatch(loadingSet({loading: false}));
+      })
+      .catch(() => {
+        dispatch(reset('EditUserScreen'));
+        dispatch(loadingSet({loading: false}));
+        const toastConfig = {
+          type: 'fault' as ToastTypes,
+          text1: t('ConformationCodeCreateError'),
+        };
+        showToast(toastConfig);
+      });
   };
   const changePassword = (values: string) => {
     console.log('ChangePassword', values);
@@ -72,19 +96,39 @@ const ProfileScreen = (props: Props) => {
     i18n.changeLanguage(newLanguage); // Dil değiştir
   };
 
-  const handleConfirmationCode = (confirmationCode: string) => {
-    if (confirmationCode === '123456') {
-      dispatch(reset('EditUserScreen'));
-      setPopupMode('success');
-    } else if (confirmationCode === 'close') {
-      setConfirmationPopupVisible(false);
-      setCurrentForm('');
-    } else {
-      console.log('Confirmation hatalı');
+  const handleConfirmationCode = async (confirmationCode: string) => {
+    try {
+      dispatch(loadingSet({loading: true}));
+      if (confirmationCode === 'close') {
+        setConfirmationPopupVisible(false);
+        setCurrentForm('');
+        dispatch(loadingSet({loading: false}));
+        return;
+      }
+      AuthService.verifyConfirmationCode(
+        userId ? userId : '',
+        confirmationCode,
+      ).then(() => {
+        if (editUserData)
+          UserService.updateUser(editUserData).then(() => {
+            setPopupMode('success');
+            dispatch(reset('EditUserScreen'));
+            handleRefreshUser();
+            dispatch(loadingSet({loading: false}));
+          });
+      });
+    } catch (error) {
+      console.log(error);
+      const toastConfig = {
+        type: 'fault' as ToastTypes,
+        text1: t('ConformationCodeFault'),
+      };
+      showToast(toastConfig);
     }
   };
   const cancelConfirmationCode = () => {
     setConfirmationPopupVisible(false);
+    dispatch(reset('EditUserScreen'));
     setCurrentForm('');
   };
 

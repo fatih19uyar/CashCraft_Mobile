@@ -154,5 +154,7 @@
   "DeleteWalletScreenFormThirdHeaderText": "Re-enter the Password",
   "DeleteWalletScreenFormFourthHeaderText": "You have closed your idvlabs Wallet account.",
   "DeleteWalletScreenFormFourthText": "Your idvlabs Wallet account has been closed. All saved card information has been deleted.",
-  "InvestScreenFormFirstText": "You can deposit money to your wallet account using your registered bank/credit card or a new card. A transaction fee of up to 1% is charged for deposit transactions."
+  "InvestScreenFormFirstText": "You can deposit money to your wallet account using your registered bank/credit card or a new card. A transaction fee of up to 1% is charged for deposit transactions.",
+  "ConformationCodeCreateError": "An error occurred while generating the verification code.",
+  "ConformationCodeFault": "Invalid verification code."
 }

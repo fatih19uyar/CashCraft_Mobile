@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from './useStore';
 import {shallowEqual} from 'react-redux';
 import {getUser} from '../redux/slice/userSlice';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 export default function useUser() {
   const dispatch = useAppDispatch();

@@ -48,6 +48,7 @@ const HomeScreen = (props: Props) => {
   };
 
   const onLogOut = async () => {
+    dispatch(loadingSet({loading: true}));
     LoginRecordService.createLoginRecord({
       userId: userId ? userId : '6507717bc16df61df6f0eb82',
       type: LoginRecordType.SIGNOUT,
@@ -65,6 +66,15 @@ const HomeScreen = (props: Props) => {
       setRefreshing(false);
     }, 5000);
   };
+
+  useEffect(() => {
+    if (transactions.length > 0 && campaigns.length > 0)
+      dispatch(loadingSet({loading: false}));
+    else {
+      dispatch(loadingSet({loading: true}));
+    }
+  }, [campaigns, transactions, walletCard]);
+
   return (
     <>
       <HomeScreenForm

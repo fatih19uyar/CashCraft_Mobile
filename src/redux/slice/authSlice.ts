@@ -4,6 +4,7 @@ import {AuthState} from '../../types/type';
 import {resetCampaigns} from './campaignsSlice';
 import {resetTrasaction} from './transactionSlice';
 import {resetCards} from './cardsSlice';
+import {loadingSet} from './navigationSlice';
 
 const initialState: AuthState = {
   token: '',
@@ -17,6 +18,7 @@ export const logOut = createAsyncThunk('auth/full', async (_, {dispatch}) => {
   dispatch(resetTrasaction());
   dispatch(resetCards());
   dispatch(logOutApp());
+  dispatch(loadingSet({loading: false}));
 });
 
 const authSlice = createSlice({
