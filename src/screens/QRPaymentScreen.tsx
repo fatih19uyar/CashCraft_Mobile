@@ -4,11 +4,18 @@ import QRPaymentScreenFormFirst from '../screenForms/QRPaymentForm/QRPaymentScre
 import TopBarPage from '../components/TopBarPage';
 import QRPayNowScreenForm from '../screenForms/QRPaymentForm/QRPayNowScreenForm';
 import SelectPaymentTypeForm from '../screenForms/QRPaymentForm/SelectPaymentTypeForm';
-import {payment} from '../values/values';
+import {transactionsMockData} from '../values/values';
 import NewBankCardScreenForm from '../screenForms/MyCardScreen/NewBankCardScreenForm';
 import {useTranslation} from 'react-i18next';
 import {ToastTypes, showToast} from '../components/ToastMessage';
-import {CardData, CardStyle, PaymentCardStyle, PopupMode} from '../types/type';
+import {
+  CardData,
+  CardStyle,
+  PaymentCardStyle,
+  PaymentDetails,
+  PopupMode,
+  TransactionStatus,
+} from '../types/type';
 import CardSelectForm from '../screenForms/QRPaymentForm/CardSelectForm';
 import useCards from '../hooks/useCards';
 import ConfirmationPopup from '../components/ConfirmationPopup';
@@ -17,6 +24,8 @@ import {AppDispatch} from '../redux/stores';
 import {useDispatch} from 'react-redux';
 import {loadingSet} from '../redux/slice/navigationSlice';
 import useTransactions from '../hooks/useTransactions';
+import TransactionService from '../services/TransactionService';
+import {useAppSelector} from '../hooks/useStore';
 
 type Props = {
   navigation: {
@@ -30,7 +39,9 @@ type ExtendedCardStyle = CardStyle | PaymentCardStyle;
 const QRPaymentScreen = (props: Props) => {
   const {t} = useTranslation();
   const dispatch: AppDispatch = useDispatch();
-
+  const userId: string | null = useAppSelector(
+    state => state.authReducer.userId,
+  );
   const [currentForm, setCurrentForm] = useState('');
   const [backButton, setBackButton] = useState(false);
 
@@ -38,8 +49,6 @@ const QRPaymentScreen = (props: Props) => {
   const [popupMode, setPopupMode] = useState<PopupMode>('paymentSuccess');
 
   const [smallText, setSmallText] = useState('');
-
-  const {transactions} = useTransactions();
 
   const [selectedCardStyle, setSelectedCardStyle] = useState<PaymentCardStyle>(
     PaymentCardStyle.BANK,
@@ -85,9 +94,8 @@ const QRPaymentScreen = (props: Props) => {
     }
   };
 
-  const getPasswordFunc = (values: any) => {
-    console.log('values', values);
-    setGetPassword(values);
+  const getPasswordFunc = (values: string) => {
+    setGetPassword(values.toString());
   };
   const addNewCard = () => {
     if (currentForm === 'SelectPaymentType') {
@@ -107,7 +115,6 @@ const QRPaymentScreen = (props: Props) => {
     }, 1000);
   };
   const selectCard = (cardStyle: PaymentCardStyle) => {
-    console.log(cardStyle);
     if (cardStyle !== PaymentCardStyle.ANOTHER) setSelectedCardStyle(cardStyle);
     setCurrentForm('CardSelectFrom');
     setBackButton(true);
@@ -118,18 +125,27 @@ const QRPaymentScreen = (props: Props) => {
   };
   const payNow = async (selectCard: CardData) => {
     dispatch(loadingSet({loading: true}));
-    await PaymentService.payment({
+    PaymentService.payment({
       creditCardNumber: selectCard.cardNumber,
       cvv: '123',
-      amount: payment.price,
+      amount: transactionsMockData.price,
     })
       .then(res => {
-        setTimeout(() => {
-          console.log('res', res.data);
-          dispatch(loadingSet({loading: false}));
-          setPopupMode('paymentSuccess');
-          setPopupVisible(true);
-        }, 2000);
+        TransactionService.createTransaction({
+          title: transactionsMockData.title,
+          subtitle: transactionsMockData.subtitle,
+          price: transactionsMockData.price,
+          user: userId ? userId : 'error',
+          currency: transactionsMockData.currency._id ?? '',
+          card: '651ebfd578580e5f0b907ffa',
+          status: TransactionStatus.COMPLETED,
+        }).then(res => {
+          setTimeout(() => {
+            dispatch(loadingSet({loading: false}));
+            props.navigation.navigate('BankCardDirectedScreen');
+            setCurrentForm('QRPaymentScreenFormFirst');
+          }, 2000);
+        });
       })
       .catch(err => {
         const toastConfig = {
@@ -147,7 +163,11 @@ const QRPaymentScreen = (props: Props) => {
     setPopupVisible(false);
     setBackButton(false);
   };
-
+  const paymentData: PaymentDetails = {
+    companyName: transactionsMockData.title,
+    price: transactionsMockData.price,
+    currency: transactionsMockData.currency.symbol ?? '',
+  };
   const renderForm = () => {
     switch (currentForm) {
       case 'AddNewCardScreen':
@@ -156,14 +176,14 @@ const QRPaymentScreen = (props: Props) => {
         return (
           <SelectPaymentTypeForm
             selectCard={selectCard}
-            readPayment={payment}
+            readPayment={paymentData}
             addNewCard={addNewCard}
           />
         );
       case 'QRPaymentScreenFormFirst':
         return (
           <QRPaymentScreenFormFirst
-            transaction={transactions[9]}
+            transaction={transactionsMockData}
             goNext={goNext}
           />
         );
@@ -173,7 +193,7 @@ const QRPaymentScreen = (props: Props) => {
             goNext={goNext}
             getPassword={getPasswordFunc}
             handleTimeout={handleTimeout}
-            readPayment={payment}
+            readPayment={paymentData}
           />
         );
       case 'CardSelectFrom':
@@ -187,7 +207,7 @@ const QRPaymentScreen = (props: Props) => {
       default:
         return (
           <QRPaymentScreenFormFirst
-            transaction={transactions[9]}
+            transaction={transactionsMockData}
             goNext={goNext}
           />
         );

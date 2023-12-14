@@ -7,6 +7,7 @@ import MyView from '../components/MyView';
 import PressButton from '../components/PressButton';
 import SuccesAddCardForm from '../screenForms/MyCardScreen/SuccesAddCardForm';
 import UnSuccesAddCardForm from '../screenForms/MyCardScreen/UnSuccesAddCardForm';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   navigation: {
@@ -18,7 +19,7 @@ type Props = {
 
 const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
   const [currentForm, setCurrentForm] = useState<number>(1);
-
+  const {t} = useTranslation();
   useEffect(() => {
     const timeout = setTimeout(() => {
       setCurrentForm(2);
@@ -36,7 +37,7 @@ const BankCardDirectedScreen: React.FC<Props> = (props: Props) => {
     setCurrentForm(5);
   };
   const goToHome = () => {
-    props.navigation.navigate('HomeScreen');
+    props.navigation.navigate(t('HomePage'));
   };
 
   const renderForm = () => {

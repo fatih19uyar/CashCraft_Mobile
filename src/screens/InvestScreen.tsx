@@ -8,6 +8,8 @@ import InvestScreenFormThird from '../screenForms/InvestScreenForm/InvestScreenF
 import {useTranslation} from 'react-i18next';
 import useWalletCard from '../hooks/useWalletCard';
 import WalletCardService from '../services/WalletCardService';
+import {useAppDispatch} from '../hooks/useStore';
+import {loadingSet} from '../redux/slice/navigationSlice';
 
 type Props = {
   navigation: {
@@ -23,6 +25,7 @@ const InvestScreen = (props: Props) => {
   const [topBarSmallText, setTopBarSmallText] = useState(t('Deposit'));
   const [card, setCard] = useState<CardData>();
   const {walletCard} = useWalletCard();
+  const dispatch = useAppDispatch();
 
   const renderForm = () => {
     switch (currentForm) {
@@ -65,9 +68,11 @@ const InvestScreen = (props: Props) => {
     props.navigation.goBack();
   };
   const goDirectBank = async () => {
+    dispatch(loadingSet({loading: true}));
     WalletCardService.updateWalletCardBalance(10, '+')
       .then(() => {
         props.navigation.navigate('BankCardDirectedScreen');
+        dispatch(loadingSet({loading: false}));
         setCurrentForm(1);
       })
       .catch(() => {

@@ -48,7 +48,9 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
         </TextContainer>
         <TextContainer>
           <TitleText>Miktar</TitleText>
-          <SubtitleText>{readPayment.price} TL</SubtitleText>
+          <SubtitleText>
+            {readPayment.price} {readPayment.currency}
+          </SubtitleText>
         </TextContainer>
       </ListItemContainer>
     );
@@ -87,22 +89,28 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
             {t('PaymentType')}
           </TextView>
           <View style={{flex: 1}} />
-          <TouchableOpacity onPress={addNewCard} style={{flexDirection: 'row'}}>
-            <Image
-              source={require('../../assets/add_icon.png')}
-              style={{width: 25, height: 25, marginTop: 13, marginBottom: 5}}
-            />
-            <TextView
-              style={{
-                color: themes.light.colors.text,
-                fontSize: themes.light.fontSize.medium - 1,
-                marginBottom: themes.light.textMargin.bottom.small,
-                marginTop: themes.light.textMargin.top.medium,
-                fontWeight: '400',
-              }}>
-              {t('AddCard')}
-            </TextView>
-          </TouchableOpacity>
+          {false ? (
+            <TouchableOpacity
+              onPress={addNewCard}
+              style={{flexDirection: 'row'}}>
+              <Image
+                source={require('../../assets/add_icon.png')}
+                style={{width: 25, height: 25, marginTop: 13, marginBottom: 5}}
+              />
+              <TextView
+                style={{
+                  color: themes.light.colors.text,
+                  fontSize: themes.light.fontSize.medium - 1,
+                  marginBottom: themes.light.textMargin.bottom.small,
+                  marginTop: themes.light.textMargin.top.medium,
+                  fontWeight: '400',
+                }}>
+                {t('AddCard')}
+              </TextView>
+            </TouchableOpacity>
+          ) : (
+            <></>
+          )}
         </RowTextContaier>
         {buttonFunc()}
       </MyView>
