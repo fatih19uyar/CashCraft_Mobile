@@ -1,6 +1,10 @@
 import {AxiosResponse} from 'axios';
 import Api from '.';
-import {TransactionData} from '../types/type';
+import {
+  TransactionData,
+  CreateTransactionReq,
+  CreateTransactionRes,
+} from '../types/type';
 
 // İşlem işlemlerini yöneten servis
 
@@ -21,13 +25,15 @@ const TransactionService = {
     return Api.get(`/transactions/getTransactionByUserId/${userId}`);
   },
 
-  createTransaction: (transactionData: any): Promise<AxiosResponse<any>> => {
+  createTransaction: (
+    transactionData: CreateTransactionReq,
+  ): Promise<AxiosResponse<CreateTransactionRes>> => {
     return Api.post('/transactions/createTransaction', transactionData);
   },
 
   updateTransaction: (
     transactionId: string,
-    transactionData: any,
+    transactionData: TransactionData,
   ): Promise<AxiosResponse<TransactionData>> => {
     return Api.put(`/transactions/${transactionId}`, transactionData);
   },
