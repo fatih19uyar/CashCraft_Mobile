@@ -4,7 +4,6 @@ import {styled} from 'styled-components/native';
 import PressButton from '../../components/PressButton';
 import {useTranslation} from 'react-i18next';
 import {TransactionData} from '../../types/type';
-import {Image} from 'react-native';
 
 interface QRPaymentScreenFormFirstProps {
   goNext: () => void;
