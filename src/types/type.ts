@@ -109,11 +109,39 @@ export interface TransactionData {
   createDate: string;
   price: string;
   qrCode: string | null;
+  status?: TransactionStatus;
   currency: {
-    symbol: string;
+    _id?: string;
+    symbol?: string;
     code: string;
     name: string;
   };
+}
+export interface CreateTransactionReq {
+  title: string;
+  subtitle: string;
+  price: string;
+  user: string;
+  currency: string;
+  card: string;
+  status?: TransactionStatus;
+}
+export interface CreateTransactionRes {
+  _id: string;
+  title: string;
+  subtitle: string;
+  price: number;
+  user: string;
+  currency: string;
+  card: string;
+  qrCode: string;
+  createDate: number;
+  status: TransactionStatus;
+}
+export enum TransactionStatus {
+  COMPLETED = 'COMPLETED',
+  PENDING = 'PENDING',
+  CANCELLED = 'CANCELLED',
 }
 export interface CardState {
   cards: CardData[];
@@ -148,6 +176,7 @@ export interface ReservationDetail {
 export interface PaymentDetails {
   companyName: string;
   price: string;
+  currency: string;
 }
 
 export interface LoginRecordData {
