@@ -106,7 +106,7 @@ const QRPaymentScreen = (props: Props) => {
   const handleTimeout = () => {
     const toastConfig = {
       type: 'fault' as ToastTypes,
-      text1: 'Süre Doldu...',
+      text1: t('TimeOut'),
     };
     showToast(toastConfig);
     setTimeout(() => {
@@ -178,6 +178,7 @@ const QRPaymentScreen = (props: Props) => {
             selectCard={selectCard}
             readPayment={paymentData}
             addNewCard={addNewCard}
+            handleTimeout={handleTimeout}
           />
         );
       case 'QRPaymentScreenFormFirst':

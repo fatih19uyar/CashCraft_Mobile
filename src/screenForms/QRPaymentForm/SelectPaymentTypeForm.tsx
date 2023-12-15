@@ -8,17 +8,21 @@ import TextView from '../../components/TextView';
 import {Image, TouchableOpacity, View} from 'react-native';
 import ImageButton from '../../components/ImageButton';
 import {useTranslation} from 'react-i18next';
+import useTimer from '../../hooks/useTimer';
 
 interface QRPayNowScreenFormProps {
   selectCard: (cartStyle: PaymentCardStyle) => void;
   readPayment: PaymentDetails;
   addNewCard: () => void;
+  handleTimeout: () => void;
 }
 const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
   addNewCard,
   readPayment,
   selectCard,
+  handleTimeout,
 }) => {
+  const oneMinutes: number = useTimer(handleTimeout, 60, 1000);
   const {t} = useTranslation();
   const buttonData = [
     {
@@ -76,7 +80,9 @@ const SelectPaymentTypeForm: React.FC<QRPayNowScreenFormProps> = ({
     <>
       <MyView>
         {paymentDetails()}
-        <Text>Kalan Süre: 00:00</Text>
+        <Text>
+          {t('RemainingTime')} 00:{oneMinutes}
+        </Text>
         <RowTextContaier>
           <TextView
             style={{
