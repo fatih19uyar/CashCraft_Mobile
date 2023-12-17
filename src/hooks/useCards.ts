@@ -15,8 +15,19 @@ export default function useCards() {
     shallowEqual,
   );
   useEffect(() => {
-    if (cards.length === 0) dispatch(getAllCards());
+    let attemptCount = 0;
+    const fetchData = async () => {
+      if (cards.length === 0 && attemptCount < 2) {
+        await dispatch(getAllCards());
+        attemptCount++;
+        fetchData();
+      }
+    };
+
+    // İlk kez useEffect çalıştığında fetchData fonksiyonunu çağır
+    fetchData();
   }, [cards]);
+
   const handleSelectCard = (newCard: CardState['selectedCard']) => {
     dispatch(setSelectedCard(newCard));
   };
