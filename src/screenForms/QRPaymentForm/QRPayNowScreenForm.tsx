@@ -68,7 +68,7 @@ const QRPayNowScreenForm: React.FC<QRPayNowScreenFormProps> = ({
             marginBottom: themes.light.textMargin.bottom.large + 5,
             fontWeight: '500',
           }}>
-          {t('welcome') + ' Ezgi Beytaş'}
+          {t('welcome') + ' Ömer Fatih UYAR'}
         </TextView>
         <StyledImage source={require('../../assets/profile_element.png')} />
         <PasswordInput length={6} onChangePassword={getPassword} />

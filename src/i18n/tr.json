@@ -113,9 +113,9 @@
 
   "EmptyBankCardText": "Idvlabs Cüzdan hesabına tanımlı banka kartın bulunmuyor.",
 
-  "SuccessfullBankCardAdded": "Banka kartı ekleme işlemi başarıyla gerçekleşti. Kayıtlı kartlarım menüsünden kart bilgilerine erişebilirsin.",
+  "SuccessfullBankCardAdded": "İşlem başarıyla gerçekleşti.",
 
-  "PaymentFailedForCardBalance": "Ödeme işlemi başarısız oldu. Kart bakiyenizi kontrol ediniz ve tekrar deneyiniz.",
+  "PaymentFailedForCardBalance": "Kart bakiyenizi kontrol ediniz ve tekrar deneyiniz.",
 
   "ConfirmationCode": "Onay Kodu",
   "ConfirmationCodeEnter6Digit": "Lütfen gönderilen 6 haneli güvenlik kodunu giriniz.",

@@ -101,6 +101,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = (
         text1: t('EmailAlreadyExists'),
       };
       showToast(toastConfig);
+      dispatch(loadingSet({loading: false}));
     }
   };
   const onCheckEmailVerification = async (values: any) => {

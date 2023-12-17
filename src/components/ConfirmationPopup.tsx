@@ -132,7 +132,7 @@ const ConfirmationPopup: React.FC<ConfirmationPopupProps> = ({
             </TextView>
             <Image
               style={{height: 100, width: 100}}
-              source={require('../assets/success.gif')}
+              source={require('../assets/success.png')}
             />
           </>
         );

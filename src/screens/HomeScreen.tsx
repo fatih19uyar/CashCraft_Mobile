@@ -12,7 +12,6 @@ import {LoginRecordType} from '../types/type';
 import publicIP from 'react-native-public-ip';
 import getDeviceInfo from '../utils/DeviceInfo';
 import useWalletCard from '../hooks/useWalletCard';
-import {resetTrasaction} from '../redux/slice/transactionSlice';
 
 type Props = {
   navigation: {
@@ -71,7 +70,7 @@ const HomeScreen = (props: Props) => {
     if (transactions.length > 0 && campaigns.length > 0)
       dispatch(loadingSet({loading: false}));
     else {
-      dispatch(loadingSet({loading: true}));
+      dispatch(loadingSet({loading: false}));
     }
   }, [campaigns, transactions, walletCard]);
 

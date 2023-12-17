@@ -118,6 +118,10 @@ const QRPaymentScreen = (props: Props) => {
     if (cardStyle !== PaymentCardStyle.ANOTHER) setSelectedCardStyle(cardStyle);
     setCurrentForm('CardSelectFrom');
     setBackButton(true);
+    if (cardStyle == PaymentCardStyle.WALLET) {
+      props.navigation.navigate('BankCardDirectedScreen');
+      setCurrentForm('QRPaymentScreenFormFirst');
+    }
   };
   const filterCards = (cards: CardData[], cardStyle: ExtendedCardStyle) => {
     const bankCards = cards.filter(card => card.cardStyle === cardStyle);

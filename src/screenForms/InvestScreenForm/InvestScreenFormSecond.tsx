@@ -34,7 +34,7 @@ const InvestScreenFormSecond: React.FC<InvestScreenFormSecondProps> = ({
             marginTop: themes.light.textMargin.top.medium,
             fontWeight: '500',
           }}>
-          ₺ _ _,_ _
+          ₺ 5 0,0 0
         </TextView>
         <TextView
           style={{

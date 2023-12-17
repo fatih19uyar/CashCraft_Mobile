@@ -42,7 +42,7 @@ const InvestScreenFormThird: React.FC<InvestScreenFormThirdProps> = ({
       <ListItemContainer>
         <TextContainer>
           <TitleText>Yatırılacak Tutar</TitleText>
-          <SubtitleText>{credit} TL</SubtitleText>
+          <SubtitleText>50 TL</SubtitleText>
         </TextContainer>
       </ListItemContainer>
       <ListItemContainer>
@@ -54,9 +54,7 @@ const InvestScreenFormThird: React.FC<InvestScreenFormThirdProps> = ({
       <ListItemContainer>
         <TextContainer>
           <TitleText>Karttan Çekilecek Tutar</TitleText>
-          <SubtitleText>
-            {parseFloat(credit) / 10 + parseFloat(credit)} TL
-          </SubtitleText>
+          <SubtitleText>51 TL</SubtitleText>
         </TextContainer>
       </ListItemContainer>
       <PressButton
