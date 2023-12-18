@@ -19,14 +19,15 @@ const InvestScreenFormThird: React.FC<InvestScreenFormThirdProps> = ({
   return (
     <MyView>
       <TextView
-        textColor={'black'}
-        textSize={14}
-        text={
-          'Cüzdan hesabına para yatırma işlemini tamamlanamdan önce bilgilerinizi kontrol ediniz.'
-        }
-        textStyle={'300'}
-        textMargin={{top: 0, bottom: 60}}
-      />
+        style={{
+          color: themes.light.colors.text,
+          fontSize: themes.light.fontSize.small + 2,
+          marginBottom: themes.light.textMargin.bottom.xLarge + 10,
+          fontWeight: '300',
+        }}>
+        Cüzdan hesabına para yatırma işlemini tamamlanamdan önce bilgilerinizi
+        kontrol ediniz.
+      </TextView>
       <ListItemContainer>
         {cardData?.cardType === 'master' ? (
           <Thumbnail source={require('../../assets/mastercard.png')} />
