@@ -22,7 +22,7 @@ const WelcomeScreenForm = (props: WelcomeScreenFormProps) => {
     <>
       <MyView>
         <Image
-          source={require('../assets/idvlabs-logo.png')}
+          source={require('../assets/app-logo.png')}
           style={{width: 200, height: 52, marginBottom: 20}}
         />
         <TextView

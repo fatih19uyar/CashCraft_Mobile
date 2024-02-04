@@ -17,7 +17,7 @@ const TopBar: React.FC<TopBarProps> = ({onProfileLogoPress}) => {
     <>
       <Container>
         <LogoContainer>
-          <Logo source={require('../assets/idvlabs-logo.png')} />
+          <Logo source={require('../assets/app-logo.png')} />
         </LogoContainer>
         <ProfileLogoContainer onPress={onProfileLogoPress}>
           <ProfileLogo source={require('../assets/profile_logo.png')} />
