@@ -59,21 +59,36 @@ Now that you have successfully run the app, let's modify it.
 
 You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+## Used API'S 
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+📱 General Libraries:
 
-# Troubleshooting
+@notifee/react-native: Notification management.
+@react-native-async-storage/async-storage: Asynchronous storage operations.
+@react-native-community/checkbox: Checkbox component.
+@react-native-community/masked-view: Masked views.
+🚀 Navigation and UI:
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+@react-navigation/bottom-tabs: Creating bottom tab menus.
+@react-navigation/native: Core navigation.
+@react-navigation/native-stack: Native stack navigator.
+@react-navigation/stack: Stack navigator.
+react-native-elements: Visual appeal and user-friendly UI components.
+react-native-safe-area-context: Safe area management.
+🔄 State Management and Form:
 
-# Learn More
+@reduxjs/toolkit: Global state management with Redux toolkit.
+react-hook-form: Form management.
+🌐 Multi-Language Support and Translation:
 
-To learn more about React Native, take a look at the following resources:
+i18next: Multi-language support and translation.
+🎥 Video Content and Player:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+react-native-youtube-iframe: Customized video player.
+🎞️ Animation and Effects:
+
+react-native-reanimated: Animations and visual effects.
+💾 Data Storage:
+
+AsyncStorage: Secure data storage.
+
